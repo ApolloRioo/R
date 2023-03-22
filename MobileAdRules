@@ -1,95 +1,128 @@
-
-1
 [Adblock Plus 2.0]
-2
 ! Title: 百晓生 AD Mobile riooo
-3
 ! Version:2023.03.18
-4
 ! Homepage:https://gitee.com/apollllo/ublock/raw/master/MobileAdRules
-5
 ! by: R
-6
-​
-7
-​
-8
+
+
 ! 果壳剥壳 https://www.ghxi.com
-9
 www.ghxi.com##div:nth-of-type(6)
-10
 www.ghxi.com##.swiper-container-android.swiper-container-autoheight.swiper-container-horizontal.slider-full.swiper-container.wpcom-slider.main-slider
-11
 www.ghxi.com###modules-15
-12
 www.ghxi.com##.j-modules-inner.main > .modules-category-posts.wpcom-modules.section
-13
 www.ghxi.com##.modules-special.wpcom-modules.section
-14
 www.ghxi.com###modules-26
-15
 www.ghxi.com##.modules-image.wpcom-modules.section
-16
 www.ghxi.com##.modules-text.wpcom-modules.section
-17
 www.ghxi.com##li.item-sticky.item:nth-of-type(1)
-18
 www.ghxi.com##li.item-sticky.item:nth-of-type(2)
-19
 www.ghxi.com##li.item-sticky.item:nth-of-type(3)
-20
 www.ghxi.com##li.item-sticky.item:nth-of-type(4)
-21
 www.ghxi.com##li.item-sticky.item:nth-of-type(5)
-22
 www.ghxi.com##li.item-sticky.item:nth-of-type(6)
-23
 www.ghxi.com##li.item-sticky.item:nth-of-type(7)
-24
 www.ghxi.com##div:nth-of-type(5)
-25
 www.ghxi.com##div:nth-of-type(7)
-26
 www.ghxi.com###modules-20
-27
 www.ghxi.com##.container.modules-category-posts.wpcom-modules.section
-28
 www.ghxi.com##.container.modules-tjnr.wpcom-modules.section
-29
 www.ghxi.com##.width-footer-bar.footer > .container
-30
 www.ghxi.com##.entry-copyright
-31
 www.ghxi.com##.entry-page
-32
 www.ghxi.com##.entry-related-posts
-33
-​
-34
+
 ! 资源否 https://www.zyfou.com
-35
 www.zyfou.com##.modules-tjnr.wpcom-modules.section
-36
 www.zyfou.com##.modules-carousel-posts.wpcom-modules.section
-37
 www.zyfou.com##.modules-html-code.wpcom-modules.section
-38
 www.zyfou.com##.container.modules-category-posts.wpcom-modules.section
-39
 www.zyfou.com##.container.modules-gird.wpcom-modules.section
-40
 www.zyfou.com##.container.modules-links.wpcom-modules.section
-41
 www.zyfou.com##.width-footer-bar.footer > .container
-42
 www.zyfou.com##li.item-sticky.item:nth-of-type(1)
-43
 www.zyfou.com##li.item-sticky.item:nth-of-type(2)
-44
 www.zyfou.com##li.item-sticky.item:nth-of-type(3)
-45
 www.zyfou.com##li.item-sticky.item:nth-of-type(4)
-46
 www.zyfou.com##li.item-sticky.item:nth-of-type(5)
-47
 www.zyfou.com##li.item-sticky.item:nth-of-type(6)
+www.zyfou.com##.entry-copyright
+www.zyfou.com##.entry-action
+www.zyfou.com##.entry-related-posts
+www.zyfou.com##.entry-page
+www.zyfou.com##.__single_1.wpcom_myimg_wrap
+
+! 殁漂遥 https://www.mpyit.com
+www.mpyit.com##div.h-cat:nth-of-type(6)
+www.mpyit.com##div.footer_content:nth-of-type(7)
+www.mpyit.com##.footer_content
+www.mpyit.com##[href="https://www.mpyit.com/73207.html"]
+www.mpyit.com##[href="https://www.mpyit.com/salesunlogin.html"]
+www.mpyit.com##[href="https://www.mpyit.com/lemuapk.html"]
+www.mpyit.com###tabs
+www.mpyit.com##.navigation
+www.mpyit.com##.sico
+
+! 423下载 https://www.423down.com
+www.423down.com##[href="http://www.51jike.top/"]
+
+! 异星软件空间 https://www.yxssp.com
+www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(1)
+www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(2)
+www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(3)
+www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(4)
+www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(5)
+
+!手机中国 https://m.cnmo.com
+m.cnmo.com###app_gama_info
+m.cnmo.com##.msg-lop
+m.cnmo.com##.new-phone
+m.cnmo.com##.m_list_first
+m.cnmo.com##.bor.mt10.m_ad_car
+
+! 富强民主 ppee62.com
+ppe27.com##.xk_img
+ppe258.com##.xk_img
+
+! gitea 测试删库跑路说明
+try.gitea.io##body > .container.ui
+
+!! Qwant搜索引擎 https://www.qwant.com
+www.qwant.com##.QUKRW._2FkH
+www.qwant.com##.QUKRW._2FkHV
+www.qwant.com##._1mj9J
+www.qwant.com##._35zId._7B4NI._3wU9G._34obj._1S2hN
+
+! 烈火汉化 https://apphot.cc
+apphot.cc##.excerpt-minic-index.excerpt-minic
+apphot.cc##.article-nav
+apphot.cc##.relates-imagetext.relates
+apphot.cc##.branding-black.branding
+apphot.cc##.footer
+apphot.cc##.swiper-container-android.swiper-container-horizontal.swiper-container-initialized.swiper-container
+apphot.cc##.swiper-container
+
+! Ecosia搜索引擎 https://www.ecosia.org
+www.ecosia.org##.main-footer
+
+! 茶杯狐 https://cupfox.app
+cupfox.app##.model-content.jsx-3532742782
+cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(3)
+cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(4)
+cupfox.app##div.nav.jsx-3643242311:nth-of-type(4)
+cupfox.app##div.nav.jsx-3643242311:nth-of-type(5)
+
+! 333影视网 https://www.ylwt33.com
+www.ylwt33.com##.textgreen
+www.ylwt33.com##.textred
+www.ylwt33.com##.textblue
+www.ylwt33.com###cjwt
+www.ylwt33.com###mhbottom_ad_box
+www.ylwt33.com##.clearfix.myui-extra > .visible-xs
+www.ylwt33.com##a.item:nth-of-type(3)
+www.ylwt33.com###bfad1
+
+! 人人影视 https://www.rrets.cc
+www.rrets.cc##.player-news
+||www.rrets.cc/add.png$image
+||www.rrets.cc/a.png$image
+www.rrets.cc##div.tim-box.ec-ad > [href="https://docs.qq.com/doc/DZEJDQ3VaWXhEbERo"]
