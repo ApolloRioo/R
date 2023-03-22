@@ -1,0 +1,95 @@
+
+1
+[Adblock Plus 2.0]
+2
+! Title: 百晓生 AD Mobile riooo
+3
+! Version:2023.03.18
+4
+! Homepage:https://gitee.com/apollllo/ublock/raw/master/MobileAdRules
+5
+! by: R
+6
+​
+7
+​
+8
+! 果壳剥壳 https://www.ghxi.com
+9
+www.ghxi.com##div:nth-of-type(6)
+10
+www.ghxi.com##.swiper-container-android.swiper-container-autoheight.swiper-container-horizontal.slider-full.swiper-container.wpcom-slider.main-slider
+11
+www.ghxi.com###modules-15
+12
+www.ghxi.com##.j-modules-inner.main > .modules-category-posts.wpcom-modules.section
+13
+www.ghxi.com##.modules-special.wpcom-modules.section
+14
+www.ghxi.com###modules-26
+15
+www.ghxi.com##.modules-image.wpcom-modules.section
+16
+www.ghxi.com##.modules-text.wpcom-modules.section
+17
+www.ghxi.com##li.item-sticky.item:nth-of-type(1)
+18
+www.ghxi.com##li.item-sticky.item:nth-of-type(2)
+19
+www.ghxi.com##li.item-sticky.item:nth-of-type(3)
+20
+www.ghxi.com##li.item-sticky.item:nth-of-type(4)
+21
+www.ghxi.com##li.item-sticky.item:nth-of-type(5)
+22
+www.ghxi.com##li.item-sticky.item:nth-of-type(6)
+23
+www.ghxi.com##li.item-sticky.item:nth-of-type(7)
+24
+www.ghxi.com##div:nth-of-type(5)
+25
+www.ghxi.com##div:nth-of-type(7)
+26
+www.ghxi.com###modules-20
+27
+www.ghxi.com##.container.modules-category-posts.wpcom-modules.section
+28
+www.ghxi.com##.container.modules-tjnr.wpcom-modules.section
+29
+www.ghxi.com##.width-footer-bar.footer > .container
+30
+www.ghxi.com##.entry-copyright
+31
+www.ghxi.com##.entry-page
+32
+www.ghxi.com##.entry-related-posts
+33
+​
+34
+! 资源否 https://www.zyfou.com
+35
+www.zyfou.com##.modules-tjnr.wpcom-modules.section
+36
+www.zyfou.com##.modules-carousel-posts.wpcom-modules.section
+37
+www.zyfou.com##.modules-html-code.wpcom-modules.section
+38
+www.zyfou.com##.container.modules-category-posts.wpcom-modules.section
+39
+www.zyfou.com##.container.modules-gird.wpcom-modules.section
+40
+www.zyfou.com##.container.modules-links.wpcom-modules.section
+41
+www.zyfou.com##.width-footer-bar.footer > .container
+42
+www.zyfou.com##li.item-sticky.item:nth-of-type(1)
+43
+www.zyfou.com##li.item-sticky.item:nth-of-type(2)
+44
+www.zyfou.com##li.item-sticky.item:nth-of-type(3)
+45
+www.zyfou.com##li.item-sticky.item:nth-of-type(4)
+46
+www.zyfou.com##li.item-sticky.item:nth-of-type(5)
+47
+www.zyfou.com##li.item-sticky.item:nth-of-type(6)
