@@ -75,6 +75,7 @@ www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(5)
 
 !手机中国 https://m.cnmo.com
 ||statict.cnmo.com/origin/touch/uCenter/images/tab*.png$image
+m.cnmo.com##[href^="//my.m.cnmo.com/mobile.php"]
 m.cnmo.com##.IndexTab
 ||imgm*.cnmo.com/handimg/
 m.cnmo.com##.mod_focus
