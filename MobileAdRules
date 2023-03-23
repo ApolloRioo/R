@@ -73,11 +73,10 @@ www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(4)
 www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(5)
 
 !手机中国 https://m.cnmo.com
-m.cnmo.com###app_gama_info
-m.cnmo.com##.msg-lop
-m.cnmo.com##.new-phone
-m.cnmo.com##.m_list_first
-m.cnmo.com##.bor.mt10.m_ad_car
+||statict.cnmo.com/origin/touch/uCenter/images/tab*.png$image
+m.cnmo.com##.IndexTab
+||imgm*.cnmo.com/handimg/
+m.cnmo.com##.mod_focus
 
 ! 富强民主 ppee62.com
 ppe27.com##.xk_img
