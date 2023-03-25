@@ -162,6 +162,24 @@ yp9535.com###header-mid
 www.bdjs6.com##.animatedIn.popup-container
 
 
+! 搜狗 https://m.sogou.com
+m.sogou.com##div#middleHint-1.hint-module.per-hint:nth-of-type(6)
+m.sogou.com##.hint-module.per-hint
+wap.sogou.com##.hint-module.per-hint
+wap.sogou.com##.JS-sgxhr.per-hint
+
+! F搜 https://fsoufsou.com
+fsoufsou.com##.related-searches-container
+
+! 百度 https://m.baidu.com
+baidu.com##.card-container__AkDZY._zpTVW.c-container
+
+! 影咖 https://yingka.tv
+yingka.tv##.fodong_tips.tips-list
+
+
+
+
 
 ! 你是个大傻逼
 
