@@ -6,12 +6,12 @@
 
 
 ! 果壳剥壳 https://www.ghxi.com
-www.ghxi.com##div:nth-of-type(6)
 www.ghxi.com##.swiper-container-android.swiper-container-autoheight.swiper-container-horizontal.slider-full.swiper-container.wpcom-slider.main-slider
-www.ghxi.com###modules-15
 www.ghxi.com##.j-modules-inner.main > .modules-category-posts.wpcom-modules.section
 www.ghxi.com##.modules-special.wpcom-modules.section
+www.ghxi.com###modules-15
 www.ghxi.com###modules-26
+www.ghxi.com###modules-20
 www.ghxi.com##.modules-image.wpcom-modules.section
 www.ghxi.com##.modules-text.wpcom-modules.section
 www.ghxi.com##li.item-sticky.item:nth-of-type(1)
@@ -22,8 +22,8 @@ www.ghxi.com##li.item-sticky.item:nth-of-type(5)
 www.ghxi.com##li.item-sticky.item:nth-of-type(6)
 www.ghxi.com##li.item-sticky.item:nth-of-type(7)
 www.ghxi.com##div:nth-of-type(5)
+www.ghxi.com##div:nth-of-type(6)
 www.ghxi.com##div:nth-of-type(7)
-www.ghxi.com###modules-20
 www.ghxi.com##.container.modules-category-posts.wpcom-modules.section
 www.ghxi.com##.container.modules-tjnr.wpcom-modules.section
 www.ghxi.com##.width-footer-bar.footer > .container
