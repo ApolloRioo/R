@@ -176,6 +176,7 @@ baidu.com##.card-container__AkDZY._zpTVW.c-container
 
 ! 影咖 https://yingka.tv
 yingka.tv##.fodong_tips.tips-list
+yingka.tv##div:nth-of-type(5)
 
 ! 韩三伦理小站 www-lunlizhan.com
 ||aaaaa866.com^
@@ -193,6 +194,10 @@ www-lunlizhan.com##.clearfix.stui-foot
 9s123.xyz###videoShowPage > .tab-content
 9s123.xyz##div.colVideoList:nth-of-type(1)
 9s123.xyz##div.colVideoList:nth-of-type(2)
+
+! 99吃鸡 https://99chiji0.com
+||99*.com/upload/aim/*.png$image
+||99*.com/upload/aim/*.gif$image
 
 
 
