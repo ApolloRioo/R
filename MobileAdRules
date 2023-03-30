@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 百晓生 AD Mobile riooo
-! Version:2023.03.18
+! Version:2023.03.30
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -197,8 +197,8 @@ lunlizhan-com.com,www-lunlizhan.com##.clearfix.stui-foot
 9s123.xyz##div.colVideoList:nth-of-type(2)
 
 ! 99吃鸡 https://99chiji0.com
-||99*.com/upload/aim/*.png$image
-||99*.com/upload/aim/*.gif$image
+.com/upload/aim/*.png$image
+.com/upload/aim/*.gif$image
 99djchvbxgdc.com##div.container:nth-of-type(2)
 99djchvbxgdc.com###ad1001.clearfix.hl-this-box.conch-amg-box
 99djchvbxgdc.com##.clearfix.hl-marg-right50.hl-rb-left > .clearfix.hl-row-box.hl-this-box.conch-amg-box
