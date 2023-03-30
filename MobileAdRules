@@ -185,16 +185,31 @@ yingka.tv##div:nth-of-type(5)
 lunlizhan-com.com,www-lunlizhan.com###topview
 lunlizhan-com.com,www-lunlizhan.com##.clearfix.stui-foot
 
-
-! 九色 https://9s123.xyz
-9s123.xyz##.d-sm-none.d-block.row
-9s123.xyz##.mb-0.jsv-g1.jsv
-9s123.xyz###main > .p-0.mb-3.container-fluid
-9s123.xyz##.d-sm-none.d-block.container-fluid
-9s123.xyz##.p-0.mb-0.container-fluid
-9s123.xyz###videoShowPage > .tab-content
-9s123.xyz##div.colVideoList:nth-of-type(1)
-9s123.xyz##div.colVideoList:nth-of-type(2)
+! 九色 https://home91.gitbook.io/jiuse
+||u1077.com^
+||u1010.com^
+||588aaa.us^
+||n33033.com^
+||556aaa.us^
+||360buyimg.com^
+||jstatic.xyz^
+||6651tp.comv^
+||z4a.net^
+||xiod.xyz^
+||6651tp.com^
+||kvegg.com^
+||599aaa.us^
+||6651tp.com^
+||665aaa.us^
+||n18081.com^
+com###main > .p-0.mb-3.container-fluid
+com##.p-0.mb-0.container-fluid
+com##.mb-0.jsv-g1.jsv > .p-0.mb-3.container-fluid
+com##.d-sm-none.d-block.container-fluid
+com##div.colVideoList:nth-of-type(1)
+com##div.colVideoList:nth-of-type(2)
+com##.d-sm-none.d-block.row
+com###videoShowPage > .tab-content
 
 ! 91/99吃鸡 https://91chiji.com,https://99chiji0.com
 .com/upload/aim/*.png$image
