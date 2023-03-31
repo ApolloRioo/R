@@ -24,6 +24,8 @@ www.ghxi.com##li.item-sticky.item:nth-of-type(7)
 www.ghxi.com##div:nth-of-type(5)
 www.ghxi.com##div:nth-of-type(6)
 www.ghxi.com##div:nth-of-type(7)
+www.ghxi.com##div:nth-of-type(8)
+www.ghxi.com##div:nth-of-type(9)
 www.ghxi.com##.container.modules-category-posts.wpcom-modules.section
 www.ghxi.com##.container.modules-tjnr.wpcom-modules.section
 www.ghxi.com##.width-footer-bar.footer > .container
@@ -220,6 +222,12 @@ com##.clearfix.hl-ma0.hl-row-box > .clearfix.hl-row-box.hl-this-box.conch-amg-bo
 com##.clearfix.swiper-slide > .clearfix.hl-row-box.hl-this-box.conch-amg-box
 com##.fix.hl-text-white.hl-this-box.hl-player-notice
 com##.clearfix.hl-row-box.hl-this-box.conch-amg-box
+
+! 黄色仓库 http://ckv1.cc
+||6651tp.com/*.gif$image
+||gd8.alicdn.com/imgextra/*/*.gif$image
+ckv1.cc##.qq
+
 
 
 
