@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 百晓生 AD Mobile riooo
-! Version:2023.03.30
+! Version:2023.04.01
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -96,7 +96,7 @@ ppe258.com##.xk_img
 ! gitea 测试删库跑路说明
 try.gitea.io##body > .container.ui
 
-!! Qwant搜索引擎 https://www.qwant.com
+! Qwant搜索引擎 https://www.qwant.com
 www.qwant.com##.QUKRW._2FkH
 www.qwant.com##.QUKRW._2FkHV
 www.qwant.com##._1mj9J
@@ -227,6 +227,11 @@ com##.clearfix.hl-row-box.hl-this-box.conch-amg-box
 ||6651tp.com/*.gif$image
 ||gd8.alicdn.com/imgextra/*/*.gif$image
 ckv1.cc##.qq
+
+! 集芳阁
+com##.appbox
+com##[href="https://x83668.com:3343"]
+||img.8123a.com/images/*.gif$image
 
 
 
