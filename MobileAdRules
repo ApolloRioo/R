@@ -219,6 +219,8 @@ xyz##.mb-0.jsv-g1.jsv
 xyz##.text-danger.text-small
 xyz##.d-sm-none.d-block.container-fluid
 com###playerJsvLayer
+xyz###playerJsvLayer
+xyz###tabContent.tab-content
 xyz##div.colVideoList:nth-of-type(1)
 xyz##div.colVideoList:nth-of-type(2)
 com##div.colVideoList:nth-of-type(1)
