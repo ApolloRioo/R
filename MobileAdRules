@@ -218,14 +218,18 @@ xyz##div.row:nth-of-type(3)
 xyz##.mb-0.jsv-g1.jsv
 xyz##.text-danger.text-small
 xyz##.d-sm-none.d-block.container-fluid
-cc##.p-0.mb-3.container-fluid
 com###playerJsvLayer
-com##.p-0.mb-0.container-fluid
 xyz##div.colVideoList:nth-of-type(1)
-xyz##.p-0.mb-0.container-fluid
+xyz##div.colVideoList:nth-of-type(2)
 com##div.colVideoList:nth-of-type(1)
 com##div.colVideoList:nth-of-type(2)
 com###videoShowPage > .tab-content
+cc##.p-0.mb-3.container-fluid
+com##.p-0.mb-0.container-fluid
+xyz##div.col-sm:nth-of-type(2)
+xyz##.p-0.mb-3.container-fluid
+xyz##.p-0.mb-0.container-fluid
+
 
 ! 91/99吃鸡 https://91chiji.com,https://99chiji0.com
 .com/upload/aim/*.png$image
