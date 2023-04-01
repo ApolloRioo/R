@@ -221,6 +221,8 @@ xyz##.d-sm-none.d-block.container-fluid
 cc##.p-0.mb-3.container-fluid
 com###playerJsvLayer
 com##.p-0.mb-0.container-fluid
+xyz##div.colVideoList:nth-of-type(1)
+xyz##.p-0.mb-0.container-fluid
 com##div.colVideoList:nth-of-type(1)
 com##div.colVideoList:nth-of-type(2)
 com###videoShowPage > .tab-content
