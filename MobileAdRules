@@ -281,6 +281,7 @@ com###topbox
 
 ! https://秋名山视频.com/
 space##div#top_box:nth-of-type(2)
+space##div#top_box:nth-of-type(3)
 
 ! https://porn研究所.com/
 com##div.col-12:nth-of-type(1)
