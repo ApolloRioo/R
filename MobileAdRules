@@ -264,6 +264,27 @@ com,cc##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
 ! 1024视频 http://1024new.com/
 com###ad_top
 
+!  https://猎奇视频.com/
+com##div#top_box:nth-of-type(3)
+
+! 魑魅魍魉 https://xn--bm6aqadj.xyz
+xyz###ad_top_cmwl
+
+! 就要看 https://jiuyaokan.xyz
+jiuyaokan.xyz##.modown-ad
+
+! https://藏姬阁.com/
+com###ad_top_cjg
+
+! https://国产自拍热.com/
+com###topbox
+
+! https://秋名山视频.com/
+space##div#top_box:nth-of-type(2)
+
+! https://porn研究所.com/
+com##div.col-12:nth-of-type(1)
+
 
 
 
