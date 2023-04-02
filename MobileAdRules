@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 百晓生 AD Mobile riooo
-! Version:2023.04.01
+! Version:2023.04.02
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -257,6 +257,12 @@ com##[href="https://x83668.com:3343"]
 3atv.cc##.padding-small-bottom.padding-big-top.container
 3atv.cc##.line > font
 3atv.cc##.line > [href="https://3atvbbq.com/app/"]
+
+! Javmenu.com
+com,cc##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
+
+! 1024视频 http://1024new.com/
+com###ad_top
 
 
 
