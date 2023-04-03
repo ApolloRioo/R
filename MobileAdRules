@@ -68,12 +68,33 @@ www.mpyit.com##.sico
 ! 423下载 https://www.423down.com
 www.423down.com##[href="http://www.51jike.top/"]
 
+! 烈火汉化 https://apphot.cc
+apphot.cc##.excerpt-minic-index.excerpt-minic
+apphot.cc##.article-nav
+apphot.cc##.relates-imagetext.relates
+apphot.cc##.branding-black.branding
+apphot.cc##.footer
+apphot.cc##.swiper-container-android.swiper-container-horizontal.swiper-container-initialized.swiper-container
+apphot.cc##.swiper-container
+
 ! 异星软件空间 https://www.yxssp.com
 www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(1)
 www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(2)
 www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(3)
 www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(4)
 www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(5)
+
+! 蓝鲨 https://www.lan-sha.com
+www.lan-sha.com##li.post-item:nth-of-type(1)
+www.lan-sha.com##li.post-item:nth-of-type(2)
+www.lan-sha.com##li.post-item:nth-of-type(3)
+www.lan-sha.com##li.post-item:nth-of-type(4)
+
+! 凤凰网 http://inews.ifeng.com
+inews.ifeng.com##.index_swiper_box_-hDyo
+
+! 123盘 https://www.123pan.com
+www.123pan.com##.appHeader
 
 !手机中国 https://m.cnmo.com
 ||statict.cnmo.com/origin/touch/uCenter/images/tab*.png$image
@@ -89,12 +110,20 @@ m.cnmo.com##.bor.mt10.m_ad_car
 m.cnmo.com##.rotation
 m.cnmo.com##.btn-a3
 
-! 富强民主 ppee62.com
-ppe27.com##.xk_img
-ppe258.com##.xk_img
+! 搜狗 https://m.sogou.com
+m.sogou.com##div#middleHint-1.hint-module.per-hint:nth-of-type(6)
+m.sogou.com##.hint-module.per-hint
+wap.sogou.com##.hint-module.per-hint
+wap.sogou.com##.JS-sgxhr.per-hint
 
-! gitea 测试删库跑路说明
-try.gitea.io##body > .container.ui
+! F搜 https://fsoufsou.com
+fsoufsou.com##.related-searches-container
+
+! 百度 https://m.baidu.com
+baidu.com##.card-container__AkDZY._zpTVW.c-container
+
+! Ecosia搜索引擎 https://www.ecosia.org
+www.ecosia.org##.main-footer
 
 ! Qwant搜索引擎 https://www.qwant.com
 www.qwant.com##.QUKRW._2FkH
@@ -102,17 +131,8 @@ www.qwant.com##.QUKRW._2FkHV
 www.qwant.com##._1mj9J
 www.qwant.com##._35zId._7B4NI._3wU9G._34obj._1S2hN
 
-! 烈火汉化 https://apphot.cc
-apphot.cc##.excerpt-minic-index.excerpt-minic
-apphot.cc##.article-nav
-apphot.cc##.relates-imagetext.relates
-apphot.cc##.branding-black.branding
-apphot.cc##.footer
-apphot.cc##.swiper-container-android.swiper-container-horizontal.swiper-container-initialized.swiper-container
-apphot.cc##.swiper-container
-
-! Ecosia搜索引擎 https://www.ecosia.org
-www.ecosia.org##.main-footer
+! gitea 测试删库跑路说明
+try.gitea.io##body > .container.ui
 
 ! 茶杯狐 https://cupfox.app
 cupfox.app##.model-content.jsx-3532742782
@@ -120,6 +140,10 @@ cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(3)
 cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(4)
 cupfox.app##div.nav.jsx-3643242311:nth-of-type(4)
 cupfox.app##div.nav.jsx-3643242311:nth-of-type(5)
+
+! 影咖 https://yingka.tv
+yingka.tv##.fodong_tips.tips-list
+yingka.tv##div:nth-of-type(5)
 
 ! 333影视网 https://www.ylwt33.com
 www.ylwt33.com##.textgreen
@@ -138,6 +162,10 @@ www.rrets.cc##.none.ds-pop
 ||www.rrets.cc/a.png$image
 www.rrets.cc##div.tim-box.ec-ad > [href="https://docs.qq.com/doc/DZEJDQ3VaWXhEbERo"]
 
+! 我爱跟剧 https://52gen.top
+52gen.top##.gg-icon
+52gen.top##[href="https://shalasi.com"]
+
 ! 18AV https://maa1814.com
 ||maa1814.com/adcg/cnmv*.gif$image
 ||ww7814.win/pic/*.gif$image
@@ -149,9 +177,9 @@ maa1814.com##div.di_img:nth-of-type(2)
 maa1814.com##.ut1_img_ex_content
 maa1814.com##.footer
 
-! 我爱跟剧 https://52gen.top
-52gen.top##.gg-icon
-52gen.top##[href="https://shalasi.com"]
+! 富强民主 ppee62.com
+ppe27.com##.xk_img
+ppe258.com##.xk_img
 
 ! JAVDB https://javdb008.com
 javdb008.com##.app-desktop-banner
@@ -159,26 +187,6 @@ javdb008.com##.app-desktop-banner
 ! YourPorn https://yp9535.com
 yp9535.com###header-mid
 ||xw.ooegpip.cn/*$image
-
-! 勃大茎深 https://www.bdjs6.com
-www.bdjs6.com##.animatedIn.popup-container
-
-
-! 搜狗 https://m.sogou.com
-m.sogou.com##div#middleHint-1.hint-module.per-hint:nth-of-type(6)
-m.sogou.com##.hint-module.per-hint
-wap.sogou.com##.hint-module.per-hint
-wap.sogou.com##.JS-sgxhr.per-hint
-
-! F搜 https://fsoufsou.com
-fsoufsou.com##.related-searches-container
-
-! 百度 https://m.baidu.com
-baidu.com##.card-container__AkDZY._zpTVW.c-container
-
-! 影咖 https://yingka.tv
-yingka.tv##.fodong_tips.tips-list
-yingka.tv##div:nth-of-type(5)
 
 ! 韩三伦理小站 www-lunlizhan.com
 ||aaaaa866.com^
@@ -299,11 +307,7 @@ com##.topad
 ||bbb.leibeiyipei.xyz/*.gif$image
 top##div.bbox.w90.pure-u-1 > div > .pure-g
 
-! 凤凰网 http://inews.ifeng.com
-inews.ifeng.com##.index_swiper_box_-hDyo
 
-! 123盘 https://www.123pan.com
-www.123pan.com##.appHeader
 
 
 
