@@ -340,6 +340,29 @@ sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(1
 sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(22)
 sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(23)
 
+! 51AV https://51av.club
+51av.club##.publicAllContentBg > .common_banner
+||51av.club/upload/website/*/*.png$image
+51av.club##.swiper-container-android.swiper-container-horizontal.swiper-container-initialized.swiper-container.van-swipe.indexSwiper
+51av.club##div.publicIndexVideoMoudleBox > .common_banner
+
+! AV时间 https://avtime.tv
+avtime.tv##.btn-close
+avtime.tv###site-content > .common_banner
+avtime.tv##.container > .common_banner
+avtime.tv##div.mobile-only.ads > .common_banner
+avtime.tv###sidebar_banner
+avtime.tv##.text-center.h5
+avtime.tv##.py-5.site-footer
+avtime.tv##div.col > .common_banner
+
+! AV大神，日本免费AV https://avgod.club
+avgod.club,freejavbt.xyz##.header_banner
+||api.promptsgod.com/storage/*$image
+avgod.club,freejavbt.xyz##.common_banner
+avgod.club,freejavbt.xyz##div.col-xl-2.col-md-3.col-6.video-list-item.category-page:nth-of-type(1)
+avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
+
 
 
 
