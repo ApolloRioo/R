@@ -269,10 +269,10 @@ jfghome.com,jfgbest.com,jifangge-club.com,dizhi-jifangge-club.com##.appbox
 3atv.cc##.line > [href="https://3atvbbq.com/app/"]
 
 ! Javmenu.com
-com,cc##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
+com,cc,top##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
 ||api.promptsgod.com/storage/*/*.gif$image
-javmenu.com,javmenu.cc##.link_recommend
-javmenu.com,javmenu.cc##.common_banner
+com,cc,top##.link_recommend
+com,cc,top##.common_banner
 
 ! 1024视频 http://1024new.com/
 com###ad_top
