@@ -316,28 +316,27 @@ avbro.top##.btn-close
 ! 色播 https://sbplayer.top
 ||sbplayer.top/upload/addon/*/*.jpg$image
 ||s2.loli.net/*/*/*/*.gif$image
-||sbplayer.top/upload/addon/*/*.jpg$image
-sbplayer.top##.footer
-sbplayer.top##.btn-close
-sbplayer.top##.swiper-ads.mobile-only.swiper-container
-sbplayer.top##.mobile-only.my-2.swiper-container
-sbplayer.top##.col-m-24.col-17 > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top##.show.row-m-space5.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top##.show.row-m-space5.row-space8.row > li.mb20.col-m-12.col-25 > .item-box > .item-box
-sbplayer.top##.f-12.tx-flex-hc.info-bottom
-sbplayer.top##li.mb20.col-m-12.col-25:nth-of-type(1)
-sbplayer.top##li.mb20.col-m-12.col-25:nth-of-type(10)
-sbplayer.top##div.tx-flash-flex.row-m-space0.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(3)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(4)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(6)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(7)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(10)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(13)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(16)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(19)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(22)
-sbplayer.top##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(23)
+sbplayer.top,sebonow.xyz##.footer
+sbplayer.top,sebonow.xyz##.btn-close
+sbplayer.top,sebonow.xyz##.swiper-ads.mobile-only.swiper-container
+sbplayer.top,sebonow.xyz##.mobile-only.my-2.swiper-container
+sbplayer.top,sebonow.xyz##.col-m-24.col-17 > .mobile-only.mx-auto.my-2.ads_300_100
+sbplayer.top,sebonow.xyz##.show.row-m-space5.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
+sbplayer.top,sebonow.xyz##.show.row-m-space5.row-space8.row > li.mb20.col-m-12.col-25 > .item-box > .item-box
+sbplayer.top,sebonow.xyz##.f-12.tx-flex-hc.info-bottom
+sbplayer.top,sebonow.xyz##li.mb20.col-m-12.col-25:nth-of-type(1)
+sbplayer.top,sebonow.xyz##li.mb20.col-m-12.col-25:nth-of-type(10)
+sbplayer.top,sebonow.xyz##div.tx-flash-flex.row-m-space0.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(3)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(4)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(6)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(7)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(10)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(13)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(16)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(19)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(22)
+sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(23)
 
 
 
