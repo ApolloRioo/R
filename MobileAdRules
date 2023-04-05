@@ -1,5 +1,5 @@
 [Adblock Plus 2.0]
-! Title: 百晓生 AD Mobile riooo
+! Title: 摆渡:如果我存在,只因你需要我!
 ! Version:2023.04.05
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
@@ -118,9 +118,6 @@ wap.sogou.com##.JS-sgxhr.per-hint
 
 ! F搜 https://fsoufsou.com
 fsoufsou.com##.related-searches-container
-
-! 百度 https://m.baidu.com
-baidu.com##.card-container__AkDZY._zpTVW.c-container
 
 ! Ecosia搜索引擎 https://www.ecosia.org
 www.ecosia.org##.main-footer
