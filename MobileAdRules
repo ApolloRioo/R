@@ -363,8 +363,12 @@ avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
 
 ! 八爪鱼磁搜 https://磁搜.com
 cilibaidu.xyz,cilihttp.com##.msgbox
-cilibaidu.xyz,cilihttp.com###footer
 cilibaidu.xyz,cilihttp.com##.link
+cilibaidu.xyz,cilihttp.com##.footer
+cilibaidu.xyz,cilihttp.com##.tuibox.tbox
+cilibaidu.xyz,cilihttp.com##div.tbox > .mb1r.mt2r.tbox
+
+
 
 
 
