@@ -172,7 +172,6 @@ maa1814.com##.ut1_img_ex
 maa1814.com##div.di_img:nth-of-type(4)
 maa1814.com##div.di_img:nth-of-type(2)
 maa1814.com##.ut1_img_ex_content
-maa1814.com##.footer
 
 ! 富强民主 ppee62.com ppe27 258
 ##.xk_img
@@ -240,12 +239,12 @@ yp9535.com###header-mid
 ! 91/99吃鸡 https://91chiji.com,https://99chiji0.com
 .com/upload/aim/*.png$image
 .com/upload/aim/*.gif$image
-com###ad1001.clearfix.hl-this-box.conch-amg-box
-com##.clearfix.hl-marg-right50.hl-rb-left > .clearfix.hl-row-box.hl-this-box.conch-amg-box
-com##.clearfix.hl-ma0.hl-row-box > .clearfix.hl-row-box.hl-this-box.conch-amg-box
-com##.clearfix.swiper-slide > .clearfix.hl-row-box.hl-this-box.conch-amg-box
-com##.fix.hl-text-white.hl-this-box.hl-player-notice
-com##.clearfix.hl-row-box.hl-this-box.conch-amg-box
+###ad1001.clearfix.hl-this-box.conch-amg-box
+##.clearfix.hl-marg-right50.hl-rb-left > .clearfix.hl-row-box.hl-this-box.conch-amg-box
+##.clearfix.hl-ma0.hl-row-box > .clearfix.hl-row-box.hl-this-box.conch-amg-box
+##.clearfix.swiper-slide > .clearfix.hl-row-box.hl-this-box.conch-amg-box
+##.fix.hl-text-white.hl-this-box.hl-player-notice
+##.clearfix.hl-row-box.hl-this-box.conch-amg-box
 
 ! 黄色仓库 http://ckv1.cc
 ||6651tp.com/*.gif$image
@@ -272,23 +271,23 @@ com###ad_top
 com##div#top_box:nth-of-type(3)
 
 ! 魑魅魍魉 https://xn--bm6aqadj.xyz
-xyz###ad_top_cmwl
+###ad_top_cmwl
 
 ! 就要看 https://jiuyaokan.xyz
 jiuyaokan.xyz##.modown-ad
 
 ! https://藏姬阁.com/
-com###ad_top_cjg
+###ad_top_cjg
 
 ! https://国产自拍热.com/
-com###topbox
+###topbox
 
 ! https://秋名山视频.com/
 space##div#top_box:nth-of-type(2)
 space##div#top_box:nth-of-type(3)
 
 ! https://porn研究所.com/
-com##.topad
+##.topad
 
 ! 91麻豆 https://91md.me 9191md.me
 ||25img.com/*/*.gif$image
@@ -307,8 +306,6 @@ top##div.bbox.w90.pure-u-1 > div > .pure-g
 ! 色播 https://sbplayer.top
 ||sbplayer.top/upload/addon/*/*.jpg$image
 ||s2.loli.net/*/*/*/*.gif$image
-sbplayer.top,sebonow.xyz##.footer
-sbplayer.top,sebonow.xyz##.btn-close
 sbplayer.top,sebonow.xyz##.swiper-ads.mobile-only.swiper-container
 sbplayer.top,sebonow.xyz##.mobile-only.my-2.swiper-container
 sbplayer.top,sebonow.xyz##.col-m-24.col-17 > .mobile-only.mx-auto.my-2.ads_300_100
