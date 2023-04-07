@@ -26,31 +26,24 @@ www.ghxi.com##div:nth-of-type(6)
 www.ghxi.com##div:nth-of-type(7)
 www.ghxi.com##div:nth-of-type(8)
 www.ghxi.com##div:nth-of-type(9)
-www.ghxi.com##.container.modules-category-posts.wpcom-modules.section
-www.ghxi.com##.container.modules-tjnr.wpcom-modules.section
-www.ghxi.com##.width-footer-bar.footer > .container
-www.ghxi.com##.entry-copyright
-www.ghxi.com##.entry-page
-www.ghxi.com##.entry-related-posts
+##.container.modules-category-posts.wpcom-modules.section
+##.container.modules-tjnr.wpcom-modules.section
+##.width-footer-bar.footer > .container
+##.entry-copyright
+##.entry-page
+##.entry-related-posts
 
 ! 资源否 https://www.zyfou.com
-www.zyfou.com##.modules-tjnr.wpcom-modules.section
 www.zyfou.com##.modules-carousel-posts.wpcom-modules.section
-www.zyfou.com##.modules-html-code.wpcom-modules.section
-www.zyfou.com##.container.modules-category-posts.wpcom-modules.section
 www.zyfou.com##.container.modules-gird.wpcom-modules.section
 www.zyfou.com##.container.modules-links.wpcom-modules.section
-www.zyfou.com##.width-footer-bar.footer > .container
 www.zyfou.com##li.item-sticky.item:nth-of-type(1)
 www.zyfou.com##li.item-sticky.item:nth-of-type(2)
 www.zyfou.com##li.item-sticky.item:nth-of-type(3)
 www.zyfou.com##li.item-sticky.item:nth-of-type(4)
 www.zyfou.com##li.item-sticky.item:nth-of-type(5)
 www.zyfou.com##li.item-sticky.item:nth-of-type(6)
-www.zyfou.com##.entry-copyright
 www.zyfou.com##.entry-action
-www.zyfou.com##.entry-related-posts
-www.zyfou.com##.entry-page
 www.zyfou.com##.__single_1.wpcom_myimg_wrap
 
 ! 殁漂遥 https://www.mpyit.com
