@@ -213,14 +213,6 @@ yp9535.com###header-mid
 ##div.colVideoList:nth-of-type(2)
 ###videoShowPage > .tab-content
 ##.d-sm-none.d-block.container-fluid
-##[href^="https://www.zavdh.cc/"]
-##[href^="https://www.zgyxyd.com/xxfldh/"]
-##[href^="https://www.greendh.club/"]
-##[href="https://万紫.k3j54d.cc/热爱.html"]
-##[href^="https://ppxall.com/9OEDD"]
-##[href^="http://aaaase.pw/"]
-##[href^="https://ririri.pw/"]
-
 
 ! 91/99吃鸡 https://91chiji.com,https://99chiji0.com
 .com/upload/aim/*.png$image
@@ -262,10 +254,6 @@ jiuyaokan.xyz##.modown-ad
 ! https://国产自拍热.com/
 ###topbox
 
-! https://秋名山视频.com/
-space##div#top_box:nth-of-type(2)
-space##div#top_box:nth-of-type(3)
-
 ! https://porn研究所.com/
 ##.topad
 
@@ -278,7 +266,7 @@ space##div#top_box:nth-of-type(3)
 ! 66m.io https://66mdoc.top
 ||bbb.huishengqihang.xyz/*.gif$image
 ||bbb.leibeiyipei.xyz/*.gif$image
-top##div.bbox.w90.pure-u-1 > div > .pure-g
+##div.bbox.w90.pure-u-1 > div > .pure-g
 
 ! AV兄弟 https://avbro.top
 ##.btn-close
