@@ -4,6 +4,23 @@
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
+!资源否，果核剥壳
+##.container.modules-category-posts.wpcom-modules.section
+##.container.modules-tjnr.wpcom-modules.section
+##.width-footer-bar.footer > .container
+##.entry-copyright
+##.entry-page
+##.entry-related-posts
+
+! 八爪鱼磁搜 https://磁搜.com
+##.msgbox
+##.footer
+##.tuibox.tbox
+##div.tbox > .mb1r.mt2r.tbox
+
+! 富强民主 ppee62.com ppe27 258
+##.xk_img
+
 
 ! 果壳剥壳 https://www.ghxi.com
 www.ghxi.com##.swiper-container-android.swiper-container-autoheight.swiper-container-horizontal.slider-full.swiper-container.wpcom-slider.main-slider
@@ -26,12 +43,7 @@ www.ghxi.com##div:nth-of-type(6)
 www.ghxi.com##div:nth-of-type(7)
 www.ghxi.com##div:nth-of-type(8)
 www.ghxi.com##div:nth-of-type(9)
-##.container.modules-category-posts.wpcom-modules.section
-##.container.modules-tjnr.wpcom-modules.section
-##.width-footer-bar.footer > .container
-##.entry-copyright
-##.entry-page
-##.entry-related-posts
+
 
 ! 资源否 https://www.zyfou.com
 www.zyfou.com##.modules-tjnr.wpcom-modules.section
@@ -167,8 +179,7 @@ maa1814.com##div.di_img:nth-of-type(4)
 maa1814.com##div.di_img:nth-of-type(2)
 maa1814.com##.ut1_img_ex_content
 
-! 富强民主 ppee62.com ppe27 258
-##.xk_img
+
 
 
 ! JAVDB https://javdb008.com
@@ -343,13 +354,6 @@ avgod.club,freejavbt.xyz##.header_banner
 avgod.club,freejavbt.xyz##.common_banner
 avgod.club,freejavbt.xyz##div.col-xl-2.col-md-3.col-6.video-list-item.category-page:nth-of-type(1)
 avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
-
-! 八爪鱼磁搜 https://磁搜.com
-##.msgbox
-##.link
-##.footer
-##.tuibox.tbox
-##div.tbox > .mb1r.mt2r.tbox
 
 ! Javmenu.com
 ||api.promptsgod.com/storage/*/*.gif$image
