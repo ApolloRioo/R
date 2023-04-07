@@ -266,8 +266,6 @@ com,club##.appbox
 3atv.cc##.line > font
 3atv.cc##.line > [href="https://3atvbbq.com/app/"]
 
-
-
 ! 1024视频 http://1024new.com/
 com###ad_top
 
@@ -363,6 +361,12 @@ cilibaidu.xyz,cilihttp.com##.link
 cilibaidu.xyz,cilihttp.com##.footer
 cilibaidu.xyz,cilihttp.com##.tuibox.tbox
 cilibaidu.xyz,cilihttp.com##div.tbox > .mb1r.mt2r.tbox
+
+! Javmenu.com
+||api.promptsgod.com/storage/*/*.gif$image
+com,cc,top##.link_recommend
+com,cc,top##.common_banner
+com,cc,top##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
 
 
 
