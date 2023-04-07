@@ -7,7 +7,6 @@
 
 ! 集芳阁
 ##.s-bar > p
-##.copyright
 ##.appbox
 ||img.8123a.com/images/*.gif$image
 
@@ -55,6 +54,10 @@ www.zyfou.com##li.item-sticky.item:nth-of-type(3)
 www.zyfou.com##li.item-sticky.item:nth-of-type(4)
 www.zyfou.com##li.item-sticky.item:nth-of-type(5)
 www.zyfou.com##li.item-sticky.item:nth-of-type(6)
+www.zyfou.com##.container.modules-category-posts.wpcom-modules.section
+www.zyfou.com##.entry-related-posts
+www.zyfou.com##.entry-page
+www.zyfou.com##.entry-copyright
 www.zyfou.com##.entry-action
 www.zyfou.com##.__single_1.wpcom_myimg_wrap
 
