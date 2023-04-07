@@ -321,7 +321,7 @@ jiuyaokan.xyz##.modown-ad
 ##.wr.copyright.zerogrid
 ! 底部下载appbox
 ##div.wr.top-footer.zerogrid:nth-of-type(1)
-!友情链接
+! 友情链接
 ##div.wr.top-footer.zerogrid:nth-of-type(2)
 ! 联系方式
 ##div.wr.top-footer.zerogrid:nth-of-type(3)
