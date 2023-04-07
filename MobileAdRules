@@ -253,10 +253,9 @@ com##.clearfix.hl-row-box.hl-this-box.conch-amg-box
 ckv1.cc##.qq
 
 ! 集芳阁
-com,club##.s-bar > p
-com,club##.link
-com,club##.copyright
-com,club##.appbox
+##.s-bar > p
+##.copyright
+##.appbox
 ||img.8123a.com/images/*.gif$image
 
 ! 好好学习 https://3atv.cc
@@ -303,7 +302,7 @@ com##.topad
 top##div.bbox.w90.pure-u-1 > div > .pure-g
 
 ! AV兄弟 https://avbro.top
-avbro.top##.btn-close
+##.btn-close
 
 ! 色播 https://sbplayer.top
 ||sbplayer.top/upload/addon/*/*.jpg$image
@@ -339,7 +338,6 @@ sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(2
 51av.club##div.publicIndexVideoMoudleBox > .common_banner
 
 ! AV时间 https://avtime.tv
-avtime.tv##.btn-close
 avtime.tv###site-content > .common_banner
 avtime.tv##.container > .common_banner
 avtime.tv##div.mobile-only.ads > .common_banner
@@ -356,11 +354,11 @@ avgod.club,freejavbt.xyz##div.col-xl-2.col-md-3.col-6.video-list-item.category-p
 avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
 
 ! 八爪鱼磁搜 https://磁搜.com
-cilibaidu.xyz,cilihttp.com##.msgbox
-cilibaidu.xyz,cilihttp.com##.link
-cilibaidu.xyz,cilihttp.com##.footer
-cilibaidu.xyz,cilihttp.com##.tuibox.tbox
-cilibaidu.xyz,cilihttp.com##div.tbox > .mb1r.mt2r.tbox
+##.msgbox
+##.link
+##.footer
+##.tuibox.tbox
+##div.tbox > .mb1r.mt2r.tbox
 
 ! Javmenu.com
 ||api.promptsgod.com/storage/*/*.gif$image
