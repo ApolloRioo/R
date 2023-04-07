@@ -5,8 +5,8 @@
 ! by: R
 
 
-！通用元素
-！底部友情链接，联系方式，权力，声明
+! 通用元素
+! 底部友情链接，联系方式，权力，声明
 ##.container.footer
 
 
@@ -302,19 +302,29 @@ avgod.club,freejavbt.xyz##div.col-xl-2.col-md-3.col-6.video-list-item.category-p
 avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
 
 !  https://猎奇视频.com/
-!  友情链接
+! 友情链接
 ##.mt10.wrap > .clearfix.mt10.wrap
-！ 联系方式
+! 联系方式
 ##.clear.wrapf
 
-
-! 魑魅魍魉 https://xn--bm6aqadj.xyz
-
+! https://魑魅魍魎.xyz/
+! 友情链接，联系方式，警告权限
+###footer-wrapper
 
 ! 就要看 https://jiuyaokan.xyz
 jiuyaokan.xyz##.modown-ad
 
 ! https://藏姬阁.com/
+! 顶部app下载box
+##.bottom > .wr
+! 警告
+##.wr.copyright.zerogrid
+! 底部下载appbox
+##div.wr.top-footer.zerogrid:nth-of-type(1)
+!友情链接
+##div.wr.top-footer.zerogrid:nth-of-type(2)
+! 联系方式
+##div.wr.top-footer.zerogrid:nth-of-type(3)
 
 
 ! https://国产自拍热.com/
