@@ -4,22 +4,12 @@
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
-###topview
-##.clearfix.stui-foot
-##.entry-copyright
-##.entry-page
 
 ! 集芳阁
 ##.s-bar > p
 ##.copyright
 ##.appbox
 ||img.8123a.com/images/*.gif$image
-
-!资源否，果核剥壳
-##.container.modules-category-posts.wpcom-modules.section
-##.container.modules-tjnr.wpcom-modules.section
-##.width-footer-bar.footer > .container
-##.entry-related-posts
 
 ! 八爪鱼磁搜 https://磁搜.com
 ##.msgbox
@@ -188,9 +178,6 @@ maa1814.com##div.di_img:nth-of-type(4)
 maa1814.com##div.di_img:nth-of-type(2)
 maa1814.com##.ut1_img_ex_content
 
-
-
-
 ! JAVDB https://javdb008.com
 javdb008.com##.app-desktop-banner
 
@@ -202,6 +189,7 @@ yp9535.com###header-mid
 ||aaaaa866.com^
 ||3688qq.com^
 ||661aaa.us^
+
 
 
 ! 九色 https://home91.gitbook.io/jiuse
