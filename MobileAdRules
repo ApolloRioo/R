@@ -326,14 +326,19 @@ jiuyaokan.xyz##.modown-ad
 ! 联系方式
 ##div.wr.top-footer.zerogrid:nth-of-type(3)
 
-
 ! https://国产自拍热.com/
-
+! app地址发布器
+##.col-md-6.collapse.navbar-collapse
+! 底部客户端下载，友情链接，权限
+##.footer-grids
 
 ! https://porn研究所.com/
-
+! 站长推荐
+###topadul
 
 ! AV兄弟 https://avbro.top
+! 两侧浮窗广告关闭按钮
+##.btn-close
 
 
 ! Javmenu.com
