@@ -6,7 +6,7 @@
 
 
 ！通用元素
-！底部友情链接，权力，声明
+！底部友情链接，联系方式，权力，声明
 ##.container.footer
 
 
@@ -301,10 +301,11 @@ avgod.club,freejavbt.xyz##.common_banner
 avgod.club,freejavbt.xyz##div.col-xl-2.col-md-3.col-6.video-list-item.category-page:nth-of-type(1)
 avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
 
-! 1024视频 http://1024new.com/
-
-
 !  https://猎奇视频.com/
+!  友情链接
+##.mt10.wrap > .clearfix.mt10.wrap
+！ 联系方式
+##.clear.wrapf
 
 
 ! 魑魅魍魉 https://xn--bm6aqadj.xyz
