@@ -4,12 +4,21 @@
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
+###topview
+##.clearfix.stui-foot
+##.entry-copyright
+##.entry-page
+
+! 集芳阁
+##.s-bar > p
+##.copyright
+##.appbox
+||img.8123a.com/images/*.gif$image
+
 !资源否，果核剥壳
 ##.container.modules-category-posts.wpcom-modules.section
 ##.container.modules-tjnr.wpcom-modules.section
 ##.width-footer-bar.footer > .container
-##.entry-copyright
-##.entry-page
 ##.entry-related-posts
 
 ! 八爪鱼磁搜 https://磁搜.com
@@ -193,8 +202,7 @@ yp9535.com###header-mid
 ||aaaaa866.com^
 ||3688qq.com^
 ||661aaa.us^
-###topview
-##.clearfix.stui-foot
+
 
 ! 九色 https://home91.gitbook.io/jiuse
 ||u1077.com^
@@ -256,12 +264,6 @@ yp9535.com###header-mid
 ||gd8.alicdn.com/imgextra/*/*.gif$image
 ckv1.cc##.qq
 
-! 集芳阁
-##.s-bar > p
-##.copyright
-##.appbox
-||img.8123a.com/images/*.gif$image
-
 ! 好好学习 https://3atv.cc
 ||3atvzp.com/*$image
 3atv.cc##body > div.margin-top.container > .line > .doc-nav.navbar-body.bg-inverse.bg-main.xl12
@@ -270,10 +272,10 @@ ckv1.cc##.qq
 3atv.cc##.line > [href="https://3atvbbq.com/app/"]
 
 ! 1024视频 http://1024new.com/
-com###ad_top
+###ad_top
 
 !  https://猎奇视频.com/
-com##div#top_box:nth-of-type(3)
+##div#top_box:nth-of-type(3)
 
 ! 魑魅魍魉 https://xn--bm6aqadj.xyz
 ###ad_top_cmwl
