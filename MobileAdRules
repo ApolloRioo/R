@@ -4,29 +4,6 @@
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
-! 韩三伦理小站 www-lunlizhan.com
-||aaaaa866.com^
-||3688qq.com^
-||661aaa.us^
-||upr3m2.com^
-||aaaaa299.com^
-||aaaaa588.com^
-##.topwz
-##.clearfix.stui-foot
-
-! 集芳阁
-##.s-bar > p
-##.appbox
-||img.8123a.com/images/*.gif$image
-
-! 八爪鱼磁搜 https://磁搜.com
-##.msgbox
-##.tuibox.tbox
-##div.tbox > .mb1r.mt2r.tbox
-
-! 富强民主 ppee62.com ppe27 258
-##.xk_img
-
 
 ! 果壳剥壳 https://www.ghxi.com
 www.ghxi.com###modules-15
@@ -358,6 +335,29 @@ avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
 ##.link_recommend
 ##.common_banner
 ##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
+
+! 韩三伦理小站 www-lunlizhan.com
+||aaaaa866.com^
+||3688qq.com^
+||661aaa.us^
+||upr3m2.com^
+||aaaaa299.com^
+||aaaaa588.com^
+##.topwz
+##.clearfix.stui-foot
+
+! 集芳阁
+##.s-bar > p
+##.appbox
+||img.8123a.com/images/*.gif$image
+
+! 八爪鱼磁搜 https://磁搜.com
+##.msgbox
+##.tuibox.tbox
+##div.tbox > .mb1r.mt2r.tbox
+
+! 富强民主 ppee62.com ppe27 258
+##.xk_img
 
 
 
