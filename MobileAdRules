@@ -376,7 +376,12 @@ ciliget.com,cilibaidu.xyz##.footer
 ! 厂长资源 https://czzy.tv
 ||img.7838a.com/images/*.gif$image
 
-
+! 左临右射 https://zlyspet.info
+||zlyspet.info/upload/vod/*$image
+zlyspet.info##.slick-arrow-center.slick-visible.slick
+zlyspet.info##div.content:nth-of-type(2)
+zlyspet.info##div.content:nth-of-type(5)
+zlyspet.info##div.content:nth-of-type(4)
 
 
 
