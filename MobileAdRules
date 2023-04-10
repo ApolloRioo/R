@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 俺滴咖啡:如果我存在,只因你需要我!
-! Version:2023.04.08
+! Version:2023.04.10
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -192,7 +192,6 @@ yp9535.com###header-mid
 ||588aaa.us^
 ||n33033.com^
 ||556aaa.us^
-||360buyimg.com^
 ||6651tp.comv^
 ||z4a.net^
 ||xiod.xyz^
