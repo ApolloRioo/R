@@ -83,11 +83,8 @@ apphot.cc##.swiper-container-android.swiper-container-horizontal.swiper-containe
 apphot.cc##.swiper-container
 
 ! 异星软件空间 https://www.yxssp.com
-www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(1)
-www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(2)
-www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(3)
-www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(4)
-www.yxssp.com##div.td-animation-stack.td_module_wrap.td_module_4:nth-of-type(5)
+www.yxssp.com##.td-main-sidebar.td-pb-span4
+www.yxssp.com##.td-container-wrap.td-footer-outer-wrapper
 
 ! 蓝鲨 https://www.lan-sha.com
 www.lan-sha.com##li.post-item:nth-of-type(1)
