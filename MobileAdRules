@@ -345,11 +345,16 @@ jiuyaokan.xyz##.modown-ad
 ##.btn-close
 
 
-! Javmenu.com
+! jav目录 Javmenu.com
 ||api.promptsgod.com/storage/*/*.gif$image
 ##.link_recommend
 ##.common_banner
 ##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
+javmenu.com##.mb-3.col
+javmenu.com##div.col:nth-of-type(5)
+javmenu.com##footer.justify-content-between.align-items-center.flex-md-row.flex-column.d-flex.footer
+javmenu.com##div.justify-content-between.align-items-center.flex-md-row.flex-column.d-flex.footer
+
 
 ! 韩三伦理小站 www-lunlizhan.com
 ||aaaaa866.com^
