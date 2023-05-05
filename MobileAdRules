@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 俺滴咖啡:如果我存在,只因你需要我!
-! Version:2023.05.04
+! Version:2023.05.05
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -8,7 +8,7 @@
 ! 通用元素
 ! 底部友情链接，联系方式，权力，声明
 ##.container.footer
-
+##.movie-ads
 
 
 ! 果壳剥壳 https://www.ghxi.com
@@ -459,6 +459,9 @@ www.wuzhuiso.com##.g-header-engine-cover
 
 ! 片库 https://www.pkmp4.com
 www.pkmp4.com##.footer
+
+||https://www.dianyinggou.com/View/images/bg.png$image
+
 
 
 
