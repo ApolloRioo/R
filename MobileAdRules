@@ -461,10 +461,10 @@ www.pkmp4.com##.footer
 ||https://www.dianyinggou.com/View/images/bg.png$image
 
 !  https://missav.com
-missav.com##.mb-5.space-y-5
-missav.com##footer.px-4.mx-auto.sm\:container
-missav.com##.text-center.mt-3
-missav.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
+missav.com,missav123.com##.mb-5.space-y-5
+missav.com,missav123.com##footer.px-4.mx-auto.sm\:container
+missav.com,missav123.com##.text-center.mt-3
+missav.com,missav123.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
 
 
 
