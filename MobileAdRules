@@ -454,6 +454,16 @@ www.qaydy2.com###popBox
 ! 无追 https://www.wuzhuiso.com
 www.wuzhuiso.com##.mso-guide
 www.wuzhuiso.com##.g-header-engine-cover
+www.wuzhuiso.com##.out-rel.g-card
+www.wuzhuiso.com###mohe-m-biu_3c_general_mobile
+www.wuzhuiso.com###mohe-m-leidian_item
+www.wuzhuiso.com##.mso-rec-nlp_top.mso-recommend-card.mb.g-block2.res-list.g-card
+www.wuzhuiso.com##.mso-rec-nlp_bottom.mso-recommend-card.mb.g-block2.res-list.g-card
+www.wuzhuiso.com###mohe-m-leidian_list
+
+! 必应 https://cn.bing.com
+cn.bing.com##.b_rs
+cn.bing.com##.b_divdef.b_primtxt.b_footer
 
 ! 片库 https://www.pkmp4.com
 www.pkmp4.com##.footer
