@@ -119,10 +119,10 @@ m.cnmo.com##.rotation
 m.cnmo.com##.btn-a3
 
 ! 搜狗 https://m.sogou.com
-m.sogou.com##div#middleHint-1.hint-module.per-hint:nth-of-type(6)
-m.sogou.com##.hint-module.per-hint
-wap.sogou.com##.hint-module.per-hint
-wap.sogou.com##.JS-sgxhr.per-hint
+sogou.com##div#middleHint-1.hint-module.per-hint:nth-of-type(6)
+sogou.com##.hint-module.per-hint
+sogou.com##.JS-sgxhr.per-hint
+sogou.com##.hint-module.aside
 
 ! F搜 https://fsoufsou.com
 fsoufsou.com##.related-searches-container
@@ -480,6 +480,7 @@ missav.com,missav123.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
 
 ! 360搜索 https://m.so.com
 m.so.com##.guide-rel.mb.res-list.g-card
+m.so.com##.default_show.top-rec
 
 ! 哔哩哔哩 https://m.bilibili.com
 m.bilibili.com##.bottom-tab
