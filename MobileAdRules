@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 如果我存在,只因你需要我!
-! Version:2023.05.09
+! Version:2023.05.20
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -508,6 +508,12 @@ m.bilibili.com##.launch-app-btn
 
 ! 蓝光电影网 http://www.languangdy.com
 www.languangdy.com##.bannertiao9
+
+! 新番 https://bangumi.online
+bangumi.online##.side-bar-donate.side-bar-item
+
+! 耳机人 https://www.erjiren.com
+||fc.sinaimg.cn/large/006qyxTMly1greqg498sog30jg02yq36.gif$image
 
 
 
