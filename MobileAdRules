@@ -103,6 +103,8 @@ inews.ifeng.com##.index_swiper_box_-hDyo
 
 ! 123盘 https://www.123pan.com
 www.123pan.com##.appHeader
+www.123pan.com###prod
+
 
 !手机中国 https://m.cnmo.com
 ||statict.cnmo.com/origin/touch/uCenter/images/tab*.png$image
@@ -502,6 +504,10 @@ m.bilibili.com##.mplayer-buff-app
 m.bilibili.com##.text
 m.bilibili.com##.bottom-tab
 m.bilibili.com##.m-footer
+m.bilibili.com##.launch-app-btn
+
+! 蓝光电影网 http://www.languangdy.com
+www.languangdy.com##.bannertiao9
 
 
 
