@@ -528,11 +528,26 @@ bangumi.online##.side-bar-donate.side-bar-item
 hlj04.com##.base_article_header_box
 hlj04.com##[href="https://hlj04.com/archives/10043/"]
 
+! 2023-05-23 https://blog.csdn.net
+blog.csdn.net##.feed-Sign-weixin
+
+! 2023-05-23 https://www.pfree.one
+www.pfree.one##.fixed-bottom
+
+! 2023-05-24 https://m.hydytt.net
+m.hydytt.net##div.show-app2:nth-of-type(3)
+m.hydytt.net##div.show-app2:nth-of-type(5)
+m.hydytt.net##div.show-app2:nth-of-type(4)
+
 ! 群魔乱舞
 ||hfjundayy.com/*.gif$image
 ||aoattsetp.vip/lm/*.gif$image
 ||tukudhgg.vip/lm/*.gif$image
 ||tukky.vip/lm/*.gif$image
+||litianle1.com/*.js$image
+||dfqdsy.cn/*.js$image
+||xrgyzro.cn/*.js$image
+##.bottommob
 ##body > [href="https://924903.com"]
 ##[href="https://egmou.cc"]
 ##body > [href="https://tmryy.es3ew6.com/ax01.html"]
