@@ -566,9 +566,7 @@ blog.csdn.net##.feed-Sign-weixin
 www.pfree.one##.fixed-bottom
 
 ! 2023-05-24 https://m.hydytt.net
-m.hydytt.net##div.show-app2:nth-of-type(3)
-m.hydytt.net##div.show-app2:nth-of-type(5)
-m.hydytt.net##div.show-app2:nth-of-type(4)
+m.hydytt.net##div.show-app2:nth-of-type(n+1)
 
 ! 群魔乱舞
 ||hfjundayy.com^
