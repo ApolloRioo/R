@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 如果我存在,只因你需要我!
-! Version:2023.05.242
+! Version:2023.05.25
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -568,6 +568,15 @@ www.pfree.one##.fixed-bottom
 ! 2023-05-24 https://m.hydytt.net
 m.hydytt.net##div.show-app2:nth-of-type(n+1)
 
+! 黄色仓库 http://014ck.cc
+##.qq
+##.gonggao
+
+! 速搜影院 https://www.sstv.fun
+||img2.doubanio.com/view/photo/l/public/p2891976611.webp$image
+
+http://dilidili11.com/js/wap2-jm-ms.js
+
 ! 群魔乱舞
 ||hfjundayy.com^
 ||aoattsetp.vip^
@@ -575,6 +584,7 @@ m.hydytt.net##div.show-app2:nth-of-type(n+1)
 ||tukky.vip^
 ||litianle1.com^
 ||dfqdsy.cn^
+||ssrcdncom^
 ||xrgyzro.cn^
 ||plyocff.cn^
 ||sm52k.xyz^
@@ -590,7 +600,11 @@ m.hydytt.net##div.show-app2:nth-of-type(n+1)
 ||xrgyzro.cn^
 ||torpointdental.com^
 ||twe535.com^
-||maikang-auto.com
+||maikang-auto.com^
+||wkwcxak.cn^
+||gzruyan.cn^
+||cubpack79.com^
+
 ##.bottommob
 ##body > [href="https://924903.com"]
 ##[href="https://egmou.cc"]
@@ -601,6 +615,8 @@ m.hydytt.net##div.show-app2:nth-of-type(n+1)
 ##body > [href^="https://5611773.cc:8443"]
 ##[href="https://foronypdf.vip"]
 ##a[href="http://xuefeng8889.top"]
+
+
 
 
 
