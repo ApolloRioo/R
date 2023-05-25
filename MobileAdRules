@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: 如果我存在,只因你需要我!
-! Version:2023.05.241
+! Version:2023.05.242
 ! Homepage:https://raw.githubusercontent.com/ApolloRioo/R/master/MobileAdRules
 ! by: R
 
@@ -9,6 +9,37 @@
 ! 底部友情链接，联系方式，权力，声明
 ##.container.footer
 ##.movie-ads
+
+!百度搜索
+!自动播放视频
+baidu.com##.c-video-player
+! baidu.com##[srcid^="recommend_video"]
+!百度提供APP下载
+baidu.com##[srcid^="app_mobile_simple"]
+!购物广告
+baidu.com##[srcid^="sp_purc_atom"]
+baidu.com##[srcid*="zk_sc_header"]
+!百家号
+baidu.com##[srcid^="guanfanghao"]
+!笔记
+baidu.com##[srcid^="lego_tpl"]
+!笔记精选
+baidu.com##[srcid="note_lead"]
+!相关用语
+baidu.com##[srcid^="sigma_celebrity_rela"]
+!大家都在搜
+baidu.com##[srcid^="34689"]
+baidu.com##.se-page-relative
+!百度医典
+baidu.com##[srcid^="med_disease_kg"]
+!百度问一问
+baidu.com##[srcid="wenda_inquiry"]
+!百度爱采购
+baidu.com##[srcid^="b2b_straight_wise_vertical_na"]
+!百度健康
+baidu.com##[srcid^="med_wz"]
+!小程序
+baidu.com##[srcid*="xcx_multi"]
 
 
 ! 果壳剥壳 https://www.ghxi.com
@@ -540,13 +571,28 @@ m.hydytt.net##div.show-app2:nth-of-type(5)
 m.hydytt.net##div.show-app2:nth-of-type(4)
 
 ! 群魔乱舞
-||hfjundayy.com/*.gif$image
-||aoattsetp.vip/lm/*.gif$image
-||tukudhgg.vip/lm/*.gif$image
-||tukky.vip/lm/*.gif$image
-||litianle1.com/*.js$image
-||dfqdsy.cn/*.js$image
-||xrgyzro.cn/*.js$image
+||hfjundayy.com^
+||aoattsetp.vip^
+||tukudhgg.vip^
+||tukky.vip^
+||litianle1.com^
+||dfqdsy.cn^
+||xrgyzro.cn^
+||plyocff.cn^
+||sm52k.xyz^
+||dfqdsy.cn^
+||gongyiphoto.com^
+||yingyangdj.com^
+||hannahhageman.com^
+||idzoom.com^
+||xwqeohn.cn^
+||hoopabroad.com^
+||hsswjtss.com^
+||huiguoshu.com^
+||xrgyzro.cn^
+||torpointdental.com^
+||twe535.com^
+||maikang-auto.com
 ##.bottommob
 ##body > [href="https://924903.com"]
 ##[href="https://egmou.cc"]
