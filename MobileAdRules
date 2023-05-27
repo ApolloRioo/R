@@ -36,6 +36,8 @@ baidu.com##[srcid="wenda_inquiry"]
 baidu.com##[srcid^="b2b_straight_wise_vertical_na"]
 !百度健康
 baidu.com##[srcid^="med_wz"]
+baidu.com##[srcid^="live_medical"]
+baidu.com##[srcid^="med_mall_recommend_san"]
 !小程序
 baidu.com##[srcid*="xcx_multi"]
 ! 果壳剥壳 https://www.ghxi.com
