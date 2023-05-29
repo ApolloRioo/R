@@ -511,6 +511,27 @@ http://dilidili11.com/js/wap2-jm-ms.js
 ||wkwcxak.cn^
 ||gzruyan.cn^
 ||cubpack79.com^
+||zhangbing971130.cn^
+||ibxhyto.cn^
+||vcqsvez.cn^
+||thelifereset.com^
+||282gm.com^
+||promotionsearchs.com^
+||rgdh.app^
+||r11.realme.net^
+||pure-stone.vip^
+||uu2772uu.com^
+||cdn.maincdncd.com^
+||aaaaa559.com^
+||cdn.maincdncd.com^
+||myqcloud.com^
+||wpsfml.xyz^
+||567adfsda.xyz^
+||zgbxxffww.com^
+||tptptp111.com^
+||467adfsda.xyz^
+||ssrcdn.com^
+##.main-box > .ad-nav-box
 ##.bottommob
 ##body > [href="https://924903.com"]
 ##[href="https://egmou.cc"]
@@ -521,3 +542,13 @@ http://dilidili11.com/js/wap2-jm-ms.js
 ##body > [href^="https://5611773.cc:8443"]
 ##[href="https://foronypdf.vip"]
 ##a[href="http://xuefeng8889.top"]
+
+! 臻品电影网 https://www.zpcxb.com
+www.zpcxb.com##.hotTitle
+
+! 无名小站 https://www.btnull.nu
+www.btnull.nu###ly
+
+! 看片 https://www.kkp14d.top
+www.kkp14d.top##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(8)
+www.kkp14d.top##.swiper-home
