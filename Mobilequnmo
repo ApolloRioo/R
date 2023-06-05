@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 群魔乱舞!
-! Version:2023.06.04
+! Version:2023.06.05
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -92,4 +92,8 @@
 ||75ec9l.xyz^
 ||sjftsecurity.xyz^
 ||leyajuzx.com^
-
+||8860493.com^
+||upload.xchina.pics/ad/*$all
+||39.105.133.18^
+||47.101.168.75^
+||image.baidu.com/search/down?url=https://tva*.sinaimg.cn/*$image
