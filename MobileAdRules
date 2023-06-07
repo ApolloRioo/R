@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:2023.06.02
+! Version:2023.06.07
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -121,6 +121,7 @@ www.lan-sha.com##li.post-item:nth-of-type(2)
 www.lan-sha.com##li.post-item:nth-of-type(3)
 www.lan-sha.com##li.post-item:nth-of-type(4)
 www.lan-sha.com##li.post-item:nth-of-type(5)
+www.lan-sha.com##.index-top-postcard-plane
 
 ! 凤凰网 http://inews.ifeng.com
 inews.ifeng.com##.index_swiper_box_-hDyo
