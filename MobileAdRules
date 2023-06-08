@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:2023.06.07
+! Version:2023.06.08
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -444,3 +444,38 @@ www.btnull.nu###ly
 ! 看片 https://www.kkp14d.top
 www.kkp14d.top##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(8)
 www.kkp14d.top##.swiper-home
+
+! 情趣白丝 https://www.qqbs.vip
+##div.hengfu:nth-of-type(n+4):nth-of-type(-n+11)
+www.qqbs36.vip##div.links:nth-of-type(2)
+www.qqbs36.vip##div.links:nth-of-type(3)
+www.qqbs36.vip##div.links:nth-of-type(12)
+www.qqbs36.vip##div.links:nth-of-type(13)
+
+! 优直播 https://m.yoozhibo.net
+m.yoozhibo.net##.bootom-fixed
+
+! 看片狂 https://www.kpkuang.fun
+||kpstatic.ethersaga.online/template/vfed/asset/img/LD-GIF_1140x200.gif$image
+##.uk-alert.fed-show-md-block.fed-back-whits.fed-part-layout
+
+! 看看片  kkp2v.top
+##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(7)
+##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(8)
+##[href^="https://ent.gx74ja.cn/"]
+##[href^="https://ent.lcldmqp.cn/"]
+##[href="https://ip10075.xtzn0214.com"]
+##[href^="https://m.ciyfemht1.cn"]
+##[href^="https://0526.bdl9m7o7ku.cc/0225yc28/"]
+##[href="https://oe.dsdngfg1.com/new/2063.html"]
+##[href="https://hsv12.cc/1512.html"]
+##[href="https://hcyh11.cc/8823.html"]
+##[href="https://759r.top"]
+##[href^="https://361dh6.vip/"]
+##[href="https://23329v.com:7789"]
+##[href^="https://iv5ln8vf53p0vy3zpr.xyz/ip/"]
+##.swiper-home
+
+! 7mm https://7mm002.com
+##.set_height_250.d-flex.mb-4.text-center.a-d-block
+.set_height_100.d-flex.mb-4.text-center.a-d-block
