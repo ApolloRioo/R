@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:2023.06.08
+! Version:2023.06.11
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -172,6 +172,8 @@ cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(3)
 cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(4)
 cupfox.app##div.nav.jsx-3643242311:nth-of-type(4)
 cupfox.app##div.nav.jsx-3643242311:nth-of-type(5)
+cupfox.app##div.nav.jsx-5c354644a52d01d1:nth-of-type(4)
+cupfox.app##div.nav.jsx-5c354644a52d01d1:nth-of-type(3)
 
 ! 影咖 https://yingka.tv
 yingka.tv##.fodong_tips.tips-list
@@ -394,6 +396,7 @@ m.so.com##.default_show.top-rec
 m.bilibili.com##.visible-open-app-btn > .m-video-main-launchapp.launch-app-btn > .m-video2-awaken-btn
 m.bilibili.com##.fixed-module-margin.m-video-related
 m.bilibili.com##.mplayer-ending-panel-recommend
+m.bilibili.com##.caution-dialog
 m.bilibili.com##.icon-spread.launch-app-btn
 m.bilibili.com##.ralated-video-title
 m.bilibili.com##.mplayer-buff-app
