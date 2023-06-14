@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:2023.06.13
+! Version:2023.06.14
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -122,6 +122,7 @@ www.lan-sha.com##li.post-item:nth-of-type(3)
 www.lan-sha.com##li.post-item:nth-of-type(4)
 www.lan-sha.com##li.post-item:nth-of-type(5)
 www.lan-sha.com##.index-top-postcard-plane
+www.lan-sha.com##.post-main > div > .swiper-container-android.swiper-container-horizontal.swiper-container-initialized.carousel.swiper-container
 
 ! 凤凰网 http://inews.ifeng.com
 inews.ifeng.com##.index_swiper_box_-hDyo
@@ -289,6 +290,8 @@ avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
 javmenu.com##.mb-3.col
 javmenu.com##footer.justify-content-between.align-items-center.flex-md-row.flex-column.d-flex.footer
 javmenu.com##div.justify-content-between.align-items-center.flex-md-row.flex-column.d-flex.footer
+javmenu.com##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
+
 
 ! 八爪鱼磁搜 https://磁搜.com
 ciliget.com,cilibaidu.xyz##.msgbox
@@ -348,8 +351,7 @@ maa1818.com##.ut1_img_ex
 maa1818.com##.ut1_img_ex_content
 
 ! 磁力熊 https://www.cilixiong.com
-||i.cilixiong.com/001.jpg$image
-||i.cilixiong.com/002.jpg$image
+||i.cilixiong.com/00*.jpg$image
 www.cilixiong.com##.list-unstyled.justify-content-end.col-md-4.nav
 
 ! 讯飞星火大水印
@@ -481,3 +483,9 @@ m.yoozhibo.net##.bootom-fixed
 ! 7mm https://7mm002.com
 ##.set_height_250.d-flex.mb-4.text-center.a-d-block
 .set_height_100.d-flex.mb-4.text-center.a-d-block
+
+! 追剧兔 https://www.zjtu.tv
+||s1.ax1x.com/2023/05/27/p9q7KFP.png$image
+
+! 13听书 https://m.ting13.com
+||image.itingshu.net/app/app.png$image
