@@ -489,3 +489,15 @@ m.yoozhibo.net##.bootom-fixed
 
 ! 13听书 https://m.ting13.com
 ||image.itingshu.net/app/app.png$image
+
+! 撸撸视频 https://www.tim18.top
+www.tim18.top##.masterhavor
+www.tim18.top##.tx-wide > h3
+www.tim18.top##div:nth-of-type(2)
+||www.tim18.top/upload/banner/202305*$image
+www.tim18.top##div:nth-of-type(4)
+www.tim18.top##.block-text
+www.tim18.top##.row-m-space0.row-space30.row
+
+! 皮皮虾 https://ppxzy.pro
+||img07.mifile.cn/v1/MI_542ED8B1722DC/5a7bb605cfb50f2a5099edfb440b5dc6.png$image
