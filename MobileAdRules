@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:2023.06.14
+! Version:2023.06.24
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -126,7 +126,8 @@ www.lan-sha.com##.index-top-postcard-plane
 www.lan-sha.com##.post-main > div > .swiper-container-android.swiper-container-horizontal.swiper-container-initialized.carousel.swiper-container
 
 ! 凤凰网 http://inews.ifeng.com
-inews.ifeng.com##.index_swiper_box_-hDyo
+ifeng.com##.index_swiper_box_-hDyo
+ifeng.com##.index_bottom_box_CCgoj
 
 ! 123盘 https://www.123pan.com
 www.123pan.com##.appHeader
@@ -336,14 +337,17 @@ files.honghufly.com##div.banner:nth-of-type(1)
 ! 麻花影视 https://www.mhyyy.com
 ||s2.232232.xyz^
 
-! 笔盒 https://bihe6.org
+! 笔盒 https://beabox.xyz/
 ##.c-ilqoRP
-||bihe6.org/rad.png$image
-||bihe6.org/bgad.png$image
+||bihe*.*/bgad.png$image
 ||sbb.bbb.lesenjiaoyu.xyz/*.gif$image
 ||sbb.bbb.momoguoji.xyz/*.gif$image
-||www.bhxx1.cc/rad.png$image
 ||sbb.bbb.jinheart.xyz/*.gif$image
+||bhxx*.*/rad.png$image
+||behe*.*/rad.png$image
+||bihe*.*/rad.png$image
+##a[href^="/listsearch"] > .css-1h08r91.MuiButton-containedSizeSmall.MuiButton-sizeSmall.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
+##.c-gRwvmB > .css-1h08r91.MuiButton-containedSizeSmall.MuiButton-sizeSmall.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
 
 ! 18AV https://maa1818.com
 maa1818.com##.ut1_img_content_js
@@ -502,3 +506,6 @@ www.tim18.top##.row-m-space0.row-space30.row
 
 ! 皮皮虾 https://ppxzy.pro
 ||img07.mifile.cn/v1/MI_542ED8B1722DC/5a7bb605cfb50f2a5099edfb440b5dc6.png$image
+
+! 油管电影 https://www.ygdy.net
+www.ygdy.net##a.djcvjvsvjkbjk_u:nth-of-type(n)
