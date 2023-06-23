@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 通用元素屏蔽
-! Version:2023.6.18
+! Version:2023.6.24
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 ! 通用元素
@@ -84,6 +84,9 @@ avbro.top##.btn-close
 ! 黄色仓库 http://014ck.cc
 ##.qq
 ##.gonggao
+! www.yanaifei.com
+##.ya-icon-close
+
 
 ###down_boxcode
 ##.main-box > .ad-nav-box
