@@ -339,13 +339,11 @@ files.honghufly.com##div.banner:nth-of-type(1)
 
 ! 笔盒 https://beabox.xyz/
 ##.c-ilqoRP
-||bihe*.*/bgad.png$image
+||*.*/bgad.png$image
 ||sbb.bbb.lesenjiaoyu.xyz/*.gif$image
 ||sbb.bbb.momoguoji.xyz/*.gif$image
 ||sbb.bbb.jinheart.xyz/*.gif$image
-||bhxx*.*/rad.png$image
-||behe*.*/rad.png$image
-||bihe*.*/rad.png$image
+||*.*/rad.png$image
 ##.c-gRwvmB > .css-1h08r91.MuiButton-containedSizeSmall.MuiButton-sizeSmall.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
 
 ! 18AV https://maa1818.com
