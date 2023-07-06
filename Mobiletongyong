@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 通用元素屏蔽
-! Version:2023.6.24
+! Version:20230706
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 ! 通用元素
@@ -100,3 +100,11 @@ avbro.top##.btn-close
 ##body > [href^="https://5611773.cc:8443"]
 ##[href="https://foronypdf.vip"]
 ##a[href="http://xuefeng8889.top"]
+##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(13)
+##[href^="https://m.ciyfemht2.cn"]
+##[href^="https://lmo.reed520.com/1.html"]
+##[href="https://xz.54ajd84.com/new/2063.html"]
+##[href^="https://jspt.wumoer.com/index.html"]
+##[href="https://r935.top"]
+##[href="https://apk.whcdsp.com/tdy3219"]
+##[href^="https://0526.wpzth3dkfb.cc/0225yc28/"]
