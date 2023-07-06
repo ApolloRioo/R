@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20230702
+! Version:20230706
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -64,24 +64,14 @@ www.ghxi.com##.entry-related-posts
 www.ghxi.com##.clearfix.slider-wrap
 www.ghxi.com##.width-footer-bar.footer > .container
 
-! 资源否 https://www.zyfou.com
-www.zyfou.com##.modules-tjnr.wpcom-modules.section
-www.zyfou.com##.modules-carousel-posts.wpcom-modules.section
-www.zyfou.com##.container.modules-gird.wpcom-modules.section
-www.zyfou.com##.container.modules-links.wpcom-modules.section
-www.zyfou.com##li.item-sticky.item:nth-of-type(1)
-www.zyfou.com##li.item-sticky.item:nth-of-type(2)
-www.zyfou.com##li.item-sticky.item:nth-of-type(3)
-www.zyfou.com##li.item-sticky.item:nth-of-type(4)
-www.zyfou.com##li.item-sticky.item:nth-of-type(5)
-www.zyfou.com##li.item-sticky.item:nth-of-type(6)
-www.zyfou.com##.container.modules-category-posts.wpcom-modules.section
-www.zyfou.com##.entry-related-posts
-www.zyfou.com##.entry-page
-www.zyfou.com##.entry-copyright
-www.zyfou.com##.entry-action
-www.zyfou.com##.width-footer-bar.footer
-www.zyfou.com##.__single_1.wpcom_myimg_wrap
+! 鸭先知 https://www.yxzhi.com
+www.yxzhi.com##li.item-sticky.item:nth-of-type(1)
+www.yxzhi.com##li.item-sticky.item:nth-of-type(2)
+www.yxzhi.com##.entry-copyright
+www.yxzhi.com##.entry-action
+www.yxzhi.com##.entry-bar
+www.yxzhi.com##.entry-page
+www.yxzhi.com##.entry-related-posts
 
 ! 殁漂遥 https://www.mpyit.com
 www.mpyit.com##div.h-cat:nth-of-type(6)
