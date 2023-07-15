@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 通用元素屏蔽
-! Version:20230706
+! Version:20230714
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 ! 通用元素
@@ -15,6 +15,7 @@
 ##body > div.top > div.d1
 !app 悬浮窗
 ##.top_nav_gom
+###pdad
 
 
 ! JAVDB https://javdb008.com
