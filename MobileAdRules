@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20230706
+! Version:20230714
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -72,6 +72,7 @@ www.yxzhi.com##.entry-action
 www.yxzhi.com##.entry-bar
 www.yxzhi.com##.entry-page
 www.yxzhi.com##.entry-related-posts
+www.yxzhi.com##.swiper-backface-hidden.swiper-android.swiper-autoheight.swiper-horizontal.swiper-initialized.slider-full.swiper-container.wpcom-slider.main-slider
 
 ! 殁漂遥 https://www.mpyit.com
 www.mpyit.com##div.h-cat:nth-of-type(6)
@@ -118,6 +119,7 @@ www.lan-sha.com##.post-main > div > .swiper-container-android.swiper-container-h
 ! 凤凰网 http://inews.ifeng.com
 ifeng.com##.index_swiper_box_-hDyo
 ifeng.com##.index_bottom_box_CCgoj
+||x0.ifengimg.com/ucms/2021_31/31A0009714B77C212C710F60DBC83CB0AF8AAD57_size20_w750_h112.png$image
 
 ! 123盘 https://www.123pan.com
 www.123pan.com##.appHeader
@@ -496,3 +498,15 @@ www.tim18.top##.row-m-space0.row-space30.row
 
 ! 油管电影 https://www.ygdy.net
 www.ygdy.net##a.djcvjvsvjkbjk_u:nth-of-type(n)
+
+! 2023-07-11 https://jj1018.com
+jj1018.com##.ps_1
+jj1018.com##.clearfix.footer_app
+jj1018.com##.page-bottom
+jj1018.com##.tg
+jj1018.com##.clearfix.movie_ad
+jj1018.com##.videotitle
+jj1018.com##.videoAd
+
+! 无名小站 https://www.btnull.nu
+||1b2a.net/gimg/pd.webp$image
