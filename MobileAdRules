@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20230714
+! Version:20230725
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -67,6 +67,8 @@ www.ghxi.com##.width-footer-bar.footer > .container
 ! 鸭先知 https://www.yxzhi.com
 www.yxzhi.com##li.item-sticky.item:nth-of-type(1)
 www.yxzhi.com##li.item-sticky.item:nth-of-type(2)
+www.yxzhi.com##li.item-sticky.item:nth-of-type(3)
+www.yxzhi.com##li.item-sticky.item:nth-of-type(4)
 www.yxzhi.com##.entry-copyright
 www.yxzhi.com##.entry-action
 www.yxzhi.com##.entry-bar
