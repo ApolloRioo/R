@@ -292,6 +292,9 @@ javmenu.com##.mb-3.col
 javmenu.com##footer.justify-content-between.align-items-center.flex-md-row.flex-column.d-flex.footer
 javmenu.com##div.justify-content-between.align-items-center.flex-md-row.flex-column.d-flex.footer
 javmenu.com##.px-1.mb-2.col-6.col-sm-6.col-xl-3.video-list-item.category-page
+javmenu.com##.link_recommend
+javmenu.com##.common_banner
+
 
 
 ! 八爪鱼磁搜 https://磁搜.com
@@ -385,10 +388,10 @@ www.pkmp4.com##.footer
 ||https://www.dianyinggou.com/View/images/bg.png$image
 
 !  https://missav.com
-missav.com,missav123.com##.mb-5.space-y-5
-missav.com,missav123.com##footer.px-4.mx-auto.sm\:container
-missav.com,missav123.com##.text-center.mt-3
-missav.com,missav123.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
+missav.com##.mb-5.space-y-5
+missav.com##footer.px-4.mx-auto.sm\:container
+missav.com##.text-center.mt-3
+missav.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
 
 ! 360搜索 https://m.so.com
 m.so.com##.guide-rel.mb.res-list.g-card
