@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240119
+! Version:20240120
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -522,6 +522,8 @@ jj1018.com##.videoAd
 ||1b2a.net/gimg/pd.webp$image
 
 ! supjav
+supjav.com##.movv-ad
+supjav.com###player-con
 ||doppiocdn.org^
 ||doppiocdn.com^
 ||doppiocdn.net^
@@ -531,8 +533,10 @@ jj1018.com##.videoAd
 ||fanza.cc^
 ||aeeg5idiuenbi7erger.com^
 ||alas4kanmfa6a4mubte.com^
-||ads.adxadserv.com^
-/s.o333o.com/adgpt.js
-/video.ktkjmp.com/adsbygoogle.js
-supjav.com##.movv-ad
-supjav.com###player-con
+||adxadserv.com^
+||xlivrdr.com^
+||googletagmanager.com^
+o333o.com/adgpt.js
+video.ktkjmp.com/adsbygoogle.js
+/ad-$~stylesheet
+
