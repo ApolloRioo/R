@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240120.1
+! Version:20240125
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -201,19 +201,9 @@ www.rrets.cc##div.tim-box.ec-ad > [href="https://docs.qq.com/doc/DZEJDQ3VaWXhEbE
 ! 我爱跟剧 https://52gen.top
 52gen.top##.gg-icon
 52gen.top##[href="https://shalasi.com"]
-! 18AV https://maa1814.com
-||maa1814.com/adcg/cnmv*.gif$image
-||ww7814.win/pic/*.gif$image
-maa1814.com##.ut1_img_content_js
-maa1814.com##.di_100
-maa1814.com##.ut1_img_ex
-maa1814.com##div.di_img:nth-of-type(4)
-maa1814.com##div.di_img:nth-of-type(2)
-maa1814.com##.ut1_img_ex_content
 
 
 ! YourPorn https://yp9535.com
-yp9535.com###header-mid
 ||xw.ooegpip.cn/*$image
 
 
@@ -237,31 +227,6 @@ yp9535.com###header-mid
 ||bbb.huishengqihang.xyz/*.gif$image
 ||bbb.leibeiyipei.xyz/*.gif$image
 ##div.bbox.w90.pure-u-1 > div > .pure-g
-
-! 色播 https://sbplayer.top
-||sbplayer.top/upload/addon/*/*.jpg$image
-sbplayer.top,sebonow.xyz##.swiper-ads.mobile-only.swiper-container
-sbplayer.top,sebonow.xyz##.mobile-only.my-2.swiper-container
-sbplayer.top,sebonow.xyz##.col-m-24.col-17 > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top,sebonow.xyz##.show.row-m-space5.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top,sebonow.xyz##.show.row-m-space5.row-space8.row > li.mb20.col-m-12.col-25 > .item-box > .item-box
-sbplayer.top,sebonow.xyz##.f-12.tx-flex-hc.info-bottom
-sbplayer.top,sebonow.xyz##ul.hide.row-m-space5.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top,sebonow.xyz##.f-12.info-bottom-dw
-sbplayer.top##.d-flex.row-m-space0.row-space30.row
-sbplayer.top,sebonow.xyz##li.mb20.col-m-12.col-25:nth-of-type(1)
-sbplayer.top,sebonow.xyz##li.mb20.col-m-12.col-25:nth-of-type(10)
-sbplayer.top,sebonow.xyz##div.tx-flash-flex.row-m-space0.row-space8.row > .mobile-only.mx-auto.my-2.ads_300_100
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(3)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(4)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(6)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(7)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(10)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(13)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(16)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(19)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(22)
-sbplayer.top,sebonow.xyz##div.mobile-only.mx-auto.my-2.ads_300_100:nth-of-type(23)
 
 ! 51AV https://51av.club
 51av.club##.publicAllContentBg > .common_banner
@@ -309,50 +274,8 @@ ciliget.com,cilibaidu.xyz##.footer
 ! 厂长资源 https://czzy.tv
 ||img.7838a.com/images/*.gif$image
 
-! 左临右射 https://zlyspet.info
-||zlyspet.info/upload/vod/*$image
-zlyspet.info##.slick-arrow-center.slick-visible.slick
-zlyspet.info##div.content:nth-of-type(2)
-zlyspet.info##div.content:nth-of-type(5)
-zlyspet.info##div.content:nth-of-type(4)
-
-! https://pron.guru https://seajav.com
-||seajav.com/ao/*$image
-||seajav.com/wei/*$image
-||seajav.com/si/*$image
-||d3s.5dd3s.com/banner/*.gif$image
-pron.guru,seajav.com##body > div > .mb-5.space-y-5
-pron.guru,seajav.com##div.pt-6.text-center:nth-of-type(9)
-pron.guru,seajav.com##div.pt-6.text-center:nth-of-type(8)
-pron.guru,seajav.com##.pb-12.content-without-search.is-home > div.mb-5.space-y-5 > .lg\:hidden
-pron.guru,seajav.com##.pb-12.content-without-search.px-4.mx-auto.container > div.mb-5.space-y-5 > .lg\:hidden
-pron.guru,seajav.com##footer.px-4.mx-auto.container
-
-! 涩涩视频
-files.honghufly.com##.h-100.w-100.d-block
-files.honghufly.com##.float-app
-files.honghufly.com##.pointer-event.slide.carousel
-files.honghufly.com##.mt-3.banner
-files.honghufly.com##.mt-3.fuli
-files.honghufly.com##div.banner:nth-of-type(1)
-
 ! 麻花影视 https://www.mhyyy.com
 ||s2.232232.xyz^
-
-! 笔盒 https://beabox.xyz/
-##.c-ilqoRP
-||*.*/bgad.png$image
-||sbb.bbb.lesenjiaoyu.xyz/*.gif$image
-||sbb.bbb.momoguoji.xyz/*.gif$image
-||sbb.bbb.jinheart.xyz/*.gif$image
-||*.*/rad.png$image
-##.c-gRwvmB > .css-1h08r91.MuiButton-containedSizeSmall.MuiButton-sizeSmall.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
-
-! 18AV https://maa1818.com
-maa1818.com##.ut1_img_content_js
-maa1818.com##.di_100
-maa1818.com##.ut1_img_ex
-maa1818.com##.ut1_img_ex_content
 
 ! 磁力熊 https://www.cilixiong.com
 ||i.cilixiong.com/00*.jpg$image
@@ -366,8 +289,6 @@ xinghuo.xfyun.cn##DIV#watermark-wrapper
 
 ! 低端影视 https://ddys.art
 ||img13.360buyimg.com/ddimg/jfs/t1/108754/39/33961/48618/6431454eFbcf4314d/780058014488d28a.jpg$image
-
-www.qaydy2.com###popBox
 
 ! 无追 https://www.wuzhuiso.com
 www.wuzhuiso.com##.mso-guide
@@ -383,15 +304,6 @@ www.wuzhuiso.com###mohe-m-leidian_list
 cn.bing.com##.b_rs
 cn.bing.com##.b_divdef.b_primtxt.b_footer
 
-! 片库 https://www.pkmp4.com
-www.pkmp4.com##.footer
-||https://www.dianyinggou.com/View/images/bg.png$image
-
-!  https://missav.com
-missav.com##.mb-5.space-y-5
-missav.com##footer.px-4.mx-auto.sm\:container
-missav.com##.text-center.mt-3
-missav.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
 
 ! 360搜索 https://m.so.com
 m.so.com##.guide-rel.mb.res-list.g-card
@@ -425,10 +337,6 @@ bangumi.online##.side-bar-donate.side-bar-item
 ||img*.360buyimg.com/jdsurvey/*.gif$image
 ||cdn.sm.cn/forum/*.gif$image
 
-! 红领巾瓜报 https://hlj04.com
-hlj04.com##.base_article_header_box
-hlj04.com##[href="https://hlj04.com/archives/10043/"]
-
 ! 2023-05-23 https://blog.csdn.net
 blog.csdn.net##.feed-Sign-weixin
 
@@ -454,7 +362,6 @@ www.kkp14d.top##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(8)
 www.kkp14d.top##.swiper-home
 
 ! 情趣白丝 https://www.qqbs.vip
-##div.hengfu:nth-of-type(n+4):nth-of-type(-n+11)
 www.qqbs36.vip##div.links:nth-of-type(2)
 www.qqbs36.vip##div.links:nth-of-type(3)
 www.qqbs36.vip##div.links:nth-of-type(12)
@@ -463,30 +370,6 @@ www.qqbs36.vip##div.links:nth-of-type(13)
 ! 优直播 https://m.yoozhibo.net
 m.yoozhibo.net##.bootom-fixed
 
-! 看片狂 https://www.kpkuang.fun
-||kpstatic.ethersaga.online/template/vfed/asset/img/LD-GIF_1140x200.gif$image
-##.uk-alert.fed-show-md-block.fed-back-whits.fed-part-layout
-
-! 看看片  kkp2v.top
-##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(7)
-##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(8)
-##[href^="https://ent.gx74ja.cn/"]
-##[href^="https://ent.lcldmqp.cn/"]
-##[href="https://ip10075.xtzn0214.com"]
-##[href^="https://m.ciyfemht1.cn"]
-##[href^="https://0526.bdl9m7o7ku.cc/0225yc28/"]
-##[href="https://oe.dsdngfg1.com/new/2063.html"]
-##[href="https://hsv12.cc/1512.html"]
-##[href="https://hcyh11.cc/8823.html"]
-##[href="https://759r.top"]
-##[href^="https://361dh6.vip/"]
-##[href="https://23329v.com:7789"]
-##[href^="https://iv5ln8vf53p0vy3zpr.xyz/ip/"]
-##.swiper-home
-
-! 7mm https://7mm002.com
-##.set_height_250.d-flex.mb-4.text-center.a-d-block
-.set_height_100.d-flex.mb-4.text-center.a-d-block
 
 ! 追剧兔 https://www.zjtu.tv
 ||s1.ax1x.com/2023/05/27/p9q7KFP.png$image
@@ -540,10 +423,7 @@ o333o.com/adgpt.js
 video.ktkjmp.com/adsbygoogle.js
 /ad-$~stylesheet
 
-!  https://www.av01.tv
-av01.tv##.col-md-8 > div.row
-av01.tv##.ad-body.well
-av01.tv##.col-md-4
+
 ||bbrdbr.com^
 
 
