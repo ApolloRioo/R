@@ -423,7 +423,8 @@ o333o.com/adgpt.js
 video.ktkjmp.com/adsbygoogle.js
 /ad-$~stylesheet
 
-www.av01.tv##.col-12 > [src="javascript:window.location.replace(this.frameElement.dataset.link)"]
+www.av01.tv##[src="javascript:window.location.replace(this.frameElement.dataset.link)"]
+www.av01.tv##.ad-body.well
 ||bbrdbr.com^
 
 
