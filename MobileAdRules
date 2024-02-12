@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240209
+! Version:20240212
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -450,4 +450,14 @@ codeplayer.vip##.note
 codeplayer.vip##[href="/go/aliyun-hb"]
 codeplayer.vip##footer
 
+! 2024-02-12 https://www.json.cn
+www.json.cn##.bg-footer-theme.footer.content-footer
+www.json.cn##.mt-4.card
+www.json.cn##.top-link-area
+
+! 2024-02-11 https://www.google.com
+www.google.com##.Lt2Ned.As6eLe.M6hT6.fbar
+
+! 2024-02-08 https://www.123pan.com
+||statics.123pan.com/share-static/dist/static/H5_btn_reward.abc56ba2.png$image
 
