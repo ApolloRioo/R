@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240229
+! Version:20240301
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -435,6 +435,13 @@ cupfox.love##.mt-8.motion-reduce\:transition-none.transition-transform-backgroun
 thumbsnap.com##.ts-blurb-wrap
 thumbsnap.com###footer
 thumbsnap.com##.imagesection > div > .relatedimgs
+thumbsnap.com##div > .imagewrap
+thumbsnap.com##div > div > .relatedimgs
+thumbsnap.com##body > div > h2
+thumbsnap.com##.icon-tag
+thumbsnap.com##hr
+thumbsnap.com##div > .album_add
+thumbsnap.com##a.tagbox
 
 ! 2024-02-07 https://www.toolscat.com
 toolscat.com##.talk
