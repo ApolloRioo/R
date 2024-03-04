@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240301
+! Version:20240304
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -461,6 +461,17 @@ codeplayer.vip##footer
 www.json.cn##.bg-footer-theme.footer.content-footer
 www.json.cn##.mt-4.card
 www.json.cn##.top-link-area
+www.json.cn##.with-colors.row
+www.json.cn##.right-area
+www.json.cn##.mt-5
+
+! 2024-03-01 https://ipcheck.ing
+ipcheck.ing##pwa-install
+
+! 2024-03-01 https://www.speedtest.net
+www.speedtest.net##.mobile-pretest
+www.speedtest.net##.footer
+www.speedtest.net##.mobile-during-test-banner
 
 ! 2024-02-11 https://www.google.com
 www.google.com##.Lt2Ned.As6eLe.M6hT6.fbar
@@ -475,4 +486,8 @@ javhdporn.net##.sidebar-ads
 
 ! 2024-03-02 https://www.watchmygf.sex
 watchmygf.sex##div.sorc
+
+! 2024-03-02 https://catbox.moe
+||catbox.moe/bgs/texture3.png$image
+catbox.moe##div.notetiny
 
