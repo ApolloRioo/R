@@ -4,6 +4,10 @@
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
+! 2024-03-05 http://net.ljxnet.cn
+net.ljxnet.cn##.header.el-header
+net.ljxnet.cn##.is-vertical.el-container > div
+
 !百度搜索
 !自动播放视频
 baidu.com##.c-video-player
