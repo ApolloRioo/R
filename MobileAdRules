@@ -1,10 +1,19 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240304
+! Version:20240307
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
-! 2024-03-06 https://www.deepl.com
+! 百度翻译 https://fanyi.baidu.com
+fanyi.baidu.com##.new-header
+
+! 谷歌翻译 https://translate.google.com
+translate.google.com,translate.homegu.com##.pGxpHc
+translate.google.com,translate.homegu.com##.VjFXz
+translate.google.com,translate.homegu.com##.VlPnLc
+translate.google.com,translate.homegu.com##.OwOEge
+
+! Deepl翻译 https://www.deepl.com
 www.deepl.com##.mt-\[30px\]
 www.deepl.com##.forced-colors-mode-border.AppBanner-module--banner--2Ezkw
 www.deepl.com##footer
