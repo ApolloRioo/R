@@ -1,8 +1,20 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240307
+! Version:20240309
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
+
+! 2024-03-09 https://www.remove.bg
+www.remove.bg##.d-none-mobile-app.prism > .w-full.bg-white
+www.remove.bg##.overflow-x-clip.justify-center.items-center.flex
+www.remove.bg##div.bg-repeat-x.bg-pattern-brand.md\:mt-32.mt-12:nth-of-type(11)
+www.remove.bg##.max-w-md.gap-8.flex-col.flex.group.relative > .max-w-md
+www.remove.bg##div.max-w-5xl.px-8.w-full.mx-auto:nth-of-type(4)
+www.remove.bg##div.md\:py-24.py-12:nth-of-type(8)
+www.remove.bg##div.bg-repeat-x.bg-pattern-brand.md\:mt-32.mt-12:nth-of-type(7)
+www.remove.bg##div.max-w-5xl.px-8.w-full.mx-auto:nth-of-type(6)
+www.remove.bg##div.md\:py-24.py-12:nth-of-type(5)
+www.remove.bg##.overflow-x-clip.md\:py-24.py-12
 
 ! 百度翻译 https://fanyi.baidu.com
 fanyi.baidu.com##.new-header
