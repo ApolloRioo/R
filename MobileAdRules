@@ -10,6 +10,8 @@ m.youdao.com##.license
 m.youdao.com##[href^="/redirect"]
 m.youdao.com###ft
 m.youdao.com##.logo
+m.youdao.com##.product_container.product-list_container
+m.youdao.com##.el-collapse
 
 ! 2024-03-09 https://fanyi.900cha.com
 fanyi.900cha.com##.text-white.bg-info.mt-2.p-3
