@@ -5,6 +5,15 @@
 ! by: R
 
 
+! 2024-03-09 https://cn.piliapp.com
+cn.piliapp.com##nav
+cn.piliapp.com##.title.col-12
+cn.piliapp.com##.btn-sm.btn-outline-secondary.btn.reset-all
+cn.piliapp.com##.btn-outline-secondary.btn-sm.btn.modify-title
+cn.piliapp.com##.offset-md-2.col-md-8.col-12
+cn.piliapp.com##.row.footer
+
+
 ! 2024-03-09 https://m.youdao.com
 m.youdao.com##.content
 m.youdao.com##.license
