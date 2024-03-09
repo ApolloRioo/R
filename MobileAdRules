@@ -4,6 +4,13 @@
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
+! 2024-03-09 https://m.youdao.com
+m.youdao.com##.content
+m.youdao.com##.license
+m.youdao.com##[href^="/redirect"]
+m.youdao.com###ft
+m.youdao.com##.logo
+
 ! 2024-03-09 https://fanyi.900cha.com
 fanyi.900cha.com##.text-white.bg-info.mt-2.p-3
 fanyi.900cha.com##.mt-2.bg-default.card
