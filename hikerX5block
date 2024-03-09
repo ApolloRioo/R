@@ -1,0 +1,62 @@
+[Adblock Plus 2.0]
+! Title: R 海阔视界x5元素屏蔽!
+! Version:20240310
+! Homepage:https://thumbsnap.com/i/79ZPXaqP.gif
+! by: R
+
+
+! 2024-03-09 https://m.youdao.com
+m.youdao.com##.content
+m.youdao.com##.license
+m.youdao.com##[href^="/redirect"]
+m.youdao.com###ft
+m.youdao.com##.logo
+m.youdao.com##.product_container.product-list_container
+m.youdao.com##.el-collapse
+
+! 2024-03-09 https://fanyi.900cha.com
+fanyi.900cha.com##.text-white.bg-info.mt-2.p-3
+fanyi.900cha.com##.mt-2.bg-default.card
+fanyi.900cha.com##.text-muted.text-center
+fanyi.900cha.com##.text-white.bg-info.mt-3.p-3
+fanyi.900cha.com##.text-dark.bg-light.mb-2.p-2
+
+! 2024-03-09 https://koutu.gaoding.com
+koutu.gaoding.com##.gdd-koutu-intro
+koutu.gaoding.com##.gdd-koutu-userfeeds
+koutu.gaoding.com##.gm-layout-footer-copyright.koutuhome-page-copyright
+koutu.gaoding.com##.gdd-koutu-entry
+
+! 2024-03-09 https://www.remove.bg
+www.remove.bg##.py-2.sm\:mx-6.mx-1.gap-6.items-center.justify-center.flex-col.flex > div
+www.remove.bg##.d-none-mobile-app.prism > .w-full.bg-white
+www.remove.bg##.overflow-x-clip.justify-center.items-center.flex
+www.remove.bg##div.bg-repeat-x.bg-pattern-brand.md\:mt-32.mt-12:nth-of-type(11)
+www.remove.bg##.max-w-md.gap-8.flex-col.flex.group.relative > .max-w-md
+www.remove.bg##div.max-w-5xl.px-8.w-full.mx-auto:nth-of-type(4)
+www.remove.bg##div.md\:py-24.py-12:nth-of-type(8)
+www.remove.bg##div.bg-repeat-x.bg-pattern-brand.md\:mt-32.mt-12:nth-of-type(7)
+www.remove.bg##div.max-w-5xl.px-8.w-full.mx-auto:nth-of-type(6)
+www.remove.bg##div.md\:py-24.py-12:nth-of-type(5)
+www.remove.bg##.overflow-x-clip.md\:py-24.py-12
+
+! 百度翻译 https://fanyi.baidu.com
+fanyi.baidu.com##.new-header
+fanyi.baidu.com##.article-loading
+https://fanyi-app.baidu.com/transapp/wiseflowdata*
+
+! 谷歌翻译 https://translate.google.com
+translate.google.com,translate.homegu.com##.pGxpHc
+translate.google.com,translate.homegu.com##.VjFXz
+translate.google.com,translate.homegu.com##.VlPnLc
+translate.google.com,translate.homegu.com##.OwOEge
+
+! Deepl翻译 https://www.deepl.com
+www.deepl.com##.mt-\[30px\]
+www.deepl.com##.forced-colors-mode-border.AppBanner-module--banner--2Ezkw
+www.deepl.com##footer
+www.deepl.com##.BasePageHeader-module--grey--0auCA.BasePageHeader-module--container--2By68.h-fit.z-50.relative
+
+! 2024-03-05 http://net.ljxnet.cn
+net.ljxnet.cn##.header.el-header
+net.ljxnet.cn##.is-vertical.el-container > div
