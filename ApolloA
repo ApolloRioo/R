@@ -19,16 +19,14 @@ d.push({
           if (input == '默认视频'){
          var av = "https://missav.com/cn/" + 识别码;}else if (input == '中文字幕'){
          var av = "https://missav.com/cn/" + 识别码 + "-chinese-subtitle";
-         var bv = JSON.parse(fetch(av, {onlyHeaders:true})).statusCode
-//.url.match(/\/([^\/]+$)/)[1]
-             if (bv == 103){
+         var bv = JSON.parse(fetch(av, {onlyHeaders:true})).url
+             if (!bv.includes("chinese-subtitle")){
                  return "toast://挂梯 or 此影片没有中文字幕"
                }
 }else if (input == '无码破解'){
          var av = "https://missav.com/cn/" + 识别码 + "-uncensored-leak";
-         var bv = JSON.parse(fetch(av, {onlyHeaders:true})).statusCode
-//.url.match(/\/([^\/]+$)/)[1]
-             if (bv == 103){
+         var bv = JSON.parse(fetch(av, {onlyHeaders:true})).url
+             if (!bv.includes("uncensored-leak")){
                  return "toast://挂梯 or 此影片没有无码破解"
                }
 }
@@ -168,9 +166,8 @@ d.push({
     url: $('').lazyRule((识别码) => {
                  var av = "https://missav.com/cn/" + 识别码 + "-uncensored-leak"; 
 //log(av)
-                 var bv = JSON.parse(fetch(av, {onlyHeaders:true})).statusCode
-//.url.match(/\/([^\/]+$)/)[1]
-                if (bv == 103 ){          
+                 var bv = JSON.parse(fetch(av, {onlyHeaders:true})).url
+                if (!bv.includes("-uncensored-leak") ){          
             return "toast://挂梯 or 此影片没有无码破解"
 }else{
               try{
