@@ -92,7 +92,7 @@ d.push({
 
 //njav
 d.push({
-    title: '‘‘’’<b><middle><font color="#1E90FF">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
+    title: '‘‘’’<b><middle><font color="#2091C9">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/iconza-poker-playing-cards/64/chips-blue-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://njav.tv/zh/v/" + 识别码; 
