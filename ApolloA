@@ -2,7 +2,7 @@ js:
 function CodeLazy(识别码) {
 //ThissAV
 d.push({
-    title: '‘‘’’<b><middle><font color="#FF0000"> ThisAV</font></middle>',
+    title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/232_Nintendo_Switch_logo-128.png',
     url: $(
                 [
@@ -57,7 +57,7 @@ d.push({
 
 //MISSAV
 d.push({
-    title: '‘‘’’<b><middle><font color="#BEDA8F"> MISSAV</font></middle>',
+    title: '‘‘’’<b><middle><font color="#BEDA8F">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
     pic_url: 'https://cdn1.iconfinder.com/data/icons/fruits-n-vegetables-colored-gradient/128/cauliflower-128.png',
     url: $('').lazyRule((识别码) => {
        try{
@@ -92,7 +92,7 @@ d.push({
 
 //njav
 d.push({
-    title: '‘‘’’<b><middle><font color="#1E90FF"> nJav.tv</font></middle>',
+    title: '‘‘’’<b><middle><font color="#1E90FF">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
     pic_url: 'https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Facebook_Messenger-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://njav.tv/zh/v/" + 识别码; 
@@ -117,7 +117,7 @@ d.push({
 
 //av01
 d.push({
-    title: '‘‘’’<b><middle><font color="#8A2BE2"> AV01</font></middle>',
+    title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐕𝟎𝟏</font></middle>',
     pic_url: 'https://cdn2.iconfinder.com/data/icons/owl-10/500/nim532_11_purple_owl_kid_birthday_face_eye-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://www.av01.tv/" + 识别码; 
@@ -134,7 +134,7 @@ d.push({
     col_type: 'icon_5',
     extra: {
                 blockRules: ['.doppiocdn.','dmm.co.jp'],
-                videoRules: ['index45va-v3-a1.m3u8'],
+                videoRules: ['index45va-v3-a1.m3u8','index45va-v2-a1.m3u8'],
                 videoExcludeRules: ['doppiocdn','index45va-v1-a1.m3u8'],
                 cacheM3u8: true,
                longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://www.av01.tv/" + 识别码;},识别码)}]
@@ -143,7 +143,7 @@ d.push({
 
 //Jable
 d.push({
-    title: '‘‘’’<b><middle><font color="#FF8C00"> Jable</font></middle>',
+    title: '‘‘’’<b><middle><font color="#FF8C00">𝐉𝐚𝐛𝐥𝐞</font></middle>',
     pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://jable.tv/videos/" + 识别码 + "/"; 
@@ -161,7 +161,7 @@ d.push({
 
 //ThissAV破解
 d.push({
-    title: '‘‘’’<b><middle><font color="#3FB8C1">無碼破解</font></middle>',
+    title: '‘‘’’<b><middle><font color="#3FB8C1">𝐂𝐫𝐚𝐜𝐤𝐞𝐝</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/solid-webi-con-3-cyan/128/Recomendation-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://missav.com/cn/" + 识别码 + "-uncensored-leak"; 
@@ -222,7 +222,7 @@ d.push({
 
 //Supjav
 d.push({
-    title: '‘‘’’<b><middle><font color="#A32986">Supjav</font></middle>',
+    title: '‘‘’’<b><middle><font color="#A32986">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
     pic_url: 'https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_skrill-128.png',
     url: "x5://https://supjav.com/zh/?s=" + 识别码,
     col_type: 'icon_5',
@@ -238,7 +238,7 @@ d.push({
 
 //聚搜
 d.push({
-    title: '‘‘’’<b><middle><font color="#67E0FA">聚搜 • R</font></middle>',
+    title: '‘‘’’<b><middle><font color="#67E0FA">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
     url: "hiker://search?s=" + 识别码 + "&rule=好看视频&simple=false",
     col_type: 'icon_5',
@@ -250,7 +250,7 @@ d.push({
 
 //磁力君.简
 d.push({
-    title: '‘‘’’<b><middle><font color="#EF4823">磁力君.简</font></middle>',
+    title: '‘‘’’<b><middle><font color="#EF4823">𝐌𝐚𝐠𝐧𝐞𝐭</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/shopping-doodle/512/Shopping-31-128.png',
     url: "hiker://page/sou?rule=磁力君.简&p=fypage&searchTerms=" + 识别码,
     col_type: 'icon_5',
