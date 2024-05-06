@@ -3,7 +3,7 @@ function CodeLazy(识别码) {
 //ThissAV
 d.push({
     title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
-    pic_url: 'https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/232_Nintendo_Switch_logo-128.png',
+    pic_url: 'https://cdn4.iconfinder.com/data/icons/free-large-boss-icon-set/128/Devil.png',
     url: $(
                 [
                     '默认视频',
@@ -93,7 +93,7 @@ d.push({
 //njav
 d.push({
     title: '‘‘’’<b><middle><font color="#1E90FF">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
-    pic_url: 'https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Facebook_Messenger-128.png',
+    pic_url: 'https://cdn4.iconfinder.com/data/icons/iconza-poker-playing-cards/64/chips-blue-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://njav.tv/zh/v/" + 识别码; 
 //log(av)
@@ -118,7 +118,7 @@ d.push({
 //av01
 d.push({
     title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐕𝟎𝟏</font></middle>',
-    pic_url: 'https://cdn2.iconfinder.com/data/icons/owl-10/500/nim532_11_purple_owl_kid_birthday_face_eye-128.png',
+    pic_url: 'https://cdn3.iconfinder.com/data/icons/butterfly-19/500/nim834_7_purple_butterfly_flower_tattoo_floral_retro-128.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://www.av01.tv/" + 识别码; 
 //log(av)
@@ -198,7 +198,7 @@ d.push({
 //njav破解
 d.push({
     title: '‘‘’’<b><middle><font color="#1E90FF"> nJav破解</font></middle>',
-    pic_url: 'https://cdn0.iconfinder.com/data/icons/CuteMonstersPNG/128/blue_monster.png',
+    pic_url: 'https://cdn4.iconfinder.com/data/icons/tweetmyweb/128/flying_bird_sparkles.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://njav.tv/zh/v/" + 识别码 + "-uncensored-leaked"; 
 //log(av)
@@ -222,8 +222,8 @@ d.push({
 
 //Supjav
 d.push({
-    title: '‘‘’’<b><middle><font color="#A32986">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
-    pic_url: 'https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_skrill-128.png',
+    title: '‘‘’’<b><middle><font color="#F960FA">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
+    pic_url: 'https://cdn4.iconfinder.com/data/icons/travel-std-pack/512/purple_pin-128.png',
     url: "x5://https://supjav.com/zh/?s=" + 识别码,
     col_type: 'icon_5',
     extra:{
