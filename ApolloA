@@ -90,6 +90,24 @@ d.push({
     extra: { longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://missav.to/search/movie/" + 识别码},识别码)}] }
 });
 
+//Jable
+d.push({
+    title: '‘‘’’<b><middle><font color="#FF8C00">𝐉𝐚𝐛𝐥𝐞</font></middle>',
+    pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
+    url: $('').lazyRule((识别码) => {
+                 var av = "https://jable.tv/videos/" + 识别码 + "/"; 
+//log(av)
+                // request("https://jable.tv/")
+              try{
+                 var html = fetch(av,{timeout:5000})
+                 var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
+                 return url
+                 }catch{return "toast://没有挂梯子或没有此影片"}
+                  },识别码),
+    col_type: 'icon_5',
+    extra: { longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://jable.tv/videos/" + 识别码 + "/";},识别码)}] }
+});
+
 //njav
 d.push({
     title: '‘‘’’<b><middle><font color="#2091C9">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
@@ -141,23 +159,6 @@ d.push({
                         }
 });
 
-//Jable
-d.push({
-    title: '‘‘’’<b><middle><font color="#FF8C00">𝐉𝐚𝐛𝐥𝐞</font></middle>',
-    pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
-    url: $('').lazyRule((识别码) => {
-                 var av = "https://jable.tv/videos/" + 识别码 + "/"; 
-//log(av)
-                // request("https://jable.tv/")
-              try{
-                 var html = fetch(av,{timeout:5000})
-                 var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
-                 return url
-                 }catch{return "toast://没有挂梯子或没有此影片"}
-                  },识别码),
-    col_type: 'icon_5',
-    extra: { longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://jable.tv/videos/" + 识别码 + "/";},识别码)}] }
-});
 
 //ThissAV破解
 d.push({
