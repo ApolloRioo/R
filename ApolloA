@@ -4,34 +4,29 @@ function CodeLazy(识别码) {
 d.push({
     title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/free-large-boss-icon-set/128/Devil.png',
-    url: $(
-                [
-                    '默认视频',
-                    '中文字幕',
-                    '无码破解',
-                    '搜索番号',
-                ],
-                2
-            ).select((识别码) => {
-                if (input == '搜索番号'){
-                     return "https://missav.com/cn/search/" + 识别码
+    url: $('').lazyRule((识别码) => {
+         var search = "https://missav.com/cn/search/" + 识别码;
+         var html = fetch(search,{headers:{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'}})
+         var list = pdfa(html, '.grid&&.relative:has(a[href])');        
+         var miss = []
+         list.forEach(item => {
+              var desc = pdfh(item, '.absolute.left-1&&Text');
+              miss.push({
+                 title: desc == "" ? "默认视频" : desc,        
+                 url: pdfh(item, 'a&&href'),     
+             })
+         })                 
+         if (miss.length==0){
+         miss = [{"title":"本平台尚未上传此番号视频","url":"hiker://empty"}]
+         }
+         var misstype = miss.map(i=>i.title)
+    return $(misstype,1).select((miss) => {
+                if (input == '本平台尚未上传此番号视频'){
+                    // return miss[0].url
 }else {
-          if (input == '默认视频'){
-         var av = "https://missav.com/cn/" + 识别码;}else if (input == '中文字幕'){
-         var av = "https://missav.com/cn/" + 识别码 + "-chinese-subtitle";
-         var bv = JSON.parse(fetch(av, {onlyHeaders:true})).url
-             if (!bv.includes("chinese-subtitle")){
-                 return "toast://挂梯 or 此影片没有中文字幕"
-               }
-}else if (input == '无码破解'){
-         var av = "https://missav.com/cn/" + 识别码 + "-uncensored-leak";
-         var bv = JSON.parse(fetch(av, {onlyHeaders:true})).url
-             if (!bv.includes("uncensored-leak")){
-                 return "toast://挂梯 or 此影片没有无码破解"
-               }
-}
-              try{
-                var html = fetch(av, {
+        let index = miss.findIndex(r=>r.title==input);
+                      try{
+                var html = fetch(miss[index].url, {
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                            },timeout:5000
@@ -45,14 +40,15 @@ d.push({
         let playlist={
             urls: hghest_quality,
             names: name_quality,
-            headers: new Array(hghest_quality.length).fill({Referer:"https://missav.com/cn/"})
+            headers: new Array(hghest_quality.length).fill({origin:"https://missav.com/cn/"})
         };
         return playlist;                    
                  }catch{return "toast://挂梯 or 没有此影片"}
 }
-                  },识别码),
+                  },miss)
+                      },识别码),
     col_type: 'icon_5',
-    extra: { longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://missav.com/cn/" + 识别码;},识别码)}] }
+    extra: { longClick: [{title: '查看搜索', js: $.toString((识别码)=>{ return "https://missav.com/cn/search/" + 识别码},识别码)}] }
 });
 
 //MISSAV
