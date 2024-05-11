@@ -53,7 +53,7 @@ js: function CodeLazy(识别码) {
                         name_quality = group_quality.match(/RESOLUTION=.*$/gm)
                             .map(n => n.replace("RESOLUTION=", ""))
                             .reverse()
-                        copy(hghest_quality[0])
+                       // copy(hghest_quality[0])
                         let playlist = {
                             urls: hghest_quality,
                             names: name_quality,
@@ -233,7 +233,7 @@ js: function CodeLazy(识别码) {
 
     //njav
     d.push({
-        title: '‘‘’’<b><middle><font color="#1E90FF">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
+        title: '‘‘’’<b><middle><font color="#1E90FF">𝐉𝐚𝐯𝐆𝐨</font></middle>',
         pic_url: 'https://cdn4.iconfinder.com/data/icons/tweetmyweb/128/flying_bird_sparkles.png',
         url: $('')
             .lazyRule((识别码) => {
@@ -243,7 +243,7 @@ js: function CodeLazy(识别码) {
                 timeout: 3000
             })
             if (!html || html.includes("请检查地址栏中的网址")) {
-                return "toast://挂梯 or 没有此影片"
+                return "toast://本平台尚未上传此番号视频"
             } else {
                 var id = pdfh(html, "#page-video&&v-scope")
                     .match(/\'(.*)\'/)[1]
@@ -438,7 +438,7 @@ js: function CodeLazy(识别码) {
                     timeout: 5000
                 }))
                     .url
-                if (search != redirect) {
+                if (/\.ai\/\d+/.test(redirect)) {
                     JavFinder = [{
                         "title": "Original Video",
                         "url": redirect
@@ -515,7 +515,7 @@ js: function CodeLazy(识别码) {
                 var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
                 return url
             } catch {
-                return "toast://挂梯 or 没有此影片"
+                return "toast://本平台尚未上传此番号视频"
             }
         }, 识别码),
         col_type: 'icon_5',
