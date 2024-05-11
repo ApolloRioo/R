@@ -173,7 +173,7 @@ js: function CodeLazy(识别码) {
             list.forEach(item => {
                 var desc = pdfh(item, 'a&&title')
                     .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                    .match(/^\[(.*?)\]/)[1] : "FuckUself";
+                    .match(/^\[(.*?)\]/)[1] : "Original";
                 miss.push({
                     title: desc,
                     url: pdfh(item, 'a&&href'),
@@ -190,7 +190,7 @@ js: function CodeLazy(识别码) {
                 list0.forEach(item => {
                     var desc0 = pdfh(item, 'a&&title')
                         .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                        .match(/^\[(.*?)\]/)[1] : "FuckUself";
+                        .match(/^\[(.*?)\]/)[1] : "Original";
                     miss.push({
                         title: desc0,
                         url: pdfh(item, 'a&&href'),
@@ -321,7 +321,7 @@ js: function CodeLazy(识别码) {
             }]
         }
     });
-    
+
     //ThissAV破解
     d.push({
         title: '‘‘’’<b><middle><font color="#BEDA8F">𝐂𝐫𝐚𝐜𝐤𝐞𝐝</font></middle>',
@@ -408,34 +408,92 @@ js: function CodeLazy(识别码) {
         }
     });
 
-    //njav破解
+    //JavFinder
     d.push({
-        title: '‘‘’’<b><middle><font color="#D83A31"> nJav破解</font></middle>',
+        title: '‘‘’’<b><middle><font color="#D83A31">𝐉𝐚𝐯𝐅𝐢𝐧𝐝</font></middle>',
         pic_url: 'https://img.vinua.cn/images/zO7lw.png',
         url: $('')
             .lazyRule((识别码) => {
-            var av = "https://njav.tv/zh/v/" + 识别码 + "-uncensored-leaked";
-            //log(av)
-            var html = fetch(av, {
-                timeout: 5000
+            var search = "https://javfinder.ai/search/movie/" + 识别码;
+            var html = fetch(search, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                },
+                redirect: false
             })
-            if (!html || html.includes("请检查地址栏中的网址")) {
-                return "toast://挂梯或没有此影片"
-            } else {
-                return "video://" + av;
+            var list = pdfa(html, '.videos-list&&article');
+            var JavFinder = []
+            list.forEach(item => {
+                var desc = pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/)[1] : "Original Video";
+                JavFinder.push({
+                    title: desc,
+                    url: "https://javfinder.ai" + pdfh(item, 'a&&href'),
+                })
+            })
+            if (JavFinder.length == 0) {
+                var redirect = JSON.parse(fetch(search, {
+                    onlyHeaders: true,
+                    timeout: 5000
+                }))
+                    .url
+                if (search != redirect) {
+                    JavFinder = [{
+                        "title": "Original Video",
+                        "url": redirect
+                    }]
+                } else {
+                    JavFinder = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
+                }
             }
+            var JavFindertype = JavFinder.map(i => i.title)
+            return $(JavFindertype, 1)
+                .select((JavFinder) => {
+                if (input == '本平台尚未上传此番号视频') {
+                    return JavFinder[0].url
+                } else {
+                    let index = JavFinder.findIndex(r => r.title == input);
+                    try {
+                        var html = fetch(JavFinder[index].url, {
+                            headers: {
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                            },
+                            timeout: 3000
+                        });
+                        var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
+                        var location = JSON.parse(fetch(src))
+                            .list[0].url
+                        var master = fetch(location)
+                            .match(/sources:.*?"(.*?)"/)[1]
+                        var stream = fetch(master)
+                        var domain = master.replace(/(https?.*?urlset\/).*/, '$1')
+                        var video_quality = stream.match(/index?.*/g)
+                            .map(u => domain + u)
+                            .reverse()
+                        var name_quality = stream.match(/\d+x\d+/g)
+                            .slice(0, video_quality.length)
+                            .reverse()
+                        let playlist = {
+                            urls: video_quality,
+                            names: name_quality,
+                        };
+                        return playlist;
+                    } catch {
+                        return "toast://再次点击"
+                    }
+                }
+            }, JavFinder)
         }, 识别码),
         col_type: 'icon_5',
         extra: {
-            videoExcludeRules: ['240'],
-            blockRules: ['*.doppiocdn.*'],
-            blockRules: ['dmm.co.jp'],
-            //videoRules: ['*m3u8*'],
-            cacheM3u8: true,
             longClick: [{
-                title: '查看网址',
+                title: '查看搜索',
                 js: $.toString((识别码) => {
-                    return "https://njav.tv/zh/v/" + 识别码 + "-uncensored-leaked";
+                    return "https://javfinder.ai/search/movie/" + 识别码;
                 }, 识别码)
             }]
         }
@@ -510,5 +568,5 @@ js: function CodeLazy(识别码) {
             }]
         }
     });
-    
+
 }
