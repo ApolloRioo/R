@@ -206,8 +206,8 @@ d.push({
 
 //njav破解
 d.push({
-    title: '‘‘’’<b><middle><font color="#1E90FF"> nJav破解</font></middle>',
-    pic_url: 'https://cdn4.iconfinder.com/data/icons/tweetmyweb/128/flying_bird_sparkles.png',
+    title: '‘‘’’<b><middle><font color="#D83A31"> nJav破解</font></middle>',
+    pic_url: 'https://img.vinua.cn/images/zO7lw.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://njav.tv/zh/v/" + 识别码 + "-uncensored-leaked"; 
 //log(av)
@@ -286,7 +286,7 @@ d.push({
 d.push({
     title: '‘‘’’<b><middle><font color="#67E0FA">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
-    url: "hiker://search?s=" + 识别码 + "&rule=好看视频&simple=false",
+    url: "hiker://search?s=" + 识别码 + "&group=①R&simple=false",
     col_type: 'icon_5',
     extra: {               
                longClick: [{title: 'Jav.Guru', js: $.toString((识别码)=>{ return "https://jav.guru/?s=" + 识别码;},识别码)},{title: 'JavBangers', js: $.toString((识别码)=>{ return "https://www.javbangers.com/search/" + 识别码 +'/';},识别码)},{title: '复制识别码', js: $.toString((识别码)=>{ return "copy://" + 识别码;},识别码)}]
