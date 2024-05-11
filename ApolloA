@@ -116,7 +116,7 @@ js: function CodeLazy(识别码) {
                     })
                 })
                 if (supjav.length == 0) {
-                    miss = [{
+                    supjav = [{
                         "title": "本平台尚未上传此番号视频",
                         "url": "hiker://empty"
                     }]
