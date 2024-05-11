@@ -22,14 +22,14 @@ d.push({
          var misstype = miss.map(i=>i.title)
     return $(misstype,1).select((miss) => {
                 if (input == '本平台尚未上传此番号视频'){
-                    // return miss[0].url
+                     return miss[0].url
 }else {
         let index = miss.findIndex(r=>r.title==input);
                       try{
                 var html = fetch(miss[index].url, {
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                           },timeout:5000
+                           },timeout:3000
                            });
                  eval(html.match(/eval.*?\n/)[0])
                     // 获取画质列表，并去最高画质
@@ -43,7 +43,7 @@ d.push({
             headers: new Array(hghest_quality.length).fill({origin:"https://missav.com/cn/"})
         };
         return playlist;                    
-                 }catch{return "toast://挂梯 or 没有此影片"}
+                 }catch{return "toast://挂梯 or 再次点击"}
 }
                   },miss)
                       },识别码),
@@ -56,34 +56,48 @@ d.push({
     title: '‘‘’’<b><middle><font color="#BEDA8F">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
     pic_url: 'https://cdn1.iconfinder.com/data/icons/fruits-n-vegetables-colored-gradient/128/cauliflower-128.png',
     url: $('').lazyRule((识别码) => {
-       try{
-             var av = "https://missav.to/search/movie/" + 识别码;  
-             var urls = [];    
-             var list = pdfa(fetch(av,{timeout:5000}),".videos-list&&article");
-            for(var j in list){
-              urls.push({
-                       url: pdfh(list[j],"a&&href")
-                        })
-            }
-            var plays = bf(urls).map(h=>"https://emb.missav.to/embedmv/hls/" + h.match(/id=([^\"&]+)/)[1] + ".m3u8")   
-             return {urls:plays}
-       }catch{
-         try{
-             var av = "https://missav.to/search/movie/" + 识别码.replace(/\-|\_/,"%20");  
-             var urls = [];    
-             var list = pdfa(fetch(av,{timeout:5000}),".videos-list&&article");
-            for(var j in list){
-              urls.push({
-                       url: pdfh(list[j],"a&&href")
-                        })
-            }
-            var plays = bf(urls).map(h=>"https://emb.missav.to/embedmv/hls/" + h.match(/id=([^\"&]+)/)[1] + ".m3u8")   
-             return {urls:plays}
-          }catch{return "toast://没有此影片"}
-       }   
-                  },识别码),
+         var search = "https://missav.to/search/movie/" + 识别码;
+         var html = fetch(search,{headers:{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'}})
+         var list = pdfa(html, '.videos-list&&article');        
+         var miss = []
+         list.forEach(item => {
+              var desc = pdfh(item, 'a&&title').match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title').match(/^\[(.*?)\]/)[1] : "FuckUself";
+              miss.push({
+                 title: desc,      
+                 url: pdfh(item, 'a&&href'),     
+             })
+         })                 
+         if (miss.length==0){
+         var search0 = "https://missav.to/search/movie/" + 识别码.replace(/\-|\_/,"%20");
+         var html0 = fetch(search,{headers:{'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'}})
+         var list0 = pdfa(html0, '.videos-list&&article');    
+         list0.forEach(item => {
+              var desc0 = pdfh(item, 'a&&title').match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title').match(/^\[(.*?)\]/)[1] : "FuckUself";
+              miss.push({
+                 title: desc0,      
+                 url: pdfh(item, 'a&&href'),     
+             })
+         })       
+              if (miss.length==0){          
+         miss = [{"title":"本平台尚未上传此番号视频","url":"hiker://empty"}]
+                }
+         }
+         var misstype = miss.map(i=>i.title)
+    return $(misstype,1).select((miss) => {
+                if (input == '本平台尚未上传此番号视频'){
+                     return miss[0].url
+}else {
+        let index = miss.findIndex(r=>r.title==input);
+                      try{
+                var htm = fetch(miss[index].url);
+                var playUrl = "https://emb.missav.to/embedmv/hls/" + htm.match(/id=([^\'"&]+)/)[1] + ".m3u8"
+                return playUrl
+                 }catch{return "toast://挂梯 or 再次点击"}
+}
+                  },miss)
+                      },识别码),
     col_type: 'icon_5',
-    extra: { longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://missav.to/search/movie/" + 识别码},识别码)}] }
+    extra: { longClick: [{title: '查看搜索', js: $.toString((识别码)=>{ return "https://missav.to/search/movie/" + 识别码},识别码)}] }
 });
 
 //Jable
@@ -98,7 +112,7 @@ d.push({
                  var html = fetch(av,{timeout:5000})
                  var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
                  return url
-                 }catch{return "toast://没有挂梯子或没有此影片"}
+                 }catch{return "toast://挂梯 or 没有此影片"}
                   },识别码),
     col_type: 'icon_5',
     extra: { longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://jable.tv/videos/" + 识别码 + "/";},识别码)}] }
@@ -106,25 +120,25 @@ d.push({
 
 //njav
 d.push({
-    title: '‘‘’’<b><middle><font color="#2091C9">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
-    pic_url: 'https://cdn4.iconfinder.com/data/icons/iconza-poker-playing-cards/64/chips-blue-128.png',
+    title: '‘‘’’<b><middle><font color="#1E90FF">𝐧𝐉𝐚𝐯.𝐭𝐯</font></middle>',
+    pic_url: 'https://cdn4.iconfinder.com/data/icons/tweetmyweb/128/flying_bird_sparkles.png',
     url: $('').lazyRule((识别码) => {
                  var av = "https://njav.tv/zh/v/" + 识别码; 
 //log(av)
-                 var html = fetch(av,{timeout:5000})
+                 var html = fetch(av,{timeout:3000})
                  if(!html || html.includes("请检查地址栏中的网址")){         
-                 return "toast://挂梯或没有此影片"
+                 return "toast://挂梯 or 没有此影片"
                    }else{
-                 return "video://" + av;
+                   var id = pdfh(html,"#page-video&&v-scope").match(/\'(.*)\'/)[1]
+                   var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
+                   var data = JSON.parse(fetch(video,{headers:{"Referer":av}}))
+                   var javplayer = data.data.watch[0].url
+                   var playUrl = pdfh(fetch(javplayer),"#player&&v-scope").match(/https?.*?\.m3u8/)[0]
+                  return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
                     }
                },识别码),
     col_type: 'icon_5',
     extra: {
-                videoExcludeRules: ['240'],
-                blockRules: ['*.doppiocdn.*'],
-                blockRules: ['dmm.co.jp'],
-                //videoRules: ['*m3u8*'],
-                cacheM3u8: true,
                longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://njav.tv/zh/v/" + 识别码;},识别码)}]
                         }
 });
@@ -136,20 +150,18 @@ d.push({
     url: $('').lazyRule((识别码) => {
                  var av = "https://www.av01.tv/" + 识别码; 
 //log(av)
-                 var html = fetch(av,{timeout:5000})
-                 var code = pdfh(html,'#plyr_video&&poster')
-//log(code)
-                 if(!code){         
-                 return "toast://挂梯或没有此影片"
+                 var location = JSON.parse(fetch(av,{onlyHeaders:true,timeout:3000})).url
+               if(location.includes("error")){         
+                 return "toast://本平台尚未上传此番号视频"
                    }else{
-                 return "video://" + av;
+                 return "video://" + location;
                     }
                },识别码),
     col_type: 'icon_5',
     extra: {
                 blockRules: ['.doppiocdn.','dmm.co.jp'],
                 videoRules: ['index45va-v3-a1.m3u8','index45va-v2-a1.m3u8'],
-                videoExcludeRules: ['doppiocdn','index45va-v1-a1.m3u8'],
+                videoExcludeRules: ['doppiocdn'],
                 cacheM3u8: true,
                longClick: [{title: '查看网址', js: $.toString((识别码)=>{ return "https://www.av01.tv/" + 识别码;},识别码)}]
                         }
@@ -221,13 +233,50 @@ d.push({
 d.push({
     title: '‘‘’’<b><middle><font color="#F960FA">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/travel-std-pack/512/purple_pin-128.png',
-    url: "x5://https://supjav.com/zh/?s=" + 识别码,
+    url: $('').lazyRule((识别码) => {
+        if (request('hiker://home@𝐒𝐮𝐩𝐣𝐚𝐯') == 'null') {                     confirm({
+        title: '依赖检测',
+        content: '检测到缺少𝐒𝐮𝐩𝐣𝐚𝐯小程序\n请用力摁确定!',
+        confirm: () => {
+            return parsePaste("云6oooole/xxxxxx/umtsxfuqsilmdvlw");
+        }
+    })
+    return "hiker://empty"
+ } else {
+         var search = "https://supjav.com/zh/?s=" + 识别码;
+         var html = fetch(search,{headers:{"Cookie":"cf_clearance=3Swn.IzcaQ7gepcMHoKkmM3bs_J26x.BWW6HBTlUtz0-1705266030-0-2-a659b38c.639c85dc.f158ec6c-160.2.1705266030","User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1","Referer":"https://supjav.com/"}})
+         var list = pdfa(html, '.posts&&.post');        
+         var supjav = []
+         list.forEach(item => {
+              var desc = pdfh(item, 'a&&title').match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title').match(/^\[(.*?)\]/)[1].replace("4K","4K原画质") : "默认视频";
+              supjav.push({
+                 title: desc,      
+                 url: pdfh(item, 'a&&href'),     
+             })
+         })                 
+         if (supjav.length==0){
+         miss = [{"title":"本平台尚未上传此番号视频","url":"hiker://empty"}]               
+         }
+         var supjavtype = supjav.map(i=>i.title)
+    return $(supjavtype,1).select((supjav) => {
+                if (input == '本平台尚未上传此番号视频'){
+                     return supjav[0].url
+}else {
+        let index = supjav.findIndex(r=>r.title==input);
+                var playUrl = "hiker://page/er?rule=𝐒𝐮𝐩𝐣𝐚𝐯&url=" + supjav[index].url
+                return playUrl
+}
+                  },supjav)
+                  }
+                      },识别码),
     col_type: 'icon_5',
     extra:{
                 lineVisible:false,
-                longClick: [{title: '召唤雨见', js: $.toString((识别码)=>{ 
+                longClick: [{title: 'Supjav', js: $.toString((识别码)=>{ 
+        return "x5://https://supjav.com/zh/?s=" + 识别码
+                       },识别码)},{title: '召唤雨见', js: $.toString((识别码)=>{ 
             return "yjbrowser://search?q=https://supjav.com/zh/?s=" + 识别码
-                       },识别码)},{title: '查看网址', js: $.toString((识别码)=>{ 
+                       },识别码)},{title: '查看搜索', js: $.toString((识别码)=>{ 
         return "https://supjav.com/zh/?s=" + 识别码
                        },识别码)}]
              }
@@ -249,7 +298,20 @@ d.push({
 d.push({
     title: '‘‘’’<b><middle><font color="#EF4823">𝐌𝐚𝐠𝐧𝐞𝐭</font></middle>',
     pic_url: 'https://cdn4.iconfinder.com/data/icons/shopping-doodle/512/Shopping-31-128.png',
-    url: "hiker://page/sou?rule=磁力君.简&p=fypage&searchTerms=" + 识别码,
+    url: $('').lazyRule((识别码) => {
+   if (request('hiker://home@磁力君.简') == 'null') {
+    confirm({
+        title: '依赖检测',
+        content: '检测到缺少磁力君.简\n请用力摁确定!',
+        confirm: () => {
+            return parsePaste("云6oooole/xxxxxx/osebx4awoxodbhro");
+        }
+    })
+    return "hiker://empty"
+ } else {
+       return "hiker://page/sou?rule=磁力君.简&p=fypage&searchTerms=" + 识别码
+                 }
+                      },识别码),
     col_type: 'icon_5',
     extra: {               
                longClick: [{title: '谷歌搜索', js: $.toString((识别码)=>{ return "https://www.google.com/search?q=" + 识别码;},识别码)},{title: 'Yandex搜索', js: $.toString((识别码)=>{ return "https://yandex.com/search/touch/?text=" + 识别码;},识别码)},{title: '复制识别码', js: $.toString((识别码)=>{ return "copy://" + 识别码;},识别码)}]
