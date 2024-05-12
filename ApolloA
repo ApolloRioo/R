@@ -164,7 +164,7 @@ js: function CodeLazy(识别码) {
 
     //JavFinder
     d.push({
-        title: '‘‘’’<b><middle><font color="#D83A31">𝐉𝐚𝐯𝐅𝐢𝐧𝐝</font></middle>',
+        title: '‘‘’’<b><middle><font color="#FFD000">𝐉𝐚𝐯𝐅𝐢𝐧𝐝</font></middle>',
         pic_url: 'https://img.vinua.cn/images/zO7lw.png',
         url: $('')
             .lazyRule((识别码) => {
@@ -379,7 +379,7 @@ js: function CodeLazy(识别码) {
     
     //ThissAV破解
     d.push({
-        title: '‘‘’’<b><middle><font color="#BEDA8F">𝐂𝐫𝐚𝐜𝐤𝐞𝐝</font></middle>',
+        title: '‘‘’’<b><middle><font color="#BEEA8F">𝐂𝐫𝐚𝐜𝐤𝐞𝐝</font></middle>',
         pic_url: 'https://cdn1.iconfinder.com/data/icons/fruits-n-vegetables-colored-gradient/128/cauliflower-128.png',
         url: $('')
             .lazyRule((识别码) => {
