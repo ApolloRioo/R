@@ -83,8 +83,8 @@ js: function CodeLazy(识别码) {
 
     //Supjav
     d.push({
-        title: '‘‘’’<b><middle><font color="#F960FA">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/travel-std-pack/512/purple_pin-128.png',
+        title: '‘‘’’<b><middle><font color="#F4F4F4">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
+        pic_url: 'https://hikerfans.com/tubiao/messy/48.svg',
         url: $('')
             .lazyRule((识别码) => {
             if (request('hiker://home@𝐒𝐮𝐩𝐣𝐚𝐯') == 'null') {
