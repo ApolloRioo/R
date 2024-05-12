@@ -175,72 +175,72 @@ js: function CodeLazy(识别码) {
                 },
                 redirect: false
             })
-                var list = pdfa(html, '.videos-list&&article');
-                var JavFinder = []
-                list.forEach(item => {
-                    var desc = pdfh(item, 'a&&title')
-                        .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                        .match(/^\[(.*?)\]/)[1] : "Original Video";
-                    JavFinder.push({
-                        title: desc,
-                        url: "https://javfinder.ai" + pdfh(item, 'a&&href'),
-                    })
+            var list = pdfa(html, '.videos-list&&article');
+            var JavFinder = []
+            list.forEach(item => {
+                var desc = pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/)[1] : "Original Video";
+                JavFinder.push({
+                    title: desc,
+                    url: "https://javfinder.ai" + pdfh(item, 'a&&href'),
                 })
-                if (JavFinder.length == 0) {
-                    var redirect = JSON.parse(fetch(search, {
-                        onlyHeaders: true,
-                        timeout: 5000
-                    }))
-                        .url
-                    if (/\.ai\/\d+/.test(redirect)) {
-                        JavFinder = [{
-                            "title": "Original Video",
-                            "url": redirect
-                        }]
-                    } else {
-                        JavFinder = [{
-                            "title": "本平台尚未上传此番号视频",
-                            "url": "hiker://empty"
-                        }]
+            })
+            if (JavFinder.length == 0) {
+                var redirect = JSON.parse(fetch(search, {
+                    onlyHeaders: true,
+                    timeout: 5000
+                }))
+                    .url
+                if (/\.ai\/\d+/.test(redirect)) {
+                    JavFinder = [{
+                        "title": "Original Video",
+                        "url": redirect
+                    }]
+                } else {
+                    JavFinder = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
+                }
+            }
+            var JavFindertype = JavFinder.map(i => i.title)
+            return $(JavFindertype, 1)
+                .select((JavFinder) => {
+                if (input == '本平台尚未上传此番号视频') {
+                    return JavFinder[0].url
+                } else {
+                    let index = JavFinder.findIndex(r => r.title == input);
+                    try {
+                        var html = fetch(JavFinder[index].url, {
+                            headers: {
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                            },
+                            timeout: 3000
+                        });
+                        var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
+                        var location = JSON.parse(fetch(src))
+                            .list[0].url
+                        var master = fetch(location)
+                            .match(/sources:.*?"(.*?)"/)[1]
+                        var stream = fetch(master)
+                        var domain = master.replace(/(https?.*?urlset\/).*/, '$1')
+                        var video_quality = stream.match(/index?.*/g)
+                            .map(u => domain + u)
+                            .reverse()
+                        var name_quality = stream.match(/\d+x\d+/g)
+                            .slice(0, video_quality.length)
+                            .reverse()
+                        let playlist = {
+                            urls: video_quality,
+                            names: name_quality,
+                        };
+                        return playlist;
+                    } catch {
+                        return "toast://再次点击"
                     }
                 }
-                var JavFindertype = JavFinder.map(i => i.title)
-                return $(JavFindertype, 1)
-                    .select((JavFinder) => {
-                    if (input == '本平台尚未上传此番号视频') {
-                        return JavFinder[0].url
-                    } else {
-                        let index = JavFinder.findIndex(r => r.title == input);
-                        try {
-                            var html = fetch(JavFinder[index].url, {
-                                headers: {
-                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                                },
-                                timeout: 3000
-                            });
-                            var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
-                            var location = JSON.parse(fetch(src))
-                                .list[0].url
-                            var master = fetch(location)
-                                .match(/sources:.*?"(.*?)"/)[1]
-                            var stream = fetch(master)
-                            var domain = master.replace(/(https?.*?urlset\/).*/, '$1')
-                            var video_quality = stream.match(/index?.*/g)
-                                .map(u => domain + u)
-                                .reverse()
-                            var name_quality = stream.match(/\d+x\d+/g)
-                                .slice(0, video_quality.length)
-                                .reverse()
-                            let playlist = {
-                                urls: video_quality,
-                                names: name_quality,
-                            };
-                            return playlist;
-                        } catch {
-                            return "toast://再次点击"
-                        }
-                    }
-                }, JavFinder)
+            }, JavFinder)
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -302,13 +302,13 @@ js: function CodeLazy(识别码) {
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://www.av01.tv/" + 识别码;
-                var htmll = JSON.parse(fetch(av, {
-                    onlyHeaders: true,
-                    timeout: 3323
-                }))
-                log(htmll)
-                 if(htmll.statusCode != 0){
-               var location = htmll.url
+            var htmll = JSON.parse(fetch(av, {
+                onlyHeaders: true,
+                timeout: 3323
+            }))
+            log(htmll)
+            if (htmll.statusCode != 0) {
+                var location = htmll.url
                 if (location.includes("error")) {
                     return "toast://本平台尚未上传此番号视频"
                 } else {
@@ -337,8 +337,9 @@ js: function CodeLazy(识别码) {
                     };
                     return playlist;
                 }
-  }else{
-            return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "}
+            } else {
+                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+            }
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -351,10 +352,10 @@ js: function CodeLazy(识别码) {
         }
     });
 
-    //聚搜
+    //javguru
     d.push({
-        title: '‘‘’’<b><middle><font color="#FF8C00">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
-        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
+        title: '‘‘’’<b><middle><font color="#67E0FA">𝐉𝐚𝐯𝐆𝐮𝐫𝐮</font></middle>',
+        pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
         url: "hiker://search?s=" + 识别码 + "&group=①R&simple=false",
         col_type: 'icon_5',
         extra: {
@@ -376,54 +377,66 @@ js: function CodeLazy(识别码) {
             }]
         }
     });
-    
-    //ThissAV破解
+
+    //tktube
     d.push({
-        title: '‘‘’’<b><middle><font color="#BEEA8F">𝐂𝐫𝐚𝐜𝐤𝐞𝐝</font></middle>',
+        title: '‘‘’’<b><middle><font color="#BEEA8F">𝐓𝐊𝐓𝐮𝐛𝐞</font></middle>',
         pic_url: 'https://cdn1.iconfinder.com/data/icons/fruits-n-vegetables-colored-gradient/128/cauliflower-128.png',
         url: $('')
             .lazyRule((识别码) => {
-            var av = "https://missav.com/cn/" + 识别码 + "-uncensored-leak";
-            //log(av)
-            var bv = JSON.parse(fetch(av, {
-                onlyHeaders: true
-            }))
-                .url
-            if (!bv.includes("-uncensored-leak")) {
-                return "toast://挂梯 or 此影片没有无码破解"
-            } else {
-                try {
-                    var html = fetch(av, {
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                        },
-                    });
-                    eval(html.match(/eval.*?\n/)[0])
-                    // 获取画质列表，并去最高画质
-                    let group_quality = fetch(source, {
-                        headers: {
-                            "origin": "https://missav.com"
-                        }
+            var search = "https://tktube.com/zh/search/" + 识别码.replace(/-/g, "--") + "/";
+            var html = fetch(search, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                },
+                timeout: 3220
+            })
+            if (html) {
+                var list = pdfa(html, '.list-videos&&.item');
+                var tktube = []
+                list.forEach(item => {
+                    var desc = pdfh(item, '.title&&Text')
+                        .match(/[^\s]+/)[0] ? pdfh(item, '.title&&Text')
+                        .match(/[^\s]+/)[0] : pdfh(item, '.title&&Text');
+                    tktube.push({
+                        title: desc,
+                        url: pdfh(item, 'a&&href'),
                     })
-                    hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
-                        .map(v => source.replace("playlist.m3u8", v))
-                        .reverse()
-                    name_quality = group_quality.match(/RESOLUTION=.*$/gm)
-                        .map(n => n.replace("RESOLUTION=", ""))
-                        .reverse()
-                    copy(hghest_quality[0])
-                    let playlist = {
-                        urls: hghest_quality,
-                        names: name_quality,
-                        headers: new Array(hghest_quality.length)
-                            .fill({
-                            Referer: "https://missav.com/cn/"
-                        })
-                    };
-                    return playlist;
-                } catch {
-                    return "toast://挂梯 or 没有此影片"
+                })
+                if (tktube.length == 0) {
+                    tktube = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
                 }
+                var tktubetype = tktube.map(i => i.title)
+                return $(tktubetype, 1)
+                    .select((tktube) => {
+                    if (input == '本平台尚未上传此番号视频') {
+                        return tktube[0].url
+                    } else {
+                        let index = tktube.findIndex(r => r.title == input);
+                        var html = fetch(tktube[index].url)
+                        var js = pdfh(html, "body&&.player-holder&&Html")
+                            .match(/var flashvar[^;]+/)[0]
+                        eval(js)
+                        if (flashvars.video_alt_url2) {
+                            var url = flashvars.video_alt_url2
+                            return url
+                            //+ "?rnd=" + flashvars.rnd
+                        } else if (flashvars.video_alt_url) {
+                            var url = flashvars.video_alt_url
+                            return url
+                            //+ "?rnd=" + flashvars.rnd
+                        } else {
+                            var url = flashvars.video_url
+                            return url
+                            //+ "?rnd=" + flashvars.rnd
+                        }
+                    }
+                }, tktube)
+            } else {
+                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
             }
         }, 识别码),
         col_type: 'icon_5',
@@ -431,7 +444,7 @@ js: function CodeLazy(识别码) {
             longClick: [{
                 title: '查看网址',
                 js: $.toString((识别码) => {
-                    return "https://missav.com/cn/" + 识别码 + "-uncensored-leak";
+                    return "https://tktube.com/zh/search/" + 识别码.replace(/-/g, "--") + "/";
                 }, 识别码)
             }]
         }
@@ -449,54 +462,54 @@ js: function CodeLazy(识别码) {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                 },
             })
-                var list = pdfa(html, '.videos-list&&article');
-                var miss = []
-                list.forEach(item => {
-                    var desc = pdfh(item, 'a&&title')
+            var list = pdfa(html, '.videos-list&&article');
+            var miss = []
+            list.forEach(item => {
+                var desc = pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/)[1] : "Original";
+                miss.push({
+                    title: desc,
+                    url: pdfh(item, 'a&&href'),
+                })
+            })
+            if (miss.length == 0) {
+                var search0 = "https://missav.to/search/movie/" + 识别码.replace(/\-|\_/, "%20");
+                var html0 = fetch(search, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                    }
+                })
+                var list0 = pdfa(html0, '.videos-list&&article');
+                list0.forEach(item => {
+                    var desc0 = pdfh(item, 'a&&title')
                         .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
                         .match(/^\[(.*?)\]/)[1] : "Original";
                     miss.push({
-                        title: desc,
+                        title: desc0,
                         url: pdfh(item, 'a&&href'),
                     })
                 })
                 if (miss.length == 0) {
-                    var search0 = "https://missav.to/search/movie/" + 识别码.replace(/\-|\_/, "%20");
-                    var html0 = fetch(search, {
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                        }
-                    })
-                    var list0 = pdfa(html0, '.videos-list&&article');
-                    list0.forEach(item => {
-                        var desc0 = pdfh(item, 'a&&title')
-                            .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                            .match(/^\[(.*?)\]/)[1] : "Original";
-                        miss.push({
-                            title: desc0,
-                            url: pdfh(item, 'a&&href'),
-                        })
-                    })
-                    if (miss.length == 0) {
-                        miss = [{
-                            "title": "本平台尚未上传此番号视频",
-                            "url": "hiker://empty"
-                        }]
-                    }
+                    miss = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
                 }
-                var misstype = miss.map(i => i.title)
-                return $(misstype, 1)
-                    .select((miss) => {
-                    if (input == '本平台尚未上传此番号视频') {
-                        return miss[0].url
-                    } else {
-                        let index = miss.findIndex(r => r.title == input);
+            }
+            var misstype = miss.map(i => i.title)
+            return $(misstype, 1)
+                .select((miss) => {
+                if (input == '本平台尚未上传此番号视频') {
+                    return miss[0].url
+                } else {
+                    let index = miss.findIndex(r => r.title == input);
 
-                        var htm = fetch(miss[index].url);
-                        var playUrl = "https://emb.missav.to/embedmv/hls/" + htm.match(/id=([^\'"&]+)/)[1] + ".m3u8"
-                        return playUrl
-                    }
-                }, miss)
+                    var htm = fetch(miss[index].url);
+                    var playUrl = "https://emb.missav.to/embedmv/hls/" + htm.match(/id=([^\'"&]+)/)[1] + ".m3u8"
+                    return playUrl
+                }
+            }, miss)
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -511,8 +524,8 @@ js: function CodeLazy(识别码) {
 
     //Jable
     d.push({
-        title: '‘‘’’<b><middle><font color="#67E0FA">𝐉𝐚𝐛𝐥𝐞</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
+        title: '‘‘’’<b><middle><font color="#FF8C00">𝐉𝐚𝐛𝐥𝐞</font></middle>',
+        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://jable.tv/videos/" + 识别码 + "/";
@@ -573,9 +586,9 @@ js: function CodeLazy(识别码) {
                     return "https://yandex.com/search/touch/?text=" + 识别码;
                 }, 识别码)
             }, {
-                title: '复制识别码',
+                title: '聚搜R',
                 js: $.toString((识别码) => {
-                    return "copy://" + 识别码;
+                    return "hiker://search?s=" + 识别码 + "&group=①R&simple=false"
                 }, 识别码)
             }]
         }
