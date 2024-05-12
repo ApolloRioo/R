@@ -351,6 +351,32 @@ js: function CodeLazy(识别码) {
         }
     });
 
+    //聚搜
+    d.push({
+        title: '‘‘’’<b><middle><font color="#FF8C00">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
+        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
+        url: "hiker://search?s=" + 识别码 + "&group=①R&simple=false",
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: 'Jav.Guru',
+                js: $.toString((识别码) => {
+                    return "https://jav.guru/?s=" + 识别码;
+                }, 识别码)
+            }, {
+                title: 'JavBangers',
+                js: $.toString((识别码) => {
+                    return "https://www.javbangers.com/search/" + 识别码 + '/';
+                }, 识别码)
+            }, {
+                title: '复制识别码',
+                js: $.toString((识别码) => {
+                    return "copy://" + 识别码;
+                }, 识别码)
+            }]
+        }
+    });
+    
     //ThissAV破解
     d.push({
         title: '‘‘’’<b><middle><font color="#BEDA8F">𝐂𝐫𝐚𝐜𝐤𝐞𝐝</font></middle>',
@@ -406,32 +432,6 @@ js: function CodeLazy(识别码) {
                 title: '查看网址',
                 js: $.toString((识别码) => {
                     return "https://missav.com/cn/" + 识别码 + "-uncensored-leak";
-                }, 识别码)
-            }]
-        }
-    });
-
-    //聚搜
-    d.push({
-        title: '‘‘’’<b><middle><font color="#FF8C00">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
-        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
-        url: "hiker://search?s=" + 识别码 + "&group=①R&simple=false",
-        col_type: 'icon_5',
-        extra: {
-            longClick: [{
-                title: 'Jav.Guru',
-                js: $.toString((识别码) => {
-                    return "https://jav.guru/?s=" + 识别码;
-                }, 识别码)
-            }, {
-                title: 'JavBangers',
-                js: $.toString((识别码) => {
-                    return "https://www.javbangers.com/search/" + 识别码 + '/';
-                }, 识别码)
-            }, {
-                title: '复制识别码',
-                js: $.toString((识别码) => {
-                    return "copy://" + 识别码;
                 }, 识别码)
             }]
         }
