@@ -421,16 +421,25 @@ js: function CodeLazy(识别码) {
                             .match(/var flashvar[^;]+/)[0]
                         eval(js)
                         if (flashvars.video_alt_url2) {
-                            var url = flashvars.video_alt_url2
-                            return url
+                            let playlist = {
+                            urls: [flashvars.video_alt_url2,flashvars.video_alt_url,flashvars.video_url],
+                            names: [flashvars.video_alt_url2_text,flashvars.video_alt_url_text,flashvars.video_url_text],
+                             };
+                        return playlist;
                             //+ "?rnd=" + flashvars.rnd
                         } else if (flashvars.video_alt_url) {
-                            var url = flashvars.video_alt_url
-                            return url
+                            let playlist = {
+                            urls: [flashvars.video_alt_url,flashvars.video_url],
+                            names: [flashvars.video_alt_url_text,flashvars.video_url_text],
+                             };
+                        return playlist;
                             //+ "?rnd=" + flashvars.rnd
                         } else {
-                            var url = flashvars.video_url
-                            return url
+                            let playlist = {
+                            urls: [flashvars.video_url],
+                            names: [flashvars.video_url_text],
+                             };
+                        return playlist;
                             //+ "?rnd=" + flashvars.rnd
                         }
                     }
