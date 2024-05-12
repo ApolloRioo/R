@@ -173,10 +173,8 @@ js: function CodeLazy(识别码) {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                 },
-                timeout: 2233,
                 redirect: false
             })
-            if (html) {
                 var list = pdfa(html, '.videos-list&&article');
                 var JavFinder = []
                 list.forEach(item => {
@@ -243,9 +241,6 @@ js: function CodeLazy(识别码) {
                         }
                     }
                 }, JavFinder)
-            } else {
-                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
-            }
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -308,13 +303,13 @@ js: function CodeLazy(识别码) {
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://www.av01.tv/" + 识别码;
-            try {
-                var location = JSON.parse(fetch(av, {
+                var htmll = JSON.parse(fetch(av, {
                     onlyHeaders: true,
-                    timeout: 4923
+                    timeout: 2323
                 }))
-                    .url
-
+                log(htmll)
+                 if(htmll.statusCode != 0){
+               var location = htmll.url
                 if (location.includes("error")) {
                     return "toast://本平台尚未上传此番号视频"
                 } else {
@@ -323,7 +318,7 @@ js: function CodeLazy(识别码) {
                     var load_video = fetch(src, {
                         headers: {
                             "Referer": location,
-                        }
+                        },timeout: 2223
                     })
                     var source = load_video.match(/const source.*?base64\,(.*?)\'/)[1]
                     var stream = base64Decode(source)
@@ -343,9 +338,8 @@ js: function CodeLazy(识别码) {
                     };
                     return playlist;
                 }
-            } catch {
-                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
-            }
+  }else{
+            return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "}
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -455,9 +449,7 @@ js: function CodeLazy(识别码) {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                 },
-                timeout: 4923
             })
-            if (html) {
                 var list = pdfa(html, '.videos-list&&article');
                 var miss = []
                 list.forEach(item => {
@@ -506,9 +498,6 @@ js: function CodeLazy(识别码) {
                         return playUrl
                     }
                 }, miss)
-            } else {
-                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
-            }
         }, 识别码),
         col_type: 'icon_5',
         extra: {
