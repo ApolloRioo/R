@@ -260,7 +260,6 @@ js: function CodeLazy(识别码) {
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://njav.tv/zh/v/" + 识别码;
-            //log(av)
             var html = fetch(av, {
                 timeout: 2230
             })
@@ -305,7 +304,7 @@ js: function CodeLazy(识别码) {
             var av = "https://www.av01.tv/" + 识别码;
                 var htmll = JSON.parse(fetch(av, {
                     onlyHeaders: true,
-                    timeout: 2323
+                    timeout: 3323
                 }))
                 log(htmll)
                  if(htmll.statusCode != 0){
@@ -318,7 +317,7 @@ js: function CodeLazy(识别码) {
                     var load_video = fetch(src, {
                         headers: {
                             "Referer": location,
-                        },timeout: 2223
+                        }
                     })
                     var source = load_video.match(/const source.*?base64\,(.*?)\'/)[1]
                     var stream = base64Decode(source)
@@ -414,8 +413,8 @@ js: function CodeLazy(识别码) {
 
     //聚搜
     d.push({
-        title: '‘‘’’<b><middle><font color="#67E0FA">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
+        title: '‘‘’’<b><middle><font color="#FF8C00">𝐆𝐫𝐨𝐮𝐩.𝐑</font></middle>',
+        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
         url: "hiker://search?s=" + 识别码 + "&group=①R&simple=false",
         col_type: 'icon_5',
         extra: {
@@ -512,8 +511,8 @@ js: function CodeLazy(识别码) {
 
     //Jable
     d.push({
-        title: '‘‘’’<b><middle><font color="#FF8C00">𝐉𝐚𝐛𝐥𝐞</font></middle>',
-        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
+        title: '‘‘’’<b><middle><font color="#67E0FA">𝐉𝐚𝐛𝐥𝐞</font></middle>',
+        pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://jable.tv/videos/" + 识别码 + "/";
