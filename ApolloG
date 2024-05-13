@@ -1,0 +1,207 @@
+const javguru = {
+    empty: "hiker://empty",
+    url: "https://jav.guru/",
+    d: [],
+
+    baseParse: () => {
+        javguru.d.push({
+            title: '我勒个去',
+            url: 'https://jav.guru/382728/sone-180-nipples-mammary-glands-milk-tits-just-breast-punishment-10-hours-in-a-row-nagi-hikaru/' + $('#noHistory#')
+                .rule(() => {
+                const javguru = $.require('hiker://page/javguru')
+                javguru.videoParse(MY_URL)
+                setResult(javguru.d)
+            }),
+            col_type: 'text_1'
+        })
+        setResult(javguru.d)
+    },
+
+    videoParse: (url) => {
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
+        const title = pdfh(html, ".posts&&h1&&Text");
+        setPageTitle(title);
+        javguru.d.push({
+            title: '““””' + title.fontcolor("#E57A1A"),
+            url: javguru.empty,
+            col_type: 'text_1',
+            extra: {
+                lineVisible: false
+            }
+        })
+        const img = pdfh(html, ".posts&&img&&src");
+        javguru.d.push({
+            img: img,
+            url: javguru.empty,
+            col_type: "pic_1_full",
+        })
+
+        var lazy = $('')
+            .lazyRule((html, url) => {
+            var src = fetch(input)
+                .match(/iframe.*?src="(.*?=)/)[1]
+            var id = input.replace(/.*?=(.*?)&.*/, "$1")
+            id = id.split('')
+                .reverse()
+                .join('');
+            var url = `${src}${id}`;
+            var location = JSON.parse(fetch(url, {
+                headers: {
+                    "Referer": input,
+                },
+                onlyHeaders: true
+            }))
+                .url
+
+            if (location.includes("emturbovid.com")) {
+                //TV线路
+                var html = fetch(location, {
+                    headers: {
+                        "Referer": "https://jav.guru/"
+                    }
+                })
+                var playUrl = getHome(location) + html.match(/'.*?(\/.*?\.m3u8)/)[1]
+                return playUrl + ";{Referer@" + location + "}"
+            } else if (location.includes("streamtape")) {
+                //ST线路
+                var html = fetch(location, {
+                    headers: {
+                        'Referer': "https://jav.guru/"
+                    }
+                })
+                var pattern = html.match(/\('#(.*)'\)/)[1]
+                var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
+                eval(src)
+                var link = "https:" + srclink + "&stream=1"
+                var urlPlay = JSON.parse(fetch(link, {
+                    headers: {
+                        "Referer": location,
+                    },
+                    onlyHeaders: true
+                }))
+                    .url
+                return urlPlay + ";{Referer@" + location + "}"
+            } else if (/d0000d|dood|ds2play/.test(location)) {
+                //DD线路
+                var html = fetch(location, {
+                    headers: {
+                        'Referer': "https://jav.guru/"
+                    }
+                })
+                var pass_md5 = getHome(location) + html.match(/\/pass_md5[^"']+/)[0]
+                var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                var data = fetch(pass_md5, {
+                    headers: {
+                        "Referer": location
+                    }
+                })
+
+                    function makePlay(token) {
+                        for (var a = "",
+                        t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                        n = t.length,
+                        o = 0; 10 > o; o++)
+                        a += t.charAt(Math.floor(Math.random() * n));
+                        return a + "?token=" + token + "&expiry=" + Date.now();
+                    };
+                var urlPlay = data + makePlay(token)
+                return urlPlay + "#isVideo=true#;{Referer@" + location + "}"
+            } else if (/cindyeyefinal|fc2stream|javclan/.test(location)) {
+                //SB线路//FST线路//VOE线路
+                var urlPlay = fetch(location, {
+                    headers: {
+                        'Referer': "https://jav.guru/"
+                    }
+                })
+                    .match(/https?.*?m3u8[^"]+/)[0]
+                return urlPlay + ";{Referer@" + location + "}"
+            } else if (/vtbe\.to|maxstream/.test(location)) {
+                //JK线路//VTU线路
+                function evaldecode(text) {
+                    var code = '';
+                    var s = text.replace(/^eval/, '')
+                        .replace('return p', 'code+=p')
+                    eval(s);
+                    return code;
+                }
+
+                const hostRegex = (url) => {
+                    const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,6}/i);
+                    return match ? match[0] : url;
+                };
+
+                let host = hostRegex("https://jav.guru/")
+
+                var html = fetch(location, {
+                    headers: {
+                        Referer: host,
+                    }
+                })
+                var iframe = pdfa(html, "iframe");
+
+                if (iframe.length > 0) {
+                    html = fetch(pdfh(iframe[0], "iframe&&src"), {
+                        headers: {
+                            Referer: host,
+                        }
+                    })
+                }
+
+                var scripts = pdfa(html, "body&&script");
+                let script = scripts.filter(x => x.includes('eval'))
+                    .map(m => pdfh(m, "script&&Html"))[0];
+                if (script == undefined) {
+                    return 'toast://无数据'
+                }
+
+                let m3u8 = /file:"(.*?)"/g.exec(evaldecode(script))[1];
+                return m3u8;
+
+            } else {
+                log("革命尚未成功,同志仍需努力=>" + location)
+                return "confirm://咳,本线路这个地址并没有解析，日志已打印出，敬请查看.js:'hiker://empty' "
+            }
+        }, html, url)
+
+        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM JK", "Streamtape", "VTU"]
+        var list = pdfa(html, ".ssmenu&&a[id]")
+        var code = html.match(/iframe_url":"[^"]+/g)
+            .map(m => m.match(/iframe_url":"(.*)/)[1])
+        list.forEach((item, index) => {
+            var title = pdfh(item, 'Text')
+            var url = base64Decode(code[index])
+            javguru.d.push({
+                title: Playlined.indexOf(title) >= 0 ? '🗯““””' + title.bold()
+                    .fontcolor("#98C0FE") + "🗯" : '🗯““””' + title.bold() + "🗯",
+                url: url + lazy,
+                col_type: "text_2"
+            })
+        })
+        if (list.length % 2 != 0) {
+            javguru.d.push({
+                title: '““””' + "Supjav一样线路".bold()
+                    .fontcolor("#FF00ED"),
+                url: "toast://小撸怡情，强撸灰飞烟灭",
+                col_type: "text_2"
+            })
+        }
+
+        const async = pdfa(html, ".posts&&.wp-content&&img[src]")
+        async.forEach((item, index) => {
+            javguru.d.push({
+                img: pdfh(item, "img&&src"),
+                url: javguru.empty,
+                col_type: "pic_1_full"
+            })
+        })
+
+        setResult(javguru.d)
+    }
+
+}
+
+$.exports = javguru
