@@ -356,11 +356,65 @@ js: function CodeLazy(识别码) {
     d.push({
         title: '‘‘’’<b><middle><font color="#67E0FA">𝐉𝐚𝐯𝐆𝐮𝐫𝐮</font></middle>',
         pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
-        url: "hiker://search?s=" + 识别码 + "&group=①R&simple=false",
+        url: $('')
+            .lazyRule((识别码) => {
+            if (request('hiker://home@𝐉𝐚𝐯𝐆𝐮𝐫𝐮') == 'null') {
+                confirm({
+                    title: '依赖检测',
+                    content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
+                    confirm: () => {
+                        return parsePaste("云6oooole/xxxxxx/gmhlv4jozyrs8pvv");
+                    }
+                })
+                return "hiker://empty"
+            } else {
+                var search = "https://jav.guru/?s=" + 识别码;
+                var html = fetch(search, {
+                    timeout: 2230
+                })
+                if (html) {
+                    var list = pdfa(html, "main&&.inside-article:has(.imgg)");
+                    var javguru0 = []
+                    list.forEach(item => {
+                        var desc = pdfh(item, 'h2&&a&&title')
+                            .match(/(?:\[.*?\])+\s?(?:\(.*?\))?/) ? pdfh(item, 'h2&&a&&title')
+                            .match(/(?:\[.*?\])+\s?(?:\(.*?\))?/)[0] : "Original";
+                        javguru0.push({
+                            title: desc,
+                            url: pdfh(item, 'a&&href'),
+                        })
+                    })
+                    if (javguru0.length == 0) {
+                        javguru0 = [{
+                            "title": "本平台尚未上传此番号视频",
+                            "url": "hiker://empty"
+                        }]
+                    }
+                    var javgurutype = javguru0.map(i => i.title)
+                    return $(javgurutype, 1)
+                        .select((javguru0) => {
+                        if (input == '本平台尚未上传此番号视频') {
+                            return javguru0[0].url
+                        } else {
+                            let index = javguru0.findIndex(r => r.title == input);
+                            return javguru0[index].url + $("")
+                                .rule(() => {
+                                eval(JSON.parse(fetch('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮', {}))
+                                    .rule);
+                                return javguru.videoParse(MY_URL)
+                            });
+
+                        }
+                    }, javguru0)
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
+        }, 识别码),
         col_type: 'icon_5',
         extra: {
             longClick: [{
-                title: 'Jav.Guru',
+                title: '查看搜索',
                 js: $.toString((识别码) => {
                     return "https://jav.guru/?s=" + 识别码;
                 }, 识别码)
@@ -422,24 +476,24 @@ js: function CodeLazy(识别码) {
                         eval(js)
                         if (flashvars.video_alt_url2) {
                             let playlist = {
-                            urls: [flashvars.video_alt_url2,flashvars.video_alt_url,flashvars.video_url],
-                            names: [flashvars.video_alt_url2_text,flashvars.video_alt_url_text,flashvars.video_url_text],
-                             };
-                        return playlist;
+                                urls: [flashvars.video_alt_url2, flashvars.video_alt_url, flashvars.video_url],
+                                names: [flashvars.video_alt_url2_text, flashvars.video_alt_url_text, flashvars.video_url_text],
+                            };
+                            return playlist;
                             //+ "?rnd=" + flashvars.rnd
                         } else if (flashvars.video_alt_url) {
                             let playlist = {
-                            urls: [flashvars.video_alt_url,flashvars.video_url],
-                            names: [flashvars.video_alt_url_text,flashvars.video_url_text],
-                             };
-                        return playlist;
+                                urls: [flashvars.video_alt_url, flashvars.video_url],
+                                names: [flashvars.video_alt_url_text, flashvars.video_url_text],
+                            };
+                            return playlist;
                             //+ "?rnd=" + flashvars.rnd
                         } else {
                             let playlist = {
-                            urls: [flashvars.video_url],
-                            names: [flashvars.video_url_text],
-                             };
-                        return playlist;
+                                urls: [flashvars.video_url],
+                                names: [flashvars.video_url_text],
+                            };
+                            return playlist;
                             //+ "?rnd=" + flashvars.rnd
                         }
                     }
