@@ -5,7 +5,7 @@ const javguru = {
 
     baseParse: () => {
         javguru.d.push({
-            title: '我勒个去',
+            title: '我勒个去,线路跟supjav一样。。。',
             url: 'https://jav.guru/382728/sone-180-nipples-mammary-glands-milk-tits-just-breast-punishment-10-hours-in-a-row-nagi-hikaru/' + $('#noHistory#')
                 .rule(() => {
                 const javguru = $.require('hiker://page/javguru')
