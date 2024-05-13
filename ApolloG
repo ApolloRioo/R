@@ -64,7 +64,8 @@ const javguru = {
                         "Referer": "https://jav.guru/"
                     }
                 })
-                var playUrl = getHome(location) + html.match(/'.*?(\/.*?\.m3u8)/)[1]
+                var path = html.match(/'.*?(\/.*?\.m3u8)/)[1]
+                var playUrl = path.includes("com") ? "https:" + path : getHome(location) + path
                 return playUrl + ";{Referer@" + location + "}"
             } else if (location.includes("streamtape")) {
                 //ST线路
