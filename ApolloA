@@ -365,7 +365,7 @@ js: function CodeLazy(识别码) {
                     title: '依赖检测',
                     content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
                     confirm: () => {
-                        return parsePaste("云6oooole/xxxxxx/gmhlv4jozyrs8pvv");
+                        return parsePaste("云6oooole/xxxxxx/vomzaaglmh4vtgor");
                     }
                 })
                 return "hiker://empty"
