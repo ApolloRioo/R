@@ -443,7 +443,7 @@ js: function CodeLazy(识别码) {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                 },
-                timeout: 3220
+                timeout: 3623
             })
             if (html) {
                 var list = pdfa(html, '.list-videos&&.item');
