@@ -1,4 +1,6 @@
 js: function CodeLazy(识别码) {
+    识别码 = 识别码.toLowerCase()
+        .replace(/fc2.*?ppv.*?(\d+)/, "fc2-ppv-$1")
     //ThissAV
     d.push({
         title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
