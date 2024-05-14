@@ -27,7 +27,7 @@ const javguru = {
         setPageTitle(title);
         javguru.d.push({
             title: '““””' + title.fontcolor("#E57A1A"),
-            url: javguru.empty,
+            url: url,
             col_type: 'text_1',
             extra: {
                 lineVisible: false
