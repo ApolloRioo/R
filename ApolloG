@@ -2,21 +2,231 @@ const javguru = {
     empty: "hiker://empty",
     url: "https://jav.guru/",
     d: [],
-
+    taskList: [],
+    data: {
+        category: getMyVar('JavGuru.category', '0'),
+        subCate: getMyVar('JavGuru.subCate', '0'),
+    },
     baseParse: () => {
-        javguru.d.push({
-            title: '我勒个去,线路跟supjav一样。。。',
-            url: 'https://jav.guru/382728/sone-180-nipples-mammary-glands-milk-tits-just-breast-punishment-10-hours-in-a-row-nagi-hikaru/' + $('#noHistory#')
-                .rule(() => {
-                const javguru = $.require('hiker://page/javguru')
-                javguru.videoParse(MY_URL)
-                setResult(javguru.d)
-            }),
-            col_type: 'text_1'
+        const page = parseInt(MY_URL.split('##')[2])
+        let categoryList = [{
+            "path": "https://jav.guru/",
+            "sub": [],
+            "title": "Home",
+            "type": "video"
+        }, {
+            "path": "https://jav.guru/category/english-subbed/",
+            "sub": [],
+            "title": "SUBS",
+            "type": "video"
+        }, {
+            "path": "https://jav.guru/category/jav-uncensored/",
+            "sub": [{
+                "path": "https://jav.guru/category/jav-uncensored/",
+                "title": "UNCENSORED"
+            }, {
+                "path": "https://jav.guru/category/fc2/",
+                "title": "FC2"
+            }, {
+                "path": "https://jav.guru/studio/carib/",
+                "title": "CARIBBEAN"
+            }, {
+                "path": "https://jav.guru/studio/10mu/",
+                "title": "10MUSUME"
+            }, {
+                "path": "https://jav.guru/studio/1pon/",
+                "title": "1PONDO"
+            }, {
+                "path": "https://jav.guru/studio/heyzo/",
+                "title": "HEYZO"
+            }],
+            "title": "UNCENSORED",
+            "type": "video"
+        }, {
+            "path": "https://jav.guru/category/amateur/",
+            "sub": [{
+                "path": "https://jav.guru/category/amateur/",
+                "title": "AMATEUR"
+            }, {
+                "path": "https://jav.guru/studio/259luxu/",
+                "title": "259LUXU"
+            }, {
+                "path": "https://jav.guru/studio/200gana/",
+                "title": "200GANA"
+            }, {
+                "path": "https://jav.guru/studio/300maan/",
+                "title": "300MAAN"
+            }, {
+                "path": "https://jav.guru/studio/300mium/",
+                "title": "300MIUM"
+            }, {
+                "path": "https://jav.guru/studio/229scute/",
+                "title": "229SCUTE"
+            }, {
+                "path": "https://jav.guru/category/fc2/",
+                "title": "FC2"
+            }],
+            "title": "AMATEUR",
+            "type": "video"
+        }, {
+            "path": "https://jav.guru/category/4k/",
+            "sub": [],
+            "title": "4K",
+            "type": "video"
+        }, {
+            "path": "https://jav.guru/most-watched-rank/",
+            "sub": [],
+            "title": "HOT",
+            "type": "hot"
+        }, {
+            "path": "",
+            "sub": [{
+                "path": "https://jav.guru/jav-tags-list/",
+                "title": "BY TAG"
+            }, {
+                "path": "https://jav.guru/jav-actress-list/",
+                "title": "BY ACTRESS"
+            }, {
+                "path": "https://jav.guru/jav-actors/",
+                "title": "BY ACTOR"
+            }, {
+                "path": "https://jav.guru/jav-studio-list/",
+                "title": "BY LABEL"
+            }, {
+                "path": "https://jav.guru/jav-makers-list/",
+                "title": "BY MAKER"
+            }, {
+                "path": "https://jav.guru/jav-series/",
+                "title": "BY SERIES"
+            }, {
+                "path": "https://jav.guru/tags/",
+                "title": "FULL TAGS LIST"
+            }],
+            "title": "TAGS",
+            "type": "tags"
+        }]
+        const currentCate = categoryList[javguru.data.category]
+        let url
+        const type = currentCate.type
+        const path = currentCate.path
+        if (currentCate.sub.length > 0) {
+            url = getMyVar("url", currentCate.sub[javguru.data.subCate].path)
+        } else {
+            url = getMyVar("url", currentCate.path)
+        }
+        if (page !== 1) {
+            url = url.replace(/(\?|$)/,"page/" + page +"/$1")
+        }
+        if (page === 1) {
+            categoryList.forEach((cate, index) => {
+                javguru.d.push({
+                    title: parseInt(javguru.data.category) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
+                    url: $(javguru.empty + "#noLoading#")
+                        .lazyRule((index) => {
+                        putMyVar("JavGuru.category", index.toString())
+                        putMyVar("JavGuru.subCate", '0')
+                        clearMyVar("sort")
+                        clearMyVar("url")
+                        refreshPage(true)
+                        return "hiker://empty"
+                    }, index),
+                    col_type: 'scroll_button',
+                })
+            })
+            if (currentCate.sub.length > 0) {
+                javguru.d.push({
+                    col_type: 'blank_block',
+                })
+                currentCate.sub.forEach((cate, index) => {
+                    javguru.d.push({
+                        title: parseInt(javguru.data.subCate) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
+                        url: $(javguru.empty + "#noLoading#")
+                            .lazyRule((index) => {
+                            putMyVar("JavGuru.subCate", index.toString())
+                            clearMyVar("sort")
+                            clearMyVar("url")
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
+                        col_type: 'scroll_button',
+                    })
+                })
+            }
+        }
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
         })
+        log(url)
+        if (page === 1) {
+            javguru.videoSort(html, url)
+        }
+
+        switch (type) {
+            case 'video':
+                javguru.videoType(html)
+                break
+            case 'articles':
+                javguru.articlesType(html)
+                break
+            case 'avatar':
+                if ((path === 'actresses/ranking' && page === 1) || path !== 'actresses/ranking') {
+                    javguru.avatarType(html)
+                }
+                break
+            case 'tags':
+                javguru.tagsType(html)
+                break
+            default:
+                javguru.videoType(html)
+        }
         setResult(javguru.d)
     },
 
+    //一级sort
+    videoSort: (html, url) => {
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+        const sort = pdfa(html, '#sortby&&option')
+        sort.forEach((item, index) => {
+            var title = pdfh(item, 'Text');
+            javguru.d.push({
+                title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
+                url: url.replace(/(.*?)\?.*/,"$1") + pdfh(item, 'option&&value') + $('#noLoading#')
+                    .lazyRule((index) => {
+                    putMyVar('sort', index);
+                    putMyVar("url", input);
+                    refreshPage(false);
+                    return 'hiker://empty'
+                }, index),
+                col_type: 'scroll_button'
+            })
+        })
+    },
+    //一级列表
+    videoType: (html) => {
+        const list = pdfa(html, '#main&&.row')
+        list.forEach(item => {
+            javguru.d.push({
+                title: pdfh(item, 'img&&alt'),
+                url: $(pdfh(item, 'a&&href') + '#noHistory#')
+                    .rule(() => {
+                    const javguru = $.require('hiker://page/javguru')
+                    javguru.videoParse(MY_URL)
+                    setResult(javguru.d)
+                    if (javguru.taskList.length > 0) {
+                        be(miss.taskList)
+                    }
+                }),
+                pic_url: pdfh(item, '.imgg&&img&&src') + '@Referer=' + javguru.url,
+                desc: pdfh(item, '.date&&Text'),
+                col_type: 'movie_2'
+            })
+        })
+    },
+    //二级
     videoParse: (url) => {
         const html = fetch(url, {
             headers: {
