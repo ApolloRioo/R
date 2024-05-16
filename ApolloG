@@ -300,9 +300,6 @@ const javguru = {
                             const javguru = $.require('hiker://page/javguru')
                             javguru.videoParse(MY_URL)
                             setResult(javguru.d)
-                            if (javguru.taskList.length > 0) {
-                                be(miss.taskList)
-                            }
                         }),
                         col_type: "movie_2",
                     });
