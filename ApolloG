@@ -302,6 +302,9 @@ const javguru = {
                             setResult(javguru.d)
                         }),
                         col_type: "movie_2",
+                        extra: {
+                            pageTitle: pdfh(list[j], "a,-1&&Text"),
+                        }
                     });
                 }
             }
@@ -362,6 +365,7 @@ const javguru = {
     avatarParse: (url) => {
         addListener("onClose", $.toString(() => {
             clearMyVar("sort");
+            clearMyVar("url");
             clearMyVar("yurl");
         }));
         url = getMyVar("yurl", url)
@@ -423,6 +427,7 @@ const javguru = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
+        log(url)
         const title = pdfh(html, ".posts&&h1&&Text");
         javguru.d.push({
             title: '““””' + title.fontcolor("#E57A1A"),
@@ -583,10 +588,122 @@ const javguru = {
         })
         if (list.length % 2 != 0) {
             javguru.d.push({
-                title: '🗯““””' + "FUCKU SELF🗯".bold()
+                title: '🗯““””' + "Random🗯".bold()
                     .fontcolor("#FF00ED"),
-                url: "toast://小撸怡情，强撸灰飞烟灭",
+                url: "https://jav.guru/random/" + $('')
+                    .rule(() => {
+                    const javguru = $.require('hiker://page/javguru')
+                    javguru.videoParse(MY_URL)
+                    setResult(javguru.d)
+                }),
+                extra: {
+                    inheritTitle: false
+                },
                 col_type: "text_2"
+            })
+        }
+
+        var code = pdfh(html, ".infoleft&&li:matches(Code)&&Text")
+        var date = pdfh(html, ".infoleft&&li:matches(Date)&&Text")
+        if (code) {
+            javguru.d.push({
+                title: '““””' + (code + "\t\t\t\t" + date)
+                    .fontcolor("#63A233"),
+                url: "copy://" + code.replace("Code: ", ""),
+                col_type: "text_1",
+                extra: {
+                    lineVisible: false
+                }
+            })
+        }
+
+        var yiji = $('#fypage#noHistory#')
+            .rule(() => {
+            const javguru = $.require('hiker://page/javguru')
+            javguru.avatarParse(MY_URL)
+            setResult(javguru.d)
+        })
+
+        var list = pdfa(html, ".infoleft&&li:matches(Director|Label|Studio)")
+        list.forEach(item => {
+            javguru.d.push({
+                title: '““””' + pdfh(item, "Text")
+                    .fontcolor("#8A2BE2"),
+                url: pdfh(item, "a&&href") + yiji,
+                col_type: "scroll_button",
+                extra: {
+                    pageTitle: pdfh(item, "Text")
+                }
+            })
+        })
+
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+
+        var list = pdfa(html, ".infoleft&&li:matches(Tags)&&a")
+        list.forEach((item, index) => {
+            javguru.d.push({
+                title: index == 0 ? "Tags:" + '““””' + pdfh(item, "Text")
+                    .fontcolor("#1E8884") : '““””' + pdfh(item, "Text")
+                    .fontcolor("#1E8884"),
+                url: pdfh(item, "a&&href") + yiji,
+                col_type: "scroll_button",
+                extra: {
+                    pageTitle: pdfh(item, "Text")
+                }
+            })
+        })
+
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+
+        var list = pdfa(html, ".infoleft&&li:matches(Actress:)&&a")
+        list.forEach((item, index) => {
+            javguru.d.push({
+                title: index == 0 ? "Actress:" + '““””' + pdfh(item, "Text")
+                    .fontcolor("#c13141") : '““””' + pdfh(item, "Text")
+                    .fontcolor("#c13141"),
+                url: pdfh(item, "a&&href") + yiji,
+                col_type: "scroll_button",
+                extra: {
+                    pageTitle: pdfh(item, "Text")
+                }
+            })
+        })
+
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+
+        var list = pdfa(html, ".infoleft&&li:matches(Actor:)&&a")
+        list.forEach((item, index) => {
+            javguru.d.push({
+                title: index == 0 ? "Actor:" + '““””' + pdfh(item, "Text")
+                    .fontcolor("#1E90FF") : '““””' + pdfh(item, "Text")
+                    .fontcolor("#1E90FF"),
+                url: pdfh(item, "a&&href") + yiji,
+                col_type: "scroll_button",
+                extra: {
+                    pageTitle: pdfh(item, "Text")
+                }
+            })
+        })
+
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+
+        var Series = pdfh(html, ".infoleft&&li:matches(Series:)&&Text")
+        if (Series) {
+            javguru.d.push({
+                title: '““””' + Series.fontcolor("#00d0f4"),
+                url: pdfh(html, ".infoleft&&li:matches(Series:)&&a&&href") + yiji,
+                col_type: "scroll_button",
+                extra: {
+                    lineVisible: false
+                }
             })
         }
 
@@ -598,6 +715,7 @@ const javguru = {
                 col_type: "pic_1_full"
             })
         })
+
         setResult(javguru.d)
     }
 
