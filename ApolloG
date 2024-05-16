@@ -598,7 +598,6 @@ const javguru = {
                 col_type: "pic_1_full"
             })
         })
-
         setResult(javguru.d)
     }
 
