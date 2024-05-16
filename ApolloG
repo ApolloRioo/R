@@ -152,25 +152,6 @@ const javguru = {
             }
         }
 
-        if (page === 1) {
-            javguru.videoSort(html, url)
-            javguru.d.push({
-                title: '𝐉𝐚𝐯𝐆𝐮𝐫𝐮',
-                desc: '搜索女优或者番号',
-                col_type: 'input',
-                url: $.toString(() => {
-                    putMyVar('key', input);
-                    putMyVar('url', "超级无敌回环大搜索");
-                    refreshPage(false);
-                    return 'hiker://empty'
-                }),
-                extra: {
-                    defaultValue: getMyVar('key', ''),
-                    onChange: "putMyVar('key', input)"
-                }
-            })
-        };
-
         if (url.includes("超级无敌回环大搜索")) {
             key = getMyVar("key")
             if (!key) {
@@ -186,7 +167,7 @@ const javguru = {
                 type = "search"
             }
         }
-
+                
         if (page !== 1) {
             url = url.replace(/(\?|$)/, "page/" + page + "/$1")
         }
@@ -197,6 +178,25 @@ const javguru = {
             }
         })
         log(url)
+        
+        if (page === 1) {
+            javguru.videoSort(html, url)
+            javguru.d.push({
+                title: '𝐉𝐚𝐯𝐆𝐮𝐫𝐮',
+                desc: '搜索女优或者番号',
+                col_type: 'input',
+                url: $.toString(() => {
+                    putMyVar('key', input);
+                    putMyVar('url', "超级无敌回环大搜索");
+                    refreshPage(true);
+                    return 'hiker://empty'
+                }),
+                extra: {
+                    defaultValue: getMyVar('key', ''),
+                    onChange: "putMyVar('key', input)"
+                }
+            })
+        };
 
         switch (type) {
             case 'video':
