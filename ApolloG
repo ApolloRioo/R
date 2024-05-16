@@ -2,7 +2,6 @@ const javguru = {
     empty: "hiker://empty",
     url: "https://jav.guru/",
     d: [],
-    taskList: [],
     data: {
         category: getMyVar('JavGuru.category', '0'),
         subCate: getMyVar('JavGuru.subCate', '0'),
@@ -107,16 +106,15 @@ const javguru = {
         }]
         const currentCate = categoryList[javguru.data.category]
         let url
-        const type = currentCate.type
-        const path = currentCate.path
+        let type = currentCate.type
+        let path = currentCate.path
         if (currentCate.sub.length > 0) {
             url = getMyVar("url", currentCate.sub[javguru.data.subCate].path)
+            path = currentCate.sub[javguru.data.subCate].path
         } else {
             url = getMyVar("url", currentCate.path)
         }
-        if (page !== 1) {
-            url = url.replace(/(\?|$)/, "page/" + page + "/$1")
-        }
+
         if (page === 1) {
             categoryList.forEach((cate, index) => {
                 javguru.d.push({
@@ -153,15 +151,52 @@ const javguru = {
                 })
             }
         }
+
+        if (page === 1) {
+            javguru.videoSort(html, url)
+            javguru.d.push({
+                title: '𝐉𝐚𝐯𝐆𝐮𝐫𝐮',
+                desc: '搜索女优或者番号',
+                col_type: 'input',
+                url: $.toString(() => {
+                    putMyVar('key', input);
+                    putMyVar('url', "超级无敌回环大搜索");
+                    refreshPage(false);
+                    return 'hiker://empty'
+                }),
+                extra: {
+                    defaultValue: getMyVar('key', ''),
+                    onChange: "putMyVar('key', input)"
+                }
+            })
+        };
+
+        if (url.includes("超级无敌回环大搜索")) {
+            key = getMyVar("key")
+            if (!key) {
+                if (currentCate.sub.length > 0) {
+                    url = currentCate.sub[javguru.data.subCate].path
+                    path = currentCate.sub[javguru.data.subCate].path
+                } else {
+                    url = currentCate.path
+                }
+            } else {
+                url1 = "https://jav.guru/actress-search/?taxonomy_search=" + key
+                url = "https://jav.guru/?s=" + key
+                type = "search"
+            }
+        }
+
+        if (page !== 1) {
+            url = url.replace(/(\?|$)/, "page/" + page + "/$1")
+        }
+        
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
         log(url)
-        if (page === 1) {
-            javguru.videoSort(html, url)
-        }
 
         switch (type) {
             case 'video':
@@ -172,13 +207,33 @@ const javguru = {
                     javguru.videoHot(html)
                 }
                 break
-            case 'avatar':
-                if ((path === 'actresses/ranking' && page === 1) || path !== 'actresses/ranking') {
+            case 'tags':
+                if (/actress|actors/.test(path)) {
                     javguru.avatarType(html)
+                } else {
+                    javguru.tagsType(html)
                 }
                 break
-            case 'tags':
-                javguru.tagsType(html)
+            case 'search':
+                if (page === 1) {
+                                    javguru.d.push({
+                        title: "🗯\t\t\t\t\t\t演员\t\t\t\t\t\t🗯",
+                        url: "hiker://empty",
+                        col_type: "rich_text"
+                    });
+                    var htm = fetch(url1, {
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                        }
+                    })
+                    javguru.avatarType(htm)
+                    javguru.d.push({
+                        title: "🗯\t\t\t\t\t\t影片\t\t\t\t\t\t🗯",
+                        url: "hiker://empty",
+                        col_type: "rich_text"
+                    });
+                }
+                javguru.videoType(html)
                 break
             default:
                 javguru.videoType(html)
@@ -266,6 +321,38 @@ const javguru = {
 
     },
 
+    avatarType: (html) => {
+        var list = pdfa(html, '.actress-page&&a')
+        list.forEach(item => {
+            javguru.d.push({
+                title: pdfh(item, '.actress-details&&span,-2&&Text')
+                    .slice(0, 8) + "\n" + pdfh(item, '.actress-details&&span:matches(videos)&&Text')
+                    .replace("videos", "部") + "\t\t" + pdfh(item, '.actress-details&&span:matches(old)&&Text')
+                    .replace("years old", "岁"),
+                desc: "",
+                pic_url: pdfh(item, '.actress-pic&&img&&src') + '@Referer=',
+                url: $(pdfh(item, 'a&&href') + 'page/fypage/#noHistory#')
+                    .rule(() => {
+                    const javguru = $.require('hiker://page/javguru')
+                    javguru.avatarParse(MY_URL)
+                    setResult(javguru.d)
+                }),
+                col_type: 'card_pic_3'
+            })
+        })
+    },
+
+    //一级页面
+    avatarParse: (url) => {
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
+        log(url)
+        javguru.videoType(html)
+    },
+
     //搜索
     searchParse: (url) => {
         url = url.replace("hiker://empty##", "")
@@ -290,13 +377,13 @@ const javguru = {
                     const javguru = $.require('hiker://page/javguru')
                     javguru.videoParse(MY_URL)
                     setResult(javguru.d)
-                    if (javguru.taskList.length > 0) {
-                        be(miss.taskList)
-                    }
                 }),
                 pic_url: pdfh(item, '.imgg&&img&&src') + '@Referer=' + javguru.url,
                 desc: pdfh(item, '.date&&Text'),
-                col_type: 'movie_2'
+                col_type: 'movie_2',
+                extra: {
+                    pageTitle: pdfh(item, 'img&&alt'),
+                }
             })
         })
     },
@@ -309,7 +396,6 @@ const javguru = {
             }
         })
         const title = pdfh(html, ".posts&&h1&&Text");
-        setPageTitle(title);
         javguru.d.push({
             title: '““””' + title.fontcolor("#E57A1A"),
             url: url,
@@ -469,7 +555,7 @@ const javguru = {
         })
         if (list.length % 2 != 0) {
             javguru.d.push({
-                title: '““””' + "Supjav一样线路".bold()
+                title: '🗯““””' + "FUCKU SELF🗯".bold()
                     .fontcolor("#FF00ED"),
                 url: "toast://小撸怡情，强撸灰飞烟灭",
                 col_type: "text_2"
