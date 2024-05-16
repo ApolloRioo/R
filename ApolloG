@@ -82,22 +82,22 @@ const javguru = {
             "path": "",
             "sub": [{
                 "path": "https://jav.guru/jav-tags-list/",
-                "title": "BY TAG"
+                "title": "TAG"
             }, {
                 "path": "https://jav.guru/jav-actress-list/",
-                "title": "BY ACTRESS"
+                "title": "ACTRESS"
             }, {
                 "path": "https://jav.guru/jav-actors/",
-                "title": "BY ACTOR"
+                "title": "ACTOR"
             }, {
                 "path": "https://jav.guru/jav-studio-list/",
-                "title": "BY LABEL"
+                "title": "LABEL"
             }, {
                 "path": "https://jav.guru/jav-makers-list/",
-                "title": "BY MAKER"
+                "title": "MAKER"
             }, {
                 "path": "https://jav.guru/jav-series/",
-                "title": "BY SERIES"
+                "title": "SERIES"
             }, {
                 "path": "https://jav.guru/tags/",
                 "title": "FULL TAGS LIST"
@@ -115,7 +115,7 @@ const javguru = {
             url = getMyVar("url", currentCate.path)
         }
         if (page !== 1) {
-            url = url.replace(/(\?|$)/,"page/" + page +"/$1")
+            url = url.replace(/(\?|$)/, "page/" + page + "/$1")
         }
         if (page === 1) {
             categoryList.forEach((cate, index) => {
@@ -167,8 +167,10 @@ const javguru = {
             case 'video':
                 javguru.videoType(html)
                 break
-            case 'articles':
-                javguru.articlesType(html)
+            case 'hot':
+                if (page === 1) {
+                    javguru.videoHot(html)
+                }
                 break
             case 'avatar':
                 if ((path === 'actresses/ranking' && page === 1) || path !== 'actresses/ranking') {
@@ -194,7 +196,7 @@ const javguru = {
             var title = pdfh(item, 'Text');
             javguru.d.push({
                 title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
-                url: url.replace(/(.*?)\?.*/,"$1") + pdfh(item, 'option&&value') + $('#noLoading#')
+                url: url.replace(/(.*?)\?.*/, "$1") + pdfh(item, 'option&&value') + $('#noLoading#')
                     .lazyRule((index) => {
                     putMyVar('sort', index);
                     putMyVar("url", input);
@@ -205,6 +207,78 @@ const javguru = {
             })
         })
     },
+
+    //一级Hot
+    videoHot: (html, url) => {
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+        var tabs = pdfa(html, ".responsive-tabs&&h2")
+            .map(t => pdfh(t, "Text"));
+        var conts = pdfa(html, ".responsive-tabs&&.wpp-list");
+        var lists = conts.map(arr => pdfa(arr, "body&&li"));
+
+        function setTabs(tabs) {
+            for (var i in tabs) {
+                javguru.d.push({
+                    title: getMyVar("tab", '0') == i ? '‘‘’’<strong><font color="#FF00FF">' + tabs[i] + '</font></strong>' : tabs[i],
+                    col_type: 'scroll_button',
+                    url: $("#noLoading#")
+                        .lazyRule((i) => {
+                        putMyVar("tab", i)
+                        refreshPage(false);
+                        return 'hiker://empty'
+                    }, i)
+                })
+            }
+        }
+
+        function setLists(lists, index) {
+            var list = lists[index];
+
+            function playLists() {
+                for (var j = 0; j < list.length; j++) {
+                    javguru.d.push({
+                        title: pdfh(list[j], "a,-1&&Text"),
+                        //  desc: desc,
+                        img: pdfh(list[j], "img&&src"),
+                        url: pdfh(list[j], "a&&href") + $('')
+                            .rule(() => {
+                            const javguru = $.require('hiker://page/javguru')
+                            javguru.videoParse(MY_URL)
+                            setResult(javguru.d)
+                            if (javguru.taskList.length > 0) {
+                                be(miss.taskList)
+                            }
+                        }),
+                        col_type: "movie_2",
+                    });
+                }
+            }
+            playLists()
+        }
+        setTabs(tabs, url);
+        setLists(lists, getMyVar('tab', '0'));
+    },
+
+    //一级tags
+    tagsType: (html) => {
+
+    },
+
+    //搜索
+    searchParse: (url) => {
+        url = url.replace("hiker://empty##", "")
+        log(url)
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
+        javguru.videoType(html)
+        setResult(javguru.d)
+    },
+
     //一级列表
     videoType: (html) => {
         const list = pdfa(html, '#main&&.row')
@@ -226,6 +300,7 @@ const javguru = {
             })
         })
     },
+
     //二级
     videoParse: (url) => {
         const html = fetch(url, {
