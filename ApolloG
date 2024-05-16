@@ -322,18 +322,21 @@ const javguru = {
                 .toString(16))
                 .substr(-6);
         }
-        var list = pdfa(html, "#main&&li");
-        list.forEach(item => {
-            javguru.d.push({
-                title: '““””<middle><font color='+getRangeColors()+'>'+pdfh(item, 'a&&Text')+'</font></middle>',
-                url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#').rule(() => {
-                    const javguru = $.require('hiker://page/javguru')
-                    javguru.avatarParse(MY_URL)
-                    setResult(javguru.d)
-                }),
-                col_type: "text_2"
+        if (MY_PAGE === 1) {
+            var list = pdfa(html, "#main&&li");
+            list.forEach(item => {
+                javguru.d.push({
+                    title: '““””<middle><font color=' + getRangeColors() + '>' + pdfh(item, 'a&&Text') + '</font></middle>',
+                    url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#')
+                        .rule(() => {
+                        const javguru = $.require('hiker://page/javguru')
+                        javguru.avatarParse(MY_URL)
+                        setResult(javguru.d)
+                    }),
+                    col_type: "flex_button"
+                })
             })
-        })
+        }
     },
 
     //一级演员页面
