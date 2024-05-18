@@ -99,7 +99,7 @@ js: function CodeLazy(识别码) {
                 })
                 return "hiker://empty"
             } else {
-                var search = "https://supjav.com/zh/?s=" + 识别码;
+                var search = "https://supjav.com/zh/?s=" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
                 var html = fetch(search, {
                     headers: {
                         "Cookie": "cf_clearance=3Swn.IzcaQ7gepcMHoKkmM3bs_J26x.BWW6HBTlUtz0-1705266030-0-2-a659b38c.639c85dc.f158ec6c-160.2.1705266030",
@@ -170,7 +170,7 @@ js: function CodeLazy(识别码) {
         pic_url: 'https://img.vinua.cn/images/zO7lw.png',
         url: $('')
             .lazyRule((识别码) => {
-            var search = "https://javfinder.ai/search/movie/" + 识别码;
+            var search = "https://javfinder.ai/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
             var html = fetch(search, {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -521,7 +521,7 @@ js: function CodeLazy(识别码) {
         pic_url: 'https://img.vinua.cn/images/zHhaL.png',
         url: $('')
             .lazyRule((识别码) => {
-            var search = "https://missav.to/search/movie/" + 识别码;
+            var search = "https://missav.to/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
             var html = fetch(search, {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -593,7 +593,7 @@ js: function CodeLazy(识别码) {
         pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
         url: $('')
             .lazyRule((识别码) => {
-            var av = "https://jable.tv/videos/" + 识别码 + "/";
+            var av = "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
             try {
                 var html = fetch(av, {
                     timeout: 2230
@@ -613,7 +613,7 @@ js: function CodeLazy(识别码) {
             longClick: [{
                 title: '查看网址',
                 js: $.toString((识别码) => {
-                    return "https://jable.tv/videos/" + 识别码 + "/";
+                    return "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
                 }, 识别码)
             }]
         }
