@@ -310,7 +310,7 @@ js: function CodeLazy(识别码) {
                 onlyHeaders: true,
                 timeout: 3323
             }))
-            log(htmll)
+           // log(htmll)
             if (htmll.statusCode != 0) {
                 var location = htmll.url
                 if (location.includes("error")) {
