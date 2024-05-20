@@ -87,7 +87,7 @@ js: function CodeLazy(识别码) {
 
     //Supjav
     d.push({
-        title: '‘‘’’<b><middle><font color="#F4F4F4">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
+        title: '‘‘’’<b><middle><font color="">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
         pic_url: 'https://hikerfans.com/tubiao/messy/48.svg',
         url: $('')
             .lazyRule((识别码) => {
