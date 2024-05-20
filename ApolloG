@@ -252,6 +252,26 @@ const javguru = {
                     .lazyRule((index) => {
                     putMyVar('sort', index);
                     putMyVar("url", input);
+                    refreshPage(false);
+                    return 'hiker://empty'
+                }, index),
+                col_type: 'scroll_button'
+            })
+        })
+    },
+
+    videoSort1: (html, url) => {
+        javguru.d.push({
+            col_type: "blank_block",
+        })
+        const sort = pdfa(html, '#sortby&&option')
+        sort.forEach((item, index) => {
+            var title = pdfh(item, 'Text');
+            javguru.d.push({
+                title: getMyVar('ysort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
+                url: url.replace(/(.*?)\?.*/, "$1") + pdfh(item, 'option&&value') + $('#noLoading#')
+                    .lazyRule((index) => {
+                    putMyVar('ysort', index);
                     putMyVar("yurl", input);
                     refreshPage(false);
                     return 'hiker://empty'
@@ -364,8 +384,7 @@ const javguru = {
     //一级页面
     avatarParse: (url) => {
         addListener("onClose", $.toString(() => {
-            clearMyVar("sort");
-            clearMyVar("url");
+            clearMyVar("ysort");
             clearMyVar("yurl");
         }));
         url = getMyVar("yurl", url)
@@ -380,7 +399,7 @@ const javguru = {
         })
         log(url)
         if (MY_PAGE === 1) {
-            javguru.videoSort(html, url)
+            javguru.videoSort1(html, url)
         }
         javguru.videoType(html)
     },
