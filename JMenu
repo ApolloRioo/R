@@ -702,11 +702,14 @@ const Apollo = {
                 })
             }
         }
-
         Apollo.CiliParse(html)
         Apollo.d.push({
-            col_type: "line"
-        }, {
+            title: '<span style="color: #FF00FF;">同演员作品</span>',
+            pic_url: "https://lanmeiguojiang.com/tubiao/ke/100.png",
+            col_type: 'rich_text'
+        });
+        Apollo.videoType(html)
+        Apollo.d.push({
             title: '““””' + "我是有底线的".fontcolor("grey")
                 .small(),
             url: Apollo.empty,
@@ -728,6 +731,9 @@ const Apollo = {
                 img: "https://img.vinua.cn/images/Ocqpj.png",
                 url: pdfh(item, "a&&href"),
                 col_type: "avatar",
+                extra: {
+                    lineVisible: false
+                }
             })
         })
     },
