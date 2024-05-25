@@ -6,7 +6,7 @@ js: function CodeLazy(识别码) {
     //ThissAV
     d.push({
         title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/free-large-boss-icon-set/128/Devil.png',
+        pic_url: 'https://img.vinua.cn/images/IQlH7.png',
         url: $('')
             .lazyRule((识别码) => {
             var search = "https://missav.com/cn/search/" + 识别码;
@@ -260,7 +260,7 @@ js: function CodeLazy(识别码) {
     //njav
     d.push({
         title: '‘‘’’<b><middle><font color="#1E90FF">𝐉𝐚𝐯𝐆𝐨</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/tweetmyweb/128/flying_bird_sparkles.png',
+        pic_url: 'https://img.vinua.cn/images/IQqwD.png',
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://njav.tv/zh/v/" + 识别码;
@@ -302,7 +302,7 @@ js: function CodeLazy(识别码) {
     //av01
     d.push({
         title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐕𝟎𝟏</font></middle>',
-        pic_url: 'https://cdn3.iconfinder.com/data/icons/butterfly-19/500/nim834_7_purple_butterfly_flower_tattoo_floral_retro-128.png',
+        pic_url: 'https://img.vinua.cn/images/IQBFU.png',
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://www.av01.tv/" + 识别码;
@@ -359,7 +359,7 @@ js: function CodeLazy(识别码) {
     //javguru
     d.push({
         title: '‘‘’’<b><middle><font color="#67E0FA">𝐉𝐚𝐯𝐆𝐮𝐫𝐮</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/essentials-72/24/002_-_Search-128.png',
+        pic_url: 'https://img.vinua.cn/images/IQH1l.png',
         url: $('')
             .lazyRule((识别码) => {
             if (request('hiker://home@𝐉𝐚𝐯𝐆𝐮𝐫𝐮') == 'null') {
@@ -439,7 +439,7 @@ js: function CodeLazy(识别码) {
     //tktube
     d.push({
         title: '‘‘’’<b><middle><font color="#BEEA8F">𝐓𝐊𝐓𝐮𝐛𝐞</font></middle>',
-        pic_url: 'https://cdn1.iconfinder.com/data/icons/fruits-n-vegetables-colored-gradient/128/cauliflower-128.png',
+        pic_url: 'https://img.vinua.cn/images/IQMky.png',
         url: $('')
             .lazyRule((识别码) => {
             var search = "https://tktube.com/zh/search/" + 识别码.replace(/-/g, "--") + "/";
@@ -592,7 +592,7 @@ js: function CodeLazy(识别码) {
     //Jable
     d.push({
         title: '‘‘’’<b><middle><font color="#FF8C00">𝐉𝐚𝐛𝐥𝐞</font></middle>',
-        pic_url: 'https://cdn3.iconfinder.com/data/icons/cat-power-premium/120/cat_foodlove-128.png',
+        pic_url: 'https://img.vinua.cn/images/IQkS8.png',
         url: $('')
             .lazyRule((识别码) => {
             var av = "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
@@ -624,7 +624,7 @@ js: function CodeLazy(识别码) {
     //磁力君.简
     d.push({
         title: '‘‘’’<b><middle><font color="#1E20800">𝐌𝐚𝐠𝐧𝐞𝐭</font></middle>',
-        pic_url: 'https://cdn4.iconfinder.com/data/icons/shopping-doodle/512/Shopping-31-128.png',
+        pic_url: 'https://img.vinua.cn/images/IQ85X.png',
         url: $('')
             .lazyRule((识别码) => {
             if (request('hiker://home@磁力君.简') == 'null') {
