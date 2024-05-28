@@ -46,10 +46,10 @@ const Apollo = {
             }, {
                 "title": "演员▼",
                 "path": "hiker://empty"
-            },{
+            }, {
                 "title": "𝐅𝐂𝟐▼",
                 "path": "hiker://empty"
-            },{
+            }, {
                 "title": "在线视频▼",
                 "path": "hiker://empty"
             }]
@@ -545,6 +545,9 @@ const Apollo = {
     },
     //二级
     videoParse: (url) => {
+        addListener("onClose", () => {
+            clearMyVar("piclist");
+        });
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
             const Apollo = $.require('hiker://page/Apollo')
@@ -559,7 +562,7 @@ const Apollo = {
         log(url)
         var title = MY_PARAMS.title;
         Apollo.d.push({
-            title: '““””' + Apollo.niutrans(title)
+            title: '““””' + Apollo.niutrans(title).replace(/^\d+/,"")
                 .fontcolor("#E57A1A"),
             url: url,
             col_type: 'text_1',
@@ -759,19 +762,51 @@ const Apollo = {
                     url: Apollo.empty + $("")
                         .lazyRule((list) => {
                         try {
-                            var pics = list.map(p => pdfh(p, "a&&href"))
-                            if (pics.length !== 1) {
-                                return "pics://" + pics.join("&&")
+                            if (getMyVar("piclist", "收起") == "收起") {
+                                addItemAfter('picnum', {
+                                    title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
+                                    url: "hiker://empty" + $("")
+                                        .lazyRule((list) => {
+                                        for (var i = list.length - 1; i >= 0; i--) {
+                                            deleteItem('previewpic' + i);
+                                        }
+                                        deleteItem('nopiclist');
+                                        putMyVar("piclist", "收起");
+                                        return "hiker://empty"
+                                    }, list),
+                                    col_type: "text_center_1",
+                                    extra: {
+                                        lineVisible: false,
+                                        id: "nopiclist"
+                                    }
+                                })
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    addItemAfter('picnum', {
+                                        url: 'hiker://empty',
+                                        img: pdfh(list[i], "a&&href"),
+                                        col_type: "pic_1_full",
+                                        extra: {
+                                            id: 'previewpic' + i
+                                        }
+                                    });
+                                }
+                                putMyVar("piclist", "展开");
                             } else {
-                                return pics[0]
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    deleteItem('previewpic' + i);
+                                }
+                                deleteItem('nopiclist');
+                                putMyVar("piclist", "收起");
                             }
+                            return "hiker://empty"
                         } catch {
                             return "hiker://empty"
                         }
                     }, list),
                     col_type: "text_1",
                     extra: {
-                        lineVisible: false
+                        lineVisible: false,
+                        id: "picnum"
                     }
                 })
             }
@@ -804,7 +839,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "a&&Text")
                     .replace(/\[(?:\[.*?\])?(.*?)\].*/, "$1"),
-                desc: pdfh("<table>"+item+"</table>", "td&&Text") + "\t\t" + pdfh(item, "a&&Text")
+                desc: pdfh("<table>" + item + "</table>", "td&&Text") + "\t\t" + pdfh(item, "a&&Text")
                     .replace(/.*\[(\d+\.?(\d+)?(\s+)?(G|M|K)(\w+)?)\,?.*?\].*/i, "$1") + "\t\t" + pdfh(item, "a&&Text")
                     .replace(/.*\[(\d+-\d+-\d+).*?\].*/, "$1"),
                 img: "https://img.vinua.cn/images/Ocqpj.png",
