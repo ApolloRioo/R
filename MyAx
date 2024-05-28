@@ -419,20 +419,30 @@ const Apollo = {
             var url = "https://api.niutrans.com/NiuTransServer/translation";
             var api = config.api;
             if (api) {
-                var result = post(url, {
-                    body: {
-                        src_text: text,
-                        from: "ja",
-                        to: "zh",
-                        apikey: api,
-                    },
-                    timeout: 1666
-                });
-                var data = JSON.parse(result)
-                if (data.tgt_text) {
-                    return data.tgt_text
+                if (text != "") {
+                    var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
+                    var from = JSON.parse(fetch(lang, {
+                        timeout: 1000
+                    }))
+                        .language;
+                    var result = post(url, {
+                        body: {
+                            src_text: text,
+                            from: from,
+                            to: "zh",
+                            apikey: api,
+                        },
+                        timeout: 1223
+                    });
+                    var data = JSON.parse(result)
+                    if (data.tgt_text) {
+                        return data.tgt_text
+                    } else {
+                        log("翻译失败，使用原文");
+                        return text
+                    }
                 } else {
-                    log("翻译失败，使用原文");
+                    log("翻译失败，原文为空");
                     return text
                 }
             } else {
@@ -483,19 +493,23 @@ const Apollo = {
         var content = Apollo.niutrans(story)
         var lazy = $(`#noLoading#`)
             .lazyRule((content) => {
-            var title = findItem('content_decid')
-                .title
-            if (title.includes("<br>\t")) {
-                updateItem("content_decid", {
-                    title: title.replace(/(.*?)<br>\t.*/, "$1"),
-                })
+            if (content !== "") {
+                var title = findItem('content_decid')
+                    .title
+                if (title.includes("<br>\t")) {
+                    updateItem("content_decid", {
+                        title: title.replace(/(.*?)<br>\t.*/, "$1"),
+                    })
+                } else {
+                    updateItem("content_decid", {
+                        title: title.replace(/(.*?)<br>\t.*/, "$1") + '<br>\t\t\t\t\t\t\t' + content.small()
+                            .fontcolor("#8A2BE2"),
+                    })
+                }
+                return "hiker://empty"
             } else {
-                updateItem("content_decid", {
-                    title: title.replace(/(.*?)<br>\t.*/, "$1") + '<br>\t\t\t\t\t\t\t' + content.small()
-                        .fontcolor("#8A2BE2"),
-                })
+                return "toast://此篇没有故事简介哦😐"
             }
-            return "hiker://empty"
         }, content)
         Apollo.d.push({
             title: "🔥 <a style='text-decoration: none;' href='" + lazy + "'>故事</a> ：" + day_say.replace(/—/g, "")
@@ -700,46 +714,44 @@ const Apollo = {
             }
         }
 
-        //系列
-        var arts = parseDomForArray(html, 'body&&#th-Genre:contains(系列:)&&a');
-        if (arts.length > 0) {
-            Apollo.d.push({
-                col_type: "blank_block"
-            })
-            Apollo.d.push({
-                title: "系列:",
-                url: 'hiker://empty',
-                col_type: 'scroll_button',
-            });
-            for (var i in arts) {
+        Apollo.d.push({
+            col_type: "blank_block"
+        })
+        try {
+            var series = pdfh(html, 'body&&tr:contains(系列)&&a&&Text');
+            if (series) {
                 Apollo.d.push({
-                    title: '‘‘’’<b><middle><font color="#67E0FA">' + parseDomForHtml(arts[i], 'Text') + '</font></middle></b>',
-                    url: getHome(url) + pdfh(arts[i], 'a&&href') + yiji,
+                    title: '系列:‘‘’’<b><middle><font color="#1E90FF">\t' + series + '</font></middle></b>',
+                    url: getHome(url) + pdfh(html, 'body&&tr:contains(系列)&&a&&href') + yiji,
                     col_type: 'scroll_button',
                     extra: {
-                        pageTitle: parseDomForHtml(arts[i], 'Text')
+                        pageTitle: series
                     }
                 })
             }
-        }
+        } catch {}
         Apollo.d.push({
             col_type: "blank_block"
         })
         try {
             var picnum = pdfh(html, ".button2&&Text");
             if (picnum != "") {
+                var list = pdfa(html, "#hiddenButton&&a")
                 Apollo.d.push({
                     title: '🌌\t\t““””' + picnum.fontcolor("#FF00FF"),
                     url: Apollo.empty + $("")
-                        .lazyRule((html) => {
+                        .lazyRule((list) => {
                         try {
-                            var list = pdfa(html, "#hiddenButton&&a")
                             var pics = list.map(p => pdfh(p, "a&&href"))
-                            return "pics://" + pics.join("&&")
+                            if (pics.length !== 1) {
+                                return "pics://" + pics.join("&&")
+                            } else {
+                                return pics[0]
+                            }
                         } catch {
                             return "hiker://empty"
                         }
-                    }, html),
+                    }, list),
                     col_type: "text_1",
                     extra: {
                         lineVisible: false
