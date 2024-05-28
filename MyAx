@@ -30,14 +30,31 @@ const Apollo = {
                 "title": "国产",
                 "path": "/domestic_index.js?year=07811dc6c422334ce36a09ff5cd6fe71&tag=all&other=dc1194d6780ae1741469b7fea8f61b02&ytype=2&Ttype=2&sort=DESC"
             }, {
-                "title": "FC2磁力查询",
+                "title": "FC2",
                 "path": "https://fc2.a-91.top/default.cpp?year=07811dc6c422334ce36a09ff5cd6fe71&tag=all&other=dc1194d6780ae1741469b7fea8f61b02&ytype=2&Ttype=2&sort=DESC"
             }, {
-                "title": "视频在线",
+                "title": "视频",
                 "path": "https://vod001.a-91.top/"
             }]
         }, {
-            "title": "标签分类▼",
+            "title": "收藏▼",
+            "path": "hiker://empty",
+            "type": "collection",
+            "sub": [{
+                "title": "影片▼",
+                "path": "hiker://empty"
+            }, {
+                "title": "演员▼",
+                "path": "hiker://empty"
+            },{
+                "title": "𝐅𝐂𝟐▼",
+                "path": "hiker://empty"
+            },{
+                "title": "在线视频▼",
+                "path": "hiker://empty"
+            }]
+        }, {
+            "title": "标签▼",
             "path": "/cat.py?type=rpCNLOP1WDRnR2LjHsExtQ==",
             "type": "avatar",
             "sub": [{
@@ -85,8 +102,8 @@ const Apollo = {
         let type = currentCate.type
         let title = currentCate.title
         if (currentCate.sub.length > 0) {
-            url = currentCate.sub[Apollo.data.subCate].path.startsWith("http") ? getMyVar("url", currentCate.sub[Apollo.data.subCate].path) : Apollo.url + getMyVar("url", currentCate.sub[Apollo.data.subCate].path)
-            url = url.startsWith("http") ? url : getHome(currentCate.sub[Apollo.data.subCate].path) + url
+            url = currentCate.sub[Apollo.data.subCate].path.startsWith("h") ? getMyVar("url", currentCate.sub[Apollo.data.subCate].path) : Apollo.url + getMyVar("url", currentCate.sub[Apollo.data.subCate].path)
+            url = url.startsWith("h") ? url : getHome(currentCate.sub[Apollo.data.subCate].path) + url
             title = currentCate.sub[Apollo.data.subCate].title
         } else {
             url = Apollo.url + getMyVar("url", currentCate.path)
@@ -155,12 +172,12 @@ const Apollo = {
             //log("可能不存在下一页或者下一页定位有问题");
         }
 
-        if (title !== "视频在线") {
+        if (title !== "视频") {
             Apollo.dtfenlei(html, url)
         }
         switch (type) {
             case 'video':
-                if (title == "视频在线") {
+                if (title == "视频") {
                     Apollo.videoOnline(html, url)
                 } else {
                     Apollo.videoType(html, url)
@@ -787,7 +804,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "a&&Text")
                     .replace(/\[(?:\[.*?\])?(.*?)\].*/, "$1"),
-                desc: pdfh(item, "span&&Text") + "\t\t" + pdfh(item, "a&&Text")
+                desc: pdfh("<table>"+item+"</table>", "td&&Text") + "\t\t" + pdfh(item, "a&&Text")
                     .replace(/.*\[(\d+\.?(\d+)?(\s+)?(G|M|K)(\w+)?)\,?.*?\].*/i, "$1") + "\t\t" + pdfh(item, "a&&Text")
                     .replace(/.*\[(\d+-\d+-\d+).*?\].*/, "$1"),
                 img: "https://img.vinua.cn/images/Ocqpj.png",
