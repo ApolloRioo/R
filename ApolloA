@@ -664,11 +664,5 @@ js: function CodeLazy(识别码) {
     d.push({
         col_type: "line_blank",
     })
-
-    for (var b = 0; b < 2; b++) {
-        d.push({
-            col_type: 'big_blank_block'
-        })
-    }
     
 }
