@@ -531,25 +531,76 @@ const Apollo = {
         })
         const 识别码 = pdfh(html, "body&&.card-body&&.code--span&&Text")
         Apollo.CodeParse(识别码)
-        var picview = pdfa(html, "body&&.py-0&&a")
+
+        try {
+            var picnum = "点击展开图片";
+            if (picnum != "") {
+                var list = pdfa(html, "body&&.py-0&&a")
+                Apollo.d.push({
+                    title: '““””' + (picnum + list.length + "张").fontcolor("#FF00FF"),
+                    url: Apollo.empty + $("")
+                        .lazyRule((list) => {
+                        try {
+                            if (getMyVar("piclist", "收起") == "收起") {
+                                addItemAfter('picnum', {
+                                    title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
+                                    url: "hiker://empty" + $("")
+                                        .lazyRule((list) => {
+                                        for (var i = list.length - 1; i >= 0; i--) {
+                                            deleteItem('previewpic' + i);
+                                        }
+                                        deleteItem('nopiclist');
+                                        putMyVar("piclist", "收起");
+                                        return "hiker://empty"
+                                    }, list),
+                                    col_type: "text_center_1",
+                                    extra: {
+                                        lineVisible: false,
+                                        id: "nopiclist"
+                                    }
+                                })
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    addItemAfter('picnum', {
+                                        url: 'hiker://empty',
+                                        img: pdfh(list[i], "a&&href"),
+                                        col_type: "pic_1_full",
+                                        extra: {
+                                            id: 'previewpic' + i
+                                        }
+                                    });
+                                }
+                                putMyVar("piclist", "展开");
+                            } else {
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    deleteItem('previewpic' + i);
+                                }
+                                deleteItem('nopiclist');
+                                putMyVar("piclist", "收起");
+                            }
+                            return "hiker://empty"
+                        } catch {
+                            return "hiker://empty"
+                        }
+                    }, list),
+                    col_type: "text_center_1",
+                    extra: {
+                        lineVisible: false,
+                        id: "picnum"
+                    }
+                })
+            }
+        } catch {}
+
         Apollo.d.push({
-            title: '““””' + "番号".fontcolor("#FF00FF"),
+            title: '““””' + "番号".fontcolor("#FFD000"),
             url: "copy://" + 识别码,
             col_type: "scroll_button",
         }, {
             title: pdfh(html, "body&&.card-body&&.code&&a&&Text") ? '““””' + pdfh(html, "body&&.card-body&&.code&&a&&Text")
-                .fontcolor("#FF00FF") + pdfh(html, "body&&.card-body&&.code&&span,-1&&Text")
+                .fontcolor("#FFD000") + pdfh(html, "body&&.card-body&&.code&&span,-1&&Text")
                 .fontcolor("green") : '““””' + pdfh(html, "body&&.card-body&&.code&&span,-1&&Text")
                 .fontcolor("#FF00FF"),
             url: pdfh(html, "body&&.card-body&&.code&&a&&Text") ? Apollo.url + pdfh(html, "body&&.card-body&&.code&&a&&href") + yiji : Apollo.empty,
-            col_type: "scroll_button",
-        }, {
-            title: '““””' + "图片预览".fontcolor("#FF00FF"),
-            url: picview.length < 1 ? "toast://没有图片预览哦😐" : $('#noLoading#')
-                .lazyRule((picview) => {
-                return "pics://" + picview.map(i => pdfh(i, "a&&href"))
-                    .join("&&")
-            }, picview),
             col_type: "scroll_button",
         }, {
             col_type: 'blank_block',
