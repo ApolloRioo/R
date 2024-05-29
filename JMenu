@@ -537,7 +537,8 @@ const Apollo = {
             if (picnum != "") {
                 var list = pdfa(html, "body&&.py-0&&a")
                 Apollo.d.push({
-                    title: '““””' + (picnum + list.length + "张").fontcolor("#FF00FF"),
+                    title: '““””' + (picnum + list.length + "张")
+                        .fontcolor("#FF00FF"),
                     url: Apollo.empty + $("")
                         .lazyRule((list) => {
                         try {
@@ -602,6 +603,9 @@ const Apollo = {
                 .fontcolor("#FF00FF"),
             url: pdfh(html, "body&&.card-body&&.code&&a&&Text") ? Apollo.url + pdfh(html, "body&&.card-body&&.code&&a&&href") + yiji : Apollo.empty,
             col_type: "scroll_button",
+            extra: {
+                pageTitle: pdfh(html, "body&&.card-body&&.code&&a&&Text")
+            }
         }, {
             col_type: 'blank_block',
         }, {
