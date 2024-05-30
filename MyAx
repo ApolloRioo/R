@@ -33,7 +33,7 @@ const Apollo = {
                 "title": "FC2",
                 "path": "https://fc2.a-91.top/default.cpp?year=07811dc6c422334ce36a09ff5cd6fe71&tag=all&other=dc1194d6780ae1741469b7fea8f61b02&ytype=2&Ttype=2&sort=DESC"
             }, {
-                "title": "视频",
+                "title": "在线视频",
                 "path": "https://vod001.a-91.top/"
             }]
         }, {
@@ -172,14 +172,14 @@ const Apollo = {
             //log("可能不存在下一页或者下一页定位有问题");
         }
 
-        if (title !== "视频") {
+        if (title !== "在线视频") {
             Apollo.dtfenlei(html, url)
         } else {
             Apollo.spfenlei(url)
         }
         switch (type) {
             case 'video':
-                if (title == "视频") {
+                if (title == "在线视频") {
                     Apollo.videoOnline(html, url)
                 } else {
                     Apollo.videoType(html, url)
