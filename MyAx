@@ -734,10 +734,10 @@ const Apollo = {
         setResult(Apollo.d)
     },
 
-    //彩云小译
-    cytrans: (text) => {
+    //翻译
+    translate: (text) => {
         var switchtrans = config.switchtrans
-        if (switchtrans) {
+        if (switchtrans == true || switchtrans == "彩云小译") {
             try {
                 var to = 'zh'
                 var from = 'auto'
@@ -774,7 +774,46 @@ const Apollo = {
                 })
                 let result = JSON.parse(res)
                     .target
-                return result
+                return result + "🇨🇳☁️彩云小译"
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else if (switchtrans == "小牛翻译") {
+            try {
+                var url = "https://api.niutrans.com/NiuTransServer/translation";
+                var api = config.api;
+                if (api) {
+                    if (text != "") {
+                        var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
+                        var from = JSON.parse(fetch(lang, {
+                            timeout: 1000
+                        }))
+                            .language;
+                        var result = post(url, {
+                            body: {
+                                src_text: text,
+                                from: from,
+                                to: "zh",
+                                apikey: api,
+                            },
+                            timeout: 1223
+                        });
+                        var data = JSON.parse(result)
+                        if (data.tgt_text) {
+                            return data.tgt_text + "🇨🇳🐮小牛翻译"
+                        } else {
+                            log("翻译失败，使用原文");
+                            return text
+                        }
+                    } else {
+                        log("翻译失败，原文为空");
+                        return text
+                    }
+                } else {
+                    toast("预处理请填写翻译api")
+                    return text
+                }
             } catch {
                 log("翻译失败，使用原文");
                 return text
@@ -819,7 +858,7 @@ const Apollo = {
             day_say = ''
         }
         var story = pdfh(html, "body&&h2:matches(故事)+table&&Text")
-        var content = Apollo.cytrans(story)
+        var content = Apollo.translate(story)
         var lazy = $(`#noLoading#`)
             .lazyRule((content) => {
             if (content !== "") {
@@ -874,7 +913,7 @@ const Apollo = {
         log(url)
         var title = MY_PARAMS.title;
         Apollo.d.push({
-            title: '““””' + Apollo.cytrans(title)
+            title: '““””' + Apollo.translate(title)
                 .replace(/^\d+/, "")
                 .fontcolor("#E57A1A"),
             url: url,
