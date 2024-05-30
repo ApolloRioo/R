@@ -38,20 +38,20 @@ const Apollo = {
             }]
         }, {
             "title": "收藏▼",
-            "path": "hiker://empty",
+            "path": "hiker://empty##收藏",
             "type": "collection",
             "sub": [{
                 "title": "影片▼",
-                "path": "hiker://empty"
+                "path": "hiker://empty##收藏影片"
             }, {
                 "title": "演员▼",
-                "path": "hiker://empty"
+                "path": "hiker://empty##收藏演员"
             }, {
                 "title": "𝐅𝐂𝟐▼",
-                "path": "hiker://empty"
+                "path": "hiker://empty##收藏𝐅𝐂𝟐"
             }, {
                 "title": "在线视频▼",
-                "path": "hiker://empty"
+                "path": "hiker://empty##收藏视频"
             }]
         }, {
             "title": "标签▼",
@@ -174,6 +174,8 @@ const Apollo = {
 
         if (title !== "视频") {
             Apollo.dtfenlei(html, url)
+        } else {
+            Apollo.spfenlei(url)
         }
         switch (type) {
             case 'video':
@@ -285,8 +287,254 @@ const Apollo = {
         }
     },
 
+    //在线视频顶部分类
+    spfenlei: (url) => {
+        if (MY_PAGE == 1) {
+            var spol = [{
+                "name": "全部",
+                "url": ""
+            }, {
+                "name": "2024",
+                "url": "/list.php?id=gJumhF7V1f_60Pl3COOnr8KFlgF7tQZWGMrzozxzETaDifFShPuFVBF_BLNhNddhOMlO7USg0mxyAFI4yJ1q4A=="
+            }, {
+                "name": "2023",
+                "url": "/list.php?id=qJhbXWm0DTTcf0-cyIv_Mkpa1Xh70pxWRhvI57jJAi7KM9UDra0JmhP45c5lv1K386t_xBoI1WCTcSenVC__Jg=="
+            }, {
+                "name": "2022",
+                "url": "/list.php?id=D3hit-b0b5q3wf7MYvawAT9jRnT5KFiMCtrRcvIl7C6l91UaKQUJTDfrp4nHpbajNatW3wcyC8WKZdTkpQZIqw=="
+            }, {
+                "name": "2020",
+                "url": "/list.php?id=wk1hYF8XKJuJS5DGEH3LAPaBCbvxIUVrdWOf4eZvV_CuqS9VQiScd0iID-sCOMDWw98Er7s8plHawKZvHIuzEA=="
+            }, {
+                "name": "20198",
+                "url": "/list.php?id=e13dL3C2Wia2cYdbF4jPAdbWC0XQmXszG5MQM_m7wzmSTN7dCq5FHLJQWXFW-LYvUe6qUnjFbaH947w_P7Ct_A=="
+            }, {
+                "name": "2019",
+                "url": "/list.php?id=1Te4EAte-PeYtgDDto7C1SW1bi5SQAZbwYROWPvhwVCq0kQ0yFafzZcKm1CWYQkaaMrVOBSR1qMPIMlzp-ckXw=="
+            }, {
+                "name": "2018",
+                "url": "/list.php?id=WmHfV5Mr5a0k0JxSV-e6d8mQVhiFCVMewrY3USw1U0sBhPLH4l-1f6M7-zaHB5MnUWITCthgarQkOl6fG_JtRw=="
+            }, {
+                "name": "2017",
+                "url": "/list.php?id=7aHxm9LU3QzWudmoymjwk0FU9Hdwf3HTEob10aoODv8cvU6uh_FDXwm-ui8sO2TwADUCR1Wq_niPWvaAzipG-w=="
+            }, {
+                "name": "2016",
+                "url": "/list.php?id=zrMsq-rtRHqol-HNpBi4O68NWY2dGCEzr8qIxzcbbPGSJrZuZ9kGTtVCePZJa5MGWbA_DwmO0Di4kzIWK-m3xg=="
+            }, {
+                "name": "2015",
+                "url": "/list.php?id=lyrIyepfMy7-LVBW7DXSgY51QS51AVrAoKAJ2ECxyBdKzyKlEgHVdxOqA3w45QiBjM5yJZC-I1bE8oPC7gk9dg=="
+            }, {
+                "name": "亚洲无码",
+                "url": "/list.php?id=tvndC6ZDEwmtOa_jYif4cCvXYDlu7muO4OojkU79AV3zyw91Fn9-6ckxm2VEwf4ZyrVv95o6bo41RT4l_A2t0Q=="
+            }, {
+                "name": "日本精品",
+                "url": "/list.php?id=ZQltuOlljHgRpfJpmthKYIsgkGq6c8ZCQKNg3CJy_NbTj_JfnCErjIu7ksHRTEAL7GZbnwLYNz5PRhcCGxir1A=="
+            }, {
+                "name": "人妻熟女",
+                "url": "/list.php?id=Xzb4Sej8TubLz5aj9NNiYvXE3BSpqmenM60I15nQzGZb7Omg5coh_dostV4XtTUEnZ8-WR2lgnWlpIYE0BNW2w=="
+            }, {
+                "name": "强奸乱伦",
+                "url": "/list.php?id=BWckNG_VT9FV4rNQ-kKfbcW_A7jdk9lhn6f0AAPwjGJagN4wlsn_m53oU1A-AzMSDizwzcypjcPe_AxBRpNqGg=="
+            }, {
+                "name": "巨乳美乳",
+                "url": "/list.php?id=Cos7XUu5tK-eNrjG0LtcAU8WVlrBdDnVVcx-13eKGSa-34lsd6B8FocdqdUGdSFkM8m3kTtKnF9P3KOAQGk-bA=="
+            }, {
+                "name": "欺辱凌辱",
+                "url": "/list.php?id=YgaQVd9Z55JTRXsdVcO-lIBUKCfuEpsk-zKs5Vr4_Z0WmxCZ2Z1ub73pHfR3us4vISE-oQpqZX5BdsKQH7xE9w=="
+            }, {
+                "name": "韩国御姐",
+                "url": "/list.php?id=wqe4zh6yg0suyl0M7HiAA5SLjgJAFVh-TnJw9mp0sID17ESd6zNVwgfFbFUW-TrRuPQfz2b_gV1C9ZT1TQHMwg=="
+            }, {
+                "name": "亚洲有码",
+                "url": "/list.php?id=jgTqwXbL5L5NeIuFRL01q_IsQ0u41YV8qwPOgkPf89DEE_ahyEBlhiMjBeXuxuUb9V_qKkbJG2Zd1Q1KYgXdUA=="
+            }, {
+                "name": "闷骚护士",
+                "url": "/list.php?id=o0KiQNJ7ioHSACvdtAHJ-5ON107VIfFSpNfagkXasn1QynZv0I_mq-AZpEqWqYIojSfH7IKnpVEhqTgLqclrJQ=="
+            }, {
+                "name": "多人多P",
+                "url": "/list.php?id=H84DAn4rBflKbmAJgS13Ko6-yhihPgZyPLvQfwi2iFvKM2MRXksa23fnKrjr7ecNWvA6oGXfGTaQ1NZ1FnAXwQ=="
+            }, {
+                "name": "风情旗袍",
+                "url": "/list.php?id=50X87iYnbn3cnTbmcQxBCCVuSX_a00KTHmj-7myOuhP0F-uSn_Ms32W_ZWs7MnliqlxIRWmTjNxTNoYOzKRXFA=="
+            }, {
+                "name": "制服丝袜",
+                "url": "/list.php?id=mYnjC3yinEDsq6-opdWqCLNH5Zq9sItL2KcSZJtrQpeiJfUcB74eMB1Dt__tcM9cFxPcCrJDzYU228GzPjy1-g=="
+            }, {
+                "name": "91探花",
+                "url": "/list.php?id=wPTcPztSqHNwqMR3wrW_Vmx60Y0pAih3NJaQZ3m3e3mpjqmY7uWeyTa-C5bqTFuuJouzVvPMr_JYWJal5xzMMA=="
+            }, {
+                "name": "恋腿狂魔",
+                "url": "/list.php?id=dqtdEFEZcjAdQ9k-UPN_1aJGzmfTb6qECBEzW80DPdBUUiJNsgeS0SMkS32xOBMUy0zpgld-puYe3k8wzlUuTg=="
+            }, {
+                "name": "萝莉少女",
+                "url": "/list.php?id=290L_2f5k6b2AlJghefMMBCSbySTT8Ws1qe90_--4fdV0-cV26JuVgUsnl29iY3aGxoA36NMQf-JAxHE-rV7Mg=="
+            }, {
+                "name": "女优系列",
+                "url": "/list.php?id=DInkZebRsHLFvQjL_mhZU5PIbs592mL0dL9uDREerpqRVBuimKgeG-tH3L55C14Ygfoub0d6t1ElU1bw49rMTA=="
+            }, {
+                "name": "口交颜射",
+                "url": "/list.php?id=1dwCqvVjGTSJByD7cLvTAwrYNY2SIj79Vh6l_sZ1iGdyPGris7Tuxvtf-wWG_797qIZU5rBG4FPObE3VZh6UMA=="
+            }, {
+                "name": "东南亚AV",
+                "url": "/list.php?id=VMuu2r__hv95ymhc21UHi11paEteUIWlB_wDCuiVGqrOxJawfWyC7pDqsESHIBagzwX1wd8Z7a_2ZljBiZok6g=="
+            }, {
+                "name": "网红流出",
+                "url": "/list.php?id=Q6ixlj-Zoj5OLykb_zWkmBjRXcBEb7nQUeBsdfWCIaTsWFVxdBOoV76-4juw5Ymvj3HidolUnsBDnlXlDktzRg=="
+            }, {
+                "name": "国产色情",
+                "url": "/list.php?id=FDMXIxks3e2kMRw_AxGXXLpjk2nnmmXYF87FH3atA9mz_p22d_6XmEYV7sUY65FuiGnJarAuJt37ie8Fg11zfw=="
+            }, {
+                "name": "野外露出",
+                "url": "/list.php?id=Lof8nm207syAUum4_oBcY1KhI-fQtcA3EeGULyiDoFraDSE-TOK5av-ifmuM1plLgMy2R5q-TWNx-mIlrXphIQ=="
+            }, {
+                "name": "主播直播",
+                "url": "/list.php?id=84ZrsuMvrr38BZT6_BWIR_Dz778i7ugxlbeFlmJbE3ENp1-JSBm2Fm7ax8F8m__w_AcXmPmXyHcT5hyLPqYENg=="
+            }, {
+                "name": "网曝门",
+                "url": "/list.php?id=jujM9UoqzGjUNX--BqpQhT3bk29zKKknRf1wHBMTzNP2JEDJM9QlYIT9Nq5lOT7RvbSzhtraIkAgf6YRWDMtEA=="
+            }, {
+                "name": "自拍偷拍",
+                "url": "/list.php?id=sRoGhJehAsLzcR4ZZQwfMYd6tmpX9pCzzvVE_xoyjNVfQu6G6T0MRyjTPlYBT0cSRX2qACZfZWNfB_S01-syEg=="
+            }, {
+                "name": "素人自拍",
+                "url": "/list.php?id=o-G9tsS05twJTe6iTA_ZKzpI8NftmUJlB8330nF3JAp1P4Vuk3b5Os29IVbi54gfNHSsc4sfgT9X1PLHGa953w=="
+            }, {
+                "name": "女同性恋",
+                "url": "/list.php?id=l6yrq87mKUq3J_LCnv8p_wCJfMwfP_K0ZJUDss96zFyeOKv7O8RHiHRLkSIMTPs0fqiQL2eYd-q25fECGbynmw=="
+            }, {
+                "name": "精品推荐",
+                "url": "/list.php?id=NSopWanaB5TZulFyZaXNOu8VOttEFIS6uLi9nTqmprOOzI8iCB3uRSF669JBk1YBUUAVftw51s39yQD9_fvTsQ=="
+            }, {
+                "name": "瑜伽裤",
+                "url": "/list.php?id=i-lauZZ7_GV1rZDut8XTj62QzqMNy1xwEjZ46u9Ajd05BiOGjsYOck7NZBf7t4re5sPXw5Pj0TrtL5-cQ1AHww=="
+            }, {
+                "name": "中文字幕",
+                "url": "/list.php?id=hKm8NOAx2cwTDPjjGJLMfI2BY52mXPJ2CmA2JlqlKGlkRET0zizvZrGNStXUUHjSClQGPUNuzRQtMQEJsPH6-g=="
+            }, {
+                "name": "Cosplay",
+                "url": "/list.php?id=KNX9_GhRw2K-Jnyw-tjSHlsGPlRzk2-rAZON8J4PB_nZPTU5SDrlHvJq-n9Ns0489C_wfogXdbPgsb1XS6xnOg=="
+            }, {
+                "name": "唯美港姐",
+                "url": "/list.php?id=tZ3J6ptMaphU6w1dzjABzkJhXw67cF_oOqKrO8GKtm6hAkInWG8sLN14634prwD5N5PqFrZX-bcjQE38eI8TfQ=="
+            }, {
+                "name": "可爱学生",
+                "url": "/list.php?id=UzLepCG02-2ghTLk2hczL9aHoad1_8yS3FwSx42ex8cIfBIwUnK8MQXvV6GZ1Lrt-9ss_RhhF2_m9thcvi25fw=="
+            }, {
+                "name": "成人动漫",
+                "url": "/list.php?id=DJqE0zIVJUTenk3gmzzirEH8wuRhyEJChbTIw4A7Y2-TWHhMAQepGj56GKa3EKCWFIqZYPuNasaFubcPKihuyQ=="
+            }, {
+                "name": "欧美精品",
+                "url": "/list.php?id=fRZmCPnAp_KPpJjhclmdiq369AGj1BfsUMp3ruJfIG31F5z4CY9yxbCEVqligLplSrsaxiVE2QrPtL2-v9ugDQ=="
+            }, {
+                "name": "剧情介绍",
+                "url": "/list.php?id=yJhroGnb3RePlkxAgr8Ah3PjR_A4XWhNLFhIaJtHuRQoi84hMbUr94YSH05qXk6jcXxfUzVSy8X-nZjsrzw4qg=="
+            }, {
+                "name": "台湾辣妹",
+                "url": "/list.php?id=SeOrHGp1jvNEuhzBxCrdEV3TYFaAWF_mLnl9ipm43NnumCLUPBVKbezOv1y_m9mqorS1fdissuCO_DDro8J2eQ=="
+            }, {
+                "name": "兽耳系列",
+                "url": "/list.php?id=BziiLnO9YOj_V7q63zPngynS7rDZ10mVH5XNhdltaYrOY18zrJ6Gv9idXovYtPzg28WViKgiou2eBKgMDmr25g=="
+            }, {
+                "name": "古装扮演",
+                "url": "/list.php?id=fKdL2-T4TLRhND1jLezJpgPn9t84il7uyPRCVLnQ-ZR7QWEmdhXc7La45psT7B6eOhpkaZuguy_Km6K9ICvIlg=="
+            }, {
+                "name": "伦理三级",
+                "url": "/list.php?id=xBhyX4cqNOX4OMMZ64n7n_sUSEzIIgemCeKRljGPqtpbKWteRgDsf9yU3Sq5WD3IuwzhCHl5ID0Rc1vNKmKARQ=="
+            }, {
+                "name": "男同性恋",
+                "url": "/list.php?id=4NAHsoSc44dePhMA0dGCwZe9qJokqVvtVyHbXQguQYoPdMUc0BuR0k_pbN4XLJW0xxorbkO0R2uNP80Ux4KlYQ=="
+            }, {
+                "name": "传媒出品",
+                "url": "/list.php?id=JJLVAWy4SVVtLyZcNqcT7I__oEUsU9bZQbTsoDancQJ7_8Jf4LOdQ8_v2CgQ7fQyuGpUGfS--fvo3WpeTmQnnw=="
+            }, {
+                "name": "过膝袜",
+                "url": "/list.php?id=OXUS896NeeQWNWyLUBObAMvXh0fPnvpiyUj-n4gauNpcoTCSF0snfqVm085CuHHAzR8xHigaD2l7TPsmcsP9Vg=="
+            }, {
+                "name": "日本有码",
+                "url": "/list.php?id=1JqClYUfOxPnyepwRsG-aRsh3t0Z3my8HpyXe87YUgJHXLnhW4wNpr2ljy06DO9grpKI7KqRlHIQSy88sUlUwA=="
+            }, {
+                "name": "网红黑料",
+                "url": "/list.php?id=BZy0WrrPnK5bELKzqI_QsIv6RBB7HCC_O1toSKEQqGR_P7xwRAdr3rRao2Mynm9QZFa30uJ7yl88EYpTMhIFuQ=="
+            }, {
+                "name": "国产情色",
+                "url": "/list.php?id=jwcfjNAQCvW71QJcSM_bG2fu9XqaRm1vC3xLVvf4nxUYYhvCucfmNGfi2G4vqxTYRYcT0COVgABNYpMXXfmQVA=="
+            }, {
+                "name": "熟女人妻",
+                "url": "/list.php?id=gd08eA49Fw20TPDnCrtI5sTphOXa1YOboXNpHSVuSSG63bzUb7s11zHAP9GxrUpPsEAYKqAGrUotC9jdenKZxg=="
+            }, {
+                "name": "AV解说",
+                "url": "/list.php?id=dVqDtvEWE4ObVh41mo7NbGvQGkX2BiFxORLwpZpnZMRbIccHAWErEkFzOaAyes1y1IzbhPd7kqwW9x68e0S3bw=="
+            }, {
+                "name": "三级伦理",
+                "url": "/list.php?id=NplUf-4Ji_fzD-uBsqBtmsM-uzRA1Gz8mSr306h-02D3dVXU7dxcULN6_nvcJ8U1_PkM1g3mhbnrgYZg757g-A=="
+            }, {
+                "name": "AI换脸",
+                "url": "/list.php?id=NXZ17Obd8Rp_krz1InwV_zI__SfZReBjXoCr3JWpgkOtbNoO_zp0PEH457V6C1Jfz65BuM9t7rETMv4_1q3SRQ=="
+            }, {
+                "name": "人妖系列",
+                "url": "/list.php?id=Gwv4Ye8aekWHWZPtNxbl05VeK3tjvSP2Sz8y4j_T9tZP7RVz-w9VWLe5Ihbx17cVKZcHB7AiZOTe3bmQCnDOIQ=="
+            }, {
+                "name": "制服诱惑",
+                "url": "/list.php?id=7Rt7YZaSuctqyXvrwQFCYI429MjVeEO8NwkXmRw24LHBEg14RI9cWWS3DcbgDct_uS_zDLCN8NQF3pVdRg6vlA=="
+            }, {
+                "name": "少女萝莉",
+                "url": "/list.php?id=_btnon4HaFgN9afJI-XsobyQ0AIQ1Nqcn99TsHbpZGq-TVNGaNjJRnD_Mt7Y2waSKs7KeGq17t8xbSEUrxJ-WA=="
+            }, {
+                "name": "国产传媒",
+                "url": "/list.php?id=zv66FK_1_0xyZMBTGm81cyumcm13e9wFim-GN3_HyTxczPL7pfqiPRprKHAB80sBULHRVe82mQM25p-mHAK5qA=="
+            }, {
+                "name": "日本无码",
+                "url": "/list.php?id=dPNEBIWoZ7O2A7I86XpToenAXAtR8uanKd1V1XJEV2y_cdIhmvvBBVpzzyUh_sOXxZESfaa8JZJea7UABf216A=="
+            }, {
+                "name": "学生系列",
+                "url": "/list.php?id=v3JKTPOjgsccNahvAA8E2dgPwoEK66eLeFXePf_7I3R24U16lf88fHe3wEPMaaVVU15CAY7egvw6ZhwIWcWHIA=="
+            }, {
+                "name": "国产主播",
+                "url": "/list.php?id=lD3vlPB4cmfwrJnJARmYYmDq-m1gYYvYou6MJvR3RV5mUeNW1ypcHT1mDk-itEoKcvIDj0sjb1ziLRjU_PglSg=="
+            }, {
+                "name": "极品少妇",
+                "url": "/list.php?id=b28pgP5p4Ofyy-LkKGsvmcYukcOeKqReYlliwupoYyJmgYodrJdcQ9rkx370p2fp_IPBFTXPrWcsVX1KK52NhA=="
+            }, {
+                "name": "动漫精品",
+                "url": "/list.php?id=dU4w3epJo2UCjcd7ZEZIviGdPtahJ6M7p0HQj84QgYuF0T38_vfy4kZKIQBiEWWjpoNpr9vkK81zhiCmbqQ4DQ=="
+            }, {
+                "name": "欧美极品",
+                "url": "/list.php?id=0fcpDzokM2tuwihvw3zwYUBeLRQm9bxLXNFx9kA6BbY-Lr4SQnQ2Cg0gNHEmgiLERSQKiPQlG024IPP0lMCAZA=="
+            }, {
+                "name": "海外明星",
+                "url": "/list.php?id=1YSNgRtEQto4wi6PnMi0BaJMEctNg1WVf-8l9rzRCHr4Fh3omhCginzy4Vr76K76R6-650Pc3rdcQUBvupQ8TQ=="
+            }, {
+                "name": "变态另类",
+                "url": "/list.php?id=eWxsB8idMYPvddiywZsA2hxpjsJnbvRQkAzAi7SP_SPZe3S7I_WcAQiVJrhhqoeam03uNv-T3jSJx8p3w9PHJA=="
+            }]
+            spol.forEach((item, index) => {
+                var title = item.name;
+                Apollo.d.push({
+                    title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
+                    url: getHome(url) + item.url + $('#noLoading#')
+                        .lazyRule((index) => {
+                        putMyVar('sort', index);
+                        putMyVar("url", input);
+                        refreshPage(false);
+                        return 'hiker://empty'
+                    }, index),
+                    col_type: 'scroll_button'
+                })
+                if (index == 10 || index == 31 || index == 52) {
+                    Apollo.d.push({
+                        col_type: "blank_block"
+                    })
+                }
+            })
+        }
+    },
     //一级视频列表
     videoType: (html, url) => {
+        try {
+            var lastpagenum = pdfh(html, "#page&&a:matches(最大页)&&Text") == "" ? pdfh(html, "#page&&a,-1&&Text")
+                .replace(/.*?(\d+)/, "$1") : pdfh(html, "#page&&a:matches(最大页)&&Text")
+                .replace(/.*?(\d+)/, "$1");
+        } catch {}
         var list = pdfa(html, "#posts&&.post");
         list.forEach(item => {
             var title = pdfh(item, ".time,1&&Text")
@@ -306,7 +554,31 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
-                    title: title
+                    title: title,
+                    longClick: [{
+                        title: '【跳页】=>\t最大页\t:【' + lastpagenum + "】",
+                        js: $.toString((url, lastpagenum) => {
+                            return $('', '1到' + lastpagenum + '之间的页码')
+                                .input((url, lastpagenum) => {
+                                if (parseInt(input) > 1 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
+                                    var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                            return match.charAt(0) + 'page=' + input;
+                                        } else {
+                                            return (url.includes('?') ? '&page=' : '?page=') + input;
+                                        }
+                                    });
+                                    jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
+                                    putMyVar("url", jumpu);
+                                    refreshPage(false);
+                                    return 'toast://你已经穿越到了' + input + '页'
+                                } else {
+                                    return "toast://请输入正确的页码"
+                                }
+                            }, url, lastpagenum)
+                        },
+                        url, lastpagenum)
+                    }]
                 }
             })
         })
@@ -349,6 +621,11 @@ const Apollo = {
 
     //一级演员
     avatarType: (html, url) => {
+        try {
+            var lastpagenum = pdfh(html, "#page&&a:matches(最大页)&&Text") == "" ? pdfh(html, "#page&&a,-1&&Text")
+                .replace(/.*?(\d+)/, "$1") : pdfh(html, "#page&&a:matches(最大页)&&Text")
+                .replace(/.*?(\d+)/, "$1");
+        } catch {}
         var list = pdfa(html, '.content.tagslist&&li')
         list.forEach(item => {
             Apollo.d.push({
@@ -362,7 +639,33 @@ const Apollo = {
                     Apollo.avatarParse(MY_URL)
                     setResult(Apollo.d)
                 }),
-                col_type: 'card_pic_3'
+                col_type: 'card_pic_3',
+                extra: {
+                    longClick: [{
+                        title: '【跳页】=>\t最大页\t:【' + lastpagenum + "】",
+                        js: $.toString((url, lastpagenum) => {
+                            return $('', '1到' + lastpagenum + '之间的页码')
+                                .input((url, lastpagenum) => {
+                                if (parseInt(input) > 1 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
+                                    var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                            return match.charAt(0) + 'page=' + input;
+                                        } else {
+                                            return (url.includes('?') ? '&page=' : '?page=') + input;
+                                        }
+                                    });
+                                    jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
+                                    putMyVar("url", jumpu);
+                                    refreshPage(false);
+                                    return 'toast://你已经穿越到了' + input + '页'
+                                } else {
+                                    return "toast://请输入正确的页码"
+                                }
+                            }, url, lastpagenum)
+                        },
+                        url, lastpagenum)
+                    }]
+                }
             })
         })
     },
@@ -484,7 +787,7 @@ const Apollo = {
             day_say_html = JSON.parse(day_say_html)
             day_say_cache['content'] = day_say_html['hitokoto']
             day_say_cache['time'] = Math.floor(Date.now() / 1000)
-            globalMap0.putMyVar('daysay', day_say_cache)
+            storage0.putMyVar('daysay', day_say_cache)
             return day_say_html['hitokoto']
         }
 
@@ -492,8 +795,8 @@ const Apollo = {
         try {
             let day_say_cache = {}
             let day_time = 0
-            if (globalMap0.hasMyVar('daysay')) {
-                day_say_cache = globalMap0.getMyVar('daysay', {})
+            if (storage0.getMyVar('daysay')) {
+                day_say_cache = storage0.getMyVar('daysay', {})
                 day_time = day_say_cache['time']
                 if (Math.floor(Date.now() / 1000) - day_time >= 600) {
                     day_say = save_day_say_cache()
@@ -562,7 +865,8 @@ const Apollo = {
         log(url)
         var title = MY_PARAMS.title;
         Apollo.d.push({
-            title: '““””' + Apollo.niutrans(title).replace(/^\d+/,"")
+            title: '““””' + Apollo.niutrans(title)
+                .replace(/^\d+/, "")
                 .fontcolor("#E57A1A"),
             url: url,
             col_type: 'text_1',
@@ -598,11 +902,79 @@ const Apollo = {
             url: preview.match(/src="(.*?)"/) ? preview.match(/src="(.*?)"/)[1] : "toast://没有预览视频哦😐",
             col_type: "pic_1_full",
         })
+
         Apollo.yiyanParse(html)
+
         const 识别码 = pdfh(html, "body&&#td-Label&&button&&Text")
         Apollo.CodeParse(识别码)
+
+        try {
+            var picnum = pdfh(html, ".button2&&Text");
+            if (picnum != "") {
+                var list = pdfa(html, "#hiddenButton&&a")
+                Apollo.d.push({
+                    title: '““””' + picnum.fontcolor("#FF00FF"),
+                    url: Apollo.empty + $("")
+                        .lazyRule((list) => {
+                        try {
+                            if (getMyVar("piclist", "收起") == "收起") {
+                                addItemAfter('picnum', {
+                                    title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
+                                    url: "hiker://empty" + $("")
+                                        .lazyRule((list) => {
+                                        for (var i = list.length - 1; i >= 0; i--) {
+                                            deleteItem('previewpic' + i);
+                                        }
+                                        deleteItem('nopiclist');
+                                        putMyVar("piclist", "收起");
+                                        return "hiker://empty"
+                                    }, list),
+                                    col_type: "text_center_1",
+                                    extra: {
+                                        lineVisible: false,
+                                        id: "nopiclist"
+                                    }
+                                })
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    addItemAfter('picnum', {
+                                        url: 'hiker://empty',
+                                        img: pdfh(list[i], "a&&href"),
+                                        col_type: "pic_1_full",
+                                        extra: {
+                                            id: 'previewpic' + i
+                                        }
+                                    });
+                                }
+                                putMyVar("piclist", "展开");
+                            } else {
+                                for (var i = list.length - 1; i >= 0; i--) {
+                                    deleteItem('previewpic' + i);
+                                }
+                                deleteItem('nopiclist');
+                                putMyVar("piclist", "收起");
+                            }
+                            return "hiker://empty"
+                        } catch {
+                            return "hiker://empty"
+                        }
+                    }, list),
+                    col_type: "text_center_1",
+                    extra: {
+                        lineVisible: false,
+                        id: "picnum"
+                    }
+                })
+            } else {
+                for (var i = 0; i < 2; i++) {
+                    Apollo.d.push({
+                        col_type: "big_blank_block"
+                    })
+                }
+            }
+        } catch {}
+
         Apollo.d.push({
-            title: '““””' + "番号：".fontcolor("#FF00FF") + 识别码.toUpperCase()
+            title: '““””' + "番号：".fontcolor("#FFD000") + 识别码.toUpperCase()
                 .fontcolor("#67E0FA"),
             url: "copy://" + 识别码.toUpperCase(),
             col_type: "scroll_button",
@@ -753,64 +1125,7 @@ const Apollo = {
         Apollo.d.push({
             col_type: "blank_block"
         })
-        try {
-            var picnum = pdfh(html, ".button2&&Text");
-            if (picnum != "") {
-                var list = pdfa(html, "#hiddenButton&&a")
-                Apollo.d.push({
-                    title: '🌌\t\t““””' + picnum.fontcolor("#FF00FF"),
-                    url: Apollo.empty + $("")
-                        .lazyRule((list) => {
-                        try {
-                            if (getMyVar("piclist", "收起") == "收起") {
-                                addItemAfter('picnum', {
-                                    title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
-                                    url: "hiker://empty" + $("")
-                                        .lazyRule((list) => {
-                                        for (var i = list.length - 1; i >= 0; i--) {
-                                            deleteItem('previewpic' + i);
-                                        }
-                                        deleteItem('nopiclist');
-                                        putMyVar("piclist", "收起");
-                                        return "hiker://empty"
-                                    }, list),
-                                    col_type: "text_center_1",
-                                    extra: {
-                                        lineVisible: false,
-                                        id: "nopiclist"
-                                    }
-                                })
-                                for (var i = list.length - 1; i >= 0; i--) {
-                                    addItemAfter('picnum', {
-                                        url: 'hiker://empty',
-                                        img: pdfh(list[i], "a&&href"),
-                                        col_type: "pic_1_full",
-                                        extra: {
-                                            id: 'previewpic' + i
-                                        }
-                                    });
-                                }
-                                putMyVar("piclist", "展开");
-                            } else {
-                                for (var i = list.length - 1; i >= 0; i--) {
-                                    deleteItem('previewpic' + i);
-                                }
-                                deleteItem('nopiclist');
-                                putMyVar("piclist", "收起");
-                            }
-                            return "hiker://empty"
-                        } catch {
-                            return "hiker://empty"
-                        }
-                    }, list),
-                    col_type: "text_1",
-                    extra: {
-                        lineVisible: false,
-                        id: "picnum"
-                    }
-                })
-            }
-        } catch {}
+
         Apollo.CiliParse(html)
         Apollo.d.push({
             title: '““””' + "我是有底线的".fontcolor("grey")
