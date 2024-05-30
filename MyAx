@@ -734,43 +734,47 @@ const Apollo = {
         setResult(Apollo.d)
     },
 
-    niutrans: (text) => {
+    //彩云小译
+    cytrans: (text) => {
         var switchtrans = config.switchtrans
         if (switchtrans) {
             try {
-                var url = "https://api.niutrans.com/NiuTransServer/translation";
-                var api = config.api;
-                if (api) {
-                    if (text != "") {
-                        var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
-                        var from = JSON.parse(fetch(lang, {
-                            timeout: 1000
-                        }))
-                            .language;
-                        var result = post(url, {
-                            body: {
-                                src_text: text,
-                                from: from,
-                                to: "zh",
-                                apikey: api,
-                            },
-                            timeout: 1223
-                        });
-                        var data = JSON.parse(result)
-                        if (data.tgt_text) {
-                            return data.tgt_text
-                        } else {
-                            log("翻译失败，使用原文");
-                            return text
+                var to = 'zh'
+                var from = 'auto'
+
+                    function init_data(source_lang, target_lang) {
+                        return {
+                            source: '',
+                            detect: true,
+                            os_type: 'ios',
+                            device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
+                            trans_type: source_lang + '2' + target_lang,
+                            media: 'text',
+                            request_id: 424238335,
+                            user_id: '',
+                            dict: true,
                         }
-                    } else {
-                        log("翻译失败，原文为空");
-                        return text
                     }
-                } else {
-                    toast("预处理请填写翻译api")
-                    return text
-                }
+
+                    function getRandomNumber() {
+                        const rand = Math.floor(Math.random() * 99999) + 100000
+                        return rand * 1000
+                    }
+                const post_data = init_data(from, to)
+                post_data.source = text
+                post_data.request_id = getRandomNumber()
+                let res = fetch('https://interpreter.cyapi.cn/v1/translator', {
+                    method: 'POST',
+                    header: {
+                        'Content-Type': 'application/json',
+                        'x-authorization': 'token ssdj273ksdiwi923bsd9',
+                        'user-agent': 'caiyunInterpreter/5 CFNetwork/1404.0.5 Darwin/22.3.0',
+                    },
+                    body: post_data,
+                })
+                let result = JSON.parse(res)
+                    .target
+                return result
             } catch {
                 log("翻译失败，使用原文");
                 return text
@@ -815,7 +819,7 @@ const Apollo = {
             day_say = ''
         }
         var story = pdfh(html, "body&&h2:matches(故事)+table&&Text")
-        var content = Apollo.niutrans(story)
+        var content = Apollo.cytrans(story)
         var lazy = $(`#noLoading#`)
             .lazyRule((content) => {
             if (content !== "") {
@@ -870,7 +874,7 @@ const Apollo = {
         log(url)
         var title = MY_PARAMS.title;
         Apollo.d.push({
-            title: '““””' + Apollo.niutrans(title)
+            title: '““””' + Apollo.cytrans(title)
                 .replace(/^\d+/, "")
                 .fontcolor("#E57A1A"),
             url: url,
