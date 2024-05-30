@@ -119,7 +119,7 @@ const Apollo = {
                         putMyVar("Apo.subCate", '0')
                         clearMyVar("sort")
                         clearMyVar("url")
-                        refreshPage(true)
+                        refreshPage(false)
                         return "hiker://empty"
                     }, index),
                     col_type: 'scroll_button',
@@ -137,7 +137,7 @@ const Apollo = {
                             putMyVar("Apo.subCate", index.toString())
                             clearMyVar("sort")
                             clearMyVar("url")
-                            refreshPage(true)
+                            refreshPage(false)
                             return "hiker://empty"
                         }, index),
                         col_type: 'scroll_button',
@@ -269,7 +269,7 @@ const Apollo = {
 
                             putMyVar("sort", JSON.stringify(params.cate_temp))
                             putMyVar("url", input)
-                            refreshPage(true)
+                            refreshPage(false)
                             return "hiker://empty"
                         }, {
                             cate_temp: cate_temp,
@@ -684,7 +684,7 @@ const Apollo = {
                         putMyVar('ssou', index);
                         putMyVar('value', input);
                         putMyVar('url', surl)
-                        refreshPage(true);
+                        refreshPage(false);
                         return 'hiker://empty';
                     }, action, value, index),
                     desc: '美好即刻开始...',
