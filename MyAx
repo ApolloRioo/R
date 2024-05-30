@@ -735,42 +735,47 @@ const Apollo = {
     },
 
     niutrans: (text) => {
-        try {
-            var url = "https://api.niutrans.com/NiuTransServer/translation";
-            var api = config.api;
-            if (api) {
-                if (text != "") {
-                    var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
-                    var from = JSON.parse(fetch(lang, {
-                        timeout: 1000
-                    }))
-                        .language;
-                    var result = post(url, {
-                        body: {
-                            src_text: text,
-                            from: from,
-                            to: "zh",
-                            apikey: api,
-                        },
-                        timeout: 1223
-                    });
-                    var data = JSON.parse(result)
-                    if (data.tgt_text) {
-                        return data.tgt_text
+        var switchtrans = config.switchtrans
+        if (switchtrans) {
+            try {
+                var url = "https://api.niutrans.com/NiuTransServer/translation";
+                var api = config.api;
+                if (api) {
+                    if (text != "") {
+                        var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
+                        var from = JSON.parse(fetch(lang, {
+                            timeout: 1000
+                        }))
+                            .language;
+                        var result = post(url, {
+                            body: {
+                                src_text: text,
+                                from: from,
+                                to: "zh",
+                                apikey: api,
+                            },
+                            timeout: 1223
+                        });
+                        var data = JSON.parse(result)
+                        if (data.tgt_text) {
+                            return data.tgt_text
+                        } else {
+                            log("翻译失败，使用原文");
+                            return text
+                        }
                     } else {
-                        log("翻译失败，使用原文");
+                        log("翻译失败，原文为空");
                         return text
                     }
                 } else {
-                    log("翻译失败，原文为空");
+                    toast("预处理请填写翻译api")
                     return text
                 }
-            } else {
-                toast("预处理请填写翻译api")
+            } catch {
+                log("翻译失败，使用原文");
                 return text
             }
-        } catch {
-            log("翻译失败，使用原文");
+        } else {
             return text
         }
     },
