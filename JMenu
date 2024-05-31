@@ -267,7 +267,7 @@ const Apollo = {
             Apollo.d.push({
                 title: new RegExp(value)
                     .test(url) ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
-                url: url.split('?')[0].replace("https://javmenu.com/zh", "") + eval(button) + $('#noLoading#')
+                url: url.split('?')[0] + eval(button) + $('#noLoading#')
                     .lazyRule(() => {
                     putMyVar("yurl", input);
                     refreshPage(false);
@@ -482,6 +482,9 @@ const Apollo = {
 
     //二级
     videoParse: (url) => {
+        addListener("onClose", () => {
+            clearMyVar("piclist");
+        });
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
             const Apollo = $.require('hiker://page/Apollo')
