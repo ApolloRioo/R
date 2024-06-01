@@ -566,7 +566,7 @@ const Apollo = {
                                 for (var i = list.length - 1; i >= 0; i--) {
                                     addItemAfter('picnum', {
                                         url: 'hiker://empty',
-                                        img: pdfh(list[i], "a&&href"),
+                                        img: pdfh(list[i], "a&&href").replace(/.*(https?.*)/,"$1"),
                                         col_type: "pic_1_full",
                                         extra: {
                                             id: 'previewpic' + i
