@@ -20,9 +20,9 @@ js: function CodeLazy(识别码) {
                 var list = pdfa(html, '.grid&&.relative:has(a[href])');
                 var miss = []
                 list.forEach(item => {
-                    var desc = pdfh(item, '.absolute.left-1&&Text');
+                    var desc = pdfh(item, 'a&&alt').replace("uncensored-leak","🔥无码破解").replace("chinese-subtitle","🇨🇳中文字幕").toUpperCase();
                     miss.push({
-                        title: desc == "" ? "默认视频" : desc,
+                        title: /\d$/.test(desc) ? desc+"-🦋默认视频" : desc,
                         url: pdfh(item, 'a&&href'),
                     })
                 })
