@@ -20,9 +20,12 @@ js: function CodeLazy(识别码) {
                 var list = pdfa(html, '.grid&&.relative:has(a[href])');
                 var miss = []
                 list.forEach(item => {
-                    var desc = pdfh(item, 'a&&alt').replace("uncensored-leak","🔥无码破解").replace("chinese-subtitle","🇨🇳中文字幕").toUpperCase();
+                    var desc = pdfh(item, 'a&&alt')
+                        .replace("uncensored-leak", "🔥无码破解")
+                        .replace("chinese-subtitle", "🇨🇳中文字幕")
+                        .toUpperCase();
                     miss.push({
-                        title: /\d$/.test(desc) ? desc+"-🦋默认视频" : desc,
+                        title: /\d$/.test(desc) ? desc + "-🦋默认视频" : desc,
                         url: pdfh(item, 'a&&href'),
                     })
                 })
@@ -115,8 +118,10 @@ js: function CodeLazy(识别码) {
                     var supjav = []
                     list.forEach(item => {
                         var desc = pdfh(item, 'a&&title')
-                            .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                            .match(/^\[(.*?)\]/)[1].replace("4K", "4K原画质") : "默认视频";
+                            .match(/^\[.*?\]/) ? pdfh(item, 'a&&title')
+                            .replace(/^((?:\[.*?\])?.*?)\s.*/, "$1")
+                            .replace("4K", "4K画质") : pdfh(item, 'a&&title')
+                            .replace(/^((?:\[.*?\])?.*?)\s.*/, "[默认视频]$1");
                         supjav.push({
                             title: desc,
                             url: pdfh(item, 'a&&href'),
@@ -198,7 +203,9 @@ js: function CodeLazy(识别码) {
                     .url
                 if (/\.ai\/\d+/.test(redirect)) {
                     JavFinder = [{
-                        "title": "Original Video",
+                        "title": pdfh(fetch(redirect), 'h1&&Text')
+                    .match(/^\[(.*?)\]/) ? pdfh(fetch(redirect), 'h1&&Text')
+                    .match(/^\[(.*?)\]/)[1] : "Original Video",
                         "url": redirect
                     }]
                 } else {
@@ -310,7 +317,7 @@ js: function CodeLazy(识别码) {
                 onlyHeaders: true,
                 timeout: 3323
             }))
-           // log(htmll)
+            // log(htmll)
             if (htmll.statusCode != 0) {
                 var location = htmll.url
                 if (location.includes("error")) {
@@ -660,9 +667,9 @@ js: function CodeLazy(识别码) {
             }]
         }
     });
-    
+
     d.push({
         col_type: "line_blank",
     })
-    
+
 }
