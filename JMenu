@@ -96,6 +96,7 @@ const Apollo = {
         } else {
             url = Apollo.url + getMyVar("url", currentCate.path)
         }
+        url = url.replace(/https?.*\/zh(https?.*)/,"$1")
 
         if (page === 1) {
             categoryList.forEach((cate, index) => {
@@ -134,7 +135,7 @@ const Apollo = {
             }
         }
         //翻页
-        if (page !== 1) {
+        /*        if (page !== 1) {
             url = url.includes("?") ? url + "&page=" + page : url + "?page=" + page
         }
         const html = fetch(url, {
@@ -142,7 +143,27 @@ const Apollo = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
+        log(url)*/
+
+        let nextPage = getMyVar("nextPage", "");
+        if (nextPage && MY_PAGE > 1) {
+            url = nextPage;
+        } else if (MY_PAGE > 1) {
+            url = "没有下一页哦😑"
+        }
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
         log(url)
+        try {
+            var next = pdfh(html, ".pagination&&li:matches(›)&&a&&href")
+            putMyVar("nextPage", next);
+        } catch {
+            clearMyVar("nextPage");
+            // log("可能不存在下一页或者下一页定位有问题");
+        }
 
         if (page === 1) {
             Apollo.videoSort(html, url)
@@ -377,6 +398,13 @@ const Apollo = {
 
     //一级视频列表
     videoType: (html) => {
+        try {
+            var lastpagenum = pdfh(html, ".pagination&&li,-2&&Text") ? pdfh(html, ".pagination&&li,-2&&Text")
+                .replace(/.*?(\d+)/, "$1") : "1";
+            var currpagenum = pdfh(html, ".pagination&&li[aria-current]&&Text")
+                .replace(/.*?(\d+)/, "$1")
+            var lurl = pdfh(html, "html&&link[hreflang=zh]&&href")
+        } catch {}
         var list = pdfa(html, "body&&.video-list-item:not(:has(a[target]))");
         list.forEach(item => {
             Apollo.d.push({
@@ -392,6 +420,31 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: pdfh(item, ".lazyload&&alt"),
+                    longClick: [{
+                        title: '【跳页】【当前' + currpagenum + '】=>\t最大页\t:【' + lastpagenum + "】",
+                        js: $.toString((currpagenum, lastpagenum, lurl) => {
+                            return $('', '1到' + lastpagenum + '之间的页码')
+                                .input((lastpagenum, lurl) => {
+                                if (parseInt(input) > 0 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
+                                    var jumpu = lurl.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                            return match.charAt(0) + 'page=' + input;
+                                        } else {
+                                            return (lurl.includes('?') ? '&page=' : '?page=') + input;
+                                        }
+                                    });
+                                    putMyVar("url", jumpu);
+                                    putMyVar("yurl", jumpu);
+                                    refreshPage(false);
+                                    return 'toast://你已经穿越到了' + input + '页'
+                                } else {
+                                    return "toast://请输入正确的页码"
+                                }
+                            },
+                            lastpagenum, lurl)
+                        },
+                        currpagenum, lastpagenum, lurl)
+                    }]
                 }
             })
         })
@@ -566,7 +619,8 @@ const Apollo = {
                                 for (var i = list.length - 1; i >= 0; i--) {
                                     addItemAfter('picnum', {
                                         url: 'hiker://empty',
-                                        img: pdfh(list[i], "a&&href").replace(/.*(https?.*)/,"$1"),
+                                        img: pdfh(list[i], "a&&href")
+                                            .replace(/.*(https?.*)/, "$1"),
                                         col_type: "pic_1_full",
                                         extra: {
                                             id: 'previewpic' + i
