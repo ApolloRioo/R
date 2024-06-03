@@ -96,7 +96,7 @@ const Apollo = {
         } else {
             url = Apollo.url + getMyVar("url", currentCate.path)
         }
-        url = url.replace(/https?.*\/zh(https?.*)/,"$1")
+        url = url.replace(/https?.*\/zh(https?.*)/, "$1")
 
         if (page === 1) {
             categoryList.forEach((cate, index) => {
@@ -420,7 +420,7 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: pdfh(item, ".lazyload&&alt"),
-                    longClick: [{
+                    longClick: lastpagenum > 0 ? [{
                         title: '【跳页】【当前' + currpagenum + '】=>\t最大页\t:【' + lastpagenum + "】",
                         js: $.toString((currpagenum, lastpagenum, lurl) => {
                             return $('', '1到' + lastpagenum + '之间的页码')
@@ -444,7 +444,7 @@ const Apollo = {
                             lastpagenum, lurl)
                         },
                         currpagenum, lastpagenum, lurl)
-                    }]
+                    }] : ''
                 }
             })
         })
@@ -502,11 +502,15 @@ const Apollo = {
     avatarParse: (url) => {
         addListener("onClose", $.toString(() => {
             clearMyVar("yurl");
+            clearMyVar("nextPage1");
         }));
         url = getMyVar("yurl", url)
             .replace(/(.*?)#.*/, "$1");
-        if (MY_PAGE !== 1) {
-            url = url.includes("?") ? url + "&page=" + MY_PAGE : url + "?page=" + MY_PAGE
+        let nextPage = getMyVar("nextPage1", "");
+        if (nextPage && MY_PAGE > 1) {
+            url = nextPage;
+        } else if (MY_PAGE > 1) {
+            url = "没有下一页哦😑"
         }
         const html = fetch(url, {
             headers: {
@@ -514,6 +518,13 @@ const Apollo = {
             }
         })
         log(url)
+        try {
+            var next = pdfh(html, ".pagination&&li:matches(›)&&a&&href")
+            putMyVar("nextPage1", next);
+        } catch {
+            clearMyVar("nextPage1");
+            // log("可能不存在下一页或者下一页定位有问题");
+        }
         if (MY_PAGE === 1) {
             Apollo.videoSort1(html, url)
         }
@@ -552,12 +563,56 @@ const Apollo = {
         log(url)
         var title = pdfh(html, "h1&&Text")
             .replace("免费AV在线看", "");
+        var desct = title;
         Apollo.d.push({
             title: '““””' + title.fontcolor("#E57A1A"),
-            url: url,
+            url: "hiker://empty" + $('#noLoading#')
+                .lazyRule((desct) => {
+                var desc = findItem('transdesc')
+                    .desc
+                if (!desc) {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    var translates = Apollo.translate(desct)
+                    updateItem("transdesc", {
+                        desc: '““””' + translates.fontcolor("red"),
+                    })
+                } else {
+                    updateItem("transdesc", {
+                        desc: '',
+                    })
+                }
+                return "hiker://empty"
+            }, desct),
             col_type: 'text_1',
             extra: {
-                lineVisible: false
+                lineVisible: false,
+                id: 'transdesc',
+                longClick: [{
+                    title: '网页',
+                    js: $.toString(() => {
+                        return "web://" + MY_URL
+                    })
+                }, {
+                    title: '复制',
+                    js: $.toString((title) => {
+                        return "copy://" + title;
+                    }, title)
+                }, {
+                    title: '百度翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://fanyi.baidu.com/#jp/zh/" + title
+                    }, title)
+                }, {
+                    title: 'Deepl翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://www.deepl.com/zh/translator-mobile#ja/zh/" + title
+                    }, title)
+                }, {
+                    title: '谷歌翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://translate.google.com/?hl=zh-CN&sl=ja&tl=zh-CN&text=" + title
+                    }, title)
+                }]
             }
         })
         const img = pdfh(html, "meta[property=og:image]&&content");
@@ -815,12 +870,45 @@ const Apollo = {
             }
         }
         Apollo.CiliParse(html)
-        Apollo.d.push({
-            title: '<span style="color: #FF00FF;">同演员作品</span>',
-            pic_url: "https://lanmeiguojiang.com/tubiao/ke/100.png",
-            col_type: 'rich_text'
-        });
+
+        //同演员作品
+        var sameactor = pdfh(html, "body&&.col-12.mt-5&&Text");
+        if (sameactor) {
+            Apollo.d.push({
+                title: '<span style="color: #FF00FF;">' + sameactor + '</span>',
+                pic_url: "https://lanmeiguojiang.com/tubiao/ke/100.png",
+                col_type: 'rich_text'
+            });
+        }
         Apollo.videoType(html)
+
+        //同主题作品
+        var sametopic = pdfh(html, "body&&.main-title&&Text");
+        if (sametopic) {
+            Apollo.d.push({
+                title: '<span style="color: #FF00FF;">' + sametopic + '</span>',
+                pic_url: "https://lanmeiguojiang.com/tubiao/ke/100.png",
+                col_type: 'rich_text'
+            });
+        }
+        var list = pdfa(html, ".list-unstyled&&li");
+        list.forEach(item => {
+            Apollo.d.push({
+                title: pdfh(item, ".lazyload&&alt"),
+                desc: pdfh(item, ".text-muted&&Text"),
+                img: pdfh(item, ".lazyload&&data-src"),
+                url: $(pdfh(item, 'a&&href') + '#noHistory#')
+                    .rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: "movie_2",
+                extra: {
+                    pageTitle: pdfh(item, ".lazyload&&alt"),
+                }
+            })
+        })
         Apollo.d.push({
             title: '““””' + "我是有底线的".fontcolor("grey")
                 .small(),
@@ -848,6 +936,95 @@ const Apollo = {
                 }
             })
         })
+    },
+
+    //翻译
+    translate: (text) => {
+        var switchtrans = config.switchtrans
+        if (switchtrans == true || switchtrans == "彩云小译") {
+            try {
+                var to = 'zh'
+                var from = 'auto'
+
+                    function init_data(source_lang, target_lang) {
+                        return {
+                            source: '',
+                            detect: true,
+                            os_type: 'ios',
+                            device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
+                            trans_type: source_lang + '2' + target_lang,
+                            media: 'text',
+                            request_id: 424238335,
+                            user_id: '',
+                            dict: true,
+                        }
+                    }
+
+                    function getRandomNumber() {
+                        const rand = Math.floor(Math.random() * 99999) + 100000
+                        return rand * 1000
+                    }
+                const post_data = init_data(from, to)
+                post_data.source = text
+                post_data.request_id = getRandomNumber()
+                let res = fetch('https://interpreter.cyapi.cn/v1/translator', {
+                    method: 'POST',
+                    header: {
+                        'Content-Type': 'application/json',
+                        'x-authorization': 'token ssdj273ksdiwi923bsd9',
+                        'user-agent': 'caiyunInterpreter/5 CFNetwork/1404.0.5 Darwin/22.3.0',
+                    },
+                    body: post_data,
+                })
+                let result = JSON.parse(res)
+                    .target
+                return result + "🇨🇳☁️彩云小译"
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else if (switchtrans == "小牛翻译") {
+            try {
+                var url = "https://api.niutrans.com/NiuTransServer/translation";
+                var api = config.api;
+                if (api) {
+                    if (text != "") {
+                        var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
+                        var from = JSON.parse(fetch(lang, {
+                            timeout: 1000
+                        }))
+                            .language;
+                        var result = post(url, {
+                            body: {
+                                src_text: text,
+                                from: from,
+                                to: "zh",
+                                apikey: api,
+                            },
+                            timeout: 1223
+                        });
+                        var data = JSON.parse(result)
+                        if (data.tgt_text) {
+                            return data.tgt_text + "🇨🇳🐮小牛翻译"
+                        } else {
+                            log("翻译失败，使用原文");
+                            return text
+                        }
+                    } else {
+                        log("翻译失败，原文为空");
+                        return text
+                    }
+                } else {
+                    toast("预处理请填写翻译api")
+                    return text
+                }
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else {
+            return text
+        }
     },
 
     //外链播放
