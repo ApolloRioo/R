@@ -111,7 +111,7 @@ js: function CodeLazy(识别码) {
                         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1",
                         "Referer": "https://supjav.com/"
                     },
-                    timeout: 6666
+                    timeout: 4923
                 })
                 if (html) {
                     var list = pdfa(html, '.posts&&.post');
