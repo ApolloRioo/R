@@ -356,8 +356,6 @@ proxy-groups:
     max-failed-times: 5
     tolerance: 15
     proxies:
-     - 🎽Super 💙01
-     - 🎽Super 💙02
      - 💝 手动选择
      - 🚀 旺财Clash
      - 🚀 旺财节点
