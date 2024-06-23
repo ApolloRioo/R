@@ -143,14 +143,14 @@ profile:    # 缓存
   store-selected: true    # 储存 API 对策略组的选择,以供下次启动时使用
   store-fake-ip: true     # fake-ip 缓存,域名再次发生连接时,使用原有映射地址
 proxy-providers:
-  ①号跑道亏本机场:
+  ①号跑道旺财Clash:
     type: http
     interval: 43200
     path: ①号跑道.yaml
-    url: https://knjc.cfd/api/v1/client/subscribe?token=245d71864381b5e67938e2aee84dd06a   #亏本此处添加自己的机场订阅链接(通用或clash格式)
+    url: https://igdux.top/~Clash   #亏本此处添加自己的机场订阅链接(通用或clash格式)
     filter: ^((?!Remain|Expired|官网|年|群组|节点|订阅|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
     override:
-      additional-prefix: "❶ " # 为订阅节点添加机场名称前缀
+      additional-prefix: "🐶 " # 为订阅节点添加机场名称前缀
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -161,18 +161,18 @@ proxy-providers:
     url: https://igdux.top/~Nekobox #https://igdux.top/~Clash  #旺财
     filter: ^((?!Remain|Expired|官网|群组|节点|订阅|年|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
     override:
-      additional-prefix: "❷ " # 为订阅节点添加机场名称前缀
+      additional-prefix: "🐺 " # 为订阅节点添加机场名称前缀
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
-  ③号跑道𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢:
+  ③号跑道橘子公益:
     type: http
     interval: 43200
     path: ③号跑道.yaml
-    url: https://raw.githubusercontent.com/ApolloRioo/R/master/ApolloR   #此处不用替换R
+    url: https://sub.5112233.xyz/auto   #此处不用替换R
     filter: ^((?!Remain|Expired|官网|群组|节点|订阅|年|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
     override:
-      additional-prefix: "❸ " # 为订阅节点添加机场名称前缀
+      additional-prefix: "🍊 " # 为订阅节点添加机场名称前缀
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
@@ -180,7 +180,7 @@ proxy-providers:
     type: http
     interval: 43200
     path: ④号跑道.yaml
-    url: http://2666v3.mc5173.cn:18868/api/v1/client/subscribe?token=9078e673ca9b7d9f3230a02036a15605&flag=meta  #华夏联盟
+    url: https://flynb.site/sub/?token=F9F9zZcllpdyN5TluF9F9zZF9F9zZ11EEfx0g&tag=clash1  #hello world
     filter: ^((?!Remain|Expired|IPV6|官网|群组|节点|订阅|年|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
     override:
       additional-prefix: "❹ " # 为订阅节点添加机场名称前缀
@@ -202,70 +202,37 @@ proxy-providers:
     type: http
     interval: 43200
     path: ⑥号跑道.yaml
-    url: https://oss.pithecia.com/api/v1/client/subscribe?token=d3dab7e0a418293c60bb6d1a655e0f46&types=hysteria2  #𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
+    url: https://url.happyhour.lol/Happyhour  #𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
     filter: ^((?!Remain|Expired|官网|群组|节点|订阅|年|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
     override:
       additional-prefix: "❻ " # 为订阅节点添加机场名称前缀
     health-check:
       enable: true
       url: http://cp.cloudflare.com/
-  ⑦号跑道临时订阅:
+  ⑦号跑道天诚T:
     type: http
     interval: 43200
     path: ⑦号跑道.yaml
-    url: https://vip.365cloud.me/api/v1/client/subscribe?token=4f1f7e939e1cea0f9bd20d7bb20ecbbd&flag=meta #360cloud
+    url: https://altrojan.comorg.us.kg/sub?host=sytrojan.6516789.xyz&pw=google #天诚T
     filter: ^((?!Remain|Expired|官网|群组|节点|订阅|年|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
     override:
       additional-prefix: "❼ " # 为订阅节点添加机场名称前缀
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
+  ⑧号跑道天诚V:
+    type: http
+    interval: 43200
+    path: ⑧号跑道.yaml
+    url: https://alvless.comorg.us.kg/sub?host=syvless.6516789.xyz&uuid=99280094-e683-476b-a3cd-0d37c3892c6f #天诚V
+    filter: ^((?!Remain|Expired|官网|群组|节点|订阅|年|月|如需|套餐|去除|防失联|剩余|过期|距离|Reset).)+$
+    override:
+      additional-prefix: "❽ " # 为订阅节点添加机场名称前缀
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
                         
 proxies:
-  - name: 🎽Super 💙01
-    server: 183.237.20.158
-    port: 40595
-    client-fingerprint: chrome
-    type: vmess
-    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-    alterId: 64
-    cipher: auto
-    tls: false
-    tfo: false
-    skip-cert-verify: false
-  - name: 🎽Super 💙02
-    server: 183.237.20.158
-    port: 41042
-    client-fingerprint: chrome
-    type: vmess
-    uuid: 418048af-a293-4b99-9b0c-98ca3580dd24
-    alterId: 64
-    cipher: auto
-    tls: false
-    tfo: false
-    skip-cert-verify: false
-  - name: 🎽香港 💙SSR
-    type: ssr
-    server: 14.152.94.40
-    port: 8181
-    client-fingerprint: chrome
-    cipher: dummy
-    password: 123456
-    obfs: plain
-    protocol: auth_chain_a
-    protocol-param: 49837:PWra2N
-    remarks: 6aaZ5riv
-    # obfs-param: domain.tld
-    # udp: true
-  - {name: 🎽🇭🇰 香港 2, server: 120.232.240.56, port: 11421, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇹🇼 台湾 1, server: 120.232.240.56, port: 11428, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇰🇷 韩国 1, server: 120.232.240.46, port: 11803, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇭🇰 香港 3, server: 120.232.240.46, port: 11810, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇭🇰 香港 4, server: 120.232.240.46, port: 11802, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇭🇰 香港 1, server: 120.232.240.46, port: 11845, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇬🇧 英国 1, server: 120.232.240.46, port: 11005, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇬🇧 英国 2, server: 120.232.240.56, port: 11501, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
-  - {name: 🎽🇯🇵 日本 1, server: 120.232.240.46, port: 11812, client-fingerprint: chrome, type: ssr, cipher: chacha20-ietf, password: Fhbe0z, protocol: auth_aes128_sha1, obfs: tls1.2_ticket_auth, protocol-param: 24:SpYUtPeJYhRk4FWC, obfs-param: 6f41b24.microsoft.com}
 
 proxy-groups:
   - name: 💝 手动选择
@@ -281,7 +248,7 @@ proxy-groups:
     # - ①号跑道
     # - ②号跑道
     # - ③号跑道
-  - name: 🚀 亏本机场
+  - name: 🚀 旺财Clash
     type: select
     url: https://www.gstatic.com/generate_204
     interval: 10
@@ -290,7 +257,7 @@ proxy-groups:
     max-failed-times: 5
     tolerance: 15
     use:
-     - ①号跑道亏本机场
+     - ①号跑道旺财Clash
   - name: 🚀 旺财节点
     type: select
     url: https://www.gstatic.com/generate_204
@@ -301,7 +268,7 @@ proxy-groups:
     tolerance: 15
     use:
      - ②号跑道旺财节点
-  - name: 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
+  - name: 🚀 橘子公益
     type: select
     url: https://www.gstatic.com/generate_204
     interval: 10
@@ -310,8 +277,8 @@ proxy-groups:
     max-failed-times: 5
     tolerance: 15
     use:
-     - ③号跑道𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-  - name: 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
+     - ③号跑道橘子公益
+  - name: 🚀 欢乐时光
     type: select
     url: https://www.gstatic.com/generate_204
     interval: 10
@@ -321,7 +288,7 @@ proxy-groups:
     tolerance: 15
     use:
      - ⑥号跑道Pithecia
-  - name: 🚀 临时订阅
+  - name: 🚀 天诚T
     type: select
     url: https://www.gstatic.com/generate_204
     interval: 10
@@ -330,7 +297,17 @@ proxy-groups:
     max-failed-times: 5
     tolerance: 15
     use:
-     - ⑦号跑道临时订阅
+     - ⑦号跑道天诚T
+  - name: 🚀 天诚V
+    type: select
+    url: https://www.gstatic.com/generate_204
+    interval: 10
+    lazy: true
+    timeout: 3220
+    max-failed-times: 5
+    tolerance: 15
+    use:
+     - ⑧号跑道天诚V
   - name: 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
     type: select
     url: http://cp.cloudflare.com/
@@ -343,23 +320,7 @@ proxy-groups:
        - ④号跑道华夏联盟
        - ⑤号跑道旺财SSR
     proxies:
-     - 🎽香港 💙SSR
-     - 🎽Super 💙01
-     - 🎽Super 💙02
-     #- ☁️ CF-WRAP-02
-     #- ☁️ CF-WRAP-04
-     #- ☁️ CF-WRAP-05
-     #- ☁️ CF-WRAP-08
-     #- ☁️ CF-WRAP-09
-     - 🎽🇭🇰 香港 1
-     - 🎽🇭🇰 香港 2
-     - 🎽🇭🇰 香港 3
-     - 🎽🇭🇰 香港 4
-     - 🎽🇹🇼 台湾 1
-     - 🎽🇰🇷 韩国 1
-     - 🎽🇬🇧 英国 1
-     - 🎽🇬🇧 英国 2
-     - 🎽🇯🇵 日本 1
+
   - name: 🌏 全球代理
     type: select
     url: https://www.gstatic.com/generate_204
@@ -369,13 +330,13 @@ proxy-groups:
     max-failed-times: 5
     tolerance: 15
     proxies:
-     - 🚀 临时订阅
+     - 🚀 天诚T
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
      - 🇭🇰 香港
      - 🇹🇼 台湾
      - 🇯🇵 日本
@@ -385,7 +346,7 @@ proxy-groups:
      - 😈 亚非
      - 🐬 欧美
      - 🐼 全球直连
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 🐮 𝐍𝐞𝐰𝐁𝐞𝐞
     type: select
     url: https://www.gstatic.com/generate_204
@@ -398,13 +359,13 @@ proxy-groups:
      - 🎽Super 💙01
      - 🎽Super 💙02
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
-     - 🚀 临时订阅
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
+     - 🚀 天诚T
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 🎯 𝐆𝐨𝐨𝐠𝐥𝐞
     type: select
     url: https://www.gstatic.com/generate_204
@@ -416,11 +377,11 @@ proxy-groups:
     proxies:
      - 🌏 全球代理
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
-     - 🚀 临时订阅
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
+     - 🚀 天诚T
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
      - 🇭🇰 香港
      - 🇹🇼 台湾
@@ -430,7 +391,7 @@ proxy-groups:
      - 🇺🇸 美国
      - 😈 亚非
      - 🐬 欧美
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 🎶 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 𝐌𝐮𝐬𝐢𝐜
     type: select
     url: https://www.gstatic.com/generate_204
@@ -442,11 +403,11 @@ proxy-groups:
     proxies:
      - 🌏 全球代理
      - 💝 手动选择
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 临时订阅
-     - 🚀 亏本机场
+     - 🚀 橘子公益
+     - 🚀 天诚T
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
+     - 🚀 欢乐时光
      - 🇭🇰 香港
      - 🇹🇼 台湾
      - 🇯🇵 日本
@@ -456,7 +417,7 @@ proxy-groups:
      - 😈 亚非
      - 🐬 欧美
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 🎸 𝐒𝐩𝐨𝐭𝐢𝐟𝐲
     type: select
     url: https://www.gstatic.com/generate_204
@@ -469,11 +430,11 @@ proxy-groups:
      - 🐼 全球直连
      - 🌏 全球代理
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
-     - 🚀 临时订阅
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
+     - 🚀 天诚T
      - 🇭🇰 香港
      - 🇹🇼 台湾
      - 🇯🇵 日本
@@ -483,7 +444,7 @@ proxy-groups:
      - 😈 亚非
      - 🐬 欧美
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 🍥 𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦
     type: select
     url: https://www.gstatic.com/generate_204
@@ -503,13 +464,13 @@ proxy-groups:
      - 🐬 欧美
      - 🌏 全球代理
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
-     - 🚀 临时订阅
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
+     - 🚀 天诚T
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 📱 𝐓𝐢𝐤𝐓𝐨𝐤
     type: select
     url: https://www.gstatic.com/generate_204
@@ -521,11 +482,11 @@ proxy-groups:
     proxies:
      - 🌏 全球代理
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
-     - 🚀 临时订阅
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
+     - 🚀 天诚T
      - 🇭🇰 香港
      - 🇹🇼 台湾
      - 🇯🇵 日本
@@ -535,26 +496,13 @@ proxy-groups:
      - 😈 亚非
      - 🐬 欧美
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
-     - 🆘 故障转移
+     - 🚀 天诚V
   - name: 🚫 广告拦截
     type: select
     hidden: true
     proxies:
      - REJECT
      - DIRECT
-  - name: 🆘 故障转移
-    type: fallback
-    url: https://www.gstatic.com/generate_204
-    interval: 10
-    lazy: true
-    timeout: 3220
-    max-failed-times: 5
-    tolerance: 15
-    # include-all: true
-    use:
-     - ①号跑道亏本机场
-    proxies:
-     #- 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
   - name: 🐼 全球直连
     type: select
     url: https://www.gstatic.com/generate_204
@@ -566,11 +514,11 @@ proxy-groups:
     proxies:
      - DIRECT
      - 💝 手动选择
-     - 🚀 亏本机场
+     - 🚀 旺财Clash
      - 🚀 旺财节点
-     - 🚀 𝐀𝐩𝐨𝐥𝐥𝐨𝐑𝐢
-     - 🚀 𝐏𝐢𝐭𝐡𝐞𝐜𝐢𝐚
-     - 🚀 临时订阅
+     - 🚀 橘子公益
+     - 🚀 欢乐时光
+     - 🚀 天诚T
      - 🇭🇰 香港
      - 🇹🇼 台湾
      - 🇯🇵 日本
@@ -580,7 +528,7 @@ proxy-groups:
      - 😈 亚非
      - 🐬 欧美
      - 🐉 𝑯𝒆𝒍𝒍𝒐𝑾𝒐𝒓𝒍𝒅
-     - 🆘 故障转移
+     - 🚀 天诚V
      - REJECT
   - name: 😈 亚非
     type: select
