@@ -49,5 +49,6 @@ payload:
   - DOMAIN-SUFFIX,888484.xyz
   - DOMAIN-SUFFIX,wogg.link
   - DOMAIN-REGEX,ffzy-play(\d+)?\.com
+  - DOMAIN-REGEX,ffzy-online(\d+)?\.com
   - DOMAIN-REGEX,hsck(\d+)?\.cc
   - DOMAIN-REGEX,hsck(\d+)?\.net
