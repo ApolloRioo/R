@@ -3,6 +3,8 @@
 payload:
 # 个人去广告
   - DOMAIN-SUFFIX,yalayi.com
+  - DOMAIN-SUFFIX,yalayi.net
+  - DOMAIN-SUFFIX,yahah.cn
   - DOMAIN-SUFFIX,exosrv.com
   - DOMAIN-SUFFIX,trip.com
   - DOMAIN-SUFFIX,stripchat.com
