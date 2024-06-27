@@ -2,6 +2,7 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,xhamsterlive.com
   - DOMAIN-SUFFIX,yalayi.com
   - DOMAIN-SUFFIX,yalayi.net
   - DOMAIN-SUFFIX,yahah.cn
