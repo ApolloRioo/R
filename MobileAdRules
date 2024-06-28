@@ -183,15 +183,6 @@ www.qwant.com##._35zId._7B4NI._3wU9G._34obj._1S2hN
 ! gitea 测试删库跑路说明
 try.gitea.io##body > .container.ui
 
-! 茶杯狐 https://cupfox.app
-||picx.zhimg.com/80/v2-de7de0beab7684d85b0b6c83c65fc1b1.gif$image
-||picx.zhimg.com/80/v2-3ea56e83eafb584bac9f785280fbbfb2.jpg$image
-cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(3)
-cupfox.app##div.nav.jsx-dda03c949c3e6b40:nth-of-type(4)
-cupfox.app##div.nav.jsx-3643242311:nth-of-type(4)
-cupfox.app##div.nav.jsx-3643242311:nth-of-type(5)
-cupfox.app##div.nav.jsx-5c354644a52d01d1:nth-of-type(4)
-cupfox.app##div.nav.jsx-5c354644a52d01d1:nth-of-type(3)
 
 ! 影咖 https://yingka.tv
 yingka.tv##.fodong_tips.tips-list
@@ -326,6 +317,7 @@ m.so.com##.guide-rel.mb.res-list.g-card
 m.so.com##.default_show.top-rec
 
 ! 哔哩哔哩 https://m.bilibili.com
+m.bilibili.com##.share-video-info
 m.bilibili.com##.visible-open-app-btn > .m-video-main-launchapp.launch-app-btn > .m-video2-awaken-btn
 m.bilibili.com##.fixed-module-margin.m-video-related
 m.bilibili.com##.mplayer-ending-panel-recommend
