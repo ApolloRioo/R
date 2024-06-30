@@ -539,7 +539,7 @@ const Apollo = {
         list.forEach(item => {
             var title = pdfh(item, ".time,1&&Text")
                 .toUpperCase() + "\t" + pdfh(item, "h3&&Text");
-            var img = pdfh(item, "img&&src");
+            var img = pdfh(item, "img&&data-src");
             Apollo.d.push({
                 title: title,
                 desc: pdfh(item, ".vip-tag&&Text")
@@ -589,7 +589,7 @@ const Apollo = {
         var list = pdfa(html, "#posts&&.post");
         list.forEach(item => {
             var title = pdfh(item, "h3&&Text");
-            var img = pdfh(item, "img&&src");
+            var img = pdfh(item, "img&&data-src");
             Apollo.d.push({
                 title: title,
                 desc: "\t\t📅" + pdfh(item, ".time&&Text"),
