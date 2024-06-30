@@ -53,6 +53,7 @@ payload:
   - DOMAIN-REGEX,ffzy-online(\d+)?\.com
 #量子
   - DOMAIN-REGEX,lz-cdn(\d+)?\.com
+  - DOMAIN-REGEX,lzcdn(\d+)?\.com
 #黄色仓库
   - DOMAIN-REGEX,hsck(\d+)?\.cc
   - DOMAIN-REGEX,hsck(\d+)?\.net
