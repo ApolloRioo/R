@@ -4,6 +4,18 @@
 ! Homepage:https://thumbsnap.com/i/79ZPXaqP.gif
 ! by: R
 
+! 2024年7月1日 https://igdux.top
+igdux.top##p:nth-of-type(3)
+igdux.top##p:nth-of-type(2)
+igdux.top##.markdown-body.my-5.px-3 > p
+igdux.top###paste-setting-panel > h2
+igdux.top##h1
+igdux.top##div.label-line > .small-label
+igdux.top##.text-center.my-2.px-3
+igdux.top###paste-passwd-panel > .small-label
+igdux.top###paste-expiration-panel > .small-label
+
+
 ! 2024年5月28日 https://niutrans.com 小牛翻译
 niutrans.com##.bottom-nav-new
 niutrans.com##.el-footer
