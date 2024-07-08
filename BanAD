@@ -2,6 +2,10 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,videocampaign.co
+  - DOMAIN-SUFFIX,nv3tosjqd.com
+  - DOMAIN-SUFFIX,tsyndicate.com
+  - DOMAIN-SUFFIX,tyserving.com
   - DOMAIN-SUFFIX,cibsaugrou.com
   - DOMAIN-SUFFIX,oulreeltuk.com
   - DOMAIN-SUFFIX,trillonswiss.com
