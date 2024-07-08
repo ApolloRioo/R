@@ -2,6 +2,10 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,cibsaugrou.com
+  - DOMAIN-SUFFIX,oulreeltuk.com
+  - DOMAIN-SUFFIX,trillonswiss.com
+  - DOMAIN-SUFFIX,witcongem.live
   - DOMAIN-SUFFIX,xhamsterlive.com
   - DOMAIN-SUFFIX,yalayi.com
   - DOMAIN-SUFFIX,yalayi.net
@@ -45,6 +49,7 @@ payload:
   - DOMAIN-SUFFIX,hhbypdoecp.com
   - DOMAIN-SUFFIX,crummydevioussucculent.com
   - DOMAIN-SUFFIX,citadelpathstatue.com
+  - DOMAIN-SUFFIX,lovelyheartwarmingdrive.shop
   - DOMAIN-SUFFIX,endowmentoverhangutmost.com
   - DOMAIN-SUFFIX,d3eub2e21dc6h0.cloudfront.net
   - DOMAIN-SUFFIX,du0pud0sdlmzf.cloudfront.net
