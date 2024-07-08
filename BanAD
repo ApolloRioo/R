@@ -2,6 +2,7 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,xxxvjmp.com
   - DOMAIN-SUFFIX,videocampaign.co
   - DOMAIN-SUFFIX,nv3tosjqd.com
   - DOMAIN-SUFFIX,tsyndicate.com
@@ -53,6 +54,8 @@ payload:
   - DOMAIN-SUFFIX,hhbypdoecp.com
   - DOMAIN-SUFFIX,crummydevioussucculent.com
   - DOMAIN-SUFFIX,citadelpathstatue.com
+  - DOMAIN-SUFFIX,concedederaserskyline.com
+  - DOMAIN-SUFFIX,crazyvideotodownload.com
   - DOMAIN-SUFFIX,lovelyheartwarmingdrive.shop
   - DOMAIN-SUFFIX,endowmentoverhangutmost.com
   - DOMAIN-SUFFIX,d3eub2e21dc6h0.cloudfront.net
