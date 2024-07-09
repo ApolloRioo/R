@@ -48,6 +48,7 @@ payload:
   - DOMAIN-SUFFIX,wogg.bf
   - DOMAIN-SUFFIX,888484.xyz
   - DOMAIN-SUFFIX,wogg.link
+  - DOMAIN-SUFFIX,bingal.com
 # 非凡
   - DOMAIN-REGEX,ffzy-play(\d+)?\.com
   - DOMAIN-REGEX,ffzy-online(\d+)?\.com
