@@ -57,3 +57,5 @@ payload:
 # 黄色仓库
   - DOMAIN-REGEX,hsck(\d+)?\.cc
   - DOMAIN-REGEX,hsck(\d+)?\.net
+# bing翻译
+  - DOMAIN,cn.bing.com
