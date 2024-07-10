@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: R 如果我存在,只因你需要我!
-! Version:20240310
+! Version:20240710
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
@@ -463,7 +463,7 @@ catbox.moe##div.notetiny
 ! 2024年7月10日 https://missav.com
 missav.com##div.px-4.lg\:pb-0.pb-4.pt-16
 missav.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
-missav.com##.mb-2.-m
+missav.com##.mb-2.-m-5
 
 ##.swiper-backface-hidden.swiper-watch-progress.swiper-android.swiper-horizontal.swiper-initialized.swiper-fade.abk-swiper
 ##.app-abk
