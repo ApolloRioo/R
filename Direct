@@ -1,6 +1,7 @@
 payload:
   - DOMAIN-SUFFIX,res.res
   - DOMAIN-SUFFIX,userpicimage.com
+  - DOMAIN-KEYWORD,avtb
   - DOMAIN-SUFFIX,360kan.com
   - DOMAIN-SUFFIX,douban.com
   - DOMAIN-SUFFIX,sharebits.link
