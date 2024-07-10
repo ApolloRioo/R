@@ -50,6 +50,8 @@ payload:
   - DOMAIN-SUFFIX,888484.xyz
   - DOMAIN-SUFFIX,wogg.link
   - DOMAIN-SUFFIX,bingal.com
+#误杀之嫌广告图
+  - DOMAIN-SUFFIX,xylhwdu.com
 # 非凡
   - DOMAIN-REGEX,ffzy-play(\d+)?\.com
   - DOMAIN-REGEX,ffzy-online(\d+)?\.com
