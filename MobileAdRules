@@ -130,15 +130,6 @@ apphot.cc##.swiper-container
 www.yxssp.com##.td-main-sidebar.td-pb-span4
 www.yxssp.com##.td-container-wrap.td-footer-outer-wrapper
 
-! 蓝鲨 https://www.lan-sha.com
-www.lan-sha.com##li.post-item:nth-of-type(1)
-www.lan-sha.com##li.post-item:nth-of-type(2)
-www.lan-sha.com##li.post-item:nth-of-type(3)
-www.lan-sha.com##li.post-item:nth-of-type(4)
-www.lan-sha.com##li.post-item:nth-of-type(5)
-www.lan-sha.com##.index-top-postcard-plane
-www.lan-sha.com##.post-main > div > .swiper-container-android.swiper-container-horizontal.swiper-container-initialized.carousel.swiper-container
-
 ! 凤凰网 http://inews.ifeng.com
 ifeng.com##.index_swiper_box_-hDyo
 ifeng.com##.index_bottom_box_CCgoj
@@ -297,16 +288,6 @@ xinghuo.xfyun.cn##DIV#watermark-wrapper
 ! 低端影视 https://ddys.art
 ||img13.360buyimg.com/ddimg/jfs/t1/108754/39/33961/48618/6431454eFbcf4314d/780058014488d28a.jpg$image
 
-! 无追 https://www.wuzhuiso.com
-www.wuzhuiso.com##.mso-guide
-www.wuzhuiso.com##.g-header-engine-cover
-www.wuzhuiso.com##.out-rel.g-card
-www.wuzhuiso.com###mohe-m-biu_3c_general_mobile
-www.wuzhuiso.com###mohe-m-leidian_item
-www.wuzhuiso.com##.mso-rec-nlp_top.mso-recommend-card.mb.g-block2.res-list.g-card
-www.wuzhuiso.com##.mso-rec-nlp_bottom.mso-recommend-card.mb.g-block2.res-list.g-card
-www.wuzhuiso.com###mohe-m-leidian_list
-
 ! 必应 https://cn.bing.com
 cn.bing.com##.b_rs
 cn.bing.com##.b_divdef.b_primtxt.b_footer
@@ -361,13 +342,6 @@ http://dilidili11.com/js/wap2-jm-ms.js
 
 ! 臻品电影网 https://www.zpcxb.com
 www.zpcxb.com##.hotTitle
-
-! 无名小站 https://www.btnull.nu
-www.btnull.nu###ly
-
-! 看片 https://www.kkp14d.top
-www.kkp14d.top##div.clearfix.sj-nav-down-2.nav-down-2:nth-of-type(8)
-www.kkp14d.top##.swiper-home
 
 ! 情趣白丝 https://www.qqbs.vip
 www.qqbs36.vip##div.links:nth-of-type(2)
@@ -485,6 +459,11 @@ watchmygf.sex##div.sorc
 ! 2024-03-02 https://catbox.moe
 ||catbox.moe/bgs/texture3.png$image
 catbox.moe##div.notetiny
+
+! 2024年7月10日 https://missav.com
+missav.com##div.px-4.lg\:pb-0.pb-4.pt-16
+missav.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
+missav.com##.mb-2.-m
 
 ##.swiper-backface-hidden.swiper-watch-progress.swiper-android.swiper-horizontal.swiper-initialized.swiper-fade.abk-swiper
 ##.app-abk
