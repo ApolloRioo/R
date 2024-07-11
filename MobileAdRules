@@ -178,33 +178,6 @@ www.qwant.com##._35zId._7B4NI._3wU9G._34obj._1S2hN
 ! gitea 测试删库跑路说明
 try.gitea.io##body > .container.ui
 
-
-! 影咖 https://yingka.tv
-yingka.tv##.fodong_tips.tips-list
-yingka.tv##div:nth-of-type(5)
-
-! 333影视网 https://www.ylwt33.com
-www.ylwt33.com##.textgreen
-www.ylwt33.com##.textred
-www.ylwt33.com##.textblue
-www.ylwt33.com###cjwt
-www.ylwt33.com###mhbottom_ad_box
-www.ylwt33.com##.clearfix.myui-extra > .visible-xs
-www.ylwt33.com##a.item:nth-of-type(3)
-www.ylwt33.com###bfad1
-
-! 人人影视 https://www.rrets.cc
-www.rrets.cc##.player-news
-www.rrets.cc##.none.ds-pop
-||www.rrets.cc/add.png$image
-||www.rrets.cc/a.png$image
-www.rrets.cc##div.tim-box.ec-ad > [href="https://docs.qq.com/doc/DZEJDQ3VaWXhEbERo"]
-
-! 我爱跟剧 https://52gen.top
-52gen.top##.gg-icon
-52gen.top##[href="https://shalasi.com"]
-
-
 ! YourPorn https://yp9535.com
 ||xw.ooegpip.cn/*$image
 
@@ -230,29 +203,6 @@ www.rrets.cc##div.tim-box.ec-ad > [href="https://docs.qq.com/doc/DZEJDQ3VaWXhEbE
 ||bbb.leibeiyipei.xyz/*.gif$image
 ##div.bbox.w90.pure-u-1 > div > .pure-g
 
-! 51AV https://51av.club
-51av.club##.publicAllContentBg > .common_banner
-||51av.club/upload/website/*/*.png$image
-51av.club##.swiper-container-android.swiper-container-horizontal.swiper-container-initialized.swiper-container.van-swipe.indexSwiper
-51av.club##div.publicIndexVideoMoudleBox > .common_banner
-
-! AV时间 https://avtime.tv
-avtime.tv###site-content > .common_banner
-avtime.tv##.container > .common_banner
-avtime.tv##div.mobile-only.ads > .common_banner
-avtime.tv###sidebar_banner
-avtime.tv##.text-center.h5
-avtime.tv##.py-5.site-footer
-avtime.tv##div.col > .common_banner
-
-! AV大神，日本免费AV https://avgod.club
-avgod.club,freejavbt.xyz##.header_banner
-||api.promptsgod.com/storage/*$image
-avgod.club,freejavbt.xyz##.common_banner
-avgod.club,freejavbt.xyz##div.col-xl-2.col-md-3.col-6.video-list-item.category-page:nth-of-type(1)
-avgod.club,freejavbt.xyz##.mt-3.col-sm-12.col-md-10.col-lg-10.col-xl-8.container
-
-
 ! jav目录 Javmenu.com
 ||api.promptsgod.com/storage/*/*.gif$image
 javmenu.com##.mb-3.col
@@ -263,34 +213,8 @@ javmenu.com##.link_recommend
 javmenu.com##.common_banner
 
 
-
-! 八爪鱼磁搜 https://磁搜.com
-ciliget.com,cilibaidu.xyz##.msgbox
-ciliget.com,cilibaidu.xyz##.tuibox.tbox
-ciliget.com,cilibaidu.xyz##div.tbox > .mb1r.mt2r.tbox
-ciliget.com,cilibaidu.xyz##.link
-ciliget.com,cilibaidu.xyz##.footer
-
-
-
-! 厂长资源 https://czzy.tv
-||img.7838a.com/images/*.gif$image
-
-! 麻花影视 https://www.mhyyy.com
-||s2.232232.xyz^
-
-! 磁力熊 https://www.cilixiong.com
-||i.cilixiong.com/00*.jpg$image
-www.cilixiong.com##.list-unstyled.justify-content-end.col-md-4.nav
-
 ! 讯飞星火大水印
 xinghuo.xfyun.cn##DIV#watermark-wrapper
-
-! 青鸟影视 https://www.qingniao.org
-||www.qingniao.org/bb.jpg$image
-
-! 低端影视 https://ddys.art
-||img13.360buyimg.com/ddimg/jfs/t1/108754/39/33961/48618/6431454eFbcf4314d/780058014488d28a.jpg$image
 
 ! 必应 https://cn.bing.com
 cn.bing.com##.b_rs
@@ -301,79 +225,8 @@ cn.bing.com##.b_divdef.b_primtxt.b_footer
 m.so.com##.guide-rel.mb.res-list.g-card
 m.so.com##.default_show.top-rec
 
-! 哔哩哔哩 https://m.bilibili.com
-m.bilibili.com##.share-video-info
-m.bilibili.com##.visible-open-app-btn > .m-video-main-launchapp.launch-app-btn > .m-video2-awaken-btn
-m.bilibili.com##.fixed-module-margin.m-video-related
-m.bilibili.com##.mplayer-ending-panel-recommend
-m.bilibili.com##.caution-dialog
-m.bilibili.com##.icon-spread.launch-app-btn
-m.bilibili.com##.ralated-video-title
-m.bilibili.com##.mplayer-buff-app
-m.bilibili.com##.text
-m.bilibili.com##.bottom-tab
-m.bilibili.com##.m-footer
-
-! 蓝光电影网 http://www.languangdy.com
-www.languangdy.com##.bannertiao9
-
-! 新番 https://bangumi.online
-bangumi.online##.side-bar-donate.side-bar-item
-
-! 耳机人 https://www.erjiren.com
-||fc.sinaimg.cn/large/006qyxTMly1greqg498sog30jg02yq36.gif$image
-! hxv https://hxc.hxc161.com
-||cdn.0v1.cn/*.gif$image
-||zhanlangimg.dingjiancdn.com/i/2023/05/13/WM2gif600x120.gif$image
-
-! biubiu18禁 https://www.biubiugf.top
-||img*.360buyimg.com/jdsurvey/*.gif$image
-||cdn.sm.cn/forum/*.gif$image
-
-! 2023-05-23 https://blog.csdn.net
-blog.csdn.net##.feed-Sign-weixin
-
-! 2023-05-23 https://www.pfree.one
-www.pfree.one##.fixed-bottom
-
-! 2023-05-24 https://m.hydytt.net
-m.hydytt.net##div.show-app2:nth-of-type(n+1)
-
-! 速搜影院 https://www.sstv.fun
-||img2.doubanio.com/view/photo/l/public/p2891976611.webp$image
 
 http://dilidili11.com/js/wap2-jm-ms.js
-
-! 臻品电影网 https://www.zpcxb.com
-www.zpcxb.com##.hotTitle
-
-! 情趣白丝 https://www.qqbs.vip
-www.qqbs36.vip##div.links:nth-of-type(2)
-www.qqbs36.vip##div.links:nth-of-type(3)
-www.qqbs36.vip##div.links:nth-of-type(12)
-www.qqbs36.vip##div.links:nth-of-type(13)
-
-! 优直播 https://m.yoozhibo.net
-m.yoozhibo.net##.bootom-fixed
-
-
-! 追剧兔 https://www.zjtu.tv
-||s1.ax1x.com/2023/05/27/p9q7KFP.png$image
-
-! 13听书 https://m.ting13.com
-||image.itingshu.net/app/app.png$image
-
-! 撸撸视频 https://www.tim18.top
-www.tim18.top##.masterhavor
-www.tim18.top##.tx-wide > h3
-www.tim18.top##div:nth-of-type(2)
-||www.tim18.top/upload/banner/202305*$image
-www.tim18.top##div:nth-of-type(4)
-www.tim18.top##.block-text
-www.tim18.top##.row-m-space0.row-space30.row
-
-! 皮皮虾 https://ppxzy.pro
-||img07.mifile.cn/v1/MI_542ED8B1722DC/5a7bb605cfb50f2a5099edfb440b5dc6.png$image
 
 ! 油管电影 https://www.ygdy.net
 www.ygdy.net##a.djcvjvsvjkbjk_u:nth-of-type(n)
