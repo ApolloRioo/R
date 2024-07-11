@@ -1,10 +1,15 @@
 [Adblock Plus 2.0]
 ! Title: R 群魔乱舞!
-! Version: 20240709
+! Version: 20240711
 ! Homepage:https://api.caonm.net/api/mn/index.php
 ! by: R
 
 ! 群魔乱舞
+||dqntwl.com/*.js$image
+||cyberv.shop/jiamigif/*.gif$image
+||heibanwa.mobi/jsgif/*.js$image
+||readbond.com/image/*.gif$image
+||imgsrc.baidu.com/forum/pic/item/ac4bd11373f082021dcec6070dfbfbedab641bad.jpg$image
 ||ttz73.com^
 ||nanrenvip*.cc/d/m.js
 ||*/sucai-img/*.gif^
