@@ -13,6 +13,12 @@ google.com##.JwzvB
 ! javdb app下载安装横幅
 ##.app-desktop-banner
 
+! 2024年7月11日 https://m.bilibili.com
+m.bilibili.com##.list-view__state--no-more
+m.bilibili.com##.m-footer
+m.bilibili.com##.bottom-tab-header
+m.bilibili.com##.caution-dialog
+
 ! 无名小站
 btnull.in,btnull.net,btnull.org,btnull.si,btnull.nu,btnull.fun###ly
 
