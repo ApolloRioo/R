@@ -2,6 +2,8 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,everydaynewz.co
+  - DOMAIN-SUFFIX,incrementxserv.com
   - DOMAIN-SUFFIX,acrpoker.eu
   - DOMAIN-SUFFIX,oobsaurt.net
   - DOMAIN-SUFFIX,celebspicynews.com
