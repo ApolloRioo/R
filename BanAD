@@ -70,6 +70,7 @@ payload:
   - DOMAIN-SUFFIX,d3eub2e21dc6h0.cloudfront.net
   - DOMAIN-SUFFIX,du0pud0sdlmzf.cloudfront.net
   - DOMAIN-SUFFIX,familiarpyromaniasloping.com
+  - DOMAIN,missav.to/wp-content/plugins/wp-rocket-master/assets/js/lazyload/11.0.6/lazyload.min.js
 
 # 广告关键词
   - DOMAIN-KEYWORD,admarvel
