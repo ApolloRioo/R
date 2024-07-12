@@ -2,6 +2,9 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,celebspicynews.com
+  - DOMAIN-SUFFIX,luxuryvideos.life
+  - DOMAIN-SUFFIX,explorads.com
   - DOMAIN-SUFFIX,zesacentral.com
   - DOMAIN-SUFFIX,fuse-cloud.com
   - DOMAIN-SUFFIX,apphasten.com
