@@ -2,6 +2,7 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,isopik.com
   - DOMAIN-SUFFIX,emergedmassacre.com
   - DOMAIN-SUFFIX,plmndw.com
   - DOMAIN-SUFFIX,teginack.com
