@@ -2,6 +2,7 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,zesacentral.com
   - DOMAIN-SUFFIX,fuse-cloud.com
   - DOMAIN-SUFFIX,apphasten.com
   - DOMAIN-SUFFIX,cleansix.xyz
