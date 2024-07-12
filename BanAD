@@ -2,6 +2,7 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,buyvisblog.com
   - DOMAIN-SUFFIX,everydaynewz.co
   - DOMAIN-SUFFIX,incrementxserv.com
   - DOMAIN-SUFFIX,acrpoker.eu
