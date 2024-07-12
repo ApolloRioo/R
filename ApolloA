@@ -276,7 +276,7 @@ js: function CodeLazy(识别码) {
             })
             if (html) {
                 if (html.includes("请检查地址栏中的网址")) {
-                    return "toast://本平台尚未上传此番号视频"
+                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                 } else {
                     var id = pdfh(html, "#page-video&&v-scope")
                         .match(/\'(.*)\'/)[1]
@@ -321,7 +321,7 @@ js: function CodeLazy(识别码) {
             if (htmll.statusCode != 0) {
                 var location = htmll.url
                 if (location.includes("error")) {
-                    return "toast://本平台尚未上传此番号视频"
+                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                 } else {
                     var html = fetch(location)
                     var src = "https://www.av01.tv" + pdfh(html, "script[referrerpolicy]&&src")
@@ -614,7 +614,7 @@ js: function CodeLazy(识别码) {
                     return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
                 }
             } catch {
-                return "toast://本平台尚未上传此番号视频"
+                return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
             }
         }, 识别码),
         col_type: 'icon_5',
