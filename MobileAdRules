@@ -23,6 +23,8 @@ m.bilibili.com##.caution-dialog
 btnull.in,btnull.net,btnull.org,btnull.si,btnull.nu,btnull.fun###ly
 
 ! fix emturbovid.com player (e.g. supjav.com)
+streamtape.*##script:inject(adjust-setTimeout.js, counter)
+streamtape.*##+js(adjust-setTimeout, counter)
 emturbovid.com###pop
 emturbovid.com##+js(aeld, click, pop)
 emturbovid.com##+js(trusted-set, premium, "'1'")
