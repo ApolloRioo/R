@@ -2,6 +2,9 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,jl63v3fp1.com
+  - DOMAIN-SUFFIX,limpingpick.com
+  - DOMAIN-SUFFIX,arrivedeuropean.com
   - DOMAIN-SUFFIX,isopik.com
   - DOMAIN-SUFFIX,emergedmassacre.com
   - DOMAIN-SUFFIX,plmndw.com
