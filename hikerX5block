@@ -6,6 +6,7 @@
 
 ! 通用广告位
 ##.sidebar-ads
+##.ad-body
 
 ! Gemini
 gemini.google.com##.get-app-banner
