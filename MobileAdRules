@@ -331,6 +331,8 @@ missav.com##div.px-4.lg\:pb-0.pb-4.pt-16
 missav.com##.text-nord14.list-disc.ml-4.mb-4.space-y-2
 missav.com##.mb-2.-m-5
 
+www.av01.tv##[src="javascript:window.location.replace(this.frameElement.dataset.link)"]
+
 ##.swiper-backface-hidden.swiper-watch-progress.swiper-android.swiper-horizontal.swiper-initialized.swiper-fade.abk-swiper
 ##.app-abk
 ##.vod-item.abk-item
