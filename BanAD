@@ -14,7 +14,6 @@ payload:
   - DOMAIN-SUFFIX,astarboka.com
   - DOMAIN-SUFFIX,aungudie.com
   - DOMAIN-SUFFIX,bitcoin-kopen.com
-  - DOMAIN-SUFFIX,blurbreimbursetrombone.com
   - DOMAIN-SUFFIX,buyvisblog.com
   - DOMAIN-SUFFIX,bytogeticr.com
   - DOMAIN-SUFFIX,celebspicynews.com
@@ -22,9 +21,7 @@ payload:
   - DOMAIN-SUFFIX,citadelpathstatue.com
   - DOMAIN-SUFFIX,citinow.com
   - DOMAIN-SUFFIX,cleansix.xyz
-  - DOMAIN-SUFFIX,concedederaserskyline.com
   - DOMAIN-SUFFIX,crazyvideotodownload.com
-  - DOMAIN-SUFFIX,crummydevioussucculent.com
   - DOMAIN-SUFFIX,dxzvw.com
   - DOMAIN-SUFFIX,emergedmassacre.com
   - DOMAIN-SUFFIX,ero-labs.space
@@ -65,7 +62,6 @@ payload:
   - DOMAIN-SUFFIX,trackwilltrk.com
   - DOMAIN-SUFFIX,trillonswiss.com
   - DOMAIN-SUFFIX,trip.com
-  - DOMAIN-SUFFIX,troubledcontradiction.com
   - DOMAIN-SUFFIX,tsyndicate.com
   - DOMAIN-SUFFIX,twinrdsyn.com
   - DOMAIN-SUFFIX,tyserving.com
@@ -84,6 +80,10 @@ payload:
   - DOMAIN-SUFFIX,yrincelewasgiw.info
   - DOMAIN-SUFFIX,zesacentral.com
   - DOMAIN-SUFFIX,zougreek.com
+  - DOMAIN-SUFFIX,blurbreimbursetrombone.com
+  - DOMAIN-SUFFIX,troubledcontradiction.com
+  - DOMAIN-SUFFIX,concedederaserskyline.com
+  - DOMAIN-SUFFIX,crummydevioussucculent.com
 
   - DOMAIN-SUFFIX,lovelyheartwarmingdrive.shop
   - DOMAIN-SUFFIX,endowmentoverhangutmost.com
