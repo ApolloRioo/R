@@ -774,7 +774,7 @@ const Apollo = {
                 })
                 let result = JSON.parse(res)
                     .target
-                return result + "🇨🇳☁️彩云小译"
+                return result + "☁️"
             } catch {
                 log("翻译失败，使用原文");
                 return text
@@ -801,7 +801,7 @@ const Apollo = {
                         });
                         var data = JSON.parse(result)
                         if (data.tgt_text) {
-                            return data.tgt_text + "🇨🇳🐮小牛翻译"
+                            return data.tgt_text + "🐮"
                         } else {
                             log("翻译失败，使用原文");
                             return text
@@ -881,7 +881,6 @@ const Apollo = {
         }, content)
         Apollo.d.push({
             title: "🔥 <a style='text-decoration: none;' href='" + lazy + "'>故事</a> ：" + day_say.replace(/—/g, "")
-                .slice(0, 23)
                 .fontcolor("#FF0000")
                 .small(),
             url: "hiker://empty",
