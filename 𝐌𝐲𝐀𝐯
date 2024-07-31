@@ -915,7 +915,7 @@ const Apollo = {
         Apollo.d.push({
             title: '““””' + Apollo.translate(title)
                 .replace(/^\d+/, "")
-                .fontcolor("#E57A1A"),
+                .fontcolor("#E57A1A").small(),
             url: url,
             col_type: 'text_1',
             extra: {
