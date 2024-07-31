@@ -31,53 +31,171 @@ const Apollo = {
                 "path": "/domestic_index.js?year=07811dc6c422334ce36a09ff5cd6fe71&tag=all&other=dc1194d6780ae1741469b7fea8f61b02&ytype=2&Ttype=2&sort=DESC"
             }, {
                 "title": "FC2",
-                "path": "https://fc2.a-91.top/default.cpp?year=07811dc6c422334ce36a09ff5cd6fe71&tag=all&other=dc1194d6780ae1741469b7fea8f61b02&ytype=2&Ttype=2&sort=DESC"
+                "path": "https://fc2-bt.top/default.cpp?year=07811dc6c422334ce36a09ff5cd6fe71&tag=all&other=dc1194d6780ae1741469b7fea8f61b02&ytype=2&Ttype=2&sort=DESC"
             }, {
                 "title": "在线视频",
-                "path": "https://vod001.a-91.top/"
+                "path": "https://ck91.top/"
             }]
         }, {
-            "title": "收藏▼",
-            "path": "hiker://empty##收藏",
-            "type": "collection",
+            "title": "有码热门▼",
+            "path": "#",
+            "type": "video",
             "sub": [{
-                "title": "影片▼",
-                "path": "hiker://empty##收藏影片"
+                "title": "单体作品",
+                "path": "/t/s0BM8p0zgIXmQkgeE_DSbOBo8X--UDBFNwOsdhexRbk="
             }, {
-                "title": "演员▼",
-                "path": "hiker://empty##收藏演员"
+                "title": "最佳女优",
+                "path": "/t/y3Aqaseb15koEsax1edCSSJ6wHHsipML4N1qvwqPndk="
             }, {
-                "title": "𝐅𝐂𝟐▼",
-                "path": "hiker://empty##收藏𝐅𝐂𝟐"
+                "title": "漫画改编",
+                "path": "/t/0g0X870kYkb94UDvClw6vpGHYWXpAwXb5xeg1N7OvrA="
             }, {
-                "title": "在线视频▼",
-                "path": "hiker://empty##收藏视频"
+                "title": "新人出道",
+                "path": "/t/Nl2CznQ79wnieeRHwUB1aEdUoF0R9NfYiOPqBR8N0yM="
+            }, {
+                "title": "无码破解",
+                "path": "/t/-t05DjwMaZunA4YNA-Jmbd-ZemqnkFychErzynFTr-8="
+            }, {
+                "title": "巨乳",
+                "path": "/t/U0hUuSSK17CsvKsxS20BCMrstpkwH62pwtlR-PVYUbQ="
+            }, {
+                "title": "辣妹",
+                "path": "/t/YbbyU4lYl83zCs4IRk8CG7NGiu0CRKR_QKbLAW90SbM="
+            }, {
+                "title": "熟女",
+                "path": "/t/SE3AUYlLQRy8YW2HYNPvOEP8o29K5dULx9-dMaKU9XQ="
+            }, {
+                "title": "人妻",
+                "path": "/t/WUHsN6cHpxdpVlMxI6JfVFwKz6NxBEUgpfS-u-8GqYs="
+            }, {
+                "title": "大屁股",
+                "path": "/t/qL8JuNvGgwzwURpsQA0BcffSVmBR1_t5rn-B2tBdxdQ="
+            }, {
+                "title": "超乳",
+                "path": "/t/ukBS1QNRJiJ2qLHZDd8j-hJORIzxrv1428dBQum60CQ="
+            }, {
+                "title": "巨大的根",
+                "path": "/t/4-aVfnanj_F0BrRPFw08cAQXMipPZKFqQZIMbeBXItI="
+            }, {
+                "title": "猫耳",
+                "path": "/t/lxu8_otGBxAxXh3MkSnJXt4vaacVWHiPgy1cQV2bcUY="
+            }, {
+                "title": "全部标签",
+                "path": "/cat.py?type=6Wvt3eOMji5M_tHU6HuewA=="
+            }]
+        }, {
+            "title": "无码热门▼",
+            "path": "#",
+            "type": "video",
+            "sub": [{
+                "title": "单体作品",
+                "path": "/t2/s0BM8p0zgIXmQkgeE_DSbOBo8X--UDBFNwOsdhexRbk="
+            }, {
+                "title": "巨乳",
+                "path": "/t2/U0hUuSSK17CsvKsxS20BCMrstpkwH62pwtlR-PVYUbQ="
+            }, {
+                "title": "辣妹",
+                "path": "/t2/YbbyU4lYl83zCs4IRk8CG7NGiu0CRKR_QKbLAW90SbM="
+            }, {
+                "title": "熟女",
+                "path": "/t2/SE3AUYlLQRy8YW2HYNPvOEP8o29K5dULx9-dMaKU9XQ="
+            }, {
+                "title": "人妻",
+                "path": "/t2/WUHsN6cHpxdpVlMxI6JfVFwKz6NxBEUgpfS-u-8GqYs="
+            }, {
+                "title": "大屁股",
+                "path": "/t2/qL8JuNvGgwzwURpsQA0BcffSVmBR1_t5rn-B2tBdxdQ="
+            }, {
+                "title": "全部标签",
+                "path": "/uncensored_cat.py?type=6Wvt3eOMji5M_tHU6HuewA=="
+            }]
+        }, {
+            "title": "片商新番▼",
+            "path": "#",
+            "type": "video",
+            "sub": [{
+                "title": "MOODYZ",
+                "path": "/t/74b3Y96cMV7sbDoEC9XwFeftHK9rabWNlXHD6pbEjt4jSGnccCEb1shJH7zzY_qf"
+            }, {
+                "title": "Madonna",
+                "path": "/t/74b3Y96cMV7sbDoEC9XwFUSK3qO1GBc7uRNJ8_ZOTwA="
+            }, {
+                "title": "kawaii",
+                "path": "/t/pEENCPRMgLC-33A6TuPdJQQ_Ee3NrniuJR_sEbtPR9E="
+            }, {
+                "title": "本中",
+                "path": "/t/uBbcJRKirtTnKa1bIkiTqORE2ksBOQVGloKXjuIFi1E="
+            }, {
+                "title": "Fitch",
+                "path": "/t/gBv8n0EwYPxanyMr43H-IdBd7mNqsTX96JikagiDIYE="
+            }, {
+                "title": "OPPAI",
+                "path": "/t/Ue_vqbPKLMDrflNXyliwttO25PUGKinNvp0WxPmPHaE="
+            }, {
+                "title": "S1",
+                "path": "/t/3NPnLGj_qw59jrq-udFUz8KV6_0y2O0waxFQTIE--IwCy8e5KmbznmVJJ7WSEUXMzIIfLANYxkYtgeGBXkQaow=="
+            }, {
+                "title": "Hunter",
+                "path": "/t/xMUvy2TDa9CffZ7ENeuS47iwkZr8d0pkXG5V6wQe9Wg="
+            }, {
+                "title": "E-BODY",
+                "path": "/t/6gXGAFHflMIDUk5hLDaVDbeuAcA4b-BdCjaYv7eAu_w="
+            }, {
+                "title": "Attackers",
+                "path": "/t/3NPnLGj_qw59jrq-udFUzzPqpuqEUXdxI9IWYCnBBt44_Dvo2JpeCKc0bD2Wyyl7"
+            }, {
+                "title": "muramura",
+                "path": "/t2/VoGqi845Nbaa1ZCUMR7UGNcD3C_XAn26quW5v0ngj2Q="
+            }, {
+                "title": "heyzo",
+                "path": "/t2/LQcj0l2zj44TRz-6xoIbUAf-0heyYHdEqMfroIYV-fo="
+            }, {
+                "title": "1pondo",
+                "path": "/t2/9kh2UGZLZ9G-TQgxGHKrZb6YoAJYM6A2MJJg1ObGaTg="
+            }, {
+                "title": "caribbeancom",
+                "path": "/t2/KkSf0LBST-uk-MhGTona8Otpk90pptjHEvphk3o6tis="
+            }, {
+                "title": "人妻斬り",
+                "path": "/t2/eRmON1dLcOC4ljfhHsWyMTcvOCiIB03-QxeOZ7Tof9c="
             }]
         }, {
             "title": "标签▼",
             "path": "/cat.py?type=rpCNLOP1WDRnR2LjHsExtQ==",
             "type": "avatar",
             "sub": [{
-                "title": "有码片商",
-                "path": "/cat.py?type=rpCNLOP1WDRnR2LjHsExtQ=="
-            }, {
                 "title": "有码女优",
                 "path": "/cat.py?type=0TActtgu02YfLieZ7SleLw=="
             }, {
-                "title": "无码片商",
-                "path": "/uncensored_cat.py?type=rpCNLOP1WDRnR2LjHsExtQ=="
-            }, {
                 "title": "无码女优",
                 "path": "/uncensored_cat.py?type=0TActtgu02YfLieZ7SleLw=="
-            }, {
-                "title": "欧美片商",
-                "path": "/western_cat.java?type=WBvfQ1QROghlcRTERGmhww=="
             }, {
                 "title": "欧美女优",
                 "path": "/western_cat.java?type=0TActtgu02YfLieZ7SleLw=="
             }, {
                 "title": "国产女优",
                 "path": "/domestic_cat.py?type=0TActtgu02YfLieZ7SleLw=="
+            }, {
+                "title": "有码片商",
+                "path": "/cat.py?type=rpCNLOP1WDRnR2LjHsExtQ=="
+            }, {
+                "title": "有码TAG",
+                "path": "/cat.py?type=6Wvt3eOMji5M_tHU6HuewA=="
+            }, {
+                "title": "无码片商",
+                "path": "/uncensored_cat.py?type=rpCNLOP1WDRnR2LjHsExtQ=="
+            }, {
+                "title": "无码TAG",
+                "path": "/uncensored_cat.py?type=6Wvt3eOMji5M_tHU6HuewA=="
+            }, {
+                "title": "欧美片商",
+                "path": "/western_cat.java?type=WBvfQ1QROghlcRTERGmhww=="
+            }, {
+                "title": "欧美TAG",
+                "path": "/western_cat.java?type=6Wvt3eOMji5M_tHU6HuewA=="
+            }, {
+                "title": "国产TAG",
+                "path": "/domestic_cat.py?type=6Wvt3eOMji5M_tHU6HuewA=="
             }]
         }, {
             "title": "搜索▼",
@@ -119,7 +237,8 @@ const Apollo = {
                         putMyVar("Apo.subCate", '0')
                         clearMyVar("sort")
                         clearMyVar("url")
-                        refreshPage(false)
+                        clearMyVar("yurl")
+                        refreshPage()
                         return "hiker://empty"
                     }, index),
                     col_type: 'scroll_button',
@@ -137,7 +256,8 @@ const Apollo = {
                             putMyVar("Apo.subCate", index.toString())
                             clearMyVar("sort")
                             clearMyVar("url")
-                            refreshPage(false)
+                            clearMyVar("yurl")
+                            refreshPage()
                             return "hiker://empty"
                         }, index),
                         col_type: 'scroll_button',
@@ -181,6 +301,8 @@ const Apollo = {
             case 'video':
                 if (title == "在线视频") {
                     Apollo.videoOnline(html, url)
+                } else if (title == "全部标签") {
+                    Apollo.avatarType(html, url)
                 } else {
                     Apollo.videoType(html, url)
                 }
@@ -216,7 +338,7 @@ const Apollo = {
                     .lazyRule((index) => {
                     putMyVar('ysort', index);
                     putMyVar("yurl", input);
-                    refreshPage(false);
+                    refreshPage();
                     return 'hiker://empty'
                 }, index),
                 col_type: 'scroll_button'
@@ -269,7 +391,7 @@ const Apollo = {
 
                             putMyVar("sort", JSON.stringify(params.cate_temp))
                             putMyVar("url", input)
-                            refreshPage(false)
+                            refreshPage()
                             return "hiker://empty"
                         }, {
                             cate_temp: cate_temp,
@@ -515,7 +637,7 @@ const Apollo = {
                         .lazyRule((index) => {
                         putMyVar('sort', index);
                         putMyVar("url", input);
-                        refreshPage(false);
+                        refreshPage();
                         return 'hiker://empty'
                     }, index),
                     col_type: 'scroll_button'
@@ -540,11 +662,12 @@ const Apollo = {
             var title = pdfh(item, ".time,1&&Text")
                 .toUpperCase() + "\t" + pdfh(item, "h3&&Text");
             var img = pdfh(item, "img&&data-src");
+            img = img.includes("domestic") ? img : img.replace("thumbnail-", "");
             Apollo.d.push({
                 title: title,
                 desc: pdfh(item, ".vip-tag&&Text")
                     .toUpperCase() + "\t\t📅" + pdfh(item, ".time&&Text"),
-                img: img.includes("domestic") ? img : img.replace("thumbnail-", ""),
+                img: img.startsWith("http") ? img : Apollo.url + img,
                 url: $(getHome(url) + pdfh(item, 'a&&href') + '#noHistory#')
                     .rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
@@ -570,7 +693,8 @@ const Apollo = {
                                     });
                                     jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
                                     putMyVar("url", jumpu);
-                                    refreshPage(false);
+                                    putMyVar("yurl", jumpu);
+                                    refreshPage();
                                     return 'toast://你已经穿越到了' + input + '页'
                                 } else {
                                     return "toast://请输入正确的页码"
@@ -631,8 +755,8 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, 'a&&Text'),
                 desc: "",
-                pic_url: pdfh(item, 'img&&src')
-                    .startsWith("http") ? pdfh(item, 'img&&src') : 'https://img.vinua.cn/images/IQ3h0.jpg',
+                pic_url: pdfh(item, 'img&&data-src')
+                    .startsWith("http") ? pdfh(item, 'img&&data-src') : 'https://img.vinua.cn/images/IQ3h0.jpg',
                 url: $(getHome(url) + pdfh(item, 'a&&href') + '#fypage#noHistory#')
                     .rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
@@ -656,7 +780,7 @@ const Apollo = {
                                     });
                                     jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
                                     putMyVar("url", jumpu);
-                                    refreshPage(false);
+                                    refreshPage();
                                     return 'toast://你已经穿越到了' + input + '页'
                                 } else {
                                     return "toast://请输入正确的页码"
@@ -674,19 +798,21 @@ const Apollo = {
         if (MY_PAGE == 1) {
             var list = pdfa(html, ".search-container&&option")
             var action = pdfh(html, "form&&action")
+            var code = pdfh(html, ".search-container&&input[name=code]&&value")
+            var hash = pdfh(html, ".search-container&&input[name=hash]&&value")
             list.forEach((item, index) => {
                 var value = pdfh(item, "option&&value");
                 var title = pdfh(item, "Text");
                 Apollo.d.push({
                     title: "🔎" + title,
-                    url: $.toString((action, value, index) => {
-                        surl = action + "?SearchType=" + value + "&s=" + input;
+                    url: $.toString((action, value, index, code, hash) => {
+                        surl = action + "?SearchType=" + value + "&s=" + input + "&code=" + code + "&hash=" + hash;
                         putMyVar('ssou', index);
                         putMyVar('value', input);
                         putMyVar('url', surl)
-                        refreshPage(false);
+                        refreshPage();
                         return 'hiker://empty';
-                    }, action, value, index),
+                    }, action, value, index, code, hash),
                     desc: '美好即刻开始...',
                     col_type: "input",
                     extra: getMyVar("ssou") == index ? {
@@ -706,6 +832,7 @@ const Apollo = {
         }));
         url = getMyVar("yurl", url)
             .replace(/(.*?)#.*/, "$1");
+        url = url.startsWith("http") ? url : Apollo.url + url;
         if (MY_PAGE !== 1) {
             url = url.includes("?") ? url + "&page=" + MY_PAGE : url + "?page=" + MY_PAGE
         }
@@ -723,7 +850,15 @@ const Apollo = {
 
     //搜索
     searchParse: (url) => {
-        url = Apollo.url + url.replace("hiker://empty##", "")
+        surl = Apollo.url + "/search.php";
+        const htmll = fetch(surl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        });
+        var code = pdfh(htmll, ".search-container&&input[name=code]&&value")
+        var hash = pdfh(htmll, ".search-container&&input[name=hash]&&value")
+        url = Apollo.url + url.replace("hiker://empty##", "") + "&code=" + code + "&hash=" + hash;
         log(url)
         const html = fetch(url, {
             headers: {
@@ -898,6 +1033,8 @@ const Apollo = {
         addListener("onClose", () => {
             clearMyVar("piclist");
         });
+        clearMyVar("yurl");
+        clearMyVar("ysort");
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
             const Apollo = $.require('hiker://page/Apollo')
