@@ -1,0 +1,776 @@
+js: //①8
+function CodeLazy(识别码) {
+    识别码 = 识别码.toLowerCase()
+    d.push({
+        col_type: "line_blank",
+    })
+    //ThissAV
+    d.push({
+        title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQlH7.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            var search = "https://missav.com/cn/search/" + 识别码;
+            var html = fetch(search, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                },
+                timeout: 2230
+            })
+            if (html) {
+                var list = pdfa(html, '.grid&&.relative:has(a[href])');
+                var miss = []
+                list.forEach(item => {
+                    var desc = pdfh(item, 'a&&alt')
+                        .replace("uncensored-leak", "🔥无码破解")
+                        .replace("chinese-subtitle", "🇨🇳中文字幕")
+                        .toUpperCase();
+                    miss.push({
+                        title: /\d$/.test(desc) ? desc + "-🦋默认视频" : desc,
+                        url: pdfh(item, 'a&&href'),
+                    })
+                })
+                if (miss.length == 0) {
+                    miss = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
+                }
+                var misstype = miss.map(i => i.title)
+                return $(misstype, 1)
+                    .select((miss) => {
+                    if (input == '本平台尚未上传此番号视频') {
+                        return miss[0].url
+                    } else {
+                        let index = miss.findIndex(r => r.title == input);
+                        var html = fetch(miss[index].url, {
+                            headers: {
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                            },
+                            timeout: 3000
+                        });
+                        eval(html.match(/eval.*?\n/)[0])
+                        // 获取画质列表，并去最高画质
+                        let group_quality = fetch(source, {
+                            headers: {
+                                "origin": "https://missav.com"
+                            }
+                        })
+                        hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
+                            .map(v => source.replace("playlist.m3u8", v))
+                            .reverse()
+                        name_quality = group_quality.match(/RESOLUTION=.*$/gm)
+                            .map(n => n.replace("RESOLUTION=", ""))
+                            .reverse()
+                        // copy(hghest_quality[0])
+                        let playlist = {
+                            urls: hghest_quality,
+                            names: name_quality,
+                            headers: new Array(hghest_quality.length)
+                                .fill({
+                                origin: "https://missav.com/cn/"
+                            })
+                        };
+                        return playlist;
+                    }
+                }, miss)
+            } else {
+                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看搜索',
+                js: $.toString((识别码) => {
+                    return "https://missav.com/cn/search/" + 识别码
+                }, 识别码)
+            }]
+        }
+    });
+
+    //av01
+    d.push({
+        title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐕𝟎𝟏</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQBFU.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            var av = "https://www.av01.tv/" + 识别码;
+            var htmll = JSON.parse(fetch(av, {
+                onlyHeaders: true,
+                timeout: 3323
+            }))
+            // log(htmll)
+            if (htmll.statusCode != 0) {
+                var location = htmll.url
+                if (location.includes("error")) {
+                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                } else {
+                    var html = fetch(location)
+                    var src = "https://www.av01.tv" + pdfh(html, "script[referrerpolicy]&&src")
+                    var load_video = fetch(src, {
+                        headers: {
+                            "Referer": location,
+                        }
+                    })
+                    var source = load_video.match(/const source.*?base64\,(.*?)\'/)[1]
+                    var stream = base64Decode(source)
+                    var video_quality = stream.match(/https?.*/g)
+                        .filter(v => !/\"/.test(v))
+                        .reverse()
+                    var name_quality = stream.match(/\d+x\d+/g)
+                        .slice(0, video_quality.length)
+                        .reverse()
+                    let playlist = {
+                        urls: video_quality,
+                        names: name_quality,
+                        headers: new Array(video_quality.length)
+                            .fill({
+                            "Origin": "https://www.av01.tv"
+                        })
+                    };
+                    return playlist;
+                }
+            } else {
+                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看网址',
+                js: $.toString((识别码) => {
+                    return "https://www.av01.tv/" + 识别码;
+                }, 识别码)
+            }]
+        }
+    });
+
+    //njav
+    d.push({
+        title: '‘‘’’<b><middle><font color="#1E90FF">𝐉𝐚𝐯𝐆𝐨</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQqwD.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            var av = "https://njav.tv/zh/v/" + 识别码;
+            var html = fetch(av, {
+                timeout: 2230
+            })
+            if (html) {
+                if (html.includes("请检查地址栏中的网址")) {
+                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                } else {
+                    var id = pdfh(html, "#page-video&&v-scope")
+                        .match(/\'(.*)\'/)[1]
+                    var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
+                    var data = JSON.parse(fetch(video, {
+                        headers: {
+                            "Referer": av
+                        }
+                    }))
+                    var javplayer = data.data.watch[0].url
+                    var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
+                        .match(/https?.*?\.m3u8/)[0]
+                    return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
+                }
+            } else {
+                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看网址',
+                js: $.toString((识别码) => {
+                    return "https://njav.tv/zh/v/" + 识别码;
+                }, 识别码)
+            }]
+        }
+    });
+
+    //tktube
+    d.push({
+        title: '‘‘’’<b><middle><font color="#BEEA8F">𝐓𝐤𝐭𝐮𝐛𝐞</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQMky.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            var search = "https://tktube.com/zh/search/" + 识别码.replace(/-/g, "--") + "/";
+            var html = fetch(search, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                },
+                timeout: 3623
+            })
+            if (html) {
+                var list = pdfa(html, '.list-videos&&.item');
+                var tktube = []
+                list.forEach(item => {
+                    var desc = pdfh(item, '.title&&Text')
+                        .match(/[^\s]+/)[0] ? pdfh(item, '.title&&Text')
+                        .match(/[^\s]+/)[0] : pdfh(item, '.title&&Text');
+                    tktube.push({
+                        title: desc,
+                        url: pdfh(item, 'a&&href'),
+                    })
+                })
+                if (tktube.length == 0) {
+                    tktube = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
+                }
+                var tktubetype = tktube.map(i => i.title)
+                return $(tktubetype, 1)
+                    .select((tktube) => {
+                    if (input == '本平台尚未上传此番号视频') {
+                        return tktube[0].url
+                    } else {
+                        let index = tktube.findIndex(r => r.title == input);
+                        var html = fetch(tktube[index].url)
+                        var js = pdfh(html, "body&&.player-holder&&Html")
+                            .match(/var flashvar[^;]+/)[0]
+                        eval(js)
+                        if (flashvars.video_alt_url2) {
+                            let playlist = {
+                                urls: [flashvars.video_alt_url2, flashvars.video_alt_url, flashvars.video_url],
+                                names: [flashvars.video_alt_url2_text, flashvars.video_alt_url_text, flashvars.video_url_text],
+                            };
+                            return playlist;
+                            //+ "?rnd=" + flashvars.rnd
+                        } else if (flashvars.video_alt_url) {
+                            let playlist = {
+                                urls: [flashvars.video_alt_url, flashvars.video_url],
+                                names: [flashvars.video_alt_url_text, flashvars.video_url_text],
+                            };
+                            return playlist;
+                            //+ "?rnd=" + flashvars.rnd
+                        } else {
+                            let playlist = {
+                                urls: [flashvars.video_url],
+                                names: [flashvars.video_url_text],
+                            };
+                            return playlist;
+                            //+ "?rnd=" + flashvars.rnd
+                        }
+                    }
+                }, tktube)
+            } else {
+                return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看网址',
+                js: $.toString((识别码) => {
+                    return "https://tktube.com/zh/search/" + 识别码.replace(/-/g, "--") + "/";
+                }, 识别码)
+            }]
+        }
+    });
+
+    //MISSAV
+    d.push({
+        title: '‘‘’’<b><middle><font color="#63A233">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/zHhaL.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            var search = "https://missav.to/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
+            var html = fetch(search, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                },
+            })
+            var list = pdfa(html, '.videos-list&&article');
+            var miss = []
+            list.forEach(item => {
+                var desc = pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/)[1] : "Original";
+                miss.push({
+                    title: desc,
+                    url: pdfh(item, 'a&&href'),
+                })
+            })
+            if (miss.length == 0) {
+                var search0 = "https://missav.to/search/movie/" + 识别码.replace(/\-|\_/, "%20");
+                var html0 = fetch(search, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                    }
+                })
+                var list0 = pdfa(html0, '.videos-list&&article');
+                list0.forEach(item => {
+                    var desc0 = pdfh(item, 'a&&title')
+                        .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                        .match(/^\[(.*?)\]/)[1] : "Original";
+                    miss.push({
+                        title: desc0,
+                        url: pdfh(item, 'a&&href'),
+                    })
+                })
+                if (miss.length == 0) {
+                    miss = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
+                }
+            }
+            var misstype = miss.map(i => i.title)
+            return $(misstype, 1)
+                .select((miss) => {
+                if (input == '本平台尚未上传此番号视频') {
+                    return miss[0].url
+                } else {
+                    let index = miss.findIndex(r => r.title == input);
+
+                    var htm = fetch(miss[index].url);
+                    var playUrl = "https://emb.missav.to/embedmv/hls/" + htm.match(/id=([^\'"&]+)/)[1] + ".m3u8"
+                    return playUrl
+                }
+            }, miss)
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看搜索',
+                js: $.toString((识别码) => {
+                    return "https://missav.to/search/movie/" + 识别码
+                }, 识别码)
+            }]
+        }
+    });
+
+    //Supjav
+    d.push({
+        title: '‘‘’’<b><middle><font color="">𝐒𝐮𝐩𝐉𝐚𝐯</font></middle>',
+        pic_url: 'https://hikerfans.com/tubiao/messy/48.svg',
+        url: $('')
+            .lazyRule((识别码) => {
+            if (request('hiker://home@𝐒𝐮𝐩𝐣𝐚𝐯') == 'null') {
+                confirm({
+                    title: '依赖检测',
+                    content: '检测到缺少𝐒𝐮𝐩𝐣𝐚𝐯小程序\n请用力摁确定!',
+                    confirm: () => {
+                        return parsePaste("云6oooole/xxxxxx/wqr019ejje8ejrhy");
+                    }
+                })
+                return "hiker://empty"
+            } else {
+                var search = "https://supjav.com/zh/?s=" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
+                var html = fetch(search, {
+                    headers: {
+                        "Cookie": "cf_clearance=3Swn.IzcaQ7gepcMHoKkmM3bs_J26x.BWW6HBTlUtz0-1705266030-0-2-a659b38c.639c85dc.f158ec6c-160.2.1705266030",
+                        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1",
+                        "Referer": "https://supjav.com/"
+                    },
+                    timeout: 4923
+                })
+                if (html) {
+                    var list = pdfa(html, '.posts&&.post');
+                    var supjav = []
+                    list.forEach(item => {
+                        var desc = pdfh(item, 'a&&title')
+                            .match(/\[.*?\]/) ? pdfh(item, 'a&&title')
+                            .replace(/(.*?)\s.*/, "$1")
+                            .replace("4K", "4K画质")
+                            .replace("SupJAV-", "") : pdfh(item, 'a&&title')
+                            .replace(/^((?:\[.*?\])?.*?)\s.*/, "[默认视频]$1");
+                        supjav.push({
+                            title: desc,
+                            url: pdfh(item, 'a&&href'),
+                        })
+                    })
+                    if (supjav.length == 0) {
+                        supjav = [{
+                            "title": "本平台尚未上传此番号视频",
+                            "url": "hiker://empty"
+                        }]
+                    }
+                    var supjavtype = supjav.map(i => i.title)
+                    return $(supjavtype, 1)
+                        .select((supjav) => {
+                        if (input == '本平台尚未上传此番号视频') {
+                            return supjav[0].url
+                        } else {
+                            let index = supjav.findIndex(r => r.title == input);
+                            var playUrl = "hiker://page/er?rule=𝐒𝐮𝐩𝐣𝐚𝐯&url=" + supjav[index].url
+                            return playUrl
+                        }
+                    }, supjav)
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            lineVisible: false,
+            longClick: [{
+                title: 'Supjav',
+                js: $.toString((识别码) => {
+                    return "x5://https://supjav.com/zh/?s=" + 识别码
+                }, 识别码)
+            }, {
+                title: '召唤雨见',
+                js: $.toString((识别码) => {
+                    return "yjbrowser://search?q=https://supjav.com/zh/?s=" + 识别码
+                }, 识别码)
+            }, {
+                title: '查看搜索',
+                js: $.toString((识别码) => {
+                    return "https://supjav.com/zh/?s=" + 识别码
+                }, 识别码)
+            }]
+        }
+    });
+
+    //javguru
+    d.push({
+        title: '‘‘’’<b><middle><font color="#67E0FA">𝐉𝐚𝐯𝐆𝐮𝐫𝐮</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQH1l.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            if (request('hiker://home@𝐉𝐚𝐯𝐆𝐮𝐫𝐮') == 'null') {
+                confirm({
+                    title: '依赖检测',
+                    content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
+                    confirm: () => {
+                        return parsePaste("云6oooole/xxxxxx/5feiwrhbduhsryyi");
+                    }
+                })
+                return "hiker://empty"
+            } else {
+                var search = "https://jav.guru/?s=" + 识别码;
+                var html = fetch(search, {
+                    timeout: 2230
+                })
+                if (html) {
+                    var list = pdfa(html, "main&&.inside-article:has(.imgg)");
+                    var javguru0 = []
+                    list.forEach(item => {
+                        var desc = pdfh(item, 'h2&&a&&title')
+                            .match(/(?:\[.*?\])+\s?(?:\(.*?\))?/) ? pdfh(item, 'h2&&a&&title')
+                            .match(/(?:\[.*?\])+\s?(?:\(.*?\))?/)[0] : "Original";
+                        javguru0.push({
+                            title: desc,
+                            url: pdfh(item, 'a&&href'),
+                        })
+                    })
+                    if (javguru0.length == 0) {
+                        javguru0 = [{
+                            "title": "本平台尚未上传此番号视频",
+                            "url": "hiker://empty"
+                        }]
+                    }
+                    var javgurutype = javguru0.map(i => i.title)
+                    return $(javgurutype, 1)
+                        .select((javguru0) => {
+                        if (input == '本平台尚未上传此番号视频') {
+                            return javguru0[0].url
+                        } else {
+                            let index = javguru0.findIndex(r => r.title == input);
+                            return javguru0[index].url + $("")
+                                .rule(() => {
+                                eval(JSON.parse(fetch('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮', {}))
+                                    .rule);
+                                return javguru.videoParse(MY_URL)
+                            });
+
+                        }
+                    }, javguru0)
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看搜索',
+                js: $.toString((识别码) => {
+                    return "https://jav.guru/?s=" + 识别码;
+                }, 识别码)
+            }, {
+                title: 'JavBangers',
+                js: $.toString((识别码) => {
+                    return "https://www.javbangers.com/search/" + 识别码 + '/';
+                }, 识别码)
+            }, {
+                title: '复制识别码',
+                js: $.toString((识别码) => {
+                    return "copy://" + 识别码;
+                }, 识别码)
+            }]
+        }
+    });
+
+    //JavFinder
+    d.push({
+        title: '‘‘’’<b><middle><font color="#FFD000">𝐉𝐚𝐯𝐅𝐢𝐧𝐝</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/zO7lw.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            var search = "https://javfinder.ai/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
+            var html = fetch(search, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                },
+                redirect: false
+            })
+            var list = pdfa(html, '.videos-list&&article');
+            var JavFinder = []
+            list.forEach(item => {
+                var desc = pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                    .match(/^\[(.*?)\]/)[1] : "Original Video";
+                JavFinder.push({
+                    title: desc,
+                    url: "https://javfinder.ai" + pdfh(item, 'a&&href'),
+                })
+            })
+            if (JavFinder.length == 0) {
+                var redirect = JSON.parse(fetch(search, {
+                    onlyHeaders: true,
+                    timeout: 5000
+                }))
+                    .url
+                if (/\.ai\/\d+/.test(redirect)) {
+                    JavFinder = [{
+                        "title": pdfh(fetch(redirect), 'h1&&Text')
+                            .match(/^\[(.*?)\]/) ? pdfh(fetch(redirect), 'h1&&Text')
+                            .match(/^\[(.*?)\]/)[1] : "Original Video",
+                        "url": redirect
+                    }]
+                } else {
+                    JavFinder = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
+                }
+            }
+            var JavFindertype = JavFinder.map(i => i.title)
+            return $(JavFindertype, 1)
+                .select((JavFinder) => {
+                if (input == '本平台尚未上传此番号视频') {
+                    return JavFinder[0].url
+                } else {
+                    let index = JavFinder.findIndex(r => r.title == input);
+                    try {
+                        var html = fetch(JavFinder[index].url, {
+                            headers: {
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                            },
+                            timeout: 3000
+                        });
+                        var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
+                        var location = JSON.parse(fetch(src))
+                            .list[0].url
+                        var master = fetch(location)
+                            .match(/sources:.*?"(.*?)"/)[1]
+                        var stream = fetch(master)
+                        var domain = master.replace(/(https?.*?urlset\/).*/, '$1')
+                        var video_quality = stream.match(/index?.*/g)
+                            .map(u => domain + u)
+                            .reverse()
+                        var name_quality = stream.match(/\d+x\d+/g)
+                            .slice(0, video_quality.length)
+                            .reverse()
+                        let playlist = {
+                            urls: video_quality,
+                            names: name_quality,
+                        };
+                        return playlist;
+                    } catch {
+                        return "toast://再次点击"
+                    }
+                }
+            }, JavFinder)
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '查看搜索',
+                js: $.toString((识别码) => {
+                    return "https://javfinder.ai/search/movie/" + 识别码;
+                }, 识别码)
+            }]
+        }
+    });
+
+    //𝐌𝐨𝐫𝐞
+    d.push({
+        title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQkS8.png',
+        url: $(["𝐧𝐣𝐚𝐯.𝐭𝐯", "𝐀𝐕𝟎𝟏",
+            "𝐉𝐚𝐛𝐥𝐞", "𝐘𝐨𝐮𝐚𝐯𝐡𝐮𝐛"], 3)
+            .select((识别码) => {
+            if (input == "𝐧𝐣𝐚𝐯.𝐭𝐯") {
+                var av = "https://njav.tv/zh/v/" + 识别码;
+                var html = fetch(av, {
+                    timeout: 2230
+                })
+                if (html) {
+                    if (html.includes("请检查地址栏中的网址")) {
+                        return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                    } else {
+                        var id = pdfh(html, "#page-video&&v-scope")
+                            .match(/\'(.*)\'/)[1]
+                        var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
+                        var data = JSON.parse(fetch(video, {
+                            headers: {
+                                "Referer": av
+                            }
+                        }))
+                        var javplayer = data.data.watch[0].url
+                        var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
+                            .match(/https?.*?\.m3u8/)[0]
+                        return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
+                    }
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
+
+            if (input == "𝐀𝐕𝟎𝟏") {
+                var av = "https://www.av01.tv/" + 识别码;
+                var htmll = JSON.parse(fetch(av, {
+                    onlyHeaders: true,
+                    timeout: 3323
+                }))
+                // log(htmll)
+                if (htmll.statusCode != 0) {
+                    var location = htmll.url
+                    if (location.includes("error")) {
+                        return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                    } else {
+                        var html = fetch(location)
+                        var src = "https://www.av01.tv" + pdfh(html, "script[referrerpolicy]&&src")
+                        var load_video = fetch(src, {
+                            headers: {
+                                "Referer": location,
+                            }
+                        })
+                        var source = load_video.match(/const source.*?base64\,(.*?)\'/)[1]
+                        var stream = base64Decode(source)
+                        var video_quality = stream.match(/https?.*/g)
+                            .filter(v => !/\"/.test(v))
+                            .reverse()
+                        var name_quality = stream.match(/\d+x\d+/g)
+                            .slice(0, video_quality.length)
+                            .reverse()
+                        let playlist = {
+                            urls: video_quality,
+                            names: name_quality,
+                            headers: new Array(video_quality.length)
+                                .fill({
+                                "Origin": "https://www.av01.tv"
+                            })
+                        };
+                        return playlist;
+                    }
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
+
+            if (input == "𝐉𝐚𝐛𝐥𝐞") {
+                var av = "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
+                try {
+                    var html = fetch(av, {
+                        timeout: 2230
+                    })
+                    if (html) {
+                        var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
+                        return url
+                    } else {
+                        return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                    }
+                } catch {
+                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                }
+            }
+            /*
+            if (input == "𝐘𝐨𝐮𝐚𝐯𝐡𝐮𝐛") {
+                var av = "https://youavhub.com/index.php/vod/search.html?wd=" + 识别码;
+                try {
+                    var html = fetch(av, {
+                        timeout: 2230
+                    })
+                    if (html) {
+                        var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
+                        return url
+                    } else {
+                        return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                    }
+                } catch {
+                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                }
+            }*/
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '𝐧𝐣𝐚𝐯.𝐭𝐯',
+                js: $.toString((识别码) => {
+                    return "https://njav.tv/zh/v/" + 识别码;
+                }, 识别码)
+            }, {
+                title: '𝐀𝐕𝟎𝟏',
+                js: $.toString((识别码) => {
+                    return "https://www.av01.tv/" + 识别码;
+                }, 识别码)
+            }, {
+                title: '𝐉𝐚𝐛𝐥𝐞',
+                js: $.toString((识别码) => {
+                    return "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
+                }, 识别码)
+            }]
+        }
+    });
+
+    //磁力君.简
+    d.push({
+        title: '‘‘’’<b><middle><font color="#1E20800">𝐌𝐚𝐠𝐧𝐞𝐭</font></middle>',
+        pic_url: 'https://img.vinua.cn/images/IQ85X.png',
+        url: $('')
+            .lazyRule((识别码) => {
+            if (request('hiker://home@磁力君.简') == 'null') {
+                confirm({
+                    title: '依赖检测',
+                    content: '检测到缺少磁力君.简\n请用力摁确定!',
+                    confirm: () => {
+                        return parsePaste("云6oooole/xxxxxx/osebx4awoxodbhro");
+                    }
+                })
+                return "hiker://empty"
+            } else {
+                return "hiker://page/sou?rule=磁力君.简&p=fypage&searchTerms=" + 识别码
+            }
+        }, 识别码),
+        col_type: 'icon_5',
+        extra: {
+            longClick: [{
+                title: '谷歌搜索',
+                js: $.toString((识别码) => {
+                    return "https://www.google.com/search?q=" + 识别码;
+                }, 识别码)
+            }, {
+                title: 'Yandex搜索',
+                js: $.toString((识别码) => {
+                    return "https://yandex.com/search/touch/?text=" + 识别码;
+                }, 识别码)
+            }, {
+                title: '聚搜R',
+                js: $.toString((识别码) => {
+                    return "hiker://search?s=" + 识别码 + "&group=①R&simple=false"
+                }, 识别码)
+            }]
+        }
+    });
+
+    d.push({
+        col_type: "line_blank",
+    })
+
+}
