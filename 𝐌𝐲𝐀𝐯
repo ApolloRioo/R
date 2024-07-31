@@ -37,6 +37,23 @@ const Apollo = {
                 "path": "https://ck91.top/"
             }]
         }, {
+            "title": "搜索▼",
+            "path": "/search.php",
+            "type": "search",
+            "sub": [{
+                "title": "有码查询",
+                "path": "/search.php"
+            }, {
+                "title": "无码查询",
+                "path": "/uncensored_search.php"
+            }, {
+                "title": "欧美查询",
+                "path": "/western_search.java"
+            }, {
+                "title": "国产查询",
+                "path": "/domestic_search.php"
+            }]
+        }, {
             "title": "有码热门▼",
             "path": "#",
             "type": "video",
@@ -196,23 +213,6 @@ const Apollo = {
             }, {
                 "title": "国产TAG",
                 "path": "/domestic_cat.py?type=6Wvt3eOMji5M_tHU6HuewA=="
-            }]
-        }, {
-            "title": "搜索▼",
-            "path": "/search.php",
-            "type": "search",
-            "sub": [{
-                "title": "有码查询",
-                "path": "/search.php"
-            }, {
-                "title": "无码查询",
-                "path": "/uncensored_search.php"
-            }, {
-                "title": "欧美查询",
-                "path": "/western_search.java"
-            }, {
-                "title": "国产查询",
-                "path": "/domestic_search.php"
             }]
         }]
         const currentCate = categoryList[Apollo.data.category]
