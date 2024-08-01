@@ -852,7 +852,7 @@ const Apollo = {
                 })
                 let result = JSON.parse(res)
                     .target
-                return result + "☁️"
+                return result + "【☁️】"
             } catch {
                 log("翻译失败，使用原文");
                 return text
@@ -879,7 +879,7 @@ const Apollo = {
                         });
                         var data = JSON.parse(result)
                         if (data.tgt_text) {
-                            return data.tgt_text + "🐮"
+                            return data.tgt_text + "【🐮】"
                         } else {
                             log("翻译失败，使用原文");
                             return text
