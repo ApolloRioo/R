@@ -91,7 +91,7 @@ function CodeLazy(识别码) {
 
     //av01
     d.push({
-        title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐕𝟎𝟏</font></middle>',
+        title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐯𝟎𝟏</font></middle>',
         pic_url: 'https://img.vinua.cn/images/IQBFU.png',
         url: $('')
             .lazyRule((识别码) => {
@@ -602,10 +602,10 @@ function CodeLazy(识别码) {
     d.push({
         title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
         pic_url: 'https://img.vinua.cn/images/IQkS8.png',
-        url: $(["𝐧𝐣𝐚𝐯.𝐭𝐯", "𝐀𝐕𝟎𝟏",
+        url: $(["𝐀𝐯𝟎𝟏", "𝐉𝐚𝐯𝐆𝐨",
             "𝐉𝐚𝐛𝐥𝐞", "𝐘𝐨𝐮𝐚𝐯𝐡𝐮𝐛"], 3)
             .select((识别码) => {
-            if (input == "𝐧𝐣𝐚𝐯.𝐭𝐯") {
+            if (input == "𝐉𝐚𝐯𝐆𝐨") {
                 var av = "https://njav.tv/zh/v/" + 识别码;
                 var html = fetch(av, {
                     timeout: 2230
@@ -632,7 +632,7 @@ function CodeLazy(识别码) {
                 }
             }
 
-            if (input == "𝐀𝐕𝟎𝟏") {
+            if (input == "𝐀𝐯𝟎𝟏") {
                 var av = "https://www.av01.tv/" + 识别码;
                 var htmll = JSON.parse(fetch(av, {
                     onlyHeaders: true,
@@ -711,12 +711,12 @@ function CodeLazy(识别码) {
         col_type: 'icon_5',
         extra: {
             longClick: [{
-                title: '𝐧𝐣𝐚𝐯.𝐭𝐯',
+                title: '𝐀𝐯𝟎𝟏',
                 js: $.toString((识别码) => {
                     return "https://njav.tv/zh/v/" + 识别码;
                 }, 识别码)
             }, {
-                title: '𝐀𝐕𝟎𝟏',
+                title: '𝐉𝐚𝐯𝐆𝐨',
                 js: $.toString((识别码) => {
                     return "https://www.av01.tv/" + 识别码;
                 }, 识别码)
