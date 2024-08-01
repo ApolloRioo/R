@@ -10,150 +10,150 @@ const Apollo = {
         const page = parseInt(MY_URL.split('##')[2])
         let categoryList = [{
             "title": "影片",
-            "path": "/tw/v_mostwanted.php",
+            "path": "/ja/v_mostwanted.php",
             "type": "video",
             "sub": [{
-                "title": "最想要",
-                "path": "/tw/v_mostwanted.php",
-            }, {
-                "title": "高評分",
-                "path": "/tw/v_bestrated.php",
-            }, {
                 "title": "新回復",
-                "path": "/tw/v_newreplys.php",
+                "path": "/ja/v_newreplys.php",
             }, {
                 "title": "新發行",
-                "path": "/tw/v_newrelease.php",
+                "path": "/ja/v_newrelease.php",
             }, {
                 "title": "新加入",
-                "path": "/tw/v_newentries.php",
+                "path": "/ja/v_newentries.php",
+            }, {
+                "title": "最想要",
+                "path": "/ja/v_mostwanted.php",
+            }, {
+                "title": "高評分",
+                "path": "/ja/v_bestrated.php",
             }]
         },
         /*{
             "title": "💘浏览过",
-            "path": "/tw/user/video_visited.php",
+            "path": "/ja/user/video_visited.php",
             "type": "video",
             "sub": []
         },*/
 {
             "title": "分類",
-            "path": "/tw/categories.php",
+            "path": "/ja/categories.php",
             "type": "series",
             "sub": []
         }, {
             "title": "演員",
-            "path": "/tw/star_list.php?prefix=A",
+            "path": "/ja/star_list.php?prefix=A",
             "type": "actress",
             "sub": [{
                 "title": "A",
-                "path": "/tw/star_list.php?prefix=A"
+                "path": "/ja/star_list.php?prefix=A"
             }, {
                 "title": "B",
-                "path": "/tw/star_list.php?prefix=B"
+                "path": "/ja/star_list.php?prefix=B"
             }, {
                 "title": "C",
-                "path": "/tw/star_list.php?prefix=C"
+                "path": "/ja/star_list.php?prefix=C"
             }, {
                 "title": "D",
-                "path": "/tw/star_list.php?prefix=D"
+                "path": "/ja/star_list.php?prefix=D"
             }, {
                 "title": "E",
-                "path": "/tw/star_list.php?prefix=E"
+                "path": "/ja/star_list.php?prefix=E"
             }, {
                 "title": "F",
-                "path": "/tw/star_list.php?prefix=F"
+                "path": "/ja/star_list.php?prefix=F"
             }, {
                 "title": "G",
-                "path": "/tw/star_list.php?prefix=G"
+                "path": "/ja/star_list.php?prefix=G"
             }, {
                 "title": "H",
-                "path": "/tw/star_list.php?prefix=H"
+                "path": "/ja/star_list.php?prefix=H"
             }, {
                 "title": "I",
-                "path": "/tw/star_list.php?prefix=I"
+                "path": "/ja/star_list.php?prefix=I"
             }, {
                 "title": "J",
-                "path": "/tw/star_list.php?prefix=J"
+                "path": "/ja/star_list.php?prefix=J"
             }, {
                 "title": "K",
-                "path": "/tw/star_list.php?prefix=K"
+                "path": "/ja/star_list.php?prefix=K"
             }, {
                 "title": "L",
-                "path": "/tw/star_list.php?prefix=L"
+                "path": "/ja/star_list.php?prefix=L"
             }, {
                 "title": "M",
-                "path": "/tw/star_list.php?prefix=M"
+                "path": "/ja/star_list.php?prefix=M"
             }, {
                 "title": "N",
-                "path": "/tw/star_list.php?prefix=N"
+                "path": "/ja/star_list.php?prefix=N"
             }, {
                 "title": "O",
-                "path": "/tw/star_list.php?prefix=O"
+                "path": "/ja/star_list.php?prefix=O"
             }, {
                 "title": "P",
-                "path": "/tw/star_list.php?prefix=P"
+                "path": "/ja/star_list.php?prefix=P"
             }, {
                 "title": "Q",
-                "path": "/tw/star_list.php?prefix=Q"
+                "path": "/ja/star_list.php?prefix=Q"
             }, {
                 "title": "R",
-                "path": "/tw/star_list.php?prefix=R"
+                "path": "/ja/star_list.php?prefix=R"
             }, {
                 "title": "S",
-                "path": "/tw/star_list.php?prefix=S"
+                "path": "/ja/star_list.php?prefix=S"
             }, {
                 "title": "T",
-                "path": "/tw/star_list.php?prefix=T"
+                "path": "/ja/star_list.php?prefix=T"
             }, {
                 "title": "U",
-                "path": "/tw/star_list.php?prefix=U"
+                "path": "/ja/star_list.php?prefix=U"
             }, {
                 "title": "V",
-                "path": "/tw/star_list.php?prefix=V"
+                "path": "/ja/star_list.php?prefix=V"
             }, {
                 "title": "W",
-                "path": "/tw/star_list.php?prefix=W"
+                "path": "/ja/star_list.php?prefix=W"
             }, {
                 "title": "X",
-                "path": "/tw/star_list.php?prefix=X"
+                "path": "/ja/star_list.php?prefix=X"
             }, {
                 "title": "Y",
-                "path": "/tw/star_list.php?prefix=Y"
+                "path": "/ja/star_list.php?prefix=Y"
             }]
         }, {
             "title": "收藏",
-            "path": "/tw/user/video_wanted.php",
+            "path": "/ja/user/video_wanted.php",
             "type": "video",
             "sub": [{
                 "title": "🗯美乳🗯",
-                "path": "/tw/user/video_wanted.php",
+                "path": "/ja/user/video_wanted.php?sort=2",
             }, {
                 "title": "🗯長身🗯",
-                "path": "/tw/user/video_watched.php",
+                "path": "/ja/user/video_watched.php?sort=2",
             }, {
-                "title": "🗯细腰🗯",
-                "path": "/tw/user/video_own.php",
+                "title": "🗯細腰🗯",
+                "path": "/ja/user/video_own.php?sort=2",
             }]
         }, {
             "title": "喜愛",
-            "path": "/tw/user/fav_users.php",
+            "path": "/ja/user/fav_users.php",
             "type": "actress",
             "sub": [{
                 "title": "🗯演員",
-                "path": "/tw/user/fav_stars.php"
+                "path": "/ja/user/fav_stars.php"
             }, {
                 "title": "🗯導演",
-                "path": "/tw/user/fav_directors.php"
+                "path": "/ja/user/fav_directors.php"
             }, {
                 "title": "🗯製作商",
-                "path": "/tw/user/fav_makers.php"
+                "path": "/ja/user/fav_makers.php"
             }, {
                 "title": "🗯發行商🗯",
-                "path": "/tw/user/fav_labels.php"
+                "path": "/ja/user/fav_labels.php"
             }]
         }, {
             "title": "登录",
-            "path": "/tw/signin.php",
+            "path": "/ja/signin.php",
             "type": "login",
             "sub": []
         }]
@@ -170,6 +170,33 @@ const Apollo = {
         url = url.replace(/https?.*(https?.*)/, "$1")
         if (page === 1) {
             categoryList.forEach((cate, index) => {
+                if (index == 1) {
+                    Apollo.d.push({
+                        title: "🔎",
+                        url: $("", "规范的识别码格式,例如：EBOD-104").input(() => {
+                            var searchUrl = "https://jav.land/ja/id_search.php?keys=" + input
+                            try {
+                                var url = JSON.parse(fetch(searchUrl, {
+                                    onlyHeaders: true
+                                })).url;
+                                if (url == searchUrl) {
+                                    return "toast://识别码错误或没有搜索结果"
+                                } else {
+                                    return url + $('#noHistory#')
+                                        .rule(() => {
+                                        const Apollo = $.require('hiker://page/Apollo')
+                                        Apollo.videoParse(MY_URL)
+                                        setResult(Apollo.d)
+                                    })
+                                }
+                            } catch {}
+                        }),
+                        col_type: "scroll_button",
+                        extra: {
+                            pageTitle: "🔎搜索结果"
+                        }
+                    })
+                }
                 Apollo.d.push({
                     title: parseInt(Apollo.data.category) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
@@ -211,7 +238,7 @@ const Apollo = {
         }
         const html = fetch(url, {
             headers: {
-                "Cookie": fetchPC('hiker://files/cache/javland_cookie.txt') || '',
+                "Cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
             }
         })
@@ -221,17 +248,21 @@ const Apollo = {
             url = nextPage;
         } else if (MY_PAGE > 1) {
             // url = "没有下一页哦😑"
-            var pagnum = url.match(/page=(\d+)/)[1]
-            if (pagnum == MY_PAGE) {
-                url = url.replace(/page=\d+/, "page=" + MY_PAGE)
+            if (/user|categories/.test(url)) {
+                url = "没有下一页哦😑"
             } else {
-                let sum = parseInt(pagnum) + MY_PAGE - 1;
-                url = url.replace(/page=\d+/, `page=` + sum)
+                var pagnum = url.match(/page=(\d+)/) ? url.match(/page=(\d+)/)[1] : "1"
+                if (pagnum == MY_PAGE) {
+                    url = url.replace(/page=\d+/, "page=" + MY_PAGE)
+                } else {
+                    let sum = parseInt(pagnum) + MY_PAGE - 1;
+                    url = url.replace(/page=\d+/, `page=` + sum)
+                }
             }
         }
         const html = fetch(url, {
             headers: {
-                cookie: fetchPC('hiker://files/cache/javland_cookie.txt') || '',
+                cookie: fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
             }
         })
@@ -252,7 +283,7 @@ const Apollo = {
                 Apollo.avatarType(html)
                 break
             case 'series':
-                Apollo.seriesType(html)
+                Apollo.avatarType(html)
                 break
             case 'login':
                 Apollo.loginType(html)
@@ -265,12 +296,20 @@ const Apollo = {
 
     //登录
     loginType: (html) => {
-        if (html.includes("退出登陸")) {
+        if (html.includes("ログアウト")) {
             Apollo.d.push({
-                title: '““””<big><font color=#FF00FF>账号已登录,点击退出账号</font></big>',
-                desc: '““””' + '切换分类刷新页面内容'.fontcolor('#FF00FF').big(),
+                title: '““””<big><font color=#118811>账号已登录,点击退出账号</font></big>',
+                desc: '““””' + '切换分类刷新页面内容'.fontcolor('#FF0000').big(),
                 url: 'hiker://empty' + $('').lazyRule(() => {
-                    writeFile('hiker://files/cache/javland_cookie.txt', '');
+                    writeFile('hiker://files/rules/Apollo/Cookie/javland_cookie.txt', '');
+                    const Apollo = $.require('hiker://page/Apollo')
+                    fetch(Apollo.url + "/ja/logout.php", {
+                        headers: {
+                            cookie: fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                        }
+                    })
+                    refreshPage();
                     return "toast://账号已登出";
                 }),
                 col_type: 'text_center_1',
@@ -281,7 +320,7 @@ const Apollo = {
         } else {
             Apollo.d.push({
                 title: '““””' + '点击登录账号'.fontcolor('#FF00FF').big(),
-                url: "https://jav.land/tw/signin.php" + $('').rule(() => {
+                url: "https://jav.land/ja/signin.php" + $('').rule(() => {
                     var d = [];
                     d.push({
                         col_type: 'x5_webview_single',
@@ -298,12 +337,12 @@ const Apollo = {
                                     //  fba.log('co::::::' + ua);
                                     var htmlContent = document.documentElement.innerHTML;
 
-                                    if (/基本資料/.test(htmlContent)) {
+                                    if (/基本情報/.test(htmlContent)) {
                                         // if (co.includes('USERKEY') && co.includes('PHPSESSID')) {
                                         var co = fba.getCookie(u);
                                         fba.log('co::::::' + co);
                                         fba.parseLazyRule($$$().lazyRule((co) => {
-                                            writeFile('hiker://files/cache/javland_cookie.txt', co + ";show=replys");
+                                            writeFile('hiker://files/rules/Apollo/Cookie/javland_cookie.txt', co + ";show=replys");
                                             toast('账号已登录');
                                             back(true);
                                         }, co));
@@ -339,7 +378,7 @@ const Apollo = {
                 title: pdfh(item, "img&&alt"),
                 desc: pdfh(item, ".bsid&&Text"),
                 img: pdfh(item, "img&&src"),
-                url: Apollo.url + $(pdfh(item, 'a,-1&&href') + '#noHistory#')
+                url: Apollo.url + $(pdfh(item, 'a,-1&&href') + '?mode=1#noHistory#')
                     .rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
                     Apollo.videoParse(MY_URL)
@@ -387,55 +426,56 @@ const Apollo = {
                 .substr(-6);
         }
         try {
-            var list = pdfa(html, '.genre_list||.videothumblist&&a')
+            var list = pdfa(html, '.genre_list&&a')
+            list = list.length > 0 ? list : pdfa(html, '.videothumblist&&.dq')
             list.forEach(item => {
+                var url = pdfh(item, 'a&&href');
                 Apollo.d.push({
                     title: '““””' + pdfh(item, 'a&&Text')
                         .fontcolor(getRangeColors()),
                     desc: "",
-                    // pic_url: pdfh(item, 'img&&data-src') + '@Referer=',
-                    url: $(Apollo.url + pdfh(item, 'a&&href') + '#fypage#noHistory#')
+                    url: $(Apollo.url + url + '#fypage#noHistory#')
                         .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.avatarParse(MY_URL)
                         setResult(Apollo.d)
                     }),
-                    col_type: 'flex_button'
+                    col_type: 'flex_button',
+                    extra: {
+                        longClick: html.includes("好きな") ? [{
+                            title: '❗️取消收藏',
+                            js: $.toString((url) => {
+                                const Apollo = $.require('hiker://page/Apollo')
+                                var match = url.match(/.*\/(.*?)\/(.*?)\.html/)
+                                var id = match[2]
+                                var action = match[1]
+                                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_user.php", {
+                                    headers: {
+                                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                                    },
+                                    body: {
+                                        id: id,
+                                        action: "del_" + action,
+                                    }
+                                })).ERROR;
+                                if (result == 1) {
+                                    refreshPage();
+                                    return "toast://取消收藏成功！"
+                                } else if (result == 2) {
+                                    return "toast://请先登录！"
+                                } else {
+                                    return "toast://取消收藏失败！"
+                                }
+                            }, url)
+                        }] : ""
+                    }
                 })
             })
         } catch {}
         Apollo.d.push({
             col_type: "blank_block"
         })
-    },
-
-    //一级系列
-    seriesType: (html) => {
-        //随机颜色
-        var getRangeColors = function() {
-            return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
-                .substr(-6);
-        }
-        var list = pdfa(html, '.genre_list&&a')
-        list.forEach(item => {
-            Apollo.d.push({
-                title: '““””' + pdfh(item, 'a&&Text')
-                    .fontcolor(getRangeColors()),
-                desc: "",
-                // pic_url: pdfh(item, 'img&&data-src') + '@Referer=',
-                url: $(Apollo.url + pdfh(item, 'a&&href') + '#fypage#noHistory#')
-                    .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.avatarParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
-                col_type: 'flex_button'
-            })
-        })
-        /*   Apollo.d.push({
-            col_type: "blank_block"
-        })*/
     },
 
     //一级页面.简
@@ -453,7 +493,7 @@ const Apollo = {
         }
         const html = fetch(url, {
             headers: {
-                "Cookie": fetchPC('hiker://files/cache/javland_cookie.txt') || '',
+                "Cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
             }
         })
@@ -467,14 +507,14 @@ const Apollo = {
         if (url.includes("genre")) {
             var html = fetch(url, {
                 headers: {
-                    "cookie": fetchPC('hiker://files/cache/javland_cookie.txt') || '',
+                    "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
                     "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
                 }
             })
         } else {
             var html = fetch(url, {
                 headers: {
-                    "cookie": fetchPC('hiker://files/cache/javland_cookie.txt').replace("replys", "everything") || '',
+                    "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt').replace("replys", "everything") || '',
                     "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
                 }
             })
@@ -494,12 +534,25 @@ const Apollo = {
     searchParse: (url) => {
         url = url.replace("hiker://empty##", "")
         log(url)
-        const html = fetch(url, {
+        var html = fetch(url, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-            }
-        });
-        Apollo.videoType(url, html)
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt').replace("replys", "everything") || '',
+                "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+            },
+        })
+        if (!html.includes("品番検索結果")) {
+            Apollo.d.push({
+                title: MY_KEYWORD,
+                desc: "小撸怡情，大撸伤身",
+                url: $(url + '#noHistory#')
+                    .rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: "movie_2",
+            })
+        }
         setResult(Apollo.d)
     },
 
@@ -517,7 +570,7 @@ const Apollo = {
         })
         const html = fetch(url, {
             headers: {
-                "cookie": fetchPC('hiker://files/cache/javland_cookie.txt') || '',
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
             }
         })
@@ -575,16 +628,41 @@ const Apollo = {
                 }]
             }
         })
+        const id = url.replace(/.*\/(.*?)\.html.*/, "$1");
         const img = pdfh(html, "body&&.k-right&&.col-sm-12&&img&&src");
         // const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
-            url: "hiker://empty",
+            url: "hiker://empty" + $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_get_play_sample.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        vid: id,
+                        action: "get",
+                    }
+                }));
+                // log(result)
+                if (result.ERROR == 1) {
+                    var html = result.videourl
+                    var list = pdfa(html, "#samplevideo&&source")
+                    let res = list.map(n => pdfh(n, "source&&res")).reverse()
+                    let src = list.map(n => pdfh(n, "source&&src")).reverse()
+                    let playlist = {
+                        names: res,
+                        urls: src
+                    }
+                    return playlist
+                } else {
+                    return "toast://没有预览视频哦😑"
+                }
+            }, id),
             col_type: "pic_1_full",
         })
-        Apollo.d.push({
-            col_type: "big_blank_block"
-        })
+
         Apollo.d.push({
             col_type: "big_blank_block"
         })
@@ -651,22 +729,159 @@ const Apollo = {
             }
         } catch {}
 
+        var subscribed = pdfh(html, "#video_favorite_edit&&#subscribed&&.hidden&&Text")
+        var watched = pdfh(html, "#video_favorite_edit&&#watched&&.hidden&&Text")
+        var owned = pdfh(html, "#video_favorite_edit&&#owned&&.hidden&&Text")
         Apollo.d.push({
-            title: '““””番号 : ' + 识别码.fontcolor("#FFD000"),
+            title: '““””番号:' + 识别码.fontcolor("#FFD000"),
             url: "copy://" + 识别码,
             col_type: "scroll_button",
         }, {
-            title: '““””' + "💝美乳💝".fontcolor("#FFD000"),
-            url: Apollo.empty,
+            title: subscribed == "これが欲しい" ? '““””' + "💜美乳".fontcolor("#FF00FF") : '““””' + "✙".fontcolor("#FFD000") + "美乳",
+            url: subscribed == "これが欲しい" ? $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteremove.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        id: id,
+                        type: "1",
+                    }
+                })).ERROR;
+                // log(result)
+                if (result == 1) {
+                    refreshPage();
+                    return "toast://删除收藏成功！"
+                } else if (result == 2) {
+                    return "toast://请先登录！"
+                } else {
+                    return "toast://删除收藏失败！"
+                }
+            }, id) : $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteadd.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        id: id,
+                        type: "1",
+                    }
+                })).ERROR;
+                //log(result)
+                if (result == 1) {
+                    refreshPage();
+                    return "toast://添加收藏成功！"
+                } else if (result == 2) {
+                    return "toast://请先登录！"
+                } else {
+                    return "toast://添加收藏失败！"
+                }
+            }, id),
+            col_type: "scroll_button",
+        }, {
+            title: watched == "見た" ? '““””' + "💜長身".fontcolor("#FF00FF") : '““””' + "✙".fontcolor("#FFD000") + "長身",
+            url: watched == "見た" ? $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteremove.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        id: id,
+                        type: "2",
+                    }
+                })).ERROR;
+                //log(result)
+                if (result == 1) {
+                    refreshPage();
+                    return "toast://删除收藏成功！"
+                } else if (result == 2) {
+                    return "toast://请先登录！"
+                } else {
+                    return "toast://删除收藏失败！"
+                }
+            }, id) : $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteadd.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        id: id,
+                        type: "2",
+                    }
+                })).ERROR;
+                //log(result)
+                if (result == 1) {
+                    refreshPage();
+                    return "toast://添加收藏成功！"
+                } else if (result == 2) {
+                    return "toast://请先登录！"
+                } else {
+                    return "toast://添加收藏失败！"
+                }
+            }, id),
+            col_type: "scroll_button",
+        }, {
+            title: owned == "持ってる" ? '““””' + "💜細腰".fontcolor("#FF00FF") : '““””' + "✙".fontcolor("#FFD000") + "細腰",
+            url: owned == "持ってる" ? $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteremove.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        id: id,
+                        type: "3",
+                    }
+                })).ERROR;
+                // log(result)
+                if (result == 1) {
+                    refreshPage();
+                    return "toast://删除收藏成功！"
+                } else if (result == 2) {
+                    return "toast://请先登录！"
+                } else {
+                    return "toast://删除收藏失败！"
+                }
+            }, id) : $('').lazyRule((id) => {
+                const Apollo = $.require('hiker://page/Apollo')
+                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteadd.php", {
+                    headers: {
+                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                    },
+                    body: {
+                        id: id,
+                        type: "3",
+                    }
+                })).ERROR;
+                // log(result)
+                if (result == 1) {
+                    refreshPage();
+                    return "toast://添加收藏成功！"
+                } else if (result == 2) {
+                    return "toast://请先登录！"
+                } else {
+                    return "toast://添加收藏失败！"
+                }
+            }, id),
             col_type: "scroll_button",
         }, {
             col_type: 'blank_block',
         }, {
-            title: pdfh(html, 'body&&.k-right&&.videotextlist&&tr:contains(日期:)&&Text'),
+            title: pdfh(html, 'body&&.k-right&&.videotextlist&&tr:contains(日:)&&Text'),
             url: Apollo.empty,
             col_type: "scroll_button",
         }, {
-            title: pdfh(html, 'body&&.k-right&&.videotextlist&&tr:contains(長度:)&&Text'),
+            title: pdfh(html, 'body&&.k-right&&.videotextlist&&tr:contains(時間:)&&Text'),
             url: Apollo.empty,
             col_type: "scroll_button",
         }, {
@@ -686,13 +901,36 @@ const Apollo = {
             })
             for (var i in arts) {
                 var title = parseDomForHtml(arts[i], 'Text');
+                var star_id = parseDomForHtml(arts[i], '.glyphicon-heart&&id');
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#c13141">' + title + '</font></middle></b>',
-                    url: Apollo.url + pdfh(arts[i], 'a&&href').replace("..", "/tw") + yiji,
+                    url: Apollo.url + pdfh(arts[i], 'a&&href').replace("..", "/ja") + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: title,
                         longClick: [{
+                            title: '✜收藏演员',
+                            js: $.toString((star_id) => {
+                                const Apollo = $.require('hiker://page/Apollo')
+                                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_favoriteadd.php", {
+                                    headers: {
+                                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                                    },
+                                    body: {
+                                        id: star_id,
+                                        type: "8",
+                                    }
+                                })).ERROR;
+                                if (result == 1) {
+                                    return "toast://收藏演员成功！"
+                                } else if (result == 2) {
+                                    return "toast://请先登录！"
+                                } else {
+                                    return "toast://添加收藏失败！"
+                                }
+                            }, star_id)
+                        }, {
                             title: '复制演员',
                             js: $.toString((title) => {
                                 return "copy://" + title;
@@ -732,7 +970,7 @@ const Apollo = {
             for (var i in arts) {
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#1E8884">' + parseDomForHtml(arts[i], 'Text') + '</font></middle></b>',
-                    url: Apollo.url + pdfh(arts[i], 'a&&href').replace("..", "/tw") + yiji,
+                    url: Apollo.url + pdfh(arts[i], 'a&&href').replace("..", "/ja") + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: parseDomForHtml(arts[i], 'Text')
@@ -746,6 +984,7 @@ const Apollo = {
         //导演
         try {
             var director = pdfh(html, 'body&&.k-right&&.videotextlist&&.director&&a&&Text');
+            var director_id = pdfh(html, 'body&&.k-right&&.videotextlist&&.director&&.glyphicon-heart&&id');
             if (director) {
                 Apollo.d.push({
                     title: "导演 : ",
@@ -754,48 +993,119 @@ const Apollo = {
                 })
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#1E90FF">' + director + '</font></middle></b>',
-                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.director&&a&&href').replace("..", "/tw") + yiji,
+                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.director&&a&&href').replace("..", "/ja") + yiji,
                     col_type: 'scroll_button',
                     extra: {
-                        pageTitle: director
+                        pageTitle: director,
+                        longClick: [{
+                            title: '✜收藏导演',
+                            js: $.toString((director_id) => {
+                                const Apollo = $.require('hiker://page/Apollo')
+                                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_favoriteadd.php", {
+                                    headers: {
+                                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                                    },
+                                    body: {
+                                        id: director_id,
+                                        type: "5",
+                                    }
+                                })).ERROR;
+                                if (result == 1) {
+                                    return "toast://收藏导演成功！"
+                                } else if (result == 2) {
+                                    return "toast://请先登录！"
+                                } else {
+                                    return "toast://添加收藏失败！"
+                                }
+                            }, director_id)
+                        }]
                     }
                 });
             }
         } catch {}
         //片商
         try {
-            var makers = pdfh(html, 'body&&.k-right&&.videotextlist&&.maker&&a&&Text');
-            if (makers) {
+            var maker = pdfh(html, 'body&&.k-right&&.videotextlist&&.maker&&a&&Text');
+            var maker_id = pdfh(html, 'body&&.k-right&&.videotextlist&&.maker&&.glyphicon-heart&&id');
+            if (maker) {
                 Apollo.d.push({
                     title: "片商 : ",
                     url: 'hiker://empty',
                     col_type: 'scroll_button',
                 })
                 Apollo.d.push({
-                    title: '‘‘’’<b><middle><font color="#1E90FF">' + makers + '</font></middle></b>',
-                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.maker&&a&&href').replace("..", "/tw") + yiji,
+                    title: '‘‘’’<b><middle><font color="#1E90FF">' + maker + '</font></middle></b>',
+                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.maker&&a&&href').replace("..", "/ja") + yiji,
                     col_type: 'scroll_button',
                     extra: {
-                        pageTitle: makers
+                        pageTitle: maker,
+                        longClick: [{
+                            title: '✜收藏导演',
+                            js: $.toString((maker_id) => {
+                                const Apollo = $.require('hiker://page/Apollo')
+                                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_favoriteadd.php", {
+                                    headers: {
+                                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                                    },
+                                    body: {
+                                        id: maker_id,
+                                        type: "6",
+                                    }
+                                })).ERROR;
+                                if (result == 1) {
+                                    return "toast://收藏片商成功！"
+                                } else if (result == 2) {
+                                    return "toast://请先登录！"
+                                } else {
+                                    return "toast://添加收藏失败！"
+                                }
+                            }, maker_id)
+                        }]
                     }
                 })
             }
         } catch {}
         //发行商
         try {
-            var makers = pdfh(html, 'body&&.k-right&&.videotextlist&&.label1&&a&&Text');
-            if (makers) {
+            var label = pdfh(html, 'body&&.k-right&&.videotextlist&&.label1&&a&&Text');
+            var label_id = pdfh(html, 'body&&.k-right&&.videotextlist&&.label1&&.glyphicon-heart&&id');
+            if (label) {
                 Apollo.d.push({
                     title: "发行商 : ",
                     url: 'hiker://empty',
                     col_type: 'scroll_button',
                 })
                 Apollo.d.push({
-                    title: '‘‘’’<b><middle><font color="#1E90FF">' + makers + '</font></middle></b>',
-                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.label1&&a&&href').replace("..", "/tw") + yiji,
+                    title: '‘‘’’<b><middle><font color="#1E90FF">' + label + '</font></middle></b>',
+                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.label1&&a&&href').replace("..", "/ja") + yiji,
                     col_type: 'scroll_button',
                     extra: {
-                        pageTitle: makers
+                        pageTitle: label,
+                        longClick: [{
+                            title: '✜收藏发行',
+                            js: $.toString((label_id) => {
+                                const Apollo = $.require('hiker://page/Apollo')
+                                var result = JSON.parse(post(Apollo.url + "/ajax/ajax_favoriteadd.php", {
+                                    headers: {
+                                        "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                                    },
+                                    body: {
+                                        id: label_id,
+                                        type: "7",
+                                    }
+                                })).ERROR;
+                                if (result == 1) {
+                                    return "toast://收藏发行成功！"
+                                } else if (result == 2) {
+                                    return "toast://请先登录！"
+                                } else {
+                                    return "toast://添加收藏失败！"
+                                }
+                            }, label_id)
+                        }]
                     }
                 })
             }
@@ -814,7 +1124,7 @@ const Apollo = {
                 })
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#63A233">' + makers + '</font></middle></b>',
-                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.series&&a&&href').replace("..", "/tw") + yiji,
+                    url: Apollo.url + pdfh(html, 'body&&.k-right&&.videotextlist&&.series&&a&&href').replace("..", "/ja") + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: makers
@@ -902,7 +1212,7 @@ const Apollo = {
                 })
                 let result = JSON.parse(res)
                     .target
-                return result + "🇨🇳☁️彩云小译"
+                return result + "【☁️】"
             } catch {
                 log("翻译失败，使用原文");
                 return text
@@ -929,7 +1239,7 @@ const Apollo = {
                         });
                         var data = JSON.parse(result)
                         if (data.tgt_text) {
-                            return data.tgt_text + "🇨🇳🐮小牛翻译"
+                            return data.tgt_text + "【🐮】"
                         } else {
                             log("翻译失败，使用原文");
                             return text
