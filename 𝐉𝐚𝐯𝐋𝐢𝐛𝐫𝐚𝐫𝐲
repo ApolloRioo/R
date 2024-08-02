@@ -248,7 +248,18 @@ const Apollo = {
                             return url + $('#noHistory#')
                                 .rule(() => {
                                 const Apollo = $.require('hiker://page/Apollo')
-                                Apollo.videoParse(MY_URL)
+                                try {
+                                    Apollo.videoParse(MY_URL)
+                                } catch {
+                                    Apollo.d.push({
+                                        title: '““””' + "只可搜番号，中文或错误番号报错".fontcolor("#67E0FA"),
+                                        url: "hiker://empty",
+                                        col_type: "text_center_1",
+                                        extra: {
+                                            lineVisible: false
+                                        }
+                                    })
+                                }
                                 setResult(Apollo.d)
                             })
                         }
@@ -256,7 +267,7 @@ const Apollo = {
                         return "hiker://empty"
                     }
                 }),
-                desc: '美好即刻开始...',
+                desc: '快捷番号搜索...',
                 col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', '') || "",
@@ -731,7 +742,7 @@ const Apollo = {
         // const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
-            url: "hiker://empty" + $('').lazyRule((id) => {
+            url: "hiker://empty"/* $('').lazyRule((id) => {
                 const Apollo = $.require('hiker://page/Apollo')
                 var result = JSON.parse(post(Apollo.url + "/acnx/acnx_get_play_sample.php", {
                     headers: {
@@ -756,7 +767,7 @@ const Apollo = {
                 } else {
                     return "toast://没有预览视频哦😑"
                 }
-            }, id),
+            }, id)*/,
             col_type: "pic_1_full",
         })
 
