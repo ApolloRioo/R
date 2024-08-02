@@ -9,7 +9,7 @@ const Apollo = {
     baseParse: () => {
         const page = parseInt(MY_URL.split('##')[2])
         let categoryList = [{
-            "title": "🔥",
+            "title": "新",
             "path": "/cn/vl_update.php",
             "type": "video",
             "sub": [{
@@ -23,12 +23,12 @@ const Apollo = {
                 "path": "/cn/genres.php",
             }]
         }, {
-            "title": "🔎",
+            "title": "搜",
             "path": "/cn/search.php",
             "type": "video",
             "sub": []
         }, {
-            "title": "💟",
+            "title": "收",
             "path": "/cn/mv_wanted.php?thumb&sort=saledate",
             "type": "video",
             "sub": [{
@@ -42,7 +42,7 @@ const Apollo = {
                 "path": "/cn/mv_owned.php?thumb&sort=saledate",
             }]
         }, {
-            "title": "💙",
+            "title": "藏",
             "path": "/cn/mv_favstars.php",
             "type": "actress",
             "sub": [{
