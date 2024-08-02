@@ -230,7 +230,7 @@ const Apollo = {
                 })
             }
         }
-        if (MY_PAGE == 1 && !url.includes("search.php")) {
+        if (MY_PAGE == 1 && !/genres\.php|search\.php/.test(url)) {
             Apollo.d.push({
                 title: "🔍",
                 url: $.toString(() => {
