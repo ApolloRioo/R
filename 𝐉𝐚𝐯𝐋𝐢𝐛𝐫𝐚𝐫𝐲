@@ -6,6 +6,11 @@ const Apollo = {
         category: getMyVar('Apo.category', '0'),
         subCate: getMyVar('Apo.subCate', '0'),
     },
+    getRangeColors: function() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
+            .toString(16))
+            .substr(-6);
+    }, //随机颜色
     baseParse: () => {
         const page = parseInt(MY_URL.split('##')[2])
         let categoryList = [{
@@ -23,7 +28,7 @@ const Apollo = {
                 "path": "/cn/genres.php",
             }]
         }, {
-            "title": "搜",
+            "title": "🔎",
             "path": "/cn/search.php",
             "type": "video",
             "sub": []
@@ -197,7 +202,7 @@ const Apollo = {
         if (page === 1) {
             categoryList.forEach((cate, index) => {
                 Apollo.d.push({
-                    title: parseInt(Apollo.data.category) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
+                    title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
                         .lazyRule((index) => {
                         putMyVar("Apo.category", index.toString())
@@ -216,7 +221,7 @@ const Apollo = {
                 })
                 currentCate.sub.forEach((cate, index) => {
                     Apollo.d.push({
-                        title: parseInt(Apollo.data.subCate) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
+                        title: parseInt(Apollo.data.subCate) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
                         url: $(Apollo.empty + "#noLoading#")
                             .lazyRule((index) => {
                             putMyVar("Apo.subCate", index.toString())
@@ -481,7 +486,7 @@ const Apollo = {
             var list = pdfa(conts[i], 'body&&a');
             var avatar = icon_s + '正序.svg';
             Apollo.d.push({
-                title: line,
+                title: line.fontcolor("#FF00FF"),
                 desc: num,
                 url: "hiker://empty",
                 col_type: 'avatar',
@@ -491,7 +496,7 @@ const Apollo = {
                 var jm = pdfh(list[j], 'a&&Text');
                 var url = pd(list[j], 'a&&href');
                 Apollo.d.push({
-                    title: jm,
+                    title: '““””' + jm.fontcolor(Apollo.getRangeColors()),
                     url: $(url + '#fypage#noHistory#')
                         .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
@@ -506,12 +511,6 @@ const Apollo = {
     },
     //一级演员
     avatarType: (html) => {
-        //随机颜色
-        var getRangeColors = function() {
-            return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
-                .substr(-6);
-        }
         try {
             var list = pdfa(html, '.videotextlist&&tr:not(.header)')
             var action = pdfh(html, "#rightcolumn&&form&&action");
@@ -524,7 +523,7 @@ const Apollo = {
                 var img = pdfh(item, 'img&&src');
                 Apollo.d.push({
                     title: '““””' + pdfh(item, 'a&&Text')
-                        .fontcolor(getRangeColors()),
+                        .fontcolor(Apollo.getRangeColors()),
                     desc: "",
                     img: img ? "https:" + img : "",
                     url: $(url + '#fypage#noHistory#')
@@ -742,7 +741,8 @@ const Apollo = {
         // const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
-            url: "hiker://empty"/* $('').lazyRule((id) => {
+            url: "hiker://empty"
+            /* $('').lazyRule((id) => {
                 const Apollo = $.require('hiker://page/Apollo')
                 var result = JSON.parse(post(Apollo.url + "/acnx/acnx_get_play_sample.php", {
                     headers: {
@@ -767,7 +767,8 @@ const Apollo = {
                 } else {
                     return "toast://没有预览视频哦😑"
                 }
-            }, id)*/,
+            }, id)*/
+            ,
             col_type: "pic_1_full",
         })
 
