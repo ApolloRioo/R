@@ -42,36 +42,40 @@ function CodeLazy(识别码) {
                     if (input == '本平台尚未上传此番号视频') {
                         return miss[0].url
                     } else {
-                        let index = miss.findIndex(r => r.title == input);
-                        var html = fetch(miss[index].url, {
-                            headers: {
-                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                            },
-                            timeout: 3000
-                        });
-                        eval(html.match(/eval.*?\n/)[0])
-                        // 获取画质列表，并去最高画质
-                        let group_quality = fetch(source, {
-                            headers: {
-                                "origin": "https://missav.com"
-                            }
-                        })
-                        hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
-                            .map(v => source.replace("playlist.m3u8", v))
-                            .reverse()
-                        name_quality = group_quality.match(/RESOLUTION=.*$/gm)
-                            .map(n => n.replace("RESOLUTION=", ""))
-                            .reverse()
-                        // copy(hghest_quality[0])
-                        let playlist = {
-                            urls: hghest_quality,
-                            names: name_quality,
-                            headers: new Array(hghest_quality.length)
-                                .fill({
-                                origin: "https://missav.com/cn/"
+                        try {
+                            let index = miss.findIndex(r => r.title == input);
+                            var html = fetch(miss[index].url, {
+                                headers: {
+                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                                },
+                                timeout: 3000
+                            });
+                            eval(html.match(/eval.*?\n/)[0])
+                            // 获取画质列表，并取最高画质
+                            let group_quality = fetch(source, {
+                                headers: {
+                                    "origin": "https://missav.com"
+                                }
                             })
-                        };
-                        return playlist;
+                            hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
+                                .map(v => source.replace("playlist.m3u8", v))
+                                .reverse()
+                            name_quality = group_quality.match(/RESOLUTION=.*$/gm)
+                                .map(n => n.replace("RESOLUTION=", ""))
+                                .reverse()
+                            // copy(hghest_quality[0])
+                            let playlist = {
+                                urls: hghest_quality,
+                                names: name_quality,
+                                headers: new Array(hghest_quality.length)
+                                    .fill({
+                                    origin: "https://missav.com/cn/"
+                                })
+                            };
+                            return playlist;
+                        } catch {
+                            return "toast://网络错误，请重试😓"
+                        }
                     }
                 }, miss)
             } else {
