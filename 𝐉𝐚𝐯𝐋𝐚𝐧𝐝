@@ -28,14 +28,38 @@ const Apollo = {
                 "title": "高評分",
                 "path": "/ja/v_bestrated.php",
             }]
-        },
-        /*{
-            "title": "💘浏览过",
-            "path": "/ja/user/video_visited.php",
+        }, {
+            "title": "收藏",
+            "path": "/ja/user/video_wanted.php",
             "type": "video",
-            "sub": []
-        },*/
-{
+            "sub": [{
+                "title": "🗯美乳🗯",
+                "path": "/ja/user/video_wanted.php?sort=2",
+            }, {
+                "title": "🗯長身🗯",
+                "path": "/ja/user/video_watched.php?sort=2",
+            }, {
+                "title": "🗯細腰🗯",
+                "path": "/ja/user/video_own.php?sort=2",
+            }]
+        }, {
+            "title": "喜愛",
+            "path": "/ja/user/fav_users.php",
+            "type": "actress",
+            "sub": [{
+                "title": "🗯演員",
+                "path": "/ja/user/fav_stars.php"
+            }, {
+                "title": "🗯導演",
+                "path": "/ja/user/fav_directors.php"
+            }, {
+                "title": "🗯製作商",
+                "path": "/ja/user/fav_makers.php"
+            }, {
+                "title": "🗯發行商🗯",
+                "path": "/ja/user/fav_labels.php"
+            }]
+        }, {
             "title": "分類",
             "path": "/ja/categories.php",
             "type": "series",
@@ -119,37 +143,6 @@ const Apollo = {
             }, {
                 "title": "Y",
                 "path": "/ja/star_list.php?prefix=Y"
-            }]
-        }, {
-            "title": "收藏",
-            "path": "/ja/user/video_wanted.php",
-            "type": "video",
-            "sub": [{
-                "title": "🗯美乳🗯",
-                "path": "/ja/user/video_wanted.php?sort=2",
-            }, {
-                "title": "🗯長身🗯",
-                "path": "/ja/user/video_watched.php?sort=2",
-            }, {
-                "title": "🗯細腰🗯",
-                "path": "/ja/user/video_own.php?sort=2",
-            }]
-        }, {
-            "title": "喜愛",
-            "path": "/ja/user/fav_users.php",
-            "type": "actress",
-            "sub": [{
-                "title": "🗯演員",
-                "path": "/ja/user/fav_stars.php"
-            }, {
-                "title": "🗯導演",
-                "path": "/ja/user/fav_directors.php"
-            }, {
-                "title": "🗯製作商",
-                "path": "/ja/user/fav_makers.php"
-            }, {
-                "title": "🗯發行商🗯",
-                "path": "/ja/user/fav_labels.php"
             }]
         }, {
             "title": "登录",
