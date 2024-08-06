@@ -280,7 +280,7 @@ const miss = {
         setPageTitle(title)
         miss.d.push({
             title: '““””'+title.small(),
-            url: 'url',//'hiker://empty',
+            url: url,//'hiker://empty',
             col_type: 'text_1',
             extra: {lineVisiable:false}
         })
