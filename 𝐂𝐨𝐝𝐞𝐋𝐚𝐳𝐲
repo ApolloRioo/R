@@ -1,4 +1,15 @@
-js: //①8
+js:
+/*ThissAV①16
+haokan②105
+njav③152
+Tktube④194
+missav⑤275
+supjav⑥348
+javguru⑦432
+⑧513
+
+
+*/
 function CodeLazy(识别码) {
     识别码 = 识别码.toLowerCase()
     d.push({
@@ -505,81 +516,7 @@ function CodeLazy(识别码) {
         pic_url: 'https://img.vinua.cn/images/zO7lw.png',
         url: $('')
             .lazyRule((识别码) => {
-            var search = "https://javfinder.ai/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
-            var html = fetch(search, {
-                headers: {
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                },
-                redirect: false
-            })
-            var list = pdfa(html, '.videos-list&&article');
-            var JavFinder = []
-            list.forEach(item => {
-                var desc = pdfh(item, 'a&&title')
-                    .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                    .match(/^\[(.*?)\]/)[1] : "Original Video";
-                JavFinder.push({
-                    title: desc,
-                    url: "https://javfinder.ai" + pdfh(item, 'a&&href'),
-                })
-            })
-            if (JavFinder.length == 0) {
-                var redirect = JSON.parse(fetch(search, {
-                    onlyHeaders: true,
-                    timeout: 5000
-                }))
-                    .url
-                if (/\.ai\/\d+/.test(redirect)) {
-                    JavFinder = [{
-                        "title": pdfh(fetch(redirect), 'h1&&Text')
-                            .match(/^\[(.*?)\]/) ? pdfh(fetch(redirect), 'h1&&Text')
-                            .match(/^\[(.*?)\]/)[1] : "Original Video",
-                        "url": redirect
-                    }]
-                } else {
-                    JavFinder = [{
-                        "title": "本平台尚未上传此番号视频",
-                        "url": "hiker://empty"
-                    }]
-                }
-            }
-            var JavFindertype = JavFinder.map(i => i.title)
-            return $(JavFindertype, 1)
-                .select((JavFinder) => {
-                if (input == '本平台尚未上传此番号视频') {
-                    return JavFinder[0].url
-                } else {
-                    let index = JavFinder.findIndex(r => r.title == input);
-                    try {
-                        var html = fetch(JavFinder[index].url, {
-                            headers: {
-                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                            },
-                            timeout: 3000
-                        });
-                        var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
-                        var location = JSON.parse(fetch(src))
-                            .list[0].url
-                        var master = fetch(location)
-                            .match(/sources:.*?"(.*?)"/)[1]
-                        var stream = fetch(master)
-                        var domain = master.replace(/(https?.*?urlset\/).*/, '$1')
-                        var video_quality = stream.match(/index?.*/g)
-                            .map(u => domain + u)
-                            .reverse()
-                        var name_quality = stream.match(/\d+x\d+/g)
-                            .slice(0, video_quality.length)
-                            .reverse()
-                        let playlist = {
-                            urls: video_quality,
-                            names: name_quality,
-                        };
-                        return playlist;
-                    } catch {
-                        return "toast://再次点击"
-                    }
-                }
-            }, JavFinder)
+            return "hiker://empty"
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -597,7 +534,7 @@ function CodeLazy(识别码) {
         title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
         pic_url: 'https://img.vinua.cn/images/IQkS8.png',
         url: $(["𝐀𝐯𝟎𝟏", "𝐉𝐚𝐯𝐆𝐨", "𝐖𝐚𝐧𝐭𝐚𝐯",
-            "𝐉𝐚𝐛𝐥𝐞", "𝐘𝐨𝐮𝐚𝐯𝐡𝐮𝐛"], 3)
+            "𝐉𝐚𝐛𝐥𝐞", "𝐉𝐚𝐯𝐅𝐢𝐧𝐝𝐞𝐫"], 3)
             .select((识别码) => {
             if (input == "𝐉𝐚𝐯𝐆𝐨") {
                 var av = "https://njav.tv/zh/v/" + 识别码;
@@ -703,23 +640,84 @@ function CodeLazy(识别码) {
                     return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                 }
             }
-            /*
-            if (input == "𝐘𝐨𝐮𝐚𝐯𝐡𝐮𝐛") {
-                var av = "https://youavhub.com/index.php/vod/search.html?wd=" + 识别码;
-                try {
-                    var html = fetch(av, {
-                        timeout: 2230
+
+            if (input == "𝐉𝐚𝐯𝐅𝐢𝐧𝐝𝐞𝐫") {
+                var search = "https://javfinder.ai/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
+                var html = fetch(search, {
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                    },
+                    redirect: false
+                })
+                var list = pdfa(html, '.videos-list&&article');
+                var JavFinder = []
+                list.forEach(item => {
+                    var desc = pdfh(item, 'a&&title')
+                        .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
+                        .match(/^\[(.*?)\]/)[1] : "Original Video";
+                    JavFinder.push({
+                        title: desc,
+                        url: "https://javfinder.ai" + pdfh(item, 'a&&href'),
                     })
-                    if (html) {
-                        var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
-                        return url
+                })
+                if (JavFinder.length == 0) {
+                    var redirect = JSON.parse(fetch(search, {
+                        onlyHeaders: true,
+                        timeout: 5000
+                    }))
+                        .url
+                    if (/\.ai\/\d+/.test(redirect)) {
+                        JavFinder = [{
+                            "title": pdfh(fetch(redirect), 'h1&&Text')
+                                .match(/^\[(.*?)\]/) ? pdfh(fetch(redirect), 'h1&&Text')
+                                .match(/^\[(.*?)\]/)[1] : "Original Video",
+                            "url": redirect
+                        }]
                     } else {
-                        return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                        JavFinder = [{
+                            "title": "本平台尚未上传此番号视频",
+                            "url": "hiker://empty"
+                        }]
                     }
-                } catch {
-                    return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                 }
-            }*/
+                var JavFindertype = JavFinder.map(i => i.title)
+                return $(JavFindertype, 1)
+                    .select((JavFinder) => {
+                    if (input == '本平台尚未上传此番号视频') {
+                        return JavFinder[0].url
+                    } else {
+                        let index = JavFinder.findIndex(r => r.title == input);
+                        try {
+                            var html = fetch(JavFinder[index].url, {
+                                headers: {
+                                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                                },
+                                timeout: 3000
+                            });
+                            var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
+                            var location = JSON.parse(fetch(src))
+                                .list[0].url
+                            var master = fetch(location)
+                                .match(/sources:.*?"(.*?)"/)[1]
+                            var stream = fetch(master)
+                            var domain = master.replace(/(https?.*?urlset\/).*/, '$1')
+                            var video_quality = stream.match(/index?.*/g)
+                                .map(u => domain + u)
+                                .reverse()
+                            var name_quality = stream.match(/\d+x\d+/g)
+                                .slice(0, video_quality.length)
+                                .reverse()
+                            let playlist = {
+                                urls: video_quality,
+                                names: name_quality,
+                            };
+                            return playlist;
+                        } catch {
+                            return "toast://网络出错请重试"
+                        }
+                    }
+                }, JavFinder)
+            }
         }, 识别码),
         col_type: 'icon_5',
         extra: {
