@@ -93,49 +93,39 @@ function CodeLazy(识别码) {
         }
     });
 
-    //av01
+    //haokan
     d.push({
-        title: '‘‘’’<b><middle><font color="#8A2BE2">𝐀𝐯𝟎𝟏</font></middle>',
+        title: '‘‘’’<b><middle><font color="#8A2BE2">𝐇𝐚𝐨𝐤𝐚𝐧</font></middle>',
         pic_url: 'https://img.vinua.cn/images/IQBFU.png',
         url: $('')
             .lazyRule((识别码) => {
-            var av = "https://www.av01.tv/" + 识别码;
-            var htmll = JSON.parse(fetch(av, {
-                onlyHeaders: true,
-                timeout: 3323
-            }))
-            // log(htmll)
-            if (htmll.statusCode != 0) {
-                var location = htmll.url
-                if (location.includes("error")) {
+            try {
+                var av = "http://sousou6.com/vod/search.html?wd=" + 识别码;
+                var html = fetch(av, {
+                    timeout: 3323
+                })
+                var list = pdfa(html, ".post-list&&.video-item")
+                if (list.length < 1) {
                     return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                 } else {
-                    var html = fetch(location)
-                    var src = "https://www.av01.tv" + pdfh(html, "script[referrerpolicy]&&src")
-                    var load_video = fetch(src, {
-                        headers: {
-                            "Referer": location,
-                        }
-                    })
-                    var source = load_video.match(/const source.*?base64\,(.*?)\'/)[1]
-                    var stream = base64Decode(source)
-                    var video_quality = stream.match(/https?.*/g)
-                        .filter(v => !/\"/.test(v))
-                        .reverse()
-                    var name_quality = stream.match(/\d+x\d+/g)
-                        .slice(0, video_quality.length)
-                        .reverse()
-                    let playlist = {
-                        urls: video_quality,
-                        names: name_quality,
-                        headers: new Array(video_quality.length)
-                            .fill({
-                            "Origin": "https://www.av01.tv"
+                    var Alist = []
+                    list.forEach(item => {
+                        var title = pdfh(item, 'img&&alt');
+                        Alist.push({
+                            title: title,
+                            url: "http://sousou6.com" + pdfh(item, 'a&&href'),
                         })
-                    };
-                    return playlist;
+                    })
+                    var Atitle = Alist.map(i => i.title)
+                    return $(Atitle, 1)
+                        .select((Alist) => {
+                        let index = Alist.findIndex(r => r.title == input);
+                        var html = fetch(Alist[index].url)
+                        var url = JSON.parse(html.match(/r player_.*?=(.*?)</)[1]).url
+                        return unescape(url)
+                    }, Alist)
                 }
-            } else {
+            } catch {
                 return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
             }
         }, 识别码),
@@ -144,7 +134,7 @@ function CodeLazy(识别码) {
             longClick: [{
                 title: '查看网址',
                 js: $.toString((识别码) => {
-                    return "https://www.av01.tv/" + 识别码;
+                    return "http://sousou6.com/vod/search.html?wd=" + 识别码;
                 }, 识别码)
             }]
         }
