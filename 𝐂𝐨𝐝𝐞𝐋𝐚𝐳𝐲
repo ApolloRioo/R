@@ -643,7 +643,7 @@ function CodeLazy(识别码) {
                     timeout: 2230
                 })
                 if (html) {
-                var title = pdfh(html,"head&&title&&Text")
+                    var title = pdfh(html, "head&&title&&Text")
                     if (title.startsWith("wantav.com")) {
                         return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                     } else {
@@ -742,6 +742,11 @@ function CodeLazy(识别码) {
                 title: '𝐉𝐚𝐯𝐆𝐨',
                 js: $.toString((识别码) => {
                     return "https://www.av01.tv/" + 识别码;
+                }, 识别码)
+            }, {
+                title: '𝐖𝐚𝐧𝐭𝐚𝐯',
+                js: $.toString((识别码) => {
+                    return "https://www.wantav.com/videos/index/id/" + 识别码;
                 }, 识别码)
             }, {
                 title: '𝐉𝐚𝐛𝐥𝐞',
