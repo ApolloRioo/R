@@ -606,7 +606,7 @@ function CodeLazy(识别码) {
     d.push({
         title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
         pic_url: 'https://img.vinua.cn/images/IQkS8.png',
-        url: $(["𝐀𝐯𝟎𝟏", "𝐉𝐚𝐯𝐆𝐨",
+        url: $(["𝐀𝐯𝟎𝟏", "𝐉𝐚𝐯𝐆𝐨", "𝐖𝐚𝐧𝐭𝐚𝐯",
             "𝐉𝐚𝐛𝐥𝐞", "𝐘𝐨𝐮𝐚𝐯𝐡𝐮𝐛"], 3)
             .select((识别码) => {
             if (input == "𝐉𝐚𝐯𝐆𝐨") {
@@ -630,6 +630,25 @@ function CodeLazy(识别码) {
                         var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
                             .match(/https?.*?\.m3u8/)[0]
                         return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
+                    }
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
+
+            if (input == "𝐖𝐚𝐧𝐭𝐚𝐯") {
+                var av = "https://www.wantav.com/videos/index/id/" + 识别码;
+                var html = fetch(av, {
+                    //redirect: false,
+                    timeout: 2230
+                })
+                if (html) {
+                var title = pdfh(html,"head&&title&&Text")
+                    if (title.startsWith("wantav.com")) {
+                        return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                    } else {
+                        var playUrl = html.match(/hlsUrl.=."(.*?)"/)[1]
+                        return playUrl
                     }
                 } else {
                     return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
