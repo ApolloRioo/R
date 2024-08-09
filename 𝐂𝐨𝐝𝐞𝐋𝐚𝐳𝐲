@@ -1,15 +1,13 @@
-js:
-/*ThissAV①16
-haokan②105
-njav③152
-Tktube④194
-missav⑤275
-supjav⑥348
-javguru⑦432
-⑧513
-
-
-*/
+js: //所在行   ThissAV①16
+//             haokan②105
+//             njav③152
+//             Tktube④194
+//             missav⑤275
+//             supjav⑥348
+//             javguru⑦432
+//             ⑧513
+//             ⑨
+//             ⑩
 function CodeLazy(识别码) {
     识别码 = 识别码.toLowerCase()
     d.push({
