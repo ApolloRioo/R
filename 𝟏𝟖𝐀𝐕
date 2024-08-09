@@ -745,7 +745,7 @@ const Apollo = {
             col_type: "blank_block"
         })
         Apollo.d.push({
-            title: '““””' + "隨機主題".fontcolor("#FF0000"),
+            title: '““””' + "隨機主題".fontcolor("#FF00FF"),
             url: Apollo.empty,
             col_type: "text_center_1",
             extra: {
