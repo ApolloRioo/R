@@ -99,11 +99,11 @@ function CodeLazy(识别码) {
         pic_url: 'https://img.vinua.cn/images/IQBFU.png',
         url: $('')
             .lazyRule((识别码) => {
-            try {
-                var av = "http://sousou6.com/vod/search.html?wd=" + 识别码;
-                var html = fetch(av, {
-                    timeout: 3323
-                })
+            var av = "http://sousou6.com/vod/search.html?wd=" + 识别码;
+            var html = fetch(av, {
+                timeout: 3323
+            })
+            if (html) {
                 var list = pdfa(html, ".post-list&&.video-item")
                 if (list.length < 1) {
                     return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
@@ -125,7 +125,7 @@ function CodeLazy(识别码) {
                         return unescape(url)
                     }, Alist)
                 }
-            } catch {
+            } else {
                 return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
             }
         }, 识别码),
