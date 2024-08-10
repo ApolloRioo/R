@@ -360,6 +360,12 @@ const Apollo = {
                 var lastpagenum = 1
             } else {
                 var lastpagenum = pdfh(html, "body&&.pagination-row&&.previous-next:matches(>)+li&&a&&Text")
+                if (lastpagenum == "") {
+                    lastpagenum = pdfh(html, "body&&.pagination-row&&li:nth-last-child(2)&&Text")
+                }
+                if (lastpagenum == ">") {
+                    lastpagenum = pdfh(html, "body&&.pagination-row&&li:nth-last-child(3)&&Text")
+                }
             }
         } catch {
             var lastpagenum = currpagenum
