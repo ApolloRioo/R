@@ -485,7 +485,7 @@ const Apollo = {
 
     //搜索
     searchParse: (url) => {
-        url = url.replace("hiker://empty##", "")
+        url = Apollo.url + url.replace("hiker://empty##", "")
         log(url)
         var html = fetch(url, {
             headers: {
