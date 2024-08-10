@@ -586,7 +586,7 @@ const Apollo = {
                 }),
                 col_type: "scroll_button",
             }, {
-                title: pdfh(html, 'body&&.posts-inner-details-text-top&&.posts-message,2&&Text'),
+                title: pdfh(html, 'body&&.posts-inner-details-text-top&&.posts-message,2&&Text').replace(/（.*?）/,"鐘"),
                 url: Apollo.empty,
                 col_type: "scroll_button",
             }, {
