@@ -1,0 +1,913 @@
+const Apollo = {
+    empty: "hiker://empty",
+    url: config.host,
+    d: [],
+    data: {
+        category: getMyVar('Apo.category', '0'),
+        subCate: getMyVar('Apo.subCate', '0'),
+    },
+    getRangeColors: function() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
+            .toString(16))
+            .substr(-6);
+    }, //随机颜色
+    baseParse: () => {
+        const page = parseInt(MY_URL.split('##')[2])
+        let categoryList = [{
+            "title": "無碼破解",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "無碼破解",
+                "path": "https://7mmtv.sx/zh/reducing-mosaic_list/all/1.html"
+            }, {
+                "title": "隨機破解",
+                "path": "https://7mmtv.sx/zh/censored_random/all/index.html"
+            }]
+        }, {
+            "title": "中字AV",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "中字 A V ",
+                "path": "https://7mmtv.sx/zh/chinese_list/all/1.html"
+            }, {
+                "title": "隨機中字",
+                "path": "https://7mmtv.sx/zh/chinese_random/all/index.html"
+            }]
+        }, {
+            "title": "有碼AV",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "有碼 A V ",
+                "path": "https://7mmtv.sx/zh/censored_list/all/1.html"
+            }, {
+                "title": "隨機有碼",
+                "path": "https://7mmtv.sx/zh/censored_random/all/index.html"
+            }, {
+                "title": "類別清單",
+                "path": "https://7mmtv.sx/zh/censored_categorylist/list/index.html"
+            }]
+        }, {
+            "title": "素人AV",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "素人 A V ",
+                "path": "https://7mmtv.sx/zh/amateurjav_list/all/1.html"
+            }, {
+                "title": "隨機素人",
+                "path": "https://7mmtv.sx/zh/amateurjav_random/all/index.html"
+            }, {
+                "title": "類別清單",
+                "path": "https://7mmtv.sx/zh/amateurjav_categorylist/list/index.html"
+            }, {
+                "title": "シロウトT",
+                "path": "https://7mmtv.sx/zh/amateurjav_makersr/1752/シロウトTV(SIRO)/1.html"
+            }, {
+                "title": "ラグジュT",
+                "path": "https://7mmtv.sx/zh/amateurjav_makersr/1586/ラグジュTV(LUXU)/1.html"
+            }, {
+                "title": "ナンパT",
+                "path": "https://7mmtv.sx/zh/amateurjav_makersr/1751/ナンパTV(200GANA)/1.html"
+            }, {
+                "title": "PRESTIGE PREMIU",
+                "path": "https://7mmtv.sx/zh/amateurjav_makersr/1318/PRESTIGE PREMIUM(300MAAN)/1.html"
+            }, {
+                "title": "S-CUTE",
+                "path": "https://7mmtv.sx/zh/amateurjav_makersr/1069/S-CUTE/1.html"
+            }, {
+                "title": "ARA",
+                "path": "https://7mmtv.sx/zh/amateurjav_makersr/1585/ARA/1.html"
+            }]
+        }, {
+            "title": "無碼AV",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "無碼 A V ",
+                "path": "https://7mmtv.sx/zh/uncensored_list/all/1.html"
+            }, {
+                "title": "隨機無碼",
+                "path": "https://7mmtv.sx/zh/uncensored_random/all/index.html"
+            }, {
+                "title": "FC2",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/37/FC2/1.html"
+            }, {
+                "title": "HEYZO",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/17/HEYZO/1.html"
+            }, {
+                "title": "東京",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/29/東京熱(Tokyo Hot)/1.html"
+            }, {
+                "title": "一本",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/32/一本道(1pondo)/1.html"
+            }, {
+                "title": "カリビアンコ",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/30/カリビアンコム(Caribbeancom)/1.html"
+            }, {
+                "title": "カリビアンコム PP",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/40/カリビアンコムPPV(Caribbeancompr)/1.html"
+            }, {
+                "title": "天然むす",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/31/天然むすめ(10musume)/1.html"
+            }, {
+                "title": "パコパコマ",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/36/パコパコママ(pacopacomama)/1.html"
+            }, {
+                "title": "ガチん娘",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/35/ガチん娘！(Gachinco)/1.html"
+            }, {
+                "title": "エッチな4610",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/34/エッチな4610/1.html"
+            }, {
+                "title": "人妻斬り0930",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/38/人妻斬り0930/1.html"
+            }, {
+                "title": "エッチな0930",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/39/エッチな0930/1.html"
+            }, {
+                "title": "トリプルエックス",
+                "path": "https://7mmtv.sx/zh/uncensored_makersr/126/トリプルエックス (XXX-AV)/1.html"
+            }]
+        }, {
+            "title": "國產影片",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "國產影片",
+                "path": "https://7mmtv.sx/zh/amateur_list/all/1.html"
+            }, {
+                "title": "隨機國產",
+                "path": "https://7mmtv.sx/zh/uncensored_random/all/index.html"
+            }]
+        }, {
+            "title": "H漫畫貼圖",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "H漫畫貼圖",
+                "path": "https://7mmtv.sx/zh/hcomic_list/all/1.html"
+            }, {
+                "title": "短篇&同人",
+                "path": "https://7mmtv.sx/zh/hcomic_list/short/1.html"
+            }, {
+                "title": "中篇",
+                "path": "https://7mmtv.sx/zh/hcomic_list/novellas/1.html"
+            }, {
+                "title": "單行本",
+                "path": "https://7mmtv.sx/zh/hcomic_list/voluminous/1.html"
+            }, {
+                "title": "隨機H漫畫",
+                "path": "https://7mmtv.sx/zh/hcomic_random/all/index.html"
+            }, {
+                "title": "隨機短篇&同人",
+                "path": "https://7mmtv.sx/zh/hcomic_random/short/index.html"
+            }, {
+                "title": "隨機中篇",
+                "path": "https://7mmtv.sx/zh/hcomic_random/novellas/index.html"
+            }, {
+                "title": "隨機單行本",
+                "path": "https://7mmtv.sx/zh/hcomic_random/voluminous/index.html"
+            }]
+        }]
+        const currentCate = categoryList[Apollo.data.category]
+        let url
+        let type = currentCate.type
+        let path = currentCate.path
+        if (currentCate.sub.length > 0) {
+            url = Apollo.url + getMyVar("url", currentCate.sub[Apollo.data.subCate].path)
+            path = currentCate.sub[Apollo.data.subCate].path
+        } else {
+            url = Apollo.url + getMyVar("url", currentCate.path)
+        }
+        url = url.replace(/https?.*(https?.*)/, "$1")
+        if (page === 1) {
+            categoryList.forEach((cate, index) => {
+                Apollo.d.push({
+                    title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
+                    url: $(Apollo.empty + "#noLoading#")
+                        .lazyRule((index) => {
+                        putMyVar("Apo.category", index.toString())
+                        putMyVar("Apo.subCate", '0')
+                        clearMyVar("url")
+                        clearMyVar("sort")
+                        clearMyVar("yurl");
+                        refreshPage(true)
+                        return "hiker://empty"
+                    }, index),
+                    col_type: 'scroll_button',
+                })
+            })
+            if (currentCate.sub.length > 0) {
+                Apollo.d.push({
+                    col_type: 'blank_block',
+                })
+                currentCate.sub.forEach((cate, index) => {
+                    Apollo.d.push({
+                        title: parseInt(Apollo.data.subCate) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
+                        url: $(Apollo.empty + "#noLoading#")
+                            .lazyRule((index) => {
+                            putMyVar("Apo.subCate", index.toString())
+                            clearMyVar("url")
+                            clearMyVar("sort")
+                            clearMyVar("yurl");
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
+                        col_type: 'scroll_button',
+                    })
+                })
+            }
+        }
+        if (MY_PAGE == 1 && !/category/.test(url)) {
+            Apollo.d.push({
+                title: "🔍",
+                url: $.toString(() => {
+                    putMyVar('keyword', input);
+                    var searchUrl = "https://7mmtv.sx/zh/searchall_search/all/" + input + "/1.html"
+                    putMyVar("url", searchUrl);
+                    refreshPage();
+                    return "hiker://empty"
+                }),
+                desc: '搜索...',
+                col_type: "input",
+                extra: {
+                    defaultValue: getMyVar('keyword', '') || "",
+                }
+            });
+        }
+        //翻页
+        /*
+        if (page !== 1) {
+            url = url.includes("?") ? url + "&page=" + page : url + "?&page=" + page
+        }
+        const html = fetch(url, {
+            headers: {
+                "Cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            }
+        })*/
+        let nextPage = getMyVar("nextPage", "");
+        if (nextPage && MY_PAGE > 1) {
+            if (url.includes("random")) {
+                url = url
+            } else {
+                url = nextPage;
+            }
+        } else if (MY_PAGE > 1) {
+            url = "没有下一页哦😑"
+        }
+        const html = fetch(url, {
+            headers: {
+                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+            }
+        })
+        log(url)
+        try {
+            var next = pdfh(html, "body&&.pagination-row&&.previous-next:matches(>)&&a&&href")
+            putMyVar("nextPage", next);
+        } catch {
+            clearMyVar("nextPage");
+            //log("可能不存在下一页或者下一页定位有问题");
+        }
+
+        if (url.includes("searchbyid")) {
+            Apollo.d.push({
+                title: '““””' + "识别码搜寻结果".fontcolor("#67E0FA"),
+                url: "hiker://empty",
+                col_type: "text_1",
+                extra: {
+                    lineVisible: false
+                }
+            })
+        }
+
+        switch (type) {
+            case 'video':
+                if (url.includes("categorylist")) {
+                    Apollo.seriesType(url, html)
+                } else {
+                    Apollo.videoType(url, html)
+                }
+                break
+            case 'actress':
+                //Apollo.avatarType(html)
+                break
+            case 'series':
+                Apollo.seriesType(html)
+                break
+            default:
+                Apollo.videoType(url, html)
+        }
+        setResult(Apollo.d)
+    },
+
+    //一级视频列表
+    videoType: (url, html) => {
+        try {
+            var currpagenum = pdfh(html, "body&&.pagination-row&&.current&&Text")
+        } catch {
+            var currpagenum = "1"
+        }
+        try {
+            if (currpagenum.includes("隨機")) {
+                var lastpagenum = 1
+            } else {
+                var lastpagenum = pdfh(html, "body&&.pagination-row&&.previous-next:matches(>)+li&&a&&Text");
+                if (lastpagenum == "") {
+                    lastpagenum = pdfh(html, "body&&.pagination-row&&li:nth-last-child(2)&&Text")
+                }
+                if (lastpagenum == ">") {
+                    lastpagenum = pdfh(html, "body&&.pagination-row&&li:nth-last-child(3)&&Text")
+                }
+            }
+        } catch {
+            var lastpagenum = currpagenum
+        }
+        var list = pdfa(html, "body&&.video");
+        list.forEach(item => {
+            var vurl = pdfh(item, 'a&&href');
+            Apollo.d.push({
+                title: pdfh(item, "h3&&a&&Text"),
+                desc: pdfh(item, ".small&&Text"),
+                img: pdfh(item, "img&&data-src").replace("/m/", "/b/"),
+                url: vurl + $('#noHistory#')
+                    .rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: "movie_2",
+                extra: {
+                    pageTitle: pdfh(item, "h3&&a&&Text"),
+                    longClick: !url.includes("content") ? [{
+                        title: '【跳页】【当前第>' + currpagenum + '<页】【尾页=>' + lastpagenum + '页】',
+                        js: $.toString((lastpagenum, url) => {
+                            return $('', '正确的页码：1=>' + lastpagenum + "页")
+                                .input((url, lastpagenum) => {
+                                if (input > 0 && input % 1 == 0 && input <= parseInt(lastpagenum)) {
+                                    var jumpu = url.replace(/\d+\.html/, input + ".html")
+                                    putMyVar("url", jumpu);
+                                    putMyVar("yurl", jumpu);
+                                    refreshPage();
+                                    return 'toast://你已经穿越到了' + input + '页'
+                                } else {
+                                    return "toast://请输入正确的页码"
+                                }
+                            },
+                            url, lastpagenum)
+                        },
+                        lastpagenum, url)
+                    }] : ""
+                }
+            })
+        })
+    },
+
+    //一级系列
+    seriesType: (url, html) => {
+        if (MY_PAGE == 1) {
+            Apollo.videoSort(html)
+        }
+        Apollo.videoType(url, html)
+    },
+
+    //一级sort
+    videoSort: (html) => {
+        Apollo.d.push({
+            col_type: "blank_block",
+        })
+        var chtml = fetch("https://18av.mm-cg.com/zh/chinese_categorylist/list/index.html")
+        const sort = pdfa(chtml, 'body&&.posts&&.post')
+        sort.forEach((item, index) => {
+            var title = pdfh(item, 'Text');
+            Apollo.d.push({
+                title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
+                url: pdfh(item, 'a&&href') + $('#noLoading#')
+                    .lazyRule((index) => {
+                    putMyVar('sort', index);
+                    putMyVar("url", input);
+                    refreshPage();
+                    return 'hiker://empty'
+                }, index),
+                col_type: 'scroll_button'
+            })
+            if (index == 54 || index == 123 || index == 189 || index == 294) {
+                Apollo.d.push({
+                    col_type: "blank_block",
+                })
+            }
+        })
+    },
+    //一级页面.简
+    avatarParse: (url) => {
+        addListener("onClose", $.toString(() => {
+            clearMyVar("yurl");
+            clearMyVar("ysort");
+            clearMyVar("nextPage1");
+        }));
+        url = url.replace(/(.*?)#.*/, "$1");
+        url = getMyVar("yurl", url)
+            .replace(/(.*?)#.*/, "$1");
+        /*
+        if (MY_PAGE !== 1) {
+            url = url.includes("?") ? url + "&page=" + MY_PAGE : url + "?&page=" + MY_PAGE
+        }
+        const html = fetch(url, {
+            headers: {
+                "Cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            }
+        })
+        log(url)*/
+        let nextPage = getMyVar("nextPage1", "");
+        if (nextPage && MY_PAGE > 1) {
+            url = nextPage;
+        } else if (MY_PAGE > 1) {
+            url = "没有下一页哦😑"
+        }
+        var html = fetch(url, {
+            headers: {
+                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            }
+        })
+        log(url)
+        try {
+            var next = pdfh(html, "body&&.pagination-row&&.previous-next:matches(>)&&a&&href")
+            putMyVar("nextPage1", next);
+        } catch {
+            clearMyVar("nextPage1");
+            // log("可能不存在下一页或者下一页定位有问题");
+        }
+        Apollo.videoType(url, html)
+    },
+
+    //搜索
+    searchParse: (url) => {
+        url = url.replace("hiker://empty##", "")
+        log(url)
+        var html = fetch(url, {
+            headers: {
+                // "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            },
+        });
+        Apollo.videoType(url, html)
+        setResult(Apollo.d)
+    },
+
+    //二级
+    videoParse: (url) => {
+        addListener("onClose", () => {
+            clearMyVar("piclist");
+        });
+        log(url)
+        var yiji = $('#fypage#noHistory#')
+            .rule(() => {
+            const Apollo = $.require('hiker://page/Apollo')
+            Apollo.avatarParse(MY_URL)
+            setResult(Apollo.d)
+        })
+        const html = fetch(url, {
+            headers: {
+                // "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            }
+        })
+        try {
+            var title = pdfh(html, "h1&&Text")
+                .replace("免费AV在线看", "");
+            Apollo.d.push({
+                title: '““””' + title.fontcolor("#E57A1A").small(),
+                url: url,
+                col_type: 'text_1',
+                extra: {
+                    lineVisible: false,
+                    id: 'transdesc',
+                    longClick: [{
+                        title: '复制',
+                        js: $.toString((title) => {
+                            return "copy://" + title;
+                        }, title)
+                    }, {
+                        title: '百度翻译',
+                        js: $.toString((title) => {
+                            return "x5://https://fanyi.baidu.com/#jp/zh/" + title
+                        }, title)
+                    }, {
+                        title: 'Deepl翻译',
+                        js: $.toString((title) => {
+                            return "x5://https://www.deepl.com/zh/translator-mobile#cn/zh/" + title
+                        }, title)
+                    }, {
+                        title: '谷歌翻译',
+                        js: $.toString((title) => {
+                            return "x5://https://translate.google.com/?hl=zh-CN&sl=cn&tl=zh-CN&text=" + title
+                        }, title)
+                    }]
+                }
+            })
+        } catch {}
+
+        try {
+            const img = pdfh(html, ".content_main_cover&&img&&src");
+            var prevideo = html.match(/source src='(.*?)'/) ? html.match(/source src='(.*?)'/)[1] : "toast://此影片沒有視頻預覽哦😐";
+            Apollo.d.push({
+                img: img,
+                url: prevideo,
+                col_type: "pic_1_full",
+            })
+        } catch {}
+
+        try {
+            var fullvideo_showcg = pdfa(html, "#fullvideo_showallcg&&img").map(p => pdfh(p, "img&&data-src"))
+            var allcgscript = pdfh(html, "body&&#fullvideo_showallcg+script&&Html").replace("new Array()", "fullvideo_showcg").split("fullvideo_showallcg_x")[0]
+            eval(allcgscript)
+            // log(fullvideo_showallcg_arr)
+        } catch {}
+
+        var lazypic = $('#noLoading#').lazyRule((fullvideo_showallcg_arr) => {
+            if (fullvideo_showallcg_arr.length > 0) {
+                return "pics://" + fullvideo_showallcg_arr.join("&&")
+            } else {
+                return "toast://此影片沒有圖片預覽哦😑"
+            }
+        }, fullvideo_showallcg_arr)
+
+        try {
+            var content = pdfh(html, ".video-introduction-images-text&&Text")
+            Apollo.d.push({
+                title: "<a style='text-decoration: none;color:red;' href='" + lazypic + "'>預覽和介紹</a>：" + (content != "" ? content : "曾经沧海难为水，除却巫山不是云。取次花丛懒回顾，半缘修道半缘君。\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t------元稹").fontcolor("grey").small(),
+                url: Apollo.empty,
+                col_type: "rich_text",
+                extra: {
+                    lineVisible: false
+                }
+            })
+        } catch {}
+
+        //Apollo.PlayParse(html)
+        /*
+        Apollo.d.push({
+            col_type: "big_blank_block"
+        })
+*/
+        try {
+            const 识别码 = pdfh(html, "body&&.fullvideo-details&&.me-3&&Text")
+            if (识别码 != "") Apollo.CodeParse(识别码)
+        } catch {}
+        Apollo.d.push({
+            col_type: "big_blank_block"
+        })
+        Apollo.d.push({
+            col_type: "big_blank_block"
+        })
+        try {
+            Apollo.d.push({
+                title: '““””番号:' + 识别码.fontcolor("#FFD000"),
+                url: "copy://" + 识别码,
+                col_type: "scroll_button",
+            }, {
+                title: pdfh(html, 'body&&.fullvideo-details&&.me-3,1&&Text'),
+                url: 识别码 + $('#noLoading#')
+                    .lazyRule(() => {
+                    return "hiker://page/yj?rule=𝐉𝐚𝐯𝐃𝐁&url=" + getPublicItem('javdb0', 'https://javdb.com') + "/search？？f=all＆＆page=fypage＆＆q=" + input
+                }),
+                col_type: "scroll_button",
+            }, {
+                title: pdfh(html, 'body&&.fullvideo-details&&.me-3,2&&Text').replace(/（.*?）/, "鐘"),
+                url: Apollo.empty,
+                col_type: "scroll_button",
+            }, {
+                col_type: 'blank_block',
+            })
+        } catch {}
+        //导演
+        try {
+            var director = pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(導演:)&&a&&Text');
+            if (director) {
+                Apollo.d.push({
+                    title: "导演:",
+                    url: 'hiker://empty',
+                    col_type: 'scroll_button',
+                })
+                Apollo.d.push({
+                    title: '‘‘’’<b><middle><font color="#1E90FF">' + director + '</font></middle></b>',
+                    url: pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(導演:)&&a&&href') + yiji,
+                    col_type: 'scroll_button',
+                    extra: {
+                        pageTitle: director,
+                    }
+                });
+            }
+        } catch {}
+        //发行商
+        try {
+            var label = pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(發行商:)&&a&&Text');
+            if (label) {
+                Apollo.d.push({
+                    title: "发行商:",
+                    url: 'hiker://empty',
+                    col_type: 'scroll_button',
+                })
+                Apollo.d.push({
+                    title: '‘‘’’<b><middle><font color="#1E90FF">' + label + '</font></middle></b>',
+                    url: pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(發行商:)&&a&&href') + yiji,
+                    col_type: 'scroll_button',
+                    extra: {
+                        pageTitle: label,
+                    }
+                })
+            }
+        } catch {}
+        //片商
+        try {
+            var maker = pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(製作商:)&&a&&Text');
+            if (maker) {
+                Apollo.d.push({
+                    title: "片商:",
+                    url: 'hiker://empty',
+                    col_type: 'scroll_button',
+                })
+                Apollo.d.push({
+                    title: '‘‘’’<b><middle><font color="#1E90FF">' + maker + '</font></middle></b>',
+                    url: pdfh(html, 'body&&.fullvideo-details&&.g-1:matches(製作商:)&&a&&href') + yiji,
+                    col_type: 'scroll_button',
+                    extra: {
+                        pageTitle: maker,
+                    }
+                })
+            }
+        } catch {}
+
+        Apollo.d.push({
+            col_type: "blank_block"
+        })
+
+        //类别
+        var arts = parseDomForArray(html, 'body&&.fullvideo-details&&.categories&&a');
+        if (arts.length > 0) {
+            Apollo.d.push({
+                col_type: "blank_block"
+            })
+            Apollo.d.push({
+                title: "類別:",
+                url: 'hiker://empty',
+                col_type: 'scroll_button',
+            });
+            for (var i in arts) {
+                var url = pdfh(arts[i], 'a&&href');
+                Apollo.d.push({
+                    title: '‘‘’’<b><middle><font color="#1E8884">' + parseDomForHtml(arts[i], 'Text') + '</font></middle></b>',
+                    url: url + yiji,
+                    col_type: 'scroll_button',
+                    extra: {
+                        pageTitle: parseDomForHtml(arts[i], 'Text')
+                    }
+                })
+            }
+        }
+
+        //演员
+        var arts = parseDomForArray(html, 'body&&.fullvideo-details&&.fullvideo-idol');
+        if (arts.length > 0) {
+            Apollo.d.push({
+                col_type: "blank_block"
+            })
+            Apollo.d.push({
+                title: "演員 ",
+                url: 'hiker://empty',
+                col_type: 'text_center_1',
+                extra: {
+                    lineVisible: false
+                }
+            })
+            for (var i in arts) {
+                var title = parseDomForHtml(arts[i], 'Text');
+                var url = pdfh(arts[i], 'a&&href');
+                Apollo.d.push({
+                    title: '‘‘’’<b><middle><font color="#c13141">' + title + '</font></middle></b>',
+                    img: pdfh(arts[i], 'img&&data-src') ? pdfh(arts[i], 'img&&data-src') : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
+                    url: url + yiji,
+                    col_type: 'card_pic_3',
+                    extra: {
+                        pageTitle: title,
+                        longClick: [{
+                            title: '复制演员',
+                            js: $.toString((title) => {
+                                return "copy://" + title;
+                            }, title)
+                        }, {
+                            title: '谷歌搜索',
+                            js: $.toString((title) => {
+                                return "https://www.google.com/search?q=" + title;
+                            }, title)
+                        }, {
+                            title: '百度搜索',
+                            js: $.toString((title) => {
+                                return "https://www.baidu.com/s?wd=" + title;
+                            }, title)
+                        }, {
+                            title: '磁力搜演员',
+                            js: $.toString((title) => {
+                                return "hiker://page/sou?rule=磁力君.简&p=fypage&searchTerms=" + title
+                            }, title)
+                        }]
+                    }
+                })
+            }
+        }
+        Apollo.d.push({
+            col_type: "blank_block"
+        })
+
+        Apollo.d.push({
+            title: '““””' + "隨機主題".fontcolor("#FF00FF"),
+            url: Apollo.empty,
+            col_type: "text_center_1",
+            extra: {
+                lineVisible: false
+            }
+        })
+        Apollo.videoType(url, html)
+
+        Apollo.d.push({
+            title: '““””' + "我是有底线的".fontcolor("grey")
+                .small(),
+            url: Apollo.empty,
+            col_type: "text_center_1",
+            extra: {
+                lineVisible: false
+            }
+        })
+        setResult(Apollo.d)
+    },
+
+    //播放列表
+    PlayParse: (html) => {
+        // 引入加密解密库
+        eval(getCryptoJS())
+        /*        let list = [];
+        let _hcdeedg252 = html.match(/hcdeedg252=\d+/)[0];
+        let _hadeedg252 = html.match(/hadeedg252=\d+/)[0];
+        // console.log(`_hcdeedg252:${_hcdeedg252}`);
+        // console.log(`_hadeedg252:${_hadeedg252}`);
+        let _argdeqweqweqwe = html.match(/.argdeqweqweqwe.=.'\w+';/)[0];
+        // console.log(`_argdeqweqweqwe:${_argdeqweqweqwe}`);
+        let _hdddedg252 = html.match(/.hdddedg252.=.'\w+';/)[0];
+        // console.log(`_hdddedg252:${_hdddedg252}`);
+        let _mvarr = html.match(/mvarr[\d_\[\]']+=\[\[.*\],\];/)[0];
+        // console.log(_mvarr);
+        let server = _mvarr.match(/mvarr[\d_\[\]']+/g).map(x => {
+            return x.replace('mvarr[\'', '').replace('\']', '');
+        });
+        let mvarr = {};
+        let hcdeedg252;
+        let hadeedg252;
+        let argdeqweqweqwe;
+        let hdddedg252;
+        let _js = `${_hcdeedg252},${_hadeedg252};${_argdeqweqweqwe}${_hdddedg252}${_mvarr}`;
+        // console.log(_js);
+        eval(_js);
+
+        function hsdfdg252(a) {
+            let hsddfdg252 = [];
+            let hedeedg252 = [];
+            hcdeedg252 = hcdeedg252 <= 25 ? hcdeedg252 : hcdeedg252 % 25;
+            let splitStr = String.fromCharCode(hcdeedg252 + 97);
+            hsddfdg252 = a.split(splitStr);
+            for (let i = 0; i < hsddfdg252.length; i++) {
+                let hfdeedg252 = parseInt(hsddfdg252[i], hcdeedg252);
+                hfdeedg252 = (hfdeedg252 * 1) ^ hadeedg252;
+                let hjdeedg252 = String.fromCharCode(hfdeedg252);
+                hedeedg252.push(hjdeedg252)
+            }
+            let hgdeedg252 = hedeedg252.join("");
+            return hgdeedg252
+        }
+
+        function decr_sun(a, b, c, d) {
+            a = hsdfdg252(a);
+            var e = CryptoJS.enc.Utf8.parse(argdeqweqweqwe);
+            var f = CryptoJS.enc.Utf8.parse(hdddedg252);
+            var g = CryptoJS.AES.decrypt(a, e, {
+                iv: f,
+                padding: CryptoJS.pad.Pkcs7
+            });
+            // console.log(b + g.toString(CryptoJS.enc.Utf8) + c);
+            return b + g.toString(CryptoJS.enc.Utf8) + c;
+            // $("#" + d).attr("src", b + g.toString(CryptoJS.enc.Utf8) + c)
+        }
+
+        function jfun_show_mvinnerHTML(a) {
+            if (a === '7_1' || a === '28_1') {
+                //return;
+            }
+            for (let mvarr_i = 0; mvarr_i < mvarr[a].length; mvarr_i++) {
+                let res = mvarr[a][mvarr_i][2] + mvarr[a][mvarr_i][5];
+                // console.log(res);
+                let decUrl = decr_sun(mvarr[a][mvarr_i][1], mvarr[a][mvarr_i][3], mvarr[a][mvarr_i][4], mvarr[a][mvarr_i][0]);
+                list.push({
+                    'title': a,
+                    'url': decUrl.startsWith('//') ? `https:${decUrl}` : decUrl
+                });
+            }
+        }
+        server.forEach(x => {
+            jfun_show_mvinnerHTML(x);
+        })
+
+        var lazy = $('').lazyRule(() => {
+            let videoUrl = '';
+            let requestUrl = input;
+            var result = fetch(requestUrl)
+            if (requestUrl.indexOf(config.host) != -1) {
+                let res = result.match(/https.*?m3u8/);
+                if (res == undefined || res.length == 0) {
+                    //res = result.match(/file:.\'(.*)\'\},/);
+                }
+                videoUrl = res[0] + ";{Referer@https://streamfastpro.com/}";
+            } else if (requestUrl.indexOf("streamfastpro") != -1) {
+                let res = result.match(/https.*?m3u8/);
+                if (res == undefined || res.length == 0) {
+                    res = result.match(/file:.\'(.*)\'\},/);
+                }
+                videoUrl = res[0] + ";{Referer@https://streamfastpro.com/}";
+
+            } else if (requestUrl.indexOf('dood') != -1) {
+                var pass_md5 = getHome(requestUrl) + result.match(/\/pass_md5[^"']+/)[0]
+                var token = result.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                log("dood" + pass_md5)
+                var data = fetch(pass_md5, {
+                    headers: {
+                        "Referer": requestUrl
+                    }
+                })
+
+                    function makePlay(token) {
+                        for (var a = "",
+                        t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                        n = t.length,
+                        o = 0; 10 > o; o++)
+                        a += t.charAt(Math.floor(Math.random() * n));
+                        return a + "?token=" + token + "&expiry=" + Date.now();
+                    };
+                var urlPlay = data + makePlay(token)
+                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + requestUrl + "}"
+
+            } else if (requestUrl.indexOf('/vv/') != -1) {
+                let apiUrl = requestUrl.replace('/v/', '/api/source/');
+                // print(`apiUrl:${apiUrl}`);
+                let res = JSON.parse(tools.http.post(apiUrl, "r=&d="));
+                // print(`res:${res}`);
+                videoUrl = res.data[0].file
+            } else if (requestUrl.indexOf('mmfl') != -1) {
+                // log(result)
+            }
+            return videoUrl;
+        })
+        //log(list)
+        var servers = pdfa(html, ".btnst&&a").map(n => pdfh(n, "Text")) //播放列表名
+        list.forEach((item, index) => {
+            Apollo.d.push({
+                title: servers[index].replace("(可下載)", ""),
+                url: item.url + lazy,
+                col_type: "text_3"
+            })
+        })*/
+    },
+    //外链播放
+    CodeParse: (识别码) => {
+        Apollo.d.push({
+            col_type: 'blank_block',
+        })
+        var codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
+            .replace(/d\.push/g, "Apollo.d.push") || "";
+
+        function downcode() {
+            var js = fetch("https://mirror.ghproxy.com/https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+            writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
+            toast("远程数据已更新到本地")
+            codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
+                .replace(/d\.push/g, "Apollo.d.push")
+        }
+        if (!codelazy) {
+            downcode()
+        }
+        try {
+            eval(codelazy)
+        } catch {
+            downcode()
+            eval(codelazy)
+            log("读取失败更新远程数据")
+        }
+        CodeLazy(识别码)
+    }
+
+}
+
+$.exports = Apollo
