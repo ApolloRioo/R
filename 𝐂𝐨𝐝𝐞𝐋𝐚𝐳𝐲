@@ -6,8 +6,8 @@ js: //所在行   ThissAV①16
 //             supjav⑥348
 //             javguru⑦432
 //             ⑧513
-//             ⑨
-//             ⑩
+//             more⑨533
+//             cilijun⑩750
 function CodeLazy(识别码) {
     识别码 = 识别码.toLowerCase()
     d.push({
@@ -376,9 +376,12 @@ function CodeLazy(识别码) {
                         var desc = pdfh(item, 'a&&title')
                             .match(/\[.*?\]/) ? pdfh(item, 'a&&title')
                             .replace(/(.*?)\s.*/, "$1")
-                            .replace("4K", "4K画质")
+                            .replace("[4K]", "🖥【4K画质】")
+                            .replace("[中文字幕]", "🇨🇳【中文字幕】")
+                            .replace("[英文字幕]", "🇺🇸【英文字幕】")
+                            .replace("[无码破解]", "🔥【无码破解】")
                             .replace("SupJAV-", "") : pdfh(item, 'a&&title')
-                            .replace(/^((?:\[.*?\])?.*?)\s.*/, "[默认视频]$1");
+                            .replace(/^((?:\[.*?\])?.*?)\s.*/, "🦋【默认视频】$1");
                         supjav.push({
                             title: desc,
                             url: pdfh(item, 'a&&href'),
