@@ -118,20 +118,6 @@ const Apollo = {
                 "path": "/zh/dt_list/all/1.html"
             }]
         }, {
-            "title": "18H漫畫",
-            "path": "//18h.mm-cg.com/zh/18H_random/all/index.html",
-            "type": "video",
-            "sub": [{
-                "title": "18H漫畫随机",
-                "path": "//18h.mm-cg.com/zh/18H_random/all/index.html"
-            }, {
-                "title": "18H漫畫",
-                "path": "//18h.mm-cg.com/zh/18H_list/all/1.html"
-            }, {
-                "title": "18H短篇、同人",
-                "path": "//18h.mm-cg.com/zh/doujin_random/all/index.html"
-            }]
-        }, {
             "title": "寫真圖片",
             "path": "/zh/cg_random/all/index.html",
             "type": "video",
@@ -384,7 +370,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".meta&&Text"),
-                img: pdfh(item, "img&&src").replace("ps.", "pl."),
+                img: pdfh(item, "img&&src").replace("/s/","/b/"),
                 url: vurl + $('#noHistory#')
                     .rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
