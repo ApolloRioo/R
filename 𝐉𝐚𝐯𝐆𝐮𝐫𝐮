@@ -536,13 +536,19 @@ const javguru = {
                 return urlPlay + "#isVideo=true#;{Referer@" + location + "}"
             } else if (/cindyeyefinal|fc2stream|javclan/.test(location)) {
                 //SB线路//FST线路//VOE线路
-                var urlPlay = fetch(location, {
+                //log(location)
+                var Playhtml = fetch(location, {
                     headers: {
                         'Referer': "https://jav.guru/"
                     }
                 })
-                    .match(/https?.*?m3u8[^"]+/)[0]
-                return urlPlay + ";{Referer@" + location + "}"
+                log(Playhtml)
+                var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
+                var uas = eval(script)
+                var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
+                //log(jwplayer)  
+                return jwplayer + ";{Referer@" + location + "}"
+
             } else if (/vtbe\.to|maxstream/.test(location)) {
                 //JK线路//VTU线路
                 function evaldecode(text) {
