@@ -18,14 +18,14 @@ const Apollo = {
             "path": "/zh/chinese_random/all/index.html",
             "type": "video",
             "sub": [{
+                "title": "中文字幕AV",
+                "path": "/zh/chinese_list/all/1.html"
+            }, {
                 "title": "隨機近作",
                 "path": "/zh/chinese_random/all/index.html"
             }, {
                 "title": "隨機All",
                 "path": "/zh/chinese_randomall/all/index.html"
-            }, {
-                "title": "中文字幕AV",
-                "path": "/zh/chinese_list/all/1.html"
             }, {
                 "title": "類別清單",
                 "path": "/zh/chinese_category/1/企畫/1.html"
@@ -35,11 +35,11 @@ const Apollo = {
             "path": "/zh/uncensored_random/all/index.html",
             "type": "video",
             "sub": [{
-                "title": "無碼隨機",
-                "path": "/zh/uncensored_random/all/index.html"
-            }, {
                 "title": "無碼AV",
                 "path": "/zh/uncensored_list/all/1.html"
+            }, {
+                "title": "無碼隨機",
+                "path": "/zh/uncensored_random/all/index.html"
             }, {
                 "title": "一本道(1pondo)",
                 "path": "/zh/uncensored_makersr/32/一本道(1pondo)/1.html"
@@ -82,11 +82,11 @@ const Apollo = {
             "path": "/zh/animation_random/all/index.html",
             "type": "video",
             "sub": [{
-                "title": "H動畫隨機",
-                "path": "/zh/animation_random/all/index.html"
-            }, {
                 "title": "H動畫",
                 "path": "/zh/animation_list/all/1.html"
+            }, {
+                "title": "H動畫隨機",
+                "path": "/zh/animation_random/all/index.html"
             }, {
                 "title": "H有碼動畫随机",
                 "path": "/zh/CensoredAnimation_random/all/index.html"
@@ -111,11 +111,11 @@ const Apollo = {
             "path": "/zh/dt_random/all/index.html",
             "type": "video",
             "sub": [{
-                "title": "國產自拍随机",
-                "path": "/zh/dt_random/all/index.html"
-            }, {
                 "title": "國產自拍",
                 "path": "/zh/dt_list/all/1.html"
+            }, {
+                "title": "國產自拍随机",
+                "path": "/zh/dt_random/all/index.html"
             }]
         }, {
             "title": "寫真圖片",
@@ -123,10 +123,16 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "寫真圖片",
+                "path": "/zh/cg_list/all/1.html"
+            }, {
+                "title": "寫真隨機",
                 "path": "/zh/cg_random/all/index.html"
             }, {
                 "title": "國產寫真",
                 "path": "/zh/cwp_random/all/index.html"
+            }, {
+                "title": "國產隨機",
+                "path": "/zh/cwp_list/all/1.html"
             }, {
                 "title": "Bejean On Line",
                 "path": "/zh/cg_search/all/Bejean On Line/1.html"
@@ -176,6 +182,9 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "小說",
+                "path": "/zh/novel_list/all/1.html"
+            }, {
+                "title": "小說隨機",
                 "path": "/zh/novel_random/all/index.html"
             }, {
                 "title": "學生校園",
@@ -350,6 +359,53 @@ const Apollo = {
 
     //一级视频列表
     videoType: (url, html) => {
+        if (url.includes("cg_") || url.includes("cwp_")) {
+            col = "movie_3";
+            lazy = $('#noHistory#')
+                .lazyRule(() => {
+                var html = fetch(input)
+                var script = pdfh(html,"body&&script[language]&&Html")
+                eval(script)
+                var pics = Large_cgurl.join("&&")
+                return "pics://" + pics
+            })
+        } else if (url.includes("novel_")) {
+            col = "avatar";
+            lazy = $('#noHistory#')
+                .rule(() => {
+                var d = []
+                var html = fetch(MY_URL)
+                var title = pdfh(html, '.archive-title&&Text');
+                if (title !== null) {
+                    d.push({
+                        title: '““””<middle><font color=#FFA500>' + title + '</font></middle>',
+                        url: MY_URL,
+
+                        col_type: 'text_center_1',
+                        extra: {
+                            lineVisible: false
+                        }
+                    })
+                }
+                var content = pdfh(html, 'body&&#novel_content_txtsize&&Html')
+                d.push({
+                    title: "<middle><font color=grey>" + content + "</font></middle>",
+                    col_type: 'rich_text',
+                    extra: {
+                        lineVisible: false
+                    }
+                })
+                setResult(d)
+            })
+        } else {
+            col = "movie_2";
+            lazy = $('#noHistory#')
+                .rule(() => {
+                const Apollo = $.require('hiker://page/Apollo')
+                Apollo.videoParse(MY_URL)
+                setResult(Apollo.d)
+            })
+        }
         try {
             var currpagenum = pdfh(html, "body&&.pagination-row&&.current&&Text")
         } catch {
@@ -376,14 +432,9 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".meta&&Text"),
-                img: pdfh(item, "img&&src").replace("/s/","/b/"),
-                url: vurl + $('#noHistory#')
-                    .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.videoParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
-                col_type: "movie_2",
+                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src").replace("/s/", "/b/") : "https://thumbsnap.com/i/wxDcxfJH.png",
+                url: vurl + lazy,
+                col_type: col,
                 extra: {
                     pageTitle: pdfh(item, "h3&&a&&Text"),
                     longClick: !url.includes("content") ? [{
@@ -592,7 +643,7 @@ const Apollo = {
                 }),
                 col_type: "scroll_button",
             }, {
-                title: pdfh(html, 'body&&.posts-inner-details-text-top&&.posts-message,2&&Text').replace(/（.*?）/,"鐘"),
+                title: pdfh(html, 'body&&.posts-inner-details-text-top&&.posts-message,2&&Text').replace(/（.*?）/, "鐘"),
                 url: Apollo.empty,
                 col_type: "scroll_button",
             }, {
@@ -877,7 +928,7 @@ const Apollo = {
                 // print(`res:${res}`);
                 videoUrl = res.data[0].file
             } else if (requestUrl.indexOf('mmfl') != -1) {
-               // log(result)
+                // log(result)
             }
             return videoUrl;
         })
