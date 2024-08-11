@@ -352,7 +352,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".small&&Text"),
-                img: pdfh(item, "img&&data-src").replace("/m/", "/b/"),
+                img: pdfh(item, "img&&data-src").replace("/m/", "/b/").replace("/b/264938_ADN-308.jpg", "/m_webp/264938_ADN-308.webp"),
                 url: !vurl.includes("hcomic_") ? vurl + lazy : vurl + lazy1,
                 col_type: col,
                 extra: {
@@ -528,7 +528,7 @@ const Apollo = {
         } catch {}
 
         try {
-            const img = pdfh(html, ".content_main_cover&&img&&src");
+            const img = pdfh(html, ".content_main_cover&&img&&src").replace("/b/264938_ADN-308.jpg", "/m_webp/264938_ADN-308.webp");
             var prevideo = html.match(/source src='(.*?)'/) ? html.match(/source src='(.*?)'/)[1] : "toast://此影片沒有視頻預覽哦😐";
             Apollo.d.push({
                 img: img,
@@ -564,7 +564,7 @@ const Apollo = {
             })
         } catch {}
 
-        //Apollo.PlayParse(html)
+        Apollo.PlayParse(html)
         /*
         Apollo.d.push({
             col_type: "big_blank_block"
@@ -586,7 +586,7 @@ const Apollo = {
                 url: "copy://" + 识别码,
                 col_type: "scroll_button",
             }, {
-                title: pdfh(html, 'body&&.fullvideo-details&&.me-3,1&&Text'),
+                title: "““””" + pdfh(html, 'body&&.fullvideo-details&&.me-3,1&&Text').fontcolor("#FB0086"),
                 url: 识别码 + $('#noLoading#')
                     .lazyRule(() => {
                     return "hiker://page/yj?rule=𝐉𝐚𝐯𝐃𝐁&url=" + getPublicItem('javdb0', 'https://javdb.com') + "/search？？f=all＆＆page=fypage＆＆q=" + input
@@ -765,7 +765,7 @@ const Apollo = {
     PlayParse: (html) => {
         // 引入加密解密库
         eval(getCryptoJS())
-        /*        let list = [];
+        let list = [];
         let _hcdeedg252 = html.match(/hcdeedg252=\d+/)[0];
         let _hadeedg252 = html.match(/hadeedg252=\d+/)[0];
         // console.log(`_hcdeedg252:${_hcdeedg252}`);
@@ -825,9 +825,10 @@ const Apollo = {
                 let res = mvarr[a][mvarr_i][2] + mvarr[a][mvarr_i][5];
                 // console.log(res);
                 let decUrl = decr_sun(mvarr[a][mvarr_i][1], mvarr[a][mvarr_i][3], mvarr[a][mvarr_i][4], mvarr[a][mvarr_i][0]);
+                //log(decUrl)
                 list.push({
                     'title': a,
-                    'url': decUrl.startsWith('//') ? `https:${decUrl}` : decUrl
+                    'url': decUrl.startsWith('//') ? `https:${decUrl}` : decUrl.replace(/http.*?(http.*)/, "$1")
                 });
             }
         }
@@ -837,28 +838,34 @@ const Apollo = {
 
         var lazy = $('').lazyRule(() => {
             let videoUrl = '';
-            let requestUrl = input;
-            var result = fetch(requestUrl)
-            if (requestUrl.indexOf(config.host) != -1) {
-                let res = result.match(/https.*?m3u8/);
-                if (res == undefined || res.length == 0) {
-                    //res = result.match(/file:.\'(.*)\'\},/);
-                }
-                videoUrl = res[0] + ";{Referer@https://streamfastpro.com/}";
-            } else if (requestUrl.indexOf("streamfastpro") != -1) {
-                let res = result.match(/https.*?m3u8/);
-                if (res == undefined || res.length == 0) {
-                    res = result.match(/file:.\'(.*)\'\},/);
-                }
-                videoUrl = res[0] + ";{Referer@https://streamfastpro.com/}";
+            var html = fetch(input)
+            //log(html)
+            if (input.indexOf("mm") != -1) {
+                //线路37+38
+                var script = html.match(/eval(.*\))/)[1]
+                videoUrl = eval(script).match(/(https?.*?)"/)[1]
 
-            } else if (requestUrl.indexOf('dood') != -1) {
-                var pass_md5 = getHome(requestUrl) + result.match(/\/pass_md5[^"']+/)[0]
-                var token = result.match(/cookieIndex.*?\'(.*?)\'/)[1]
-                log("dood" + pass_md5)
+            } else if (input.indexOf("embedrise") != -1) {
+                //线路39
+                var url = pdfh(html, "source&&src");
+                videoUrl = url + "#isVideo=true#;{Referer@" + getHome(input) + "/}"
+            } else if (input.indexOf(config.host) != -1) {
+                //线路40
+                var src = html.match(/"(http.*?)"/)[1]
+                var request = fetch(src)
+                let res = request.match(/https.*?m3u8/);
+                videoUrl = res[0] + ";{Referer@https://emturbovid.com/}";
+            } else if (input.indexOf("upns") != -1) {
+                //线路41
+                //https://7mmtv.upns.live/#6kx1
+                videoUrl = "hiker://empty"
+            } else if (input.indexOf('dooood') != -1) {
+                //线路28
+                var pass_md5 = getHome(input) + html.match(/\/pass_md5[^"']+/)[0]
+                var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
                 var data = fetch(pass_md5, {
                     headers: {
-                        "Referer": requestUrl
+                        "Referer": input
                     }
                 })
 
@@ -871,28 +878,34 @@ const Apollo = {
                         return a + "?token=" + token + "&expiry=" + Date.now();
                     };
                 var urlPlay = data + makePlay(token)
-                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + requestUrl + "}"
+                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + input + "}"
 
-            } else if (requestUrl.indexOf('/vv/') != -1) {
-                let apiUrl = requestUrl.replace('/v/', '/api/source/');
-                // print(`apiUrl:${apiUrl}`);
-                let res = JSON.parse(tools.http.post(apiUrl, "r=&d="));
-                // print(`res:${res}`);
-                videoUrl = res.data[0].file
-            } else if (requestUrl.indexOf('mmfl') != -1) {
-                // log(result)
+            } else if (input.indexOf('tapewithadblock') != -1) {
+                //线路29
+                var pattern = html.match(/\('#(.*)'\)/)[1]
+                var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
+                eval(src)
+                var link = "https:" + srclink + "&stream=1"
+                var urlPlay = JSON.parse(fetch(link, {
+                    headers: {
+                        "Referer": input,
+                    },
+                    onlyHeaders: true
+                })).url
+                videoUrl = urlPlay + ";{Referer@" + input + "}"
+
             }
             return videoUrl;
         })
         //log(list)
-        var servers = pdfa(html, ".btnst&&a").map(n => pdfh(n, "Text")) //播放列表名
+
         list.forEach((item, index) => {
             Apollo.d.push({
-                title: servers[index].replace("(可下載)", ""),
+                title: item.title,
                 url: item.url + lazy,
                 col_type: "text_3"
             })
-        })*/
+        })
     },
     //外链播放
     CodeParse: (识别码) => {
