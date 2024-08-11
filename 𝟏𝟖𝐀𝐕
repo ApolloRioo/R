@@ -364,7 +364,7 @@ const Apollo = {
             lazy = $('#noHistory#')
                 .lazyRule(() => {
                 var html = fetch(input)
-                var script = pdfh(html,"body&&script[language]&&Html")
+                var script = pdfh(html, "body&&script[language]&&Html")
                 eval(script)
                 var pics = Large_cgurl.join("&&")
                 return "pics://" + pics
@@ -886,6 +886,9 @@ const Apollo = {
         var lazy = $('').lazyRule(() => {
             let videoUrl = '';
             let requestUrl = input;
+            if (requestUrl.indexOf('mmsw') != -1) {
+                return "toast://如其名死线路"
+            }
             var result = fetch(requestUrl)
             if (requestUrl.indexOf(config.host) != -1) {
                 let res = result.match(/https.*?m3u8/);
@@ -919,16 +922,11 @@ const Apollo = {
                         return a + "?token=" + token + "&expiry=" + Date.now();
                     };
                 var urlPlay = data + makePlay(token)
-                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + requestUrl + "}"
+                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + getHome(requestUrl) + "/}"
 
-            } else if (requestUrl.indexOf('/vv/') != -1) {
-                let apiUrl = requestUrl.replace('/v/', '/api/source/');
-                // print(`apiUrl:${apiUrl}`);
-                let res = JSON.parse(tools.http.post(apiUrl, "r=&d="));
-                // print(`res:${res}`);
-                videoUrl = res.data[0].file
             } else if (requestUrl.indexOf('mmfl') != -1) {
-                // log(result)
+                var script = result.match(/eval(.*\))/)[1]
+                videoUrl = eval(script).split('"')[3]
             }
             return videoUrl;
         })
