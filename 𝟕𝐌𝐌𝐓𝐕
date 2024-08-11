@@ -314,7 +314,7 @@ const Apollo = {
         }
         lazy = $('#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo')
+            const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
             Apollo.videoParse(MY_URL)
             setResult(Apollo.d)
         })
@@ -482,7 +482,7 @@ const Apollo = {
         log(url)
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo')
+            const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
             Apollo.avatarParse(MY_URL)
             setResult(Apollo.d)
         })
@@ -840,7 +840,7 @@ const Apollo = {
             let videoUrl = '';
             var html = fetch(input)
             //log(html)
-            if (input.indexOf(config.host) != -1) {
+            if (input.indexOf("7mmtv.sx") != -1) {
                 //线路40
                 log("html")
                 var src = html.match(/"(http.*?)"/)[1]
