@@ -511,13 +511,69 @@ function CodeLazy(识别码) {
         }
     });
 
-    //JavFinder
+    //𝟕𝐌𝐌𝐓𝐕
     d.push({
-        title: '‘‘’’<b><middle><font color="#FFD000">𝐉𝐚𝐯𝐅𝐢𝐧𝐝</font></middle>',
+        title: '‘‘’’<b><middle><font color="#FFD000">𝟕𝐌𝐌𝐓𝐕</font></middle>',
         pic_url: 'https://img.vinua.cn/images/zO7lw.png',
         url: $('')
             .lazyRule((识别码) => {
-            return "hiker://empty"
+            if (request('hiker://home@𝟕𝐌𝐌𝐓𝐕') == 'null') {
+                confirm({
+                    title: '依赖检测',
+                    content: '检测到缺少𝟕𝐌𝐌𝐓𝐕小程序\n请用力摁确定!',
+                    confirm: () => {
+                        return parsePaste("云5oooole/c6j4");
+                    }
+                })
+                return "hiker://empty"
+            } else {
+                var search = "https://7mmtv.sx/zh/searchall_search/all/" + 识别码 + "/1.html";
+                var html = fetch(search, {
+                    headers: {
+                        "User-Agent": "Mozilla/5.0 (Windows NT 10.0)"
+                    },
+                    timeout: 3223
+                })
+                if (html) {
+                    var list = pdfa(html, 'body&&.video');
+                    var MMTV = []
+                    list.forEach(item => {
+                        var title = pdfh(item, 'h3&&a&&Text')
+                            .match(/\[.*?\]/) ? pdfh(item, 'h3&&a&&Text')
+                            .replace(/(.*?)\s.*/, "$1")
+                            .replace("[中字]", "🇨🇳【中文字幕】")
+                            .replace("[無碼破解]", "🔥【无码破解】") : pdfh(item, 'h3&&a&&Text')
+                            .replace(/^((?:\[.*?\])?.*?)\s.*/, "🦋【默认视频】$1");
+                        MMTV.push({
+                            title: title,
+                            url: pdfh(item, 'a&&href'),
+                        })
+                    })
+                    if (MMTV.length == 0) {
+                        MMTV = [{
+                            "title": "本平台尚未上传此番号视频",
+                            "url": "hiker://empty"
+                        }]
+                    }
+                    var MMTVtype = MMTV.map(i => i.title)
+                    return $(MMTVtype, 1)
+                        .select((MMTV) => {
+                        if (input == '本平台尚未上传此番号视频') {
+                            return MMTV[0].url
+                        } else {
+                            let index = MMTV.findIndex(r => r.title == input);
+                            return MMTV[index].url + $('#noHistory#')
+                                .rule(() => {
+                                const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
+                                Apollo.videoParse(MY_URL)
+                                setResult(Apollo.d)
+                            })
+                        }
+                    }, MMTV)
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }
         }, 识别码),
         col_type: 'icon_5',
         extra: {
@@ -699,7 +755,8 @@ function CodeLazy(识别码) {
                             var location = JSON.parse(fetch(src))
                                 .list[0].url
                             var master = fetch(location);
-                            var script = master.match(/eval([\s\S]+?)<\/script/)[1];log(script)
+                            var script = master.match(/eval([\s\S]+?)<\/script/)[1];
+                            log(script)
                             var uas = eval(script)
                             var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
                             //log(jwplayer)  
