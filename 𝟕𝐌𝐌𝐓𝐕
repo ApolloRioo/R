@@ -840,7 +840,14 @@ const Apollo = {
             let videoUrl = '';
             var html = fetch(input)
             //log(html)
-            if (input.indexOf("mm") != -1) {
+            if (input.indexOf(config.host) != -1) {
+                //线路40
+                log("html")
+                var src = html.match(/"(http.*?)"/)[1]
+                var request = fetch(src)
+                let res = request.match(/https.*?m3u8/);
+                videoUrl = res[0] + ";{Referer@https://emturbovid.com/}";
+            } else if (input.indexOf("mm") != -1) {
                 //线路37+38
                 var script = html.match(/eval(.*\))/)[1]
                 videoUrl = eval(script).match(/(https?.*?)"/)[1]
@@ -849,12 +856,6 @@ const Apollo = {
                 //线路39
                 var url = pdfh(html, "source&&src");
                 videoUrl = url + "#isVideo=true#;{Referer@" + getHome(input) + "/}"
-            } else if (input.indexOf(config.host) != -1) {
-                //线路40
-                var src = html.match(/"(http.*?)"/)[1]
-                var request = fetch(src)
-                let res = request.match(/https.*?m3u8/);
-                videoUrl = res[0] + ";{Referer@https://emturbovid.com/}";
             } else if (input.indexOf("upns") != -1) {
                 //线路41
                 //https://7mmtv.upns.live/#6kx1
