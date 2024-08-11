@@ -906,7 +906,6 @@ const Apollo = {
             } else if (requestUrl.indexOf('dood') != -1) {
                 var pass_md5 = getHome(requestUrl) + result.match(/\/pass_md5[^"']+/)[0]
                 var token = result.match(/cookieIndex.*?\'(.*?)\'/)[1]
-                log("dood" + pass_md5)
                 var data = fetch(pass_md5, {
                     headers: {
                         "Referer": requestUrl
