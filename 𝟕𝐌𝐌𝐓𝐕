@@ -861,11 +861,19 @@ const Apollo = {
                 videoUrl = "hiker://empty"
             } else if (input.indexOf('dooood') != -1) {
                 //线路28
-                var pass_md5 = getHome(input) + html.match(/\/pass_md5[^"']+/)[0]
-                var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                var redirect = JSON.parse(fetch(input, {
+                    onlyHeaders: true
+                })).url;
+                var htmll = fetch(redirect, {
+                    headers: {
+                        referer: "https://7mmtv.sx/zh/"
+                    }
+                });
+                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0]
+                var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1]
                 var data = fetch(pass_md5, {
                     headers: {
-                        "Referer": input
+                        "Referer": redirect
                     }
                 })
 
