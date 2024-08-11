@@ -39,7 +39,7 @@ const Apollo = {
                 "title": "🗯長身🗯",
                 "path": "/ja/user/video_watched.php?sort=2",
             }, {
-                "title": "🗯細腰🗯",
+                "title": "🗯絕世🗯",
                 "path": "/ja/user/video_own.php?sort=2",
             }]
         }, {
@@ -745,7 +745,8 @@ const Apollo = {
                 })).ERROR;
                 // log(result)
                 if (result == 1) {
-                    refreshPage();
+                    //refreshPage();
+                    back()
                     return "toast://删除收藏成功！"
                 } else if (result == 2) {
                     return "toast://请先登录！"
@@ -791,7 +792,8 @@ const Apollo = {
                 })).ERROR;
                 //log(result)
                 if (result == 1) {
-                    refreshPage();
+                    //refreshPage();
+                    back()
                     return "toast://删除收藏成功！"
                 } else if (result == 2) {
                     return "toast://请先登录！"
@@ -822,7 +824,7 @@ const Apollo = {
             }, id),
             col_type: "scroll_button",
         }, {
-            title: owned == "持ってる" ? '““””' + "💜細腰".fontcolor("#FF00FF") : '““””' + "✙".fontcolor("#FFD000") + "細腰",
+            title: owned == "持ってる" ? '““””' + "💜絕世".fontcolor("#FF00FF") : '““””' + "✙".fontcolor("#FFD000") + "絕世",
             url: owned == "持ってる" ? $('').lazyRule((id) => {
                 const Apollo = $.require('hiker://page/Apollo')
                 var result = JSON.parse(post(Apollo.url + "/ajax/ajax_v_favoriteremove.php", {
@@ -837,7 +839,8 @@ const Apollo = {
                 })).ERROR;
                 // log(result)
                 if (result == 1) {
-                    refreshPage();
+                    //refreshPage();
+                    back()
                     return "toast://删除收藏成功！"
                 } else if (result == 2) {
                     return "toast://请先登录！"
