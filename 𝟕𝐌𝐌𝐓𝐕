@@ -307,6 +307,25 @@ const Apollo = {
 
     //一级视频列表
     videoType: (url, html) => {
+        if (url.includes("hcomic_") && !url.includes("_content")) {
+            col = "movie_3";
+        } else {
+            col = "movie_2";
+        }
+        lazy = $('#noHistory#')
+            .rule(() => {
+            const Apollo = $.require('hiker://page/Apollo')
+            Apollo.videoParse(MY_URL)
+            setResult(Apollo.d)
+        })
+        lazy1 = $('#noHistory#')
+            .lazyRule(() => {
+            var html = fetch(input)
+            var script = pdfh(html, "body&&script[language]&&Html").split("i=")[0]
+            eval(script)
+            var pics = Large_cgurl.join("&&")
+            return "pics://" + pics
+        })
         try {
             var currpagenum = pdfh(html, "body&&.pagination-row&&.current&&Text")
         } catch {
@@ -327,20 +346,15 @@ const Apollo = {
         } catch {
             var lastpagenum = currpagenum
         }
-        var list = pdfa(html, "body&&.video");
+        var list = pdfa(html, "body&&.video||.comics");
         list.forEach(item => {
             var vurl = pdfh(item, 'a&&href');
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".small&&Text"),
                 img: pdfh(item, "img&&data-src").replace("/m/", "/b/"),
-                url: vurl + $('#noHistory#')
-                    .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.videoParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
-                col_type: "movie_2",
+                url: !vurl.includes("hcomic_") ? vurl + lazy : vurl + lazy1,
+                col_type: col,
                 extra: {
                     pageTitle: pdfh(item, "h3&&a&&Text"),
                     longClick: !url.includes("content") ? [{
@@ -660,10 +674,10 @@ const Apollo = {
                 col_type: 'scroll_button',
             });
             for (var i in arts) {
-                var url = pdfh(arts[i], 'a&&href');
+                var urll = pdfh(arts[i], 'a&&href');
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#1E8884">' + parseDomForHtml(arts[i], 'Text') + '</font></middle></b>',
-                    url: url + yiji,
+                    url: urll + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: parseDomForHtml(arts[i], 'Text')
@@ -688,11 +702,11 @@ const Apollo = {
             })
             for (var i in arts) {
                 var title = parseDomForHtml(arts[i], 'Text');
-                var url = pdfh(arts[i], 'a&&href');
+                var urll = pdfh(arts[i], 'a&&href');
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#c13141">' + title + '</font></middle></b>',
                     img: pdfh(arts[i], 'img&&data-src') ? pdfh(arts[i], 'img&&data-src') : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
-                    url: url + yiji,
+                    url: urll + yiji,
                     col_type: 'card_pic_3',
                     extra: {
                         pageTitle: title,
