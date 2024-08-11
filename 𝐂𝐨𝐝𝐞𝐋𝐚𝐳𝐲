@@ -31,11 +31,11 @@ function CodeLazy(识别码) {
                 var miss = []
                 list.forEach(item => {
                     var desc = pdfh(item, 'a&&alt')
-                        .replace("uncensored-leak", "🔥无码破解")
-                        .replace("chinese-subtitle", "🇨🇳中文字幕")
+                        .replace("-uncensored-leak", "  🔥【无码破解】")
+                        .replace("-chinese-subtitle", "  🇨🇳【中文字幕】")
                         .toUpperCase();
                     miss.push({
-                        title: /\d$/.test(desc) ? desc + "-🦋默认视频" : desc,
+                        title: /\d$/.test(desc) ? desc + "  🦋【默认视频】" : desc,
                         url: pdfh(item, 'a&&href'),
                     })
                 })
