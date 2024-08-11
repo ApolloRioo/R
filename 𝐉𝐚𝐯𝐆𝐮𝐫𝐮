@@ -317,7 +317,7 @@ const javguru = {
                         img: pdfh(list[j], "img&&src"),
                         url: pdfh(list[j], "a&&href") + $('')
                             .rule(() => {
-                            const javguru = $.require('hiker://page/javguru')
+                            const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                             javguru.videoParse(MY_URL)
                             setResult(javguru.d)
                         }),
@@ -349,7 +349,7 @@ const javguru = {
                     title: '““””<middle><font color=' + getRangeColors() + '>' + pdfh(item, 'a&&Text') + '</font></middle>',
                     url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#')
                         .rule(() => {
-                        const javguru = $.require('hiker://page/javguru')
+                        const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                         javguru.avatarParse(MY_URL)
                         setResult(javguru.d)
                     }),
@@ -372,7 +372,7 @@ const javguru = {
                 pic_url: pdfh(item, '.actress-pic&&img&&src') + '@Referer=',
                 url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#')
                     .rule(() => {
-                    const javguru = $.require('hiker://page/javguru')
+                    const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                     javguru.avatarParse(MY_URL)
                     setResult(javguru.d)
                 }),
@@ -425,7 +425,7 @@ const javguru = {
                 title: pdfh(item, 'img&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#')
                     .rule(() => {
-                    const javguru = $.require('hiker://page/javguru')
+                    const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                     javguru.videoParse(MY_URL)
                     setResult(javguru.d)
                 }),
@@ -617,7 +617,7 @@ const javguru = {
                     .fontcolor("#FF00ED"),
                 url: "https://jav.guru/random/" + $('')
                     .rule(() => {
-                    const javguru = $.require('hiker://page/javguru')
+                    const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                     javguru.videoParse(MY_URL)
                     setResult(javguru.d)
                 }),
@@ -644,7 +644,7 @@ const javguru = {
 
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const javguru = $.require('hiker://page/javguru')
+            const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
             javguru.avatarParse(MY_URL)
             setResult(javguru.d)
         })
