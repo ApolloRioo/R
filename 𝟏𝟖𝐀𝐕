@@ -927,6 +927,16 @@ const Apollo = {
             } else if (requestUrl.indexOf('mmfl') != -1) {
                 var script = result.match(/eval(.*\))/)[1]
                 videoUrl = eval(script).split('"')[3]
+            } else if (requestUrl.includes("emturbovid")) {
+                //①TV线路
+                var domain = getHome(requestUrl)
+                var path = fetch(requestUrl, {
+                    headers: {
+                        'Referer': requestUrl
+                    }
+                }).match(/'.*?(\/.*?\.m3u8)/)[1]
+                var videoUrl = path.includes("com") ? "https:" + path : getHome(location) + path
+                videoUrl = videoUrl + ";{Referer@" + requestUrl + "}"
             }
             return videoUrl;
         })
