@@ -841,8 +841,7 @@ const Apollo = {
             var html = fetch(input)
             //log(html)
             if (input.indexOf("7mmtv.sx") != -1) {
-                //线路40
-                log("html")
+                //线路40                
                 var src = html.match(/"(http.*?)"/)[1]
                 var request = fetch(src)
                 let res = request.match(/https.*?m3u8/);
@@ -856,6 +855,7 @@ const Apollo = {
                 //线路39
                 var url = pdfh(html, "source&&src");
                 videoUrl = url + "#isVideo=true#;{Referer@" + getHome(input) + "/}"
+
             } else if (input.indexOf("upns") != -1) {
                 //线路41
                 //https://7mmtv.upns.live/#6kx1
@@ -903,6 +903,9 @@ const Apollo = {
                 })).url
                 videoUrl = urlPlay + ";{Referer@" + input + "}"
 
+            } else {
+                log(input)
+                videoUrl = "toast://线路暂未解析=>" + input
             }
             return videoUrl;
         })
