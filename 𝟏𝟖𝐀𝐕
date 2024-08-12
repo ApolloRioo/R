@@ -885,30 +885,35 @@ const Apollo = {
 
         var lazy = $('').lazyRule(() => {
             let videoUrl = '';
-            let requestUrl = input;
-            if (requestUrl.indexOf('mmsw') != -1) {
-                return "toast://如其名死线路"
-            }
-            var result = fetch(requestUrl)
+            let requestUrl = input.replace("mmsw01","mmsw02");
+            var html = fetch(requestUrl)
             if (requestUrl.indexOf(config.host) != -1) {
-                let res = result.match(/https.*?m3u8/);
+                let res = html.match(/https.*?m3u8/);
                 if (res == undefined || res.length == 0) {
-                    //res = result.match(/file:.\'(.*)\'\},/);
+                    //res = html.match(/file:.\'(.*)\'\},/);
                 }
                 videoUrl = res[0] + ";{Referer@https://streamfastpro.com/}";
             } else if (requestUrl.indexOf("streamfastpro") != -1) {
-                let res = result.match(/https.*?m3u8/);
+                let res = html.match(/https.*?m3u8/);
                 if (res == undefined || res.length == 0) {
-                    res = result.match(/file:.\'(.*)\'\},/);
+                    res = html.match(/file:.\'(.*)\'\},/);
                 }
                 videoUrl = res[0] + ";{Referer@https://streamfastpro.com/}";
 
             } else if (requestUrl.indexOf('dood') != -1) {
-                var pass_md5 = getHome(requestUrl) + result.match(/\/pass_md5[^"']+/)[0]
-                var token = result.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                var redirect = JSON.parse(fetch(input, {
+                    onlyHeaders: true
+                })).url;
+                var htmll = fetch(redirect, {
+                    headers: {
+                        referer: config.host
+                    }
+                });
+                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0]
+                var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1]
                 var data = fetch(pass_md5, {
                     headers: {
-                        "Referer": requestUrl
+                        "Referer": redirect
                     }
                 })
 
@@ -921,11 +926,11 @@ const Apollo = {
                         return a + "?token=" + token + "&expiry=" + Date.now();
                     };
                 var urlPlay = data + makePlay(token)
-                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + getHome(requestUrl) + "/}"
+                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + config.host + "/}"
 
-            } else if (requestUrl.indexOf('mmfl') != -1) {
-                var script = result.match(/eval(.*\))/)[1]
-                videoUrl = eval(script).split('"')[3]
+            } else if (requestUrl.indexOf('mm') != -1) {
+                var script = html.match(/eval(.*\))/)[1]
+        videoUrl = eval(script).match(/(https?.*?)"/)[1]
             } else if (requestUrl.includes("emturbovid")) {
                 //①TV线路
                 var domain = getHome(requestUrl)
