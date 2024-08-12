@@ -429,7 +429,7 @@ const javguru = {
                     javguru.videoParse(MY_URL)
                     setResult(javguru.d)
                 }),
-                pic_url: pdfh(item, '.imgg&&img&&src') + '@Referer=' + javguru.url,
+                pic_url: pdfh(item, '.imgg&&img&&src').replace(/-\d+x\d+\.jpg/,".jpg") + '@Referer=' + javguru.url,
                 desc: pdfh(item, '.date&&Text'),
                 col_type: 'movie_2',
                 extra: {
