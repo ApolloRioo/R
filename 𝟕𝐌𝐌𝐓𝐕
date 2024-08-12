@@ -907,12 +907,22 @@ const Apollo = {
             return videoUrl;
         })
         //log(list)
+        var col;
+        if (list.length == 1) {
+            col = "text_2"
+        } else if (list.length < 6) {
+            col = "text_" + list.length
+        } else if (list.length < 11) {
+            col = "text_" + Math.ceil(list.length / 2)
+        } else {
+            col = "text_5"
+        }
 
         list.forEach((item, index) => {
             Apollo.d.push({
                 title: item.title,
                 url: item.url + lazy,
-                col_type: "text_3"
+                col_type: col
             })
         })
     },
