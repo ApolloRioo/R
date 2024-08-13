@@ -1,4 +1,5 @@
 const Apollo = {
+    version: "20240813",
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -8,7 +9,7 @@ const Apollo = {
     },
     getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -189,14 +190,14 @@ const Apollo = {
                     title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
                         .lazyRule((index) => {
-                        putMyVar("Apo.category", index.toString())
-                        putMyVar("Apo.subCate", '0')
-                        clearMyVar("url")
-                        clearMyVar("sort")
-                        clearMyVar("yurl");
-                        refreshPage(true)
-                        return "hiker://empty"
-                    }, index),
+                            putMyVar("Apo.category", index.toString())
+                            putMyVar("Apo.subCate", '0')
+                            clearMyVar("url")
+                            clearMyVar("sort")
+                            clearMyVar("yurl");
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
                     col_type: 'scroll_button',
                 })
             })
@@ -209,13 +210,13 @@ const Apollo = {
                         title: parseInt(Apollo.data.subCate) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
                         url: $(Apollo.empty + "#noLoading#")
                             .lazyRule((index) => {
-                            putMyVar("Apo.subCate", index.toString())
-                            clearMyVar("url")
-                            clearMyVar("sort")
-                            clearMyVar("yurl");
-                            refreshPage(true)
-                            return "hiker://empty"
-                        }, index),
+                                putMyVar("Apo.subCate", index.toString())
+                                clearMyVar("url")
+                                clearMyVar("sort")
+                                clearMyVar("yurl");
+                                refreshPage(true)
+                                return "hiker://empty"
+                            }, index),
                         col_type: 'scroll_button',
                     })
                 })
@@ -314,18 +315,18 @@ const Apollo = {
         }
         lazy = $('#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
-            Apollo.videoParse(MY_URL)
-            setResult(Apollo.d)
-        })
+                const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
+                Apollo.videoParse(MY_URL)
+                setResult(Apollo.d)
+            })
         lazy1 = $('#noHistory#')
             .lazyRule(() => {
-            var html = fetch(input)
-            var script = pdfh(html, "body&&script[language]&&Html").split("i=")[0]
-            eval(script)
-            var pics = Large_cgurl.join("&&")
-            return "pics://" + pics
-        })
+                var html = fetch(input)
+                var script = pdfh(html, "body&&script[language]&&Html").split("i=")[0]
+                eval(script)
+                var pics = Large_cgurl.join("&&")
+                return "pics://" + pics
+            })
         try {
             var currpagenum = pdfh(html, "body&&.pagination-row&&.current&&Text")
         } catch {
@@ -349,33 +350,44 @@ const Apollo = {
         var list = pdfa(html, "body&&.video||.comics");
         list.forEach(item => {
             var vurl = pdfh(item, 'a&&href');
+            var preview = pdfh(item, "video&&data-src");
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".small&&Text"),
-                img: pdfh(item, "img&&data-src").replace("/m/", "/b/").replace("/b/264938_ADN-308.jpg", "/m_webp/264938_ADN-308.webp"),
+                img: pdfh(item, "img&&data-src").replace("/m/", "/b/"),
                 url: !vurl.includes("hcomic_") ? vurl + lazy : vurl + lazy1,
                 col_type: col,
                 extra: {
                     pageTitle: pdfh(item, "h3&&a&&Text"),
                     longClick: !url.includes("content") ? [{
-                        title: '【跳页】【当前第>' + currpagenum + '<页】【尾页=>' + lastpagenum + '页】',
+                        title: "【10秒预览】",
+                        js: $.toString((preview) => {
+                            return preview
+                        }, preview)
+                    }, {
+                        title: '【跳页】【' + currpagenum + '<=>' + lastpagenum + '】',
                         js: $.toString((lastpagenum, url) => {
-                            return $('', '正确的页码：1=>' + lastpagenum + "页")
-                                .input((url, lastpagenum) => {
-                                if (input > 0 && input % 1 == 0 && input <= parseInt(lastpagenum)) {
-                                    var jumpu = url.replace(/\d+\.html/, input + ".html")
-                                    putMyVar("url", jumpu);
-                                    putMyVar("yurl", jumpu);
-                                    refreshPage();
-                                    return 'toast://你已经穿越到了' + input + '页'
-                                } else {
-                                    return "toast://请输入正确的页码"
-                                }
+                                return $('', '正确的页码：1=>' + lastpagenum + "页")
+                                    .input((url, lastpagenum) => {
+                                            if (input > 0 && input % 1 == 0 && input <= parseInt(lastpagenum)) {
+                                                var jumpu = url.replace(/\d+\.html/, input + ".html")
+                                                putMyVar("url", jumpu);
+                                                putMyVar("yurl", jumpu);
+                                                refreshPage();
+                                                return 'toast://你已经穿越到了' + input + '页'
+                                            } else {
+                                                return "toast://请输入正确的页码"
+                                            }
+                                        },
+                                        url, lastpagenum)
                             },
-                            url, lastpagenum)
-                        },
-                        lastpagenum, url)
-                    }] : ""
+                            lastpagenum, url)
+                    }] : [{
+                        title: "【10秒预览】",
+                        js: $.toString((preview) => {
+                            return preview
+                        }, preview)
+                    }]
                 }
             })
         })
@@ -402,11 +414,11 @@ const Apollo = {
                 title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: pdfh(item, 'a&&href') + $('#noLoading#')
                     .lazyRule((index) => {
-                    putMyVar('sort', index);
-                    putMyVar("url", input);
-                    refreshPage();
-                    return 'hiker://empty'
-                }, index),
+                        putMyVar('sort', index);
+                        putMyVar("url", input);
+                        refreshPage();
+                        return 'hiker://empty'
+                    }, index),
                 col_type: 'scroll_button'
             })
             if (index == 54 || index == 123 || index == 189 || index == 294) {
@@ -482,10 +494,10 @@ const Apollo = {
         log(url)
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
-            Apollo.avatarParse(MY_URL)
-            setResult(Apollo.d)
-        })
+                const Apollo = $.require('hiker://page/Apollo?rule=𝟕𝐌𝐌𝐓𝐕')
+                Apollo.avatarParse(MY_URL)
+                setResult(Apollo.d)
+            })
         const html = fetch(url, {
             headers: {
                 // "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
@@ -555,7 +567,7 @@ const Apollo = {
         try {
             var content = pdfh(html, ".video-introduction-images-text&&Text")
             Apollo.d.push({
-                title: "<a style='text-decoration: none;color:red;' href='" + lazypic + "'>預覽和介紹</a>：" + (content != "" ? content : "曾经沧海难为水，除却巫山不是云。取次花丛懒回顾，半缘修道半缘君。\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t------元稹").fontcolor("grey").small(),
+                title: "<a style='text-decoration: none;fontcolor:red;' href='" + lazypic + "'>預覽和介紹</a>：" + (content != "" ? content : "曾经沧海难为水，除却巫山不是云。取次花丛懒回顾，半缘修道半缘君。\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t------元稹").fontcolor("grey").small(),
                 url: Apollo.empty,
                 col_type: "rich_text",
                 extra: {
@@ -589,8 +601,8 @@ const Apollo = {
                 title: "““””" + pdfh(html, 'body&&.fullvideo-details&&.me-3,1&&Text').fontcolor("#FB0086"),
                 url: 识别码 + $('#noLoading#')
                     .lazyRule(() => {
-                    return "hiker://page/yj?rule=𝐉𝐚𝐯𝐃𝐁&url=" + getPublicItem('javdb0', 'https://javdb.com') + "/search？？f=all＆＆page=fypage＆＆q=" + input
-                }),
+                        return "hiker://page/yj?rule=𝐉𝐚𝐯𝐃𝐁&url=" + getPublicItem('javdb0', 'https://javdb.com') + "/search？？f=all＆＆page=fypage＆＆q=" + input
+                    }),
                 col_type: "scroll_button",
             }, {
                 title: pdfh(html, 'body&&.fullvideo-details&&.me-3,2&&Text').replace(/（.*?）/, "鐘"),
@@ -878,14 +890,14 @@ const Apollo = {
                     }
                 })
 
-                    function makePlay(token) {
-                        for (var a = "",
-                        t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                        n = t.length,
-                        o = 0; 10 > o; o++)
+                function makePlay(token) {
+                    for (var a = "",
+                            t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                            n = t.length,
+                            o = 0; 10 > o; o++)
                         a += t.charAt(Math.floor(Math.random() * n));
-                        return a + "?token=" + token + "&expiry=" + Date.now();
-                    };
+                    return a + "?token=" + token + "&expiry=" + Date.now();
+                };
                 var urlPlay = data + makePlay(token)
                 videoUrl = urlPlay + "#isVideo=true#;{Referer@" + input + "}"
 
