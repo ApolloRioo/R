@@ -1,4 +1,5 @@
 const Apollo = {
+    version: 20240814,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -8,7 +9,7 @@ const Apollo = {
     },
     getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-            .toString(16))
+                .toString(16))
             .substr(-6);
     }, //随机颜色
     baseParse: () => {
@@ -241,14 +242,14 @@ const Apollo = {
                     title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
                         .lazyRule((index) => {
-                        putMyVar("Apo.category", index.toString())
-                        putMyVar("Apo.subCate", '0')
-                        clearMyVar("url")
-                        clearMyVar("sort")
-                        clearMyVar("yurl");
-                        refreshPage(true)
-                        return "hiker://empty"
-                    }, index),
+                            putMyVar("Apo.category", index.toString())
+                            putMyVar("Apo.subCate", '0')
+                            clearMyVar("url")
+                            clearMyVar("sort")
+                            clearMyVar("yurl");
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
                     col_type: 'scroll_button',
                 })
             })
@@ -261,13 +262,13 @@ const Apollo = {
                         title: parseInt(Apollo.data.subCate) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
                         url: $(Apollo.empty + "#noLoading#")
                             .lazyRule((index) => {
-                            putMyVar("Apo.subCate", index.toString())
-                            clearMyVar("url")
-                            clearMyVar("sort")
-                            clearMyVar("yurl");
-                            refreshPage(true)
-                            return "hiker://empty"
-                        }, index),
+                                putMyVar("Apo.subCate", index.toString())
+                                clearMyVar("url")
+                                clearMyVar("sort")
+                                clearMyVar("yurl");
+                                refreshPage(true)
+                                return "hiker://empty"
+                            }, index),
                         col_type: 'scroll_button',
                     })
                 })
@@ -317,6 +318,7 @@ const Apollo = {
                 "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
             }
         })
+        Apollo.HostParse(html)
         log(url)
         try {
             var next = pdfh(html, "body&&.pagination-row&&.previous-next:matches(>)&&a&&href")
@@ -363,48 +365,48 @@ const Apollo = {
             col = "movie_3";
             lazy = $('#noHistory#')
                 .lazyRule(() => {
-                var html = fetch(input)
-                var script = pdfh(html, "body&&script[language]&&Html")
-                eval(script)
-                var pics = Large_cgurl.join("&&")
-                return "pics://" + pics
-            })
+                    var html = fetch(input)
+                    var script = pdfh(html, "body&&script[language]&&Html")
+                    eval(script)
+                    var pics = Large_cgurl.join("&&")
+                    return "pics://" + pics
+                })
         } else if (url.includes("novel_")) {
             col = "avatar";
             lazy = $('#noHistory#')
                 .rule(() => {
-                var d = []
-                var html = fetch(MY_URL)
-                var title = pdfh(html, '.archive-title&&Text');
-                if (title !== null) {
-                    d.push({
-                        title: '““””<middle><font color=#FFA500>' + title + '</font></middle>',
-                        url: MY_URL,
+                    var d = []
+                    var html = fetch(MY_URL)
+                    var title = pdfh(html, '.archive-title&&Text');
+                    if (title !== null) {
+                        d.push({
+                            title: '““””<middle><font color=#FFA500>' + title + '</font></middle>',
+                            url: MY_URL,
 
-                        col_type: 'text_center_1',
+                            col_type: 'text_center_1',
+                            extra: {
+                                lineVisible: false
+                            }
+                        })
+                    }
+                    var content = pdfh(html, 'body&&#novel_content_txtsize&&Html')
+                    d.push({
+                        title: "<middle><font color=grey>" + content + "</font></middle>",
+                        col_type: 'rich_text',
                         extra: {
                             lineVisible: false
                         }
                     })
-                }
-                var content = pdfh(html, 'body&&#novel_content_txtsize&&Html')
-                d.push({
-                    title: "<middle><font color=grey>" + content + "</font></middle>",
-                    col_type: 'rich_text',
-                    extra: {
-                        lineVisible: false
-                    }
+                    setResult(d)
                 })
-                setResult(d)
-            })
         } else {
             col = "movie_2";
             lazy = $('#noHistory#')
                 .rule(() => {
-                const Apollo = $.require('hiker://page/Apollo')
-                Apollo.videoParse(MY_URL)
-                setResult(Apollo.d)
-            })
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                })
         }
         try {
             var currpagenum = pdfh(html, "body&&.pagination-row&&.current&&Text")
@@ -440,21 +442,21 @@ const Apollo = {
                     longClick: !url.includes("content") ? [{
                         title: '【跳页】【当前第>' + currpagenum + '<页】【尾页=>' + lastpagenum + '页】',
                         js: $.toString((lastpagenum, url) => {
-                            return $('', '正确的页码：1=>' + lastpagenum + "页")
-                                .input((url, lastpagenum) => {
-                                if (input > 0 && input % 1 == 0 && input <= parseInt(lastpagenum)) {
-                                    var jumpu = url.replace(/\d+\.html/, input + ".html")
-                                    putMyVar("url", jumpu);
-                                    putMyVar("yurl", jumpu);
-                                    refreshPage();
-                                    return 'toast://你已经穿越到了' + input + '页'
-                                } else {
-                                    return "toast://请输入正确的页码"
-                                }
+                                return $('', '正确的页码：1=>' + lastpagenum + "页")
+                                    .input((url, lastpagenum) => {
+                                            if (input > 0 && input % 1 == 0 && input <= parseInt(lastpagenum)) {
+                                                var jumpu = url.replace(/\d+\.html/, input + ".html")
+                                                putMyVar("url", jumpu);
+                                                putMyVar("yurl", jumpu);
+                                                refreshPage();
+                                                return 'toast://你已经穿越到了' + input + '页'
+                                            } else {
+                                                return "toast://请输入正确的页码"
+                                            }
+                                        },
+                                        url, lastpagenum)
                             },
-                            url, lastpagenum)
-                        },
-                        lastpagenum, url)
+                            lastpagenum, url)
                     }] : ""
                 }
             })
@@ -482,11 +484,11 @@ const Apollo = {
                 title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: pdfh(item, 'a&&href') + $('#noLoading#')
                     .lazyRule((index) => {
-                    putMyVar('sort', index);
-                    putMyVar("url", input);
-                    refreshPage();
-                    return 'hiker://empty'
-                }, index),
+                        putMyVar('sort', index);
+                        putMyVar("url", input);
+                        refreshPage();
+                        return 'hiker://empty'
+                    }, index),
                 col_type: 'scroll_button'
             })
             if (index == 54 || index == 123 || index == 189 || index == 294) {
@@ -562,10 +564,10 @@ const Apollo = {
         log(url)
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo')
-            Apollo.avatarParse(MY_URL)
-            setResult(Apollo.d)
-        })
+                const Apollo = $.require('hiker://page/Apollo')
+                Apollo.avatarParse(MY_URL)
+                setResult(Apollo.d)
+            })
         const html = fetch(url, {
             headers: {
                 // "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
@@ -639,8 +641,8 @@ const Apollo = {
                 title: pdfh(html, 'body&&.posts-inner-details-text-top&&.posts-message,1&&Text'),
                 url: 识别码 + $('#noLoading#')
                     .lazyRule(() => {
-                    return "hiker://page/yj?rule=𝐉𝐚𝐯𝐃𝐁&url=" + getPublicItem('javdb0', 'https://javdb.com') + "/search？？f=all＆＆page=fypage＆＆q=" + input
-                }),
+                        return "hiker://page/yj?rule=𝐉𝐚𝐯𝐃𝐁&url=" + getPublicItem('javdb0', 'https://javdb.com') + "/search？？f=all＆＆page=fypage＆＆q=" + input
+                    }),
                 col_type: "scroll_button",
             }, {
                 title: pdfh(html, 'body&&.posts-inner-details-text-top&&.posts-message,2&&Text').replace(/（.*?）/, "鐘"),
@@ -885,7 +887,7 @@ const Apollo = {
 
         var lazy = $('').lazyRule(() => {
             let videoUrl = '';
-            let requestUrl = input.replace("mmsw01","mmsw02");
+            let requestUrl = input.replace("mmsw01", "mmsw02");
             var html = fetch(requestUrl)
             if (requestUrl.indexOf(config.host) != -1) {
                 let res = html.match(/https.*?m3u8/);
@@ -917,20 +919,20 @@ const Apollo = {
                     }
                 })
 
-                    function makePlay(token) {
-                        for (var a = "",
-                        t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                        n = t.length,
-                        o = 0; 10 > o; o++)
+                function makePlay(token) {
+                    for (var a = "",
+                            t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                            n = t.length,
+                            o = 0; 10 > o; o++)
                         a += t.charAt(Math.floor(Math.random() * n));
-                        return a + "?token=" + token + "&expiry=" + Date.now();
-                    };
+                    return a + "?token=" + token + "&expiry=" + Date.now();
+                };
                 var urlPlay = data + makePlay(token)
                 videoUrl = urlPlay + "#isVideo=true#;{Referer@" + config.host + "/}"
 
             } else if (requestUrl.indexOf('mm') != -1) {
                 var script = html.match(/eval(.*\))/)[1]
-        videoUrl = eval(script).match(/(https?.*?)"/)[1]
+                videoUrl = eval(script).match(/(https?.*?)"/)[1]
             } else if (requestUrl.includes("emturbovid")) {
                 //①TV线路
                 var domain = getHome(requestUrl)
@@ -980,6 +982,55 @@ const Apollo = {
             log("读取失败更新远程数据")
         }
         CodeLazy(识别码)
+    },
+
+    HostParse: (html) => {
+        if (html.includes("同意(enter)")) {
+            var cc = pdfh(html, ".scale_2&&input[type=submit]&&onclick").split("\"")[1]
+            log("獲取cookie地址：" + cc)
+            request(cc)
+        } else if (!html.includes("18AV在線H成人影片")) {
+            showLoading('正在获取域名，请稍候');
+            let host;
+            var homeLink = "https://18av.mm-cg.com";
+            if (request(homeLink).includes("请换新网址")) {
+                var homePage = fetchCodeByWebView(homeLink, {
+                    'blockRules': ["baidu.*.png", ".jpg", ".mp3", "m3u8", "mp4", ".flv", ".avi", ".3gp", ".mpeg", ".wmv", ".mov", ".rmvb", ".gif", ".jpg", ".jpeg", ".png", ".ico", ".svg"],
+                    timeout: 5000
+                });
+                var links = pdfh(homePage, "b&&Html").split("<br><br> ");
+                log(links)
+                for (var i = 1; i < links.length - 1; i++) {
+                    var releasePage = fetchCodeByWebView(links[i], {
+                        'blockRules': ["baidu.*.png", ".jpg", ".mp3", "m3u8", "mp4", ".flv", ".avi", ".3gp", ".mpeg", ".wmv", ".mov", ".rmvb", ".gif", ".jpg", ".jpeg", ".png", ".ico", ".svg"],
+                        timeout: 5000
+                    });
+                    if (releasePage.includes("1_8_A_V_發佈頁")) {
+                        var hosts = pdfh(releasePage, ".list,5&&ul&&Html").match(/http.*?com/g);
+                        //log(hosts)
+                        log("备选域名" + hosts.length + "个：\n" + hosts.join("\n"))
+                        for (var j = 0; j < hosts.length; j++) {
+                            var indexPage = request(hosts[j]);
+                            if (indexPage.includes("同意(enter)") || indexPage.includes("18AV在線H成人影片")) {
+                                if (indexPage.includes("本域名将停用")) {
+                                    host = pdfh(indexPage, ".di_img&&font,1&&a&&Text");
+                                } else {
+                                    host = hosts[j].replace("http", "https");
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            } else {
+                host = homeLink;
+                log("挂梯子了，直接访问")
+            }
+            log("获取到的域名：\n" + host)
+            setItem('link', host);
+            hideLoading();
+        }
     }
 
 }
