@@ -1,6 +1,7 @@
 const Apollo = {
+    version: 20240814,
     empty: "hiker://empty",
-    url: "https://www.javlibrary.com",
+    url: config.host,
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
