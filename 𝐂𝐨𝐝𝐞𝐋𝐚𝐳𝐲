@@ -522,7 +522,7 @@ function CodeLazy(识别码) {
                     title: '依赖检测',
                     content: '检测到缺少𝟕𝐌𝐌𝐓𝐕小程序\n请用力摁确定!',
                     confirm: () => {
-                        return parsePaste("云5oooole/c6j4");
+                        return parsePaste("云5oooole/6grf");
                     }
                 })
                 return "hiker://empty"
