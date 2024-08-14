@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 2024081402,
+    version: 202408143,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -312,7 +312,7 @@ const Apollo = {
             putMyVar("nextPage", next);
         } catch {
             clearMyVar("nextPage");
-           // log("可能不存在下一页或者下一页定位有问题");
+            // log("可能不存在下一页或者下一页定位有问题");
         }
 
         if (url.includes("searchbyid")) {
@@ -1404,7 +1404,7 @@ const Apollo = {
                 }, host),
                 cancel: $.toString(() => {})
             })
-        } else if (html.includes("Just a moment...")) {
+        } else if (html.includes("Just a moment...") && url.includes("javlibrary.com")) {
             confirm({
                 title: '图书馆',
                 content: '获取免翻地址\n或者选择合适节点',
@@ -1423,6 +1423,18 @@ const Apollo = {
                     hideLoading();
                     refreshPage()
                 }),
+                cancel: $.toString(() => {})
+            })
+        } else if (html.includes("Just a moment...") && !url.includes("javlibrary.com")) {
+            var host = "https://www.javlibrary.com";
+            confirm({
+                title: '图书馆',
+                content: '被CF，切换海外地址\n' + host,
+                confirm: $.toString((host) => {
+                    log("海外地址：" + host);
+                    setItem('link', host);
+                    refreshPage()
+                }, host),
                 cancel: $.toString(() => {})
             })
         }
