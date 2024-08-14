@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240815,
+    version: 2024081402,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -304,7 +304,7 @@ const Apollo = {
                 "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
             }
         })
-        Apollo.HostParse(html)
+        Apollo.HostParse(url, html)
         log(url)
         try {
             var next = pdfh(html, ".page_selector&&.page:matches(下一页)&&a&&href")
@@ -312,7 +312,7 @@ const Apollo = {
             putMyVar("nextPage", next);
         } catch {
             clearMyVar("nextPage");
-            log("可能不存在下一页或者下一页定位有问题");
+           // log("可能不存在下一页或者下一页定位有问题");
         }
 
         if (url.includes("searchbyid")) {
@@ -1391,8 +1391,8 @@ const Apollo = {
         CodeLazy(识别码)
     },
 
-    HostParse: (html) => {
-        if (!html) {
+    HostParse: (url, html) => {
+        if (!html && !url.includes("没有下一页哦")) {
             var host = "https://www.javlibrary.com";
             confirm({
                 title: '图书馆',
@@ -1401,7 +1401,7 @@ const Apollo = {
                     log("海外地址：" + host);
                     setItem('link', host);
                     refreshPage()
-                },host),
+                }, host),
                 cancel: $.toString(() => {})
             })
         } else if (html.includes("Just a moment...")) {
