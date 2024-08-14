@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202408143,
+    version: 202408144,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -496,7 +496,7 @@ const Apollo = {
             });
             for (var j = 0; j < list.length; j++) {
                 var jm = pdfh(list[j], 'a&&Text');
-                var url = pd(list[j], 'a&&href');
+                var url = Apollo.url + "/cn/" + pdfh(list[j], 'a&&href');
                 Apollo.d.push({
                     title: '““””' + jm.fontcolor(Apollo.getRangeColors()),
                     url: $(url + '#fypage#noHistory#')
