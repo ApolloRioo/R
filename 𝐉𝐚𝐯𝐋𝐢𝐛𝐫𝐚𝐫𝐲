@@ -1392,22 +1392,35 @@ const Apollo = {
     },
 
     HostParse: (html) => {
-        if (html.includes("Just a moment...")) {
-            showLoading('正在获取域名，请稍候');
-            let host;
-            var homeLink = "https://javlib.com/";
-            var hhtml = fetch(homeLink, {
-                dns: 'https://dns.alidns.com/dns-query'
-            })
-            cnhost = pdfh(hhtml, "body&&p:matches(简体中文)&&a&&href");
-            host = cnhost.replace(/\/cn.*/, '')
-            log("免翻地址：" + host)
-            setItem('link', host);
-            hideLoading();
+        if (!html) {
+            var host = "https://www.javlibrary.com";
             confirm({
                 title: '图书馆',
-                content: '免翻地址，请关闭代理\n' + host,
+                content: '运营商屏蔽，切换海外地址\n' + host,
+                confirm: $.toString((host) => {
+                    log("海外地址：" + host);
+                    setItem('link', host);
+                    refreshPage()
+                },host),
+                cancel: $.toString(() => {})
+            })
+        } else if (html.includes("Just a moment...")) {
+            confirm({
+                title: '图书馆',
+                content: '获取免翻地址\n或者选择合适节点',
                 confirm: $.toString(() => {
+                    showLoading('正在获取域名，请稍候');
+                    let host;
+                    var homeLink = "https://javlib.com/";
+                    var hhtml = fetch(homeLink, {
+                        dns: 'https://dns.alidns.com/dns-query'
+                    })
+                    cnhost = pdfh(hhtml, "body&&p:matches(简体中文)&&a&&href");
+                    host = cnhost.replace(/\/cn.*/, '')
+                    log("免翻地址：" + host);
+                    toast("免翻地址：" + host)
+                    setItem('link', host);
+                    hideLoading();
                     refreshPage()
                 }),
                 cancel: $.toString(() => {})
