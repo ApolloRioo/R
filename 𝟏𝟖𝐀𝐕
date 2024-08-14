@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240814,
+    version: 20240815,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -312,13 +312,14 @@ const Apollo = {
         } else if (MY_PAGE > 1) {
             url = "没有下一页哦😑"
         }
-        const html = fetch(url, {
+
+        var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
                 "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
             }
         })
-        Apollo.HostParse(html)
+
+        Apollo.HostParse(url, html)
         log(url)
         try {
             var next = pdfh(html, "body&&.pagination-row&&.previous-next:matches(>)&&a&&href")
@@ -984,11 +985,16 @@ const Apollo = {
         CodeLazy(识别码)
     },
 
-    HostParse: (html) => {
+    HostParse: (url, html) => {
         if (html.includes("同意(enter)")) {
             var cc = pdfh(html, ".scale_2&&input[type=submit]&&onclick").split("\"")[1]
             log("獲取cookie地址：" + cc)
             request(cc)
+            html = fetch(url, {
+                headers: {
+                    "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
+                }
+            })
         } else if (!html.includes("18AV在線H成人影片")) {
             showLoading('正在获取域名，请稍候');
             let host;
@@ -1030,6 +1036,12 @@ const Apollo = {
             log("获取到的域名：\n" + host)
             setItem('link', host);
             hideLoading();
+            refreshPage();
+            html = fetch(url, {
+                headers: {
+                    "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
+                }
+            })
         }
     }
 
