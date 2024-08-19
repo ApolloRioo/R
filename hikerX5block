@@ -9,6 +9,10 @@
 ##.header-ad-mobile
 ##.sidebar-ads
 ##.ad-body
+##.ad-content-side
+##.ad-content-bot
+! 通用脚下
+##.footer-container
 
 ! Gemini
 gemini.google.com##.get-app-banner
