@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240815,
+    version: 20240821,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -15,6 +15,11 @@ const Apollo = {
     baseParse: () => {
         const page = parseInt(MY_URL.split('##')[2])
         let categoryList = [{
+            "title": "首页",
+            "path": "/zh/",
+            "type": "video",
+            "sub": ""
+        }, {
             "title": "中文字幕AV",
             "path": "/zh/chinese_random/all/index.html",
             "type": "video",
@@ -995,7 +1000,7 @@ const Apollo = {
                     "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
                 }
             })
-        } else if (!html.includes("18AV在線H成人影片")) {
+        } else if (!html.includes("18AV在線H成人影片") && !url.includes("没有下一页哦")) {
             showLoading('正在获取域名，请稍候');
             let host;
             var homeLink = "https://18av.mm-cg.com";
