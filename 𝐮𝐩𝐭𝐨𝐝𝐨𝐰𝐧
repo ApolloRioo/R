@@ -2,25 +2,41 @@ const Apollo = {
     version: "20240820",
     empty: "hiker://empty",
     url: config.host,
+    er: $('#noHistory#')
+        .rule(() => {
+            const Apollo = $.require('hiker://page/Apollo')
+            Apollo.avatarParse(MY_URL)
+            setResult(Apollo.d)
+        }),
     d: [],
     baseParse: () => {
 
         url = getMyVar("url", "https://cn.uptodown.com/")
         if (MY_PAGE !== 1 && !url.includes("search")) {
             url = url + "/" + MY_PAGE
-        } else if (MY_PAGE !== 1 && url.includes("search")) {
-            url = "没有下一页哦😑"
         }
         log(url)
         if (url.includes("search")) {
-            var html = post("https://cn.uptodown.com/android/search", {
-                body: {
-                    "q": url.split("=")[1],
-                },
-                headers: {
-                    "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
-                }
-            })
+            if (MY_PAGE == 1) {
+                var html = post("https://cn.uptodown.com/android/search", {
+                    body: {
+                        "q": url.split("=")[1],
+                    },
+                    headers: {
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                    }
+                })
+            } else {
+                var html = post("https://cn.uptodown.com/android/apps/search", {
+                    body: {
+                        "query": url.split("=")[1],
+                        "page": MY_PAGE
+                    },
+                    headers: {
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                    }
+                });
+            }
         } else {
             var html = fetch(url, {
                 headers: {
@@ -102,16 +118,28 @@ const Apollo = {
     },
 
     videoType: (html) => {
+
         var list = pdfa(html, ".list&&.item");
         list.forEach(item => {
             var vurl = pdfh(item, 'a&&href');
             Apollo.d.push({
                 title: pdfh(item, "a&&Text"),
                 img: pdfh(item, "img&&src"),
-                url: vurl,
+                url: vurl + Apollo.er,
                 col_type: "icon_4_card",
             })
         })
+        try {
+            var list = JSON.parse(html);
+            list.forEach(item => {
+                Apollo.d.push({
+                    title: item.name,
+                    img: item.iconURL,
+                    url: item.appURL + Apollo.er,
+                    col_type: "icon_4_card",
+                })
+            })
+        } catch {}
     },
 
     //首页
@@ -135,18 +163,66 @@ const Apollo = {
                     Apollo.d.push({
                         title: jm,
                         img: pdfh(list[j], 'img&&src'),
-                        url: $(url + '#fypage#noHistory#')
-                            .rule(() => {
-                                const Apollo = $.require('hiker://page/Apollo')
-                                Apollo.avatarParse(MY_URL)
-                                setResult(Apollo.d)
-                            }),
+                        url: url + Apollo.er,
                         col_type: "icon_4_card",
                         extra: {},
                     });
                 }
             }
         }
+    },
+
+    avatarParse: (url) => {
+        log(url);
+        var html = fetch(url, {
+            headers: {
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+            }
+        })
+        Apollo.d.push({
+            img: pdfh(html, ".detail&&.icon&&img&&src"),
+            desc: "0",
+            url: "hiker://empty",
+            col_type: "card_pic_2"
+        })
+        Apollo.d.push({
+            title: '\n' + '““””' + pdfh(html, ".detail&&#detail-app-name&&Text").fontcolor("#00AAD5").big() + '\n\n' + pdfh(html, ".detail&&.version&&Text").fontcolor("#666666") + '\n\n' + pdfh(html, ".detail&&.autor&&Text").fontcolor("#666666"),
+            img: "",
+            desc: "0",
+            url: "hiker://empty",
+            col_type: "card_pic_2"
+        })
+        Apollo.d.push({
+            title: pdfh(html, ".detail&&h2&&Text").fontcolor("#666666").big(),
+            url: "hiker://empty",
+            col_type: "rich_text"
+        })
+        Apollo.d.push({
+            title: '““””' + pdfh(html, ".download&&a&&Text").replace("获取", "").fontcolor("#666666").big(),
+            url: "hiker://empty",
+            col_type: "flex_button",
+            extra: {
+                'backgroundColor': '#00AAD5'
+            }
+        })
+        try {
+            Apollo.d.push({
+                col_type: "blank_block",
+            })
+            Apollo.d.push({
+                title: '““””' + pdfh(html, ".download&&.button.version&&Text").fontcolor("#FF0000").big(),
+                url: "hiker://empty",
+                col_type: "flex_button",
+                extra: {
+                    'backgroundColor': '#666666'
+                }
+            })
+        } catch {}
+        Apollo.d.push({
+            title: pdfh(html, "body&&article&&Html").replace(/<div[\s\S]+?(<div class=\"text-description[\s\S]+)/,"$1").replace(/<div class=\"ad text[\s\S]+?<h2/g,"<h2"),
+            url: "hiker://empty",
+            col_type: "rich_text"
+        })
     },
 
 }
