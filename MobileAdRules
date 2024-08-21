@@ -337,7 +337,7 @@ thisav.com,missav.com##.lg\:py-16.py-12.mx-auto.max-w-7xl
 18av.mm-cg.com##div.di_img:nth-of-type(4)
 18av.mm-cg.com##.ut1_img_ex_content
 18av.mm-cg.com##[href="https://xhe7mor.life"]
-18av.mm-cg.com##[src~="/adcg/"]
+18av.mm-cg.com##[src*="/adcg/"]
 
 ##.swiper-backface-hidden.swiper-watch-progress.swiper-android.swiper-horizontal.swiper-initialized.swiper-fade.abk-swiper
 ##.app-abk
