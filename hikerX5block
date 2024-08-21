@@ -105,10 +105,12 @@ translate.google.com,translate.homegu.com##.VlPnLc
 translate.google.com,translate.homegu.com##.OwOEge
 
 ! Deepl翻译 https://www.deepl.com
-www.deepl.com##.mt-\[30px\]
-www.deepl.com##.forced-colors-mode-border.AppBanner-module--banner--2Ezkw
-www.deepl.com##footer
-www.deepl.com##.BasePageHeader-module--grey--0auCA.BasePageHeader-module--container--2By68.h-fit.z-50.relative
+deepl.com##.mt-\[30px\]
+deepl.com##.forced-colors-mode-border.AppBanner-module--banner--2Ezkw
+deepl.com##footer
+deepl.com##.BasePageHeader-module--grey--0auCA.BasePageHeader-module--container--2By68.h-fit.z-50.relative
+deepl.com##.relative.bg-neutral-next-50 > .hidden.mobile\:block
+
 
 ! 2024-03-05 http://net.ljxnet.cn
 net.ljxnet.cn,net.netart.cn##.header.el-header
