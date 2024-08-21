@@ -148,7 +148,7 @@ const Apollo = {
         for (var i = 0; i < conts.length; i++) {
             var line = pdfh(conts[i], 'h2&&Text');
             var list = pdfa(conts[i], 'body&&.item');
-            if (!/游戏/.test(line) && line != "") {
+            if (!/游戏|小说|Browsers/.test(line) && line != "") {
                 Apollo.d.push({
                     title: '““””' + line.fontcolor("#FF00FF"),
                     url: 'hiker://empty',
@@ -179,6 +179,7 @@ const Apollo = {
                 "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
             }
         })
+        var code = pdfh(html, ".detail&&.info&&h1&&code");
         Apollo.d.push({
             img: pdfh(html, ".detail&&.icon&&img&&src"),
             desc: "0",
@@ -207,7 +208,7 @@ const Apollo = {
                 })
                 tips = pdfh(html, ".download&&Text")
                 if (tips.includes("通过")) {
-                    return "toast://狗日的需要下载它的app商城"
+                    return "toast://狗日的需要下载它的商城app"
                 } else {
                     dwnapp = pdfh(html, ".download&&button&&data-url")
                     return 'download://https://dw.uptodown.com/dwn/' + dwnapp
@@ -224,10 +225,77 @@ const Apollo = {
             })
             Apollo.d.push({
                 title: '““””' + pdfh(html, ".download&&.button.version&&Text").fontcolor("#FF0000").big(),
-                url: pdfh(html, ".download&&.button.version&&a&&href"),
+                url: pdfh(html, ".download&&.button.version&&a&&href") + $('##fypage').rule((code) => {
+                    var d = [];
+                    url = MY_URL.split("##")[0];
+                    if (MY_PAGE != 1) {
+                        url = 'https://chrome.cn.uptodown.com/android/apps/' + code + '/versions/' + MY_PAGE
+                    }
+                    log(url)
+                    var html = fetch(url, {
+                        headers: {
+                            "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                        }
+                    })
+                    if (MY_PAGE == 1) {
+                        d.push({
+                            title: pdfh(html, ".detail&&h2&&Text").fontcolor("#666666").big(),
+                            url: "hiker://empty",
+                            col_type: "rich_text"
+                        })
+                    }
+                    var list = pdfa(html, 'body&&#versions-items-list>div')
+                    list.forEach((item) => {
+                        d.push({
+                            title: '♈️' + pdfh(item, '.version&&Text'),
+                            desc: '☦️' + pdfh(item, '.sdkVersion&&Text') + '\t📆' + pdfh(item, '.date&&Text'),
+                            url: pdfh(item, 'div&&data-url') + $('').lazyRule(() => {
+                                var html = fetch(input, {
+                                    headers: {
+                                        "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                                    }
+                                })
+                                tips = pdfh(html, ".download&&Text")
+                                if (tips.includes("通过")) {
+                                    return "toast://狗日的需要下载它的商城app"
+                                } else {
+                                    dwnapp = pdfh(html, ".download&&button&&data-url")
+                                    return 'download://https://dw.uptodown.com/dwn/' + dwnapp
+                                }
+                            }),
+                            col_type: 'avatar'
+                        })
+                    })
+                    try {
+                        var list = JSON.parse(html).data;
+                        list.forEach(item => {
+                            d.push({
+                                title: '♈️' + item.version,
+                                desc: '☦️' + item.sdkVersion + '\t📆' + item.lastUpdate,
+                                url: item.versionURL + $('').lazyRule(() => {
+                                    var html = fetch(input, {
+                                        headers: {
+                                            "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                                        }
+                                    })
+                                    tips = pdfh(html, ".download&&Text")
+                                    if (tips.includes("通过")) {
+                                        return "toast://狗日的需要下载它的商城app"
+                                    } else {
+                                        dwnapp = pdfh(html, ".download&&button&&data-url")
+                                        return 'download://https://dw.uptodown.com/dwn/' + dwnapp
+                                    }
+                                }),
+                                col_type: "avatar",
+                            })
+                        })
+                    } catch {}
+                    setResult(d)
+                }, code),
                 col_type: "flex_button",
                 extra: {
-                    'backgroundColor': '#666666'
+                    'backgroundColor': '#666666',
+                    pageTitle: '旧版本'
                 }
             })
         } catch {}
