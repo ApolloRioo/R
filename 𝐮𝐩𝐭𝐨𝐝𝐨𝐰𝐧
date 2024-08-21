@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240820",
+    version: "20240821",
     empty: "hiker://empty",
     url: config.host,
     er: $('#noHistory#')
@@ -199,7 +199,20 @@ const Apollo = {
         })
         Apollo.d.push({
             title: '““””' + pdfh(html, ".download&&a&&Text").replace("获取", "").fontcolor("#666666").big(),
-            url: "hiker://empty",
+            url: pdfh(html, ".download&&a&&href") + $('').lazyRule(() => {
+                var html = fetch(input, {
+                    headers: {
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                    }
+                })
+                tips = pdfh(html, ".download&&Text")
+                if (tips.includes("通过")) {
+                    return "toast://狗日的需要下载它的app商城"
+                } else {
+                    dwnapp = pdfh(html, ".download&&button&&data-url")
+                    return 'download://https://dw.uptodown.com/dwn/' + dwnapp
+                }
+            }),
             col_type: "flex_button",
             extra: {
                 'backgroundColor': '#00AAD5'
@@ -211,7 +224,7 @@ const Apollo = {
             })
             Apollo.d.push({
                 title: '““””' + pdfh(html, ".download&&.button.version&&Text").fontcolor("#FF0000").big(),
-                url: "hiker://empty",
+                url: pdfh(html, ".download&&.button.version&&a&&href"),
                 col_type: "flex_button",
                 extra: {
                     'backgroundColor': '#666666'
@@ -219,7 +232,7 @@ const Apollo = {
             })
         } catch {}
         Apollo.d.push({
-            title: pdfh(html, "body&&article&&Html").replace(/<div[\s\S]+?(<div class=\"text-description[\s\S]+)/,"$1").replace(/<div class=\"ad text[\s\S]+?<h2/g,"<h2"),
+            title: pdfh(html, "body&&article&&Html").replace(/<div[\s\S]+?(<div class=\"text-description[\s\S]+)/, "$1").replace(/<div class=\"ad text[\s\S]+?<h2/g, "<h2"),
             url: "hiker://empty",
             col_type: "rich_text"
         })
