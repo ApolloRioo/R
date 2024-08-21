@@ -5,7 +5,7 @@ const Apollo = {
     d: [],
     baseParse: () => {
 
-        url = getMyVar("url", "https://cn.uptodown.com/android/latest-updates")
+        url = getMyVar("url", "https://cn.uptodown.com/")
         if (MY_PAGE !== 1 && !url.includes("search")) {
             url = url + "/" + MY_PAGE
         } else if (MY_PAGE !== 1 && url.includes("search")) {
