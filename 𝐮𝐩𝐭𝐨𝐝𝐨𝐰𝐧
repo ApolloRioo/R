@@ -1,0 +1,154 @@
+const Apollo = {
+    version: "20240820",
+    empty: "hiker://empty",
+    url: config.host,
+    d: [],
+    baseParse: () => {
+
+        url = getMyVar("url", "https://cn.uptodown.com/android/latest-updates")
+        if (MY_PAGE !== 1 && !url.includes("search")) {
+            url = url + "/" + MY_PAGE
+        } else if (MY_PAGE !== 1 && url.includes("search")) {
+            url = "没有下一页哦😑"
+        }
+        log(url)
+        if (url.includes("search")) {
+            var html = post("https://cn.uptodown.com/android/search", {
+                body: {
+                    "q": url.split("=")[1],
+                },
+                headers: {
+                    "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                }
+            })
+        } else {
+            var html = fetch(url, {
+                headers: {
+                    "user-agent": "Mozilla/5.0 (Windows NT 10.0)"
+                }
+            })
+        }
+        if (MY_PAGE == 1) {
+            Apollo.videoSort(url, html)
+            Apollo.d.push({
+                title: "🔍",
+                url: $.toString(() => {
+                    putMyVar('keyword', input);
+                    if (input == "") {
+                        var searchUrl = "https://cn.uptodown.com/android/latest-updates"
+                        clearMyVar('sort');
+                    } else {
+                        var searchUrl = "https://cn.uptodown.com/android/search?q=" + input
+                    }
+                    putMyVar("url", searchUrl);
+                    refreshPage();
+                    return "hiker://empty"
+                }),
+                desc: '搜索...',
+                col_type: "input",
+                extra: {
+                    defaultValue: getMyVar('keyword', '') || "",
+                }
+            });
+            if (url.includes("search")) {
+                Apollo.d.push({
+                    title: '““””' + '搜索结果'.fontcolor("#FF00FF"),
+                    url: 'hiker://empty',
+                    col_type: 'text_center_1',
+                    extra: {
+                        lineVisible: false
+                    }
+                });
+            }
+        }
+        if (url == "https://cn.uptodown.com/") {
+            Apollo.seriesType(html)
+        } else {
+            Apollo.videoType(html)
+        }
+        setResult(Apollo.d)
+    },
+
+    videoSort: (url, html) => {
+        /* Apollo.d.push({
+            col_type: "blank_block",
+        })*/
+        const sort = [{
+            'title': '首页',
+            'url': 'https://cn.uptodown.com/'
+        }, {
+            'title': '最近更新',
+            'url': 'https://cn.uptodown.com/android/latest-updates'
+        }, {
+            'title': '最新发布',
+            'url': 'https://cn.uptodown.com/android/newreleases'
+        }, {
+            'title': '下载排行',
+            'url': 'https://cn.uptodown.com/android/top'
+        }]
+        sort.forEach((item, index) => {
+            Apollo.d.push({
+                title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + item.title + '</font></strong>' : item.title,
+                url: item.url + $('#noLoading#')
+                    .lazyRule((index) => {
+                        putMyVar('sort', index);
+                        putMyVar("url", input);
+                        refreshPage();
+                        return 'hiker://empty'
+                    }, index),
+                col_type: 'scroll_button'
+            })
+        })
+    },
+
+    videoType: (html) => {
+        var list = pdfa(html, ".list&&.item");
+        list.forEach(item => {
+            var vurl = pdfh(item, 'a&&href');
+            Apollo.d.push({
+                title: pdfh(item, "a&&Text"),
+                img: pdfh(item, "img&&src"),
+                url: vurl,
+                col_type: "icon_4_card",
+            })
+        })
+    },
+
+    //首页
+    seriesType: (html) => {
+        var conts = pdfa(html, 'body&&.item-row.item-row-section:not(:matches(Roguelike))');
+        for (var i = 0; i < conts.length; i++) {
+            var line = pdfh(conts[i], 'h2&&Text');
+            var list = pdfa(conts[i], 'body&&.item');
+            if (!/游戏/.test(line) && line != "") {
+                Apollo.d.push({
+                    title: '““””' + line.fontcolor("#FF00FF"),
+                    url: 'hiker://empty',
+                    col_type: 'text_center_1',
+                    extra: {
+                        lineVisible: false
+                    }
+                });
+                for (var j = 0; j < list.length; j++) {
+                    var jm = pdfh(list[j], 'a&&Text');
+                    var url = pdfh(list[j], 'a&&href');
+                    Apollo.d.push({
+                        title: jm,
+                        img: pdfh(list[j], 'img&&src'),
+                        url: $(url + '#fypage#noHistory#')
+                            .rule(() => {
+                                const Apollo = $.require('hiker://page/Apollo')
+                                Apollo.avatarParse(MY_URL)
+                                setResult(Apollo.d)
+                            }),
+                        col_type: "icon_4_card",
+                        extra: {},
+                    });
+                }
+            }
+        }
+    },
+
+}
+
+$.exports = Apollo
