@@ -344,6 +344,7 @@ thisav.com,missav.com##.lg\:py-16.py-12.mx-auto.max-w-7xl
 ! 2024年8月22日 https://91porn.com
 ||fans.91selfie.com/fans/*$image
 91porn.com##[src*="https://fans.91selfie.com/fans/"]
+91porn.com##div#videodetails > div:first-of-type
 91porn.com##.title.more
 
 ##.swiper-backface-hidden.swiper-watch-progress.swiper-android.swiper-horizontal.swiper-initialized.swiper-fade.abk-swiper
