@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240822,
+    version: 20240823,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -953,12 +953,23 @@ const Apollo = {
             return videoUrl;
         })
         //log(list)
+        var col;
+        if (list.length == 1) {
+            col = "text_2"
+        } else if (list.length < 6) {
+            col = "text_" + list.length
+        } else if (list.length < 11) {
+            col = "text_" + Math.ceil(list.length / 2)
+        } else {
+            col = "text_5"
+        }
+
         var servers = pdfa(html, ".btnst&&a").map(n => pdfh(n, "Text")) //播放列表名
         list.forEach((item, index) => {
             Apollo.d.push({
                 title: servers[index].replace("(可下載)", ""),
                 url: item.url + lazy,
-                col_type: "text_3"
+                col_type: col
             })
         })
     },
