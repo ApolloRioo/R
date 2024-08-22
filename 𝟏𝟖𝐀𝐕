@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240823,
+    version: 202408222,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -313,9 +313,13 @@ const Apollo = {
                 url = url
             } else {
                 url = nextPage;
-            }
+            };
         } else if (MY_PAGE > 1) {
-            url = "没有下一页哦😑"
+            if (url.endsWith("/zh/")) {
+                url = url
+            } else {
+                url = "没有下一页哦😑"
+            };
         }
 
         var html = fetch(url, {
@@ -1006,11 +1010,8 @@ const Apollo = {
             var cc = pdfh(html, ".scale_2&&input[type=submit]&&onclick").split("\"")[1]
             log("獲取cookie地址：" + cc)
             request(cc)
-            html = fetch(url, {
-                headers: {
-                    "user-agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36"
-                }
-            })
+            java.lang.Thread.sleep(500);
+            refreshPage()
         } else if (!html.includes("发布页地址") && !url.includes("没有下一页哦")) {
             showLoading('正在获取域名，请稍候');
             let host;
@@ -1052,6 +1053,7 @@ const Apollo = {
             log("获取到的域名：\n" + host)
             setItem('link', host);
             hideLoading();
+            java.lang.Thread.sleep(500);
             refreshPage();
         }
     }
