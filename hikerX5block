@@ -5,7 +5,14 @@
 ! by: R
 
 ! 通用广告位
-
+##.under-player-ad-mobile
+##.header-ad-mobile
+##.sidebar-ads
+##.ad-body
+##.ad-content-side
+##.ad-content-bot
+##.app-abk
+##.a-d-block
 ##.ad_img
 
 ! Gemini
