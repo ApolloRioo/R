@@ -5,16 +5,8 @@
 ! by: R
 
 ! 通用广告位
-##.under-player-ad-mobile
-##.sidebar-ads
-##.ad-body
-##.ad-content-side
-##.ad-content-bot
-##.app-abk
-##.a-d-block
+
 ##.ad_img
-! 通用脚下
-##.footer-container
 
 ! Gemini
 gemini.google.com##.get-app-banner
