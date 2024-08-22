@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202408222,
+    version: 20240823,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -1010,7 +1010,7 @@ const Apollo = {
             var cc = pdfh(html, ".scale_2&&input[type=submit]&&onclick").split("\"")[1]
             log("獲取cookie地址：" + cc)
             request(cc)
-            java.lang.Thread.sleep(500);
+            //java.lang.Thread.sleep(500);
             refreshPage()
         } else if (!html.includes("发布页地址") && !url.includes("没有下一页哦")) {
             showLoading('正在获取域名，请稍候');
@@ -1053,7 +1053,7 @@ const Apollo = {
             log("获取到的域名：\n" + host)
             setItem('link', host);
             hideLoading();
-            java.lang.Thread.sleep(500);
+            java.lang.Thread.sleep(200);
             refreshPage();
         }
     }
