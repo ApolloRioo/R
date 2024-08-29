@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240814",
+    version: 20240829,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -858,6 +858,24 @@ const Apollo = {
                 var request = fetch(src)
                 let res = request.match(/https.*?m3u8/);
                 videoUrl = res[0] + ";{Referer@https://emturbovid.com/}";
+            } else if (input.indexOf("upns") != -1) {
+                //线路41
+                //https://7mmtv.upns.live/#6kx1
+                var url = "https://7mmtv.upns.live/api/v1/video?id=" + input.split("#")[1]
+                var data = fetch(url).trim()
+                var Decode = (word) => {
+                    eval(getCryptoJS())
+                    let key = CryptoJS.enc.Utf8.parse("kiemtienmua911ca")
+                    let iv = CryptoJS.enc.Utf8.parse("1234567890oiuytr")
+                    return CryptoJS.AES.decrypt(CryptoJS.enc.Base64.stringify(CryptoJS.enc.Hex.parse(word)), key, {
+                        iv: iv,
+                        mode: CryptoJS.mode.CBC,
+                        padding: CryptoJS.pad.Pkcs7
+                    }).toString(CryptoJS.enc.Utf8)
+                }
+                var json = JSON.parse(Decode(data))
+                videoUrl = json.cf + '#isVideo=true#;{Referer@https://7mmtv.upns.live/}'
+
             } else if (input.indexOf("mm") != -1) {
                 //线路37+38
                 var script = html.match(/eval(.*\))/)[1]
@@ -868,10 +886,6 @@ const Apollo = {
                 var url = pdfh(html, "source&&src");
                 videoUrl = url + "#isVideo=true#;{Referer@" + getHome(input) + "/}"
 
-            } else if (input.indexOf("upns") != -1) {
-                //线路41
-                //https://7mmtv.upns.live/#6kx1
-                videoUrl = "hiker://empty"
             } else if (input.indexOf('dooood') != -1) {
                 //线路28
                 var redirect = JSON.parse(fetch(input, {
@@ -879,9 +893,10 @@ const Apollo = {
                 })).url;
                 var htmll = fetch(redirect, {
                     headers: {
-                        referer: "https://7mmtv.sx/zh/"
+                        referer: input
                     }
                 });
+                log(htmll)
                 var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0]
                 var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1]
                 var data = fetch(pass_md5, {
