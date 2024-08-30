@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240829,
+    version: 20240830,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -896,7 +896,7 @@ const Apollo = {
                         referer: input
                     }
                 });
-                log(htmll)
+               // log(htmll)
                 var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0]
                 var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1]
                 var data = fetch(pass_md5, {
