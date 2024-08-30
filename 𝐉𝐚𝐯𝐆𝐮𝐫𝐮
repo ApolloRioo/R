@@ -542,7 +542,7 @@ const javguru = {
                         'Referer': "https://jav.guru/"
                     }
                 })
-                log(Playhtml)
+               // log(Playhtml)
                 var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
                 var uas = eval(script)
                 var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
