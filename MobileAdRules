@@ -93,10 +93,7 @@ www.ghxi.com##.clearfix.slider-wrap
 www.ghxi.com##.width-footer-bar.footer > .container
 
 ! 鸭先知 https://www.yxzhi.com
-www.yxzhi.com##li.item-sticky.item:nth-of-type(1)
-www.yxzhi.com##li.item-sticky.item:nth-of-type(2)
-www.yxzhi.com##li.item-sticky.item:nth-of-type(3)
-www.yxzhi.com##li.item-sticky.item:nth-of-type(4)
+www.yxzhi.com##.__single_1.wpcom_myimg_wrap
 www.yxzhi.com##.entry-copyright
 www.yxzhi.com##.entry-action
 www.yxzhi.com##.entry-bar
