@@ -274,6 +274,8 @@ const Apollo = {
                     title: item.title,
                     lineVisible: false
                 }
+            }, {
+                col_type: "line_blank"
             })
 
             if (start == false || getMyVar('benstart', 'true') == 'false') {
