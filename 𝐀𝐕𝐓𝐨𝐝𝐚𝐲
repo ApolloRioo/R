@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409122,
+    version: 202409123,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -27,7 +27,7 @@ const Apollo = {
             "type": "home",
             "sub": []
         }, {
-            "title": "📋 类型",
+            "title": "📋类型",
             "path": "",
             "type": "video",
             "sub": [{
@@ -80,22 +80,22 @@ const Apollo = {
                 "path": "/catalog/及膝袜"
             }]
         }, {
-            "title": "🎥 新片",
+            "title": "🎥新片",
             "path": "/new",
             "type": "video",
             "sub": []
         }, {
-            "title": "🔥 人气",
+            "title": "🔥人气",
             "path": "/hot",
             "type": "video",
             "sub": []
         }, {
-            "title": "🈚 无码",
+            "title": "🈚无码",
             "path": "/no-mosaic",
             "type": "video",
             "sub": []
         }, {
-            "title": "🤑 免费",
+            "title": "🤑免费",
             "path": "/free",
             "type": "video",
             "sub": []
