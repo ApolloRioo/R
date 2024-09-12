@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409123,
+    version: 20240913,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -365,8 +365,8 @@ const Apollo = {
                             js: $.toString((u) => {
                                 function check() {
                                     //let nodes = document.querySelectorAll('#tags');                                    
-                                    //var ua = fba.getUa()
-                                    //fba.log('co::::::' + ua);                                    
+                                    var ua = fba.getUa()
+                                    fba.log('co::::::' + ua);                                    
                                     var htmlContent = document.documentElement.innerHTML;
 
                                     if (/搜索结果/.test(htmlContent)) {
@@ -437,12 +437,12 @@ const Apollo = {
 
     //搜索
     searchParse: (url) => {
-        url = Apollo.url + url.replace("hiker://empty##", "")
+        url = url.replace("hiker://empty##", "")
         log(url)
         var html = fetch(url, {
             headers: {
-                // "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/javlibrary_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/avtoday_cookie.txt') || '',
+                "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
         Apollo.videoType(url, html)
