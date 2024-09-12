@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409121,
+    version: 20240912,
     empty: "hiker://empty",
     url: config.host,
     d: [],
