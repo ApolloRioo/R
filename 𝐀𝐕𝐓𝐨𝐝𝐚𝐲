@@ -217,7 +217,9 @@ const Apollo = {
 
         switch (type) {
             case 'home':
-                Apollo.lunboType(html)
+                if (MY_PAGE == 1 && !/search/.test(url)) {
+                    Apollo.lunboType(html)
+                }
                 Apollo.videoType(url, html)
                 break
             case 'video':
