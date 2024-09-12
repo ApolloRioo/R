@@ -343,7 +343,7 @@ const Apollo = {
         }
         banner(MY_RULE.title, true, Apollo.d, lundata, {
             time: 2233,
-            col_type: 'card_pic_1',
+            col_type: 'pic_1_full',
             desc: '0'
         })
     },
