@@ -365,8 +365,8 @@ const Apollo = {
                             js: $.toString((u) => {
                                 function check() {
                                     //let nodes = document.querySelectorAll('#tags');                                    
-                                    var ua = fba.getUa()
-                                    fba.log('co::::::' + ua);                                    
+                                    //var ua = fba.getUa()
+                                    //fba.log('co::::::' + ua);                                    
                                     var htmlContent = document.documentElement.innerHTML;
 
                                     if (/搜索结果/.test(htmlContent)) {
