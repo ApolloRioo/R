@@ -338,7 +338,7 @@ const Apollo = {
             }, obj, id))
         }
         banner(MY_RULE.title, true, Apollo.d, lundata, {
-            time: 3333,
+            time: 2233,
             col_type: 'card_pic_1',
             desc: '0'
         })
