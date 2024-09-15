@@ -149,13 +149,17 @@ const Apollo = {
             Apollo.d.push({
                 title: "🔍",
                 url: $.toString((url) => {
-                    putMyVar('keyword', input);
-                    var searchUrl = getHome(url) + "/search?s=" + input
-                    putMyVar("url", searchUrl);
-                    refreshPage();
-                    return "hiker://empty"
+                    if (input.trim() != "") {
+                        putMyVar('keyword', input);
+                        var searchUrl = getHome(url) + "/search?s=" + input
+                        putMyVar("url", searchUrl);
+                        refreshPage();
+                        return "hiker://empty"
+                    } else {
+                        return "confirm://搜索内容为空.js:'hiker://empty'"
+                    }
                 }, url),
-                desc: '搜索...',
+                desc: '搜索番号结果更多...',
                 col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', '') || "",
@@ -236,7 +240,7 @@ const Apollo = {
         var lundata = pdfa(html, ".featured-swiper&&.swiper-slide").map((x) => {
             var urll = pd(x, "a&&href");
             return {
-                title: '““””' + pdfh(x, ".slide-content&&Text").slice(0,68).split("").map(b => b.fontcolor(Apollo.getRangeColors()).small()).join(""),
+                title: '““””' + pdfh(x, ".slide-content&&Text").slice(0, 68).split("").map(b => b.fontcolor(Apollo.getRangeColors()).small()).join(""),
                 img: pd(x, "img&&src"),
                 url: urll + Apollo.lazy,
             }
