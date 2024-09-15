@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409151,
+    version: 202409152,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -446,7 +446,7 @@ const Apollo = {
         var title = pdfh(html, "body&&h1&&Text");
         Apollo.d.push({
             title: '““””' + title.fontcolor("#E57A1A"),
-            url: "hiker://empty" + $('#noLoading#')
+            url: url + $('#noLoading#')
                 .lazyRule((title) => {
                     var desc = findItem('transdesc')
                         .desc
