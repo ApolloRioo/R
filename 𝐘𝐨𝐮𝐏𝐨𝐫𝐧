@@ -214,8 +214,9 @@ const Apollo = {
                 Apollo.videoType(url, html)
                 break
             case 'category':
-                if (MY_PAGE = 1)
+                if (MY_PAGE = 1) {
                     Apollo.categoryType(html)
+                }
                 break
             case 'channel':
                 Apollo.channelType(html)
@@ -234,47 +235,6 @@ const Apollo = {
 
     //一级视频列表
     videoType: (url, html) => {
-        if (/Just\sa\smoment/.test(html)) {
-            Apollo.d.push({
-                title: '““””' + '获取cookie'.fontcolor('#FF00FF').big(),
-                url: url + $('').rule(() => {
-                    var d = [];
-                    d.push({
-                        col_type: 'x5_webview_single',
-                        url: MY_URL,
-                        desc: 'list&&screen',
-                        extra: {
-                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36", //PC_UA,             
-                            showProgress: false,
-                            js: $.toString((u) => {
-                                function check() {
-                                    //let nodes = document.querySelectorAll('#tags');                                    
-                                    //var ua = fba.getUa()
-                                    //fba.log('co::::::' + ua);                                    
-                                    var htmlContent = document.documentElement.innerHTML;
-
-                                    if (/搜索结果/.test(htmlContent)) {
-                                        var co = fba.getCookie(u);
-                                        fba.log('co::::::' + co);
-                                        fba.parseLazyRule($$$().lazyRule((co) => {
-                                            writeFile('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt', co);
-                                            toast('已获取cookie');
-                                            back(true);
-                                        }, co));
-                                    } else {
-                                        setTimeout(check, 500);
-                                    }
-                                }
-                                check();
-                            }, MY_URL)
-                        }
-                    });
-                    return setResult(d);
-                }),
-                col_type: 'text_center_1'
-            });
-        }
-
         try {
             var currpagenum = pdfh(html, "body&&#pagination&&.current&&Text").match(/\d+/)[0]
         } catch {
