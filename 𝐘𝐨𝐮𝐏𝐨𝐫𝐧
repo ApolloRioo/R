@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409158,
+    version: 20240916,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -214,7 +214,7 @@ const Apollo = {
                 Apollo.videoType(url, html)
                 break
             case 'category':
-                if (MY_PAGE = 1) {
+                if (MY_PAGE == 1) {
                     Apollo.categoryType(html)
                 }
                 break
