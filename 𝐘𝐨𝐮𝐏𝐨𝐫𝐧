@@ -184,7 +184,7 @@ const Apollo = {
 
         var html = fetch(url, {
             headers: {
-                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             }
         })
@@ -391,7 +391,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
@@ -403,7 +403,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
@@ -556,7 +556,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
