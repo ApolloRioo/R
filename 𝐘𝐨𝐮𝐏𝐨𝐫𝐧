@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409152,
+    version: 202409153,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -545,7 +545,7 @@ const Apollo = {
         //频道
         Apollo.d.push({
             title: pdfh(html, ".watchTopInfoPanelCol&&a&&Text").big().bold().fontcolor(Apollo.getRangeColors()),
-            desc: pdfh(html, ".watchTopInfoPanelCol&&.subscribersInfo&&Text").replace("Subscribe","") || pdfh(html, ".watchTopInfoPanelCol&&.infoMobileFlex&&Text"),
+            desc: pdfh(html, ".watchTopInfoPanelCol&&.subscribersInfo&&Text").replace("Subscribe", "") || pdfh(html, ".watchTopInfoPanelCol&&.infoMobileFlex&&Text"),
             img: img,
             url: pd(html, ".watchTopInfoPanelCol&&a&&href") + $('##fypage')
                 .rule(() => {
