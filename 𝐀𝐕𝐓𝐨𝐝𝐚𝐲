@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409133,
+    version: 20240915,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -204,9 +204,9 @@ const Apollo = {
             //log("可能不存在下一页或者下一页定位有问题");
         }
 
-        if (url.includes("searchbyid")) {
+        if (url.includes("search?")) {
             Apollo.d.push({
-                title: '““””' + "识别码搜寻结果".fontcolor("#67E0FA"),
+                title: '““””' + "搜寻结果".fontcolor("#FF00FF"),
                 url: "hiker://empty",
                 col_type: "text_1",
                 extra: {
