@@ -118,13 +118,13 @@ const javguru = {
                     title: parseInt(javguru.data.category) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                     url: $(javguru.empty + "#noLoading#")
                         .lazyRule((index) => {
-                        putMyVar("JavGuru.category", index.toString())
-                        putMyVar("JavGuru.subCate", '0')
-                        clearMyVar("sort")
-                        clearMyVar("url")
-                        refreshPage(true)
-                        return "hiker://empty"
-                    }, index),
+                            putMyVar("JavGuru.category", index.toString())
+                            putMyVar("JavGuru.subCate", '0')
+                            clearMyVar("sort")
+                            clearMyVar("url")
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
                     col_type: 'scroll_button',
                 })
             })
@@ -137,12 +137,12 @@ const javguru = {
                         title: parseInt(javguru.data.subCate) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                         url: $(javguru.empty + "#noLoading#")
                             .lazyRule((index) => {
-                            putMyVar("JavGuru.subCate", index.toString())
-                            clearMyVar("sort")
-                            clearMyVar("url")
-                            refreshPage(true)
-                            return "hiker://empty"
-                        }, index),
+                                putMyVar("JavGuru.subCate", index.toString())
+                                clearMyVar("sort")
+                                clearMyVar("url")
+                                refreshPage(true)
+                                return "hiker://empty"
+                            }, index),
                         col_type: 'scroll_button',
                     })
                 })
@@ -250,11 +250,11 @@ const javguru = {
                 title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: url.replace(/(.*?)\?.*/, "$1") + pdfh(item, 'option&&value') + $('#noLoading#')
                     .lazyRule((index) => {
-                    putMyVar('sort', index);
-                    putMyVar("url", input);
-                    refreshPage(false);
-                    return 'hiker://empty'
-                }, index),
+                        putMyVar('sort', index);
+                        putMyVar("url", input);
+                        refreshPage(false);
+                        return 'hiker://empty'
+                    }, index),
                 col_type: 'scroll_button'
             })
         })
@@ -271,11 +271,11 @@ const javguru = {
                 title: getMyVar('ysort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: url.replace(/(.*?)\?.*/, "$1") + pdfh(item, 'option&&value') + $('#noLoading#')
                     .lazyRule((index) => {
-                    putMyVar('ysort', index);
-                    putMyVar("yurl", input);
-                    refreshPage(false);
-                    return 'hiker://empty'
-                }, index),
+                        putMyVar('ysort', index);
+                        putMyVar("yurl", input);
+                        refreshPage(false);
+                        return 'hiker://empty'
+                    }, index),
                 col_type: 'scroll_button'
             })
         })
@@ -298,10 +298,10 @@ const javguru = {
                     col_type: 'scroll_button',
                     url: $("#noLoading#")
                         .lazyRule((i) => {
-                        putMyVar("tab", i)
-                        refreshPage(false);
-                        return 'hiker://empty'
-                    }, i)
+                            putMyVar("tab", i)
+                            refreshPage(false);
+                            return 'hiker://empty'
+                        }, i)
                 })
             }
         }
@@ -317,10 +317,10 @@ const javguru = {
                         img: pdfh(list[j], "img&&src"),
                         url: pdfh(list[j], "a&&href") + $('')
                             .rule(() => {
-                            const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
-                            javguru.videoParse(MY_URL)
-                            setResult(javguru.d)
-                        }),
+                                const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
+                                javguru.videoParse(MY_URL)
+                                setResult(javguru.d)
+                            }),
                         col_type: "movie_2",
                         extra: {
                             pageTitle: pdfh(list[j], "a,-1&&Text"),
@@ -339,7 +339,7 @@ const javguru = {
         //随机颜色
         var getRangeColors = function() {
             return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+                    .toString(16))
                 .substr(-6);
         }
         if (MY_PAGE === 1) {
@@ -349,10 +349,10 @@ const javguru = {
                     title: '““””<middle><font color=' + getRangeColors() + '>' + pdfh(item, 'a&&Text') + '</font></middle>',
                     url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#')
                         .rule(() => {
-                        const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
-                        javguru.avatarParse(MY_URL)
-                        setResult(javguru.d)
-                    }),
+                            const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
+                            javguru.avatarParse(MY_URL)
+                            setResult(javguru.d)
+                        }),
                     col_type: "flex_button"
                 })
             })
@@ -365,17 +365,17 @@ const javguru = {
         list.forEach(item => {
             javguru.d.push({
                 title: (pdfh(item, '.actress-details&&span[style]:not(:has(.video))&&Text') ? pdfh(item, '.actress-details&&span[style]:not(:has(.video))&&Text')
-                    .slice(0, 8) : pdfh(item, '.actress-details&&span&&Text')) + "\n" + pdfh(item, '.actress-details&&span:matches(videos)&&Text')
+                        .slice(0, 8) : pdfh(item, '.actress-details&&span&&Text')) + "\n" + pdfh(item, '.actress-details&&span:matches(videos)&&Text')
                     .replace("videos", "部") + "\t\t" + pdfh(item, '.actress-details&&span:matches(old)&&Text')
                     .replace("years old", "岁"),
                 desc: "",
                 pic_url: pdfh(item, '.actress-pic&&img&&src') + '@Referer=',
                 url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#')
                     .rule(() => {
-                    const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
-                    javguru.avatarParse(MY_URL)
-                    setResult(javguru.d)
-                }),
+                        const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
+                        javguru.avatarParse(MY_URL)
+                        setResult(javguru.d)
+                    }),
                 col_type: 'card_pic_3'
             })
         })
@@ -425,11 +425,11 @@ const javguru = {
                 title: pdfh(item, 'img&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#')
                     .rule(() => {
-                    const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
-                    javguru.videoParse(MY_URL)
-                    setResult(javguru.d)
-                }),
-                pic_url: pdfh(item, '.imgg&&img&&src').replace(/-\d+x\d+\.jpg/,".jpg") + '@Referer=' + javguru.url,
+                        const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
+                        javguru.videoParse(MY_URL)
+                        setResult(javguru.d)
+                    }),
+                pic_url: pdfh(item, '.imgg&&img&&src').replace(/-\d+x\d+\.jpg/, ".jpg") + '@Referer=' + javguru.url,
                 desc: pdfh(item, '.date&&Text'),
                 col_type: 'movie_2',
                 extra: {
@@ -464,138 +464,138 @@ const javguru = {
         })
 
         var lazy = $('')
-            .lazyRule((html, url) => {
-            var src = fetch(input)
-                .match(/iframe.*?src="(.*?=)/)[1]
-            var id = input.replace(/.*?=(.*?)&.*/, "$1")
-            id = id.split('')
-                .reverse()
-                .join('');
-            var url = `${src}${id}`;
-            var location = JSON.parse(fetch(url, {
-                headers: {
-                    "Referer": input,
-                },
-                onlyHeaders: true
-            }))
-                .url
-
-            if (location.includes("emturbovid.com")) {
-                //TV线路
-                var html = fetch(location, {
-                    headers: {
-                        "Referer": "https://jav.guru/"
-                    }
-                })
-                var path = html.match(/'.*?(\/.*?\.m3u8)/)[1]
-                var playUrl = path.includes("com") ? "https:" + path : getHome(location) + path
-                return playUrl + ";{Referer@" + location + "}"
-            } else if (location.includes("streamtape")) {
-                //ST线路
-                var html = fetch(location, {
-                    headers: {
-                        'Referer': "https://jav.guru/"
-                    }
-                })
-                var pattern = html.match(/\('#(.*)'\)/)[1]
-                var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
-                eval(src)
-                var link = "https:" + srclink + "&stream=1"
-                var urlPlay = JSON.parse(fetch(link, {
-                    headers: {
-                        "Referer": location,
-                    },
-                    onlyHeaders: true
-                }))
+            .lazyRule((url) => {
+                var src = fetch(input)
+                    .match(/iframe.*?src="(.*?=)/)[1]
+                var id = input.replace(/.*?=(.*?)&.*/, "$1")
+                id = id.split('')
+                    .reverse()
+                    .join('');
+                var url = `${src}${id}`;
+                var location = JSON.parse(fetch(url, {
+                        headers: {
+                            "Referer": input,
+                        },
+                        onlyHeaders: true
+                    }))
                     .url
-                return urlPlay + ";{Referer@" + location + "}"
-            } else if (/d0000d|dood|ds2play/.test(location)) {
-                //DD线路
-                var html = fetch(location, {
-                    headers: {
-                        'Referer': "https://jav.guru/"
-                    }
-                })
-                var pass_md5 = getHome(location) + html.match(/\/pass_md5[^"']+/)[0]
-                var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
-                var data = fetch(pass_md5, {
-                    headers: {
-                        "Referer": location
-                    }
-                })
+
+                if (location.includes("emturbovid.com")) {
+                    //TV线路
+                    var html = fetch(location, {
+                        headers: {
+                            "Referer": "https://jav.guru/"
+                        }
+                    })
+                    var path = html.match(/'.*?(\/.*?\.m3u8)/)[1]
+                    var playUrl = path.includes("com") ? "https:" + path : getHome(location) + path
+                    return playUrl + ";{Referer@" + location + "}"
+                } else if (location.includes("streamtape")) {
+                    //ST线路
+                    var html = fetch(location, {
+                        headers: {
+                            'Referer': "https://jav.guru/"
+                        }
+                    })
+                    var pattern = html.match(/\('#(.*)'\)/)[1]
+                    var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
+                    eval(src)
+                    var link = "https:" + srclink + "&stream=1"
+                    var urlPlay = JSON.parse(fetch(link, {
+                            headers: {
+                                "Referer": location,
+                            },
+                            onlyHeaders: true
+                        }))
+                        .url
+                    return urlPlay + ";{Referer@" + location + "}"
+                } else if (/d0000d|dood|ds2play/.test(location)) {
+                    //DD线路
+                    var html = fetch(location, {
+                        headers: {
+                            'Referer': "https://jav.guru/"
+                        }
+                    })
+                    var pass_md5 = getHome(location) + html.match(/\/pass_md5[^"']+/)[0]
+                    var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                    var data = fetch(pass_md5, {
+                        headers: {
+                            "Referer": location
+                        }
+                    })
 
                     function makePlay(token) {
                         for (var a = "",
-                        t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                        n = t.length,
-                        o = 0; 10 > o; o++)
-                        a += t.charAt(Math.floor(Math.random() * n));
+                                t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                                n = t.length,
+                                o = 0; 10 > o; o++)
+                            a += t.charAt(Math.floor(Math.random() * n));
                         return a + "?token=" + token + "&expiry=" + Date.now();
                     };
-                var urlPlay = data + makePlay(token)
-                return urlPlay + "#isVideo=true#;{Referer@" + location + "}"
-            } else if (/cindyeyefinal|fc2stream|javclan/.test(location)) {
-                //SB线路//FST线路//VOE线路
-                //log(location)
-                var Playhtml = fetch(location, {
-                    headers: {
-                        'Referer': "https://jav.guru/"
+                    var urlPlay = data + makePlay(token)
+                    return urlPlay + "#isVideo=true#;{Referer@" + location + "}"
+                } else if (/cindyeyefinal|fc2stream|javclan/.test(location)) {
+                    //SB线路//FST线路//VOE线路
+                    //log(location)
+                    var Playhtml = fetch(location, {
+                        headers: {
+                            'Referer': "https://jav.guru/"
+                        }
+                    })
+                    // log(Playhtml)
+                    var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
+                    var uas = eval(script)
+                    var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
+                    //log(jwplayer)  
+                    return jwplayer + ";{Referer@" + location + "}"
+
+                } else if (/vtbe\.to|maxstream/.test(location)) {
+                    //JK线路//VTU线路
+                    function evaldecode(text) {
+                        var code = '';
+                        var s = text.replace(/^eval/, '')
+                            .replace('return p', 'code+=p')
+                        eval(s);
+                        return code;
                     }
-                })
-               // log(Playhtml)
-                var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
-                var uas = eval(script)
-                var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
-                //log(jwplayer)  
-                return jwplayer + ";{Referer@" + location + "}"
 
-            } else if (/vtbe\.to|maxstream/.test(location)) {
-                //JK线路//VTU线路
-                function evaldecode(text) {
-                    var code = '';
-                    var s = text.replace(/^eval/, '')
-                        .replace('return p', 'code+=p')
-                    eval(s);
-                    return code;
-                }
+                    const hostRegex = (url) => {
+                        const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,6}/i);
+                        return match ? match[0] : url;
+                    };
 
-                const hostRegex = (url) => {
-                    const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,6}/i);
-                    return match ? match[0] : url;
-                };
+                    let host = hostRegex("https://jav.guru/")
 
-                let host = hostRegex("https://jav.guru/")
-
-                var html = fetch(location, {
-                    headers: {
-                        Referer: host,
-                    }
-                })
-                var iframe = pdfa(html, "iframe");
-
-                if (iframe.length > 0) {
-                    html = fetch(pdfh(iframe[0], "iframe&&src"), {
+                    var html = fetch(location, {
                         headers: {
                             Referer: host,
                         }
                     })
+                    var iframe = pdfa(html, "iframe");
+
+                    if (iframe.length > 0) {
+                        html = fetch(pdfh(iframe[0], "iframe&&src"), {
+                            headers: {
+                                Referer: host,
+                            }
+                        })
+                    }
+
+                    var scripts = pdfa(html, "body&&script");
+                    let script = scripts.filter(x => x.includes('eval'))
+                        .map(m => pdfh(m, "script&&Html"))[0];
+                    if (script == undefined) {
+                        return 'toast://无数据'
+                    }
+
+                    let m3u8 = /file:"(.*?)"/g.exec(evaldecode(script))[1];
+                    return m3u8;
+
+                } else {
+                    log("革命尚未成功,同志仍需努力=>" + location)
+                    return "confirm://咳,本线路这个地址并没有解析，日志已打印出，敬请查看.js:'hiker://empty' "
                 }
-
-                var scripts = pdfa(html, "body&&script");
-                let script = scripts.filter(x => x.includes('eval'))
-                    .map(m => pdfh(m, "script&&Html"))[0];
-                if (script == undefined) {
-                    return 'toast://无数据'
-                }
-
-                let m3u8 = /file:"(.*?)"/g.exec(evaldecode(script))[1];
-                return m3u8;
-
-            } else {
-                log("革命尚未成功,同志仍需努力=>" + location)
-                return "confirm://咳,本线路这个地址并没有解析，日志已打印出，敬请查看.js:'hiker://empty' "
-            }
-        }, html, url)
+            }, url)
 
         var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM JK", "Streamtape", "VTU"]
         var list = pdfa(html, ".ssmenu&&a[id]")
@@ -617,10 +617,10 @@ const javguru = {
                     .fontcolor("#FF00ED"),
                 url: "https://jav.guru/random/" + $('')
                     .rule(() => {
-                    const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
-                    javguru.videoParse(MY_URL)
-                    setResult(javguru.d)
-                }),
+                        const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
+                        javguru.videoParse(MY_URL)
+                        setResult(javguru.d)
+                    }),
                 extra: {
                     inheritTitle: false
                 },
@@ -644,10 +644,10 @@ const javguru = {
 
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
-            javguru.avatarParse(MY_URL)
-            setResult(javguru.d)
-        })
+                const javguru = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
+                javguru.avatarParse(MY_URL)
+                setResult(javguru.d)
+            })
 
         var list = pdfa(html, ".infoleft&&li:matches(Director|Label|Studio)")
         list.forEach(item => {
