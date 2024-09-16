@@ -1,0 +1,929 @@
+#此处填写你的机场订阅链接
+proxy-providers:
+  机场名称: 
+    type: http
+    interval: 21600
+    url: "机场链接"
+    
+mode: rule
+allow-lan: true
+log-level: info
+external-controller: 127.0.0.1:9090
+tcp-concurrent: true
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    TLS:
+      ports:
+      - '443'
+      - '8443'
+      - '5228'
+    HTTP:
+      ports:
+      - '80'
+      - 8080-8880
+      override-destination: true
+    QUIC:
+      ports:
+      - '443'
+      - '5228'
+      - '8443'
+  force-domain:
+  - +.v2ex.com
+  - +.ghproxy.com
+  - +.jsdelivr.net
+  - geosite:googlefcm
+  - dl.google.com
+  - dl.l.google.com
+  - +.weixin.qq.com
+  - +.rc.sunlogin.net
+  - +.coolapk.com
+  - +.douban.com
+  - +.dianping.com
+  - +.meituan.com
+  - +.meituan.net
+  - +.xiaohongshu.com
+  - +.xhscdn.com
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - +.apple.com
+profile:
+  store-selected: true
+  store-fake-ip: true
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  use-system-hosts: true
+  use-hosts: true
+  ipv6: true
+  prefer-h3: true
+  cache-algorithm: arc
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-filter-mode: blacklist
+  fake-ip-range: 198.18.0.1/16
+  fallback-filter:
+    geoip: true
+    ip-cidr:
+    - 127.0.0.1/8
+    - 0.0.0.0/32
+    - 0.0.0.0/8
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.168.0.0/16
+    - 192.88.99.0/24
+    - 198.18.0.0/15
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 240.0.0.0/4
+    - 255.255.255.255/32
+    domain:
+    - +.google.com
+    - +.facebook.com
+    - +.twitter.com
+    - +.instagram.com
+    - +.netfix.com
+    - +.hbo.com
+    - +.disneyplus.com
+    - +.github.com
+    - +.githubusercontent.com
+    - +.youtube.com
+    - +.xn--ngstr-lra8j.com
+    - +.google.cn
+    - +.googlevideo.com
+    - +.googleapis.cn
+    - +.x.com
+    - +.tiktok.com
+    - +.googleapis.com
+    - +.gvt1.com
+  fake-ip-filter:
+  - +.lan
+  - +.private
+  - +.cn
+  - +.local
+  - '*.localdomain'
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - localhost.work.weixin.qq.com
+  - localhost.weixin.qq.com
+  - alt1-mtalk.google.com
+  - alt2-mtalk.google.com
+  - alt3-mtalk.google.com
+  - alt4-mtalk.google.com
+  - alt5-mtalk.google.com
+  - alt6-mtalk.google.com
+  - alt7-mtalk.google.com
+  - alt8-mtalk.google.com
+  - mtalk.google.com
+  - dl.google.com
+  - dl.l.google.com
+  - +.example
+  - +.invalid
+  - +.localhost
+  - +.test
+  - +.local
+  - +.home.arpa
+  - time.*.com
+  - time.*.gov
+  - time.*.edu.cn
+  - time.*.apple.com
+  - time-ios.apple.com
+  - time1.*.com
+  - time2.*.com
+  - time3.*.com
+  - time4.*.com
+  - time5.*.com
+  - time6.*.com
+  - time7.*.com
+  - ntp.*.com
+  - ntp1.*.com
+  - ntp2.*.com
+  - ntp3.*.com
+  - ntp4.*.com
+  - ntp5.*.com
+  - ntp6.*.com
+  - ntp7.*.com
+  - '*.time.edu.cn'
+  - '*.ntp.org.cn'
+  - +.pool.ntp.org
+  - time1.cloud.tencent.com
+  - music.163.com
+  - '*.music.163.com'
+  - '*.126.net'
+  - musicapi.taihe.com
+  - music.taihe.com
+  - songsearch.kugou.com
+  - trackercdn.kugou.com
+  - '*.kuwo.cn'
+  - api-jooxtt.sanook.com
+  - api.joox.com
+  - joox.com
+  - y.qq.com
+  - '*.y.qq.com'
+  - streamoc.music.tc.qq.com
+  - mobileoc.music.tc.qq.com
+  - isure.stream.qqmusic.qq.com
+  - dl.stream.qqmusic.qq.com
+  - aqqmusic.tc.qq.com
+  - amobile.music.tc.qq.com
+  - '*.xiami.com'
+  - '*.music.migu.cn'
+  - music.migu.cn
+  - +.msftconnecttest.com
+  - +.msftncsi.com
+  - localhost.ptlogin2.qq.com
+  - localhost.sec.qq.com
+  - +.qq.com
+  - +.tencent.com
+  - +.steamcontent.com
+  - +.srv.nintendo.net
+  - '*.n.n.srv.nintendo.net'
+  - +.cdn.nintendo.net
+  - +.stun.playstation.net
+  - xbox.*.*.microsoft.com
+  - '*.*.xboxlive.com'
+  - xbox.*.microsoft.com
+  - xnotify.xboxlive.com
+  - +.battlenet.com.cn
+  - +.wotgame.cn
+  - +.wggames.cn
+  - +.wowsgame.cn
+  - +.wargaming.net
+  - proxy.golang.org
+  - stun.*.*
+  - stun.*.*.*
+  - +.stun.*.*
+  - +.stun.*.*.*
+  - +.stun.*.*.*.*
+  - +.stun.*.*.*.*.*
+  - heartbeat.belkin.com
+  - '*.linksys.com'
+  - '*.linksyssmartwifi.com'
+  - '*.router.asus.com'
+  - mesu.apple.com
+  - swscan.apple.com
+  - swquery.apple.com
+  - swdownload.apple.com
+  - swcdn.apple.com
+  - swdist.apple.com
+  - lens.l.google.com
+  - stun.l.google.com
+  - na.b.g-tun.com
+  - +.nflxvideo.net
+  - '*.square-enix.com'
+  - '*.finalfantasyxiv.com'
+  - '*.ffxiv.com'
+  - '*.ff14.sdo.com'
+  - ff.dorado.sdo.com
+  - '*.mcdn.bilivideo.cn'
+  - +.media.dssott.com
+  - shark007.net
+  - Mijia Cloud
+  - +.market.xiaomi.com
+  - +.cmbchina.com
+  - +.cmbimg.com
+  - adguardteam.github.io
+  - adrules.top
+  - anti-ad.net
+  - local.adguard.org
+  - static.adtidy.org
+  - +.sandai.net
+  - +.n0808.com
+  - +.3gppnetwork.org
+  - +.uu.163.com
+  - ps.res.netease.com
+  - +.oray.com
+  - +.orayimg.com
+  - WORKGROUP
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  - 8.8.8.8
+  fallback:
+  - tls://8.8.4.4
+  - tls://1.1.1.1
+  nameserver:
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  - https://doh.360.cn/dns-query
+  - https://1.1.1.1/dns-query
+  - https://1.0.0.1/dns-query
+  - https://208.67.222.222/dns-query
+  - https://208.67.220.220/dns-query
+  - https://194.242.2.2/dns-query
+  - https://194.242.2.3/dns-query
+  proxy-server-nameserver:
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  - https://doh.360.cn/dns-query
+  - https://1.1.1.1/dns-query
+  - https://1.0.0.1/dns-query
+  - https://208.67.222.222/dns-query
+  - https://208.67.220.220/dns-query
+  - https://194.242.2.2/dns-query
+  - https://194.242.2.3/dns-query
+  nameserver-policy:
+    geosite:private,cn,geolocation-cn:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://doh.360.cn/dns-query
+    geosite:google,youtube,telegram,gfw,Microsoft,OpenAI,TikTok,github,geolocation-!cn:
+    - https://1.1.1.1/dns-query
+    - https://1.0.0.1/dns-query
+    - https://208.67.222.222/dns-query
+    - https://208.67.220.220/dns-query
+    - https://194.242.2.2/dns-query
+    - https://194.242.2.3/dns-query
+tun:
+  enable: false
+  stack: mixed
+  dns-hijack:
+  - any:53
+  - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  mtu: 9000
+  strict-route: true
+
+unified-delay: true
+global-client-fingerprint: random
+
+proxy-groups:
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🖥️节点选择
+  type: select
+  hidden: false
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🚄延迟选优
+  - ⚖️负载均衡(散列)
+  - ⚖️负载均衡(轮询)
+  - 🌍地区选择
+  - 🚑故障转移
+  - DIRECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/adjust.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🌍地区选择
+  type: select
+  hidden: false
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🇧🇷巴西AUTO
+  - 🇨🇭瑞士AUTO
+  - 🇦🇺澳大利亚AUTO
+  - 🇨🇦加拿大AUTO
+  - 🇩🇪德国AUTO
+  - 🇬🇧英国AUTO
+  - 🇭🇰香港AUTO
+  - 🇯🇵日本AUTO
+  - 🇸🇬新加坡AUTO
+  - 🇺🇸美国AUTO
+  - 🇹🇼台湾AUTO
+  - 👑专线(IEPL)AUTO
+  - 🇰🇷韩国AUTO
+  - 🇮🇳印度AUTO
+  - 🇷🇺俄罗斯AUTO
+  icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/categoryglobe.png
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🚄延迟选优
+  type: url-test
+  tolerance: 1
+  hidden: false
+  url: https://www.google.com/generate_204
+  include-all: true
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/speed.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ⚖️负载均衡(散列)
+  type: load-balance
+  strategy: consistent-hashing
+  include-all: true
+  url: https://www.google.com/generate_204
+  hidden: true
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/merry_go.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ⚖️负载均衡(轮询)
+  type: load-balance
+  strategy: round-robin
+  url: https://www.google.com/generate_204
+  include-all: true
+  hidden: true
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/balance.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🚑故障转移
+  type: fallback
+  hidden: false
+  include-all: true
+  url: https://www.google.com/generate_204
+  icon: https://www.clashverge.dev/assets/icons/ambulance.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🔍谷歌服务
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 📦GitHub
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🎮Twitch
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 📁icloud云存储
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/google.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 📱电报消息
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/telegram.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🤖ChatGPT
+  type: url-test
+  tolerance: 1
+  url: https://chatgpt.com
+  expected-status: '200'
+  include-all: true
+  hidden: false
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|群组|HK|🇭🇰|官网|剩余|🇨🇳|香港|HongKong
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/chatgpt.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🎵TikTok
+  type: url-test
+  tolerance: 1
+  url: https://www.tiktok.com
+  expected-status: '200'
+  include-all: true
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|群组|HK|🇭🇰|官网|剩余|🇨🇳|香港|HongKong
+  hidden: false
+  icon: https://www.clashverge.dev/assets/icons/tiktok.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🎥Netflix
+  type: url-test
+  tolerance: 1
+  url: https://www.netflix.com/title/81280792
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|群组|官网
+  expected-status: '200'
+  hidden: true
+  include-all: true
+  icon: https://www.clashverge.dev/assets/icons/netflix.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🔊Emby
+  type: select
+  url: https://emby.media/
+  expected-status: '200'
+  hidden: true
+  proxies:
+  - 🖥️节点选择
+  icon: https://www.clashverge.dev/assets/icons/netflix.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ▶️YouTuBe
+  type: url-test
+  tolerance: 1
+  url: https://www.youtube.com
+  expected-status: '200'
+  hidden: false
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|群组|官网
+  include-all: true
+  icon: https://www.clashverge.dev/assets/icons/youtube.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ☁️微软服务
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/microsoft.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: 🍎苹果服务
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/apple.svg
+- name: 👑专线(IEPL)AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)专线|IEPL|👑|专转
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇷🇺俄罗斯AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)俄罗斯|🇷🇺
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇧🇷巴西AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)巴西|🇧🇷
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇨🇭瑞士AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)瑞士|🇨🇭
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇦🇺澳大利亚AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)澳大利亚|🇦🇺
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇨🇦加拿大AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)加拿大|🇨🇦
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇩🇪德国AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)德国|🇩🇪|Germany
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇬🇧英国AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)英国|🇬🇧
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇮🇳印度AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)印度|🇮🇳
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇭🇰香港AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)香港|Hong Kong|🇭🇰
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/hk.svg
+- name: 🇸🇬新加坡AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)新加坡|Singapore|🇸🇬
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/sg.svg
+- name: 🇯🇵日本AUTO
+  include-all: true
+  tolerance: 1
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)日本|Japan|🇯🇵
+  type: url-test
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/jp.svg
+- name: 🇺🇸美国AUTO
+  type: url-test
+  tolerance: 1
+  include-all: true
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)美国|🇺🇸
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/um.svg
+- name: 🇹🇼台湾AUTO
+  type: url-test
+  tolerance: 1
+  include-all: true
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)台湾|🇹🇼
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/um.svg
+- name: 🇰🇷韩国AUTO
+  type: url-test
+  tolerance: 1
+  include-all: true
+  hidden: true
+  url: https://www.google.com/generate_204
+  exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|官网
+  filter: (?i)韩国|🇰🇷|Korea
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/flags/um.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ❌广告过滤
+  type: select
+  hidden: true
+  proxies:
+  - REJECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/bug.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ✔️全局直连
+  type: select
+  hidden: true
+  proxies:
+  - DIRECT
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/link.svg
+- interval: 120
+  timeout: 3000
+  lazy: false
+  max-failed-times: 3
+  name: ❗Final
+  type: select
+  hidden: true
+  url: https://www.google.com/generate_204
+  proxies:
+  - 🖥️节点选择
+  icon: https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io@main/docs/assets/icons/fish.svg
+rule-providers:
+  reject:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt
+    path: ./ruleset/loyalsoldier/reject.yaml
+  icloud:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt
+    path: ./ruleset/loyalsoldier/icloud.yaml
+  apple-classical:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/apple-classical.txt
+    path: ./ruleset/loyalsoldier/apple-classical.yaml
+  apple-domain:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/apple-domain.txt
+    path: ./ruleset/loyalsoldier/apple-domain.yaml
+  apple-direct:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt
+    path: ./ruleset/loyalsoldier/apple-direct.yaml
+  google-classical:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/Google.txt
+    path: ./ruleset/loyalsoldier/google-classical.yaml
+  google-domain:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt
+    path: ./ruleset/loyalsoldier/google-domain.yaml
+  github:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/GitHub.txt
+    path: ./ruleset/loyalsoldier/GitHub.yaml
+  proxy:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt
+    path: ./ruleset/loyalsoldier/proxy.yaml
+  direct:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt
+    path: ./ruleset/loyalsoldier/direct.yaml
+  private:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt
+    path: ./ruleset/loyalsoldier/private.yaml
+  gfw:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/gfw.txt
+    path: ./ruleset/loyalsoldier/gfw.yaml
+  tld-not-cn:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: domain
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/tld-not-cn.txt
+    path: ./ruleset/loyalsoldier/tld-not-cn.yaml
+  telegramcidr:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt
+    path: ./ruleset/loyalsoldier/telegramcidr.yaml
+  cncidr:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt
+    path: ./ruleset/loyalsoldier/cncidr.yaml
+  lancidr:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: ipcidr
+    url: https://fastly.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt
+    path: ./ruleset/loyalsoldier/lancidr.yaml
+  applications:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/applications.txt
+    path: ./ruleset/loyalsoldier/applications.yaml
+  openai:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./ruleset/blackmatrix7/openai.yaml
+  tiktok:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml
+    path: ./ruleset/blackmatrix7/TikTok.yaml
+  netflix:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/Netflix.txt
+    path: ./ruleset/blackmatrix7/Netflix.yaml
+  emby:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Emby/Emby.yaml
+    path: ./ruleset/blackmatrix7/Emby.yaml
+  youtube:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/YouTuBe.txt
+    path: ./ruleset/blackmatrix7/YouTuBe.yaml
+  microsoft:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/Microsoft.txt
+    path: ./ruleset/blackmatrix7/Microsoft.yaml
+  twitch:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: https://fastly.jsdelivr.net/gh/xingxin1590/clash-rules@main/twitch.txt
+    path: ./ruleset/blackmatrix7/Twitch.yaml
+rules:
+- PROCESS-NAME,org.torproject.torbrowser,🖥️节点选择
+- PROCESS-NAME,com.cccbb.abc,🖥️节点选择
+- PROCESS-NAME,com.apkpure.aegon,🖥️节点选择
+- DOMAIN,v2rayse.com,🖥️节点选择
+- RULE-SET,youtube,▶️YouTuBe
+- RULE-SET,openai,🤖ChatGPT
+- RULE-SET,tiktok,🎵TikTok
+- RULE-SET,netflix,🎥Netflix
+- RULE-SET,emby,🔊Emby
+- RULE-SET,github,📦GitHub
+- RULE-SET,twitch,🎮Twitch
+- RULE-SET,applications,✔️全局直连
+- RULE-SET,private,✔️全局直连
+- RULE-SET,reject,❌广告过滤
+- RULE-SET,microsoft,☁️微软服务
+- RULE-SET,icloud,✔️全局直连
+- RULE-SET,apple-classical,🍎苹果服务
+- RULE-SET,apple-domain,🍎苹果服务
+- RULE-SET,apple-direct,✔️全局直连
+- RULE-SET,google-classical,🔍谷歌服务
+- RULE-SET,google-domain,🔍谷歌服务
+- RULE-SET,proxy,🖥️节点选择
+- RULE-SET,gfw,🖥️节点选择
+- RULE-SET,tld-not-cn,🖥️节点选择
+- RULE-SET,direct,✔️全局直连
+- RULE-SET,lancidr,✔️全局直连,no-resolve
+- RULE-SET,cncidr,✔️全局直连,no-resolve
+- RULE-SET,telegramcidr,📱电报消息,no-resolve
+- GEOIP,LAN,✔️全局直连,no-resolve
+- GEOIP,CN,✔️全局直连,no-resolve
+- MATCH,❗Final
