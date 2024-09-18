@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 202409181,
+    version: 20240919,
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -418,10 +418,11 @@ const Apollo = {
             clearMyVar("yurl");
             clearMyVar("ysort");
         }));
+        url = getMyVar("yurl", url)
         if (MY_PAGE !== 1) {
             url = url.includes("?") ? url + "&page=" + MY_PAGE : url + "?page=" + MY_PAGE
         }
-        url = getMyVar("yurl", url)
+        
         log(url)
         var html = fetch(url, {
             headers: {
