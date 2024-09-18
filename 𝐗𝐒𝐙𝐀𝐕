@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240918,
+    version: 202409181,
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -196,7 +196,11 @@ const Apollo = {
                 Apollo.videoType(url, html)
                 break
             case 'pornstar':
-                Apollo.pornstarType(html)
+                if (url.includes("search")) {
+                    Apollo.videoType(url, html)
+                } else {
+                    Apollo.pornstarType(html)
+                }
                 break
             case 'tag':
                 if (url.includes("search")) {
@@ -428,9 +432,9 @@ const Apollo = {
         if (MY_PAGE == 1) {
             try {
                 Apollo.d.push({
-                    title: "““””" + pdfh(html,"body&&.justify-center.space-x-4&&p&&Text").fontcolor("#666666").bold().big(),
-                    desc: "““””" + pdfh(html,"body&&.justify-center.space-x-4&&p,1&&Text").fontcolor("#666666").bold().big() + "\n\n" + pdfh(html,"body&&.justify-center.space-x-4&&p,2&&Text").fontcolor("#666666").bold().big(),
-                    img: pdfh(html,"body&&.justify-center.space-x-4&&img&&data-src"),
+                    title: "““””" + pdfh(html, "body&&.justify-center.space-x-4&&p&&Text").fontcolor("#666666").bold().big(),
+                    desc: "““””" + pdfh(html, "body&&.justify-center.space-x-4&&p,1&&Text").fontcolor("#666666").bold().big() + "\n\n" + pdfh(html, "body&&.justify-center.space-x-4&&p,2&&Text").fontcolor("#666666").bold().big(),
+                    img: pdfh(html, "body&&.justify-center.space-x-4&&img&&data-src"),
                     url: "hiker://empty",
                     col_type: "movie_1_vertical_pic"
                 })
