@@ -582,7 +582,7 @@ const Apollo = {
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
-        log(html)
+        //log(html)
         Apollo.videoType(url, html)
         setResult(Apollo.d)
     },
