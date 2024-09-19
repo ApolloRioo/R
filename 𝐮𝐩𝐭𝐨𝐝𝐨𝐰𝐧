@@ -1,7 +1,7 @@
 const Apollo = {
-    version: "20240821",
+    version: "20240919",
     empty: "hiker://empty",
-    url: config.host,
+    url: "https://cn.uptodown.com/",
     er: $('#noHistory#')
         .rule(() => {
             const Apollo = $.require('hiker://page/Apollo')
@@ -148,7 +148,7 @@ const Apollo = {
         for (var i = 0; i < conts.length; i++) {
             var line = pdfh(conts[i], 'h2&&Text');
             var list = pdfa(conts[i], 'body&&.item');
-            if (!/游戏|小说|Browsers/.test(line) && line != "") {
+            if (/更新|发布|下载|通讯|工具|多媒体|效率|健康生活/.test(line)) {
                 Apollo.d.push({
                     title: '““””' + line.fontcolor("#FF00FF"),
                     url: 'hiker://empty',
