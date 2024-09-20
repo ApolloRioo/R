@@ -9,49 +9,47 @@ const miss = {
     },
     baseParse: () => {
         const page = parseInt(MY_URL.split('##')[2])
-        let categoryList = [
-            {
+        let categoryList = [{
                 title: '今日热门',
                 path: 'today-hot',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: '本週热门',
                 path: 'weekly-hot',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: '本月热门',
                 path: 'monthly-hot',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: '中文字幕',
                 path: 'chinese-subtitle',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: '最近更新',
                 path: 'new',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: '新作上市',
                 path: 'release',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: '素人',
                 path: '',
                 type: 'video',
-                sub: [
-                    {
+                sub: [{
                         title: '素人SIRO',
                         path: 'siro'
                     },
@@ -75,14 +73,13 @@ const miss = {
                         title: '素人ARA',
                         path: 'ara'
                     },
-        ]
-      },
+                ]
+            },
             {
                 title: '无码',
                 path: '',
                 type: 'video',
-                sub: [
-                    {
+                sub: [{
                         title: '无码流出',
                         path: 'uncensored-leak'
                     },
@@ -134,14 +131,13 @@ const miss = {
                         title: '无码顽皮 0930',
                         path: 'naughty0930'
                     },
-        ]
-      },
+                ]
+            },
             {
                 title: '国产 AV',
                 path: '',
                 type: 'video',
-                sub: [
-                    {
+                sub: [{
                         title: '麻豆传媒',
                         path: 'madou'
                     },
@@ -149,45 +145,45 @@ const miss = {
                         title: 'TWAV',
                         path: 'twav'
                     },
-        ]
-      },
+                ]
+            },
             {
                 title: 'VR',
                 path: 'VR',
                 type: 'video',
                 sub: []
-      },
+            },
             {
                 title: 'AV 影评',
                 path: 'articles',
                 type: 'articles',
                 sub: []
-      },
+            },
             {
                 title: '女优一览',
                 path: 'actresses',
                 type: 'avatar',
                 sub: []
-      },
+            },
             {
                 title: '女优排行',
                 path: 'actresses/ranking',
                 type: 'avatar',
                 sub: []
-      },
+            },
             {
                 title: '类型',
                 path: 'genres',
                 type: 'tags',
                 sub: []
-      },
+            },
             {
                 title: '发行商',
                 path: 'makers',
                 type: 'tags',
                 sub: []
-      },
-    ]
+            },
+        ]
         const currentCate = categoryList[miss.data.category]
         let url
         const type = currentCate.type
@@ -202,9 +198,8 @@ const miss = {
             categoryList.forEach((cate, index) => {
                 miss.d.push({
                     title: parseInt(miss.data.category) === index ?
-                        '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' :
-                        cate.title,
-                    url: $(miss.empty).lazyRule((index) => {
+                        '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
+                    url: $(miss.empty + "#noLoading#").lazyRule((index) => {
                         putMyVar("MissAV.category", index.toString())
                         putMyVar("MissAV.subCate", '0')
                         refreshPage(true)
@@ -222,7 +217,7 @@ const miss = {
                         title: parseInt(miss.data.subCate) === index ?
                             '‘‘’’<strong><font color="#ff1493">' + cate.title +
                             '</font></strong>' : cate.title,
-                        url: $(miss.empty).lazyRule((index) => {
+                        url: $(miss.empty + "#noLoading#").lazyRule((index) => {
                             putMyVar("MissAV.subCate", index.toString())
                             refreshPage(true)
                             return "hiker://empty"
@@ -237,6 +232,7 @@ const miss = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
+        log(url)
         switch (type) {
             case 'video':
                 miss.videoType(html)
@@ -279,26 +275,34 @@ const miss = {
         const title = pdfh(html, 'h1&&Text')
         setPageTitle(title)
         miss.d.push({
-            title: '““””'+title.small(),
-            url: url,//'hiker://empty',
+            title: '““””' + title.small(),
+            url: url, //'hiker://empty',
             col_type: 'text_1',
-            extra: {lineVisiable:false}
+            extra: {
+                lineVisiable: false
+            }
         })
         miss.d.push({
             desc: pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text'),
             pic_url: pdfh(html, 'meta[property=og:image]&&content') + '@Referer=' + miss.url,
             url: $(miss.empty + '#noHistory#').lazyRule((html, url) => {
-        eval(html.match(/eval.*?\n/)[0])
-                    // 获取画质列表，并去最高画质
-                    let group_quality = fetch(source,{headers:{"origin":"https://missav.com"}})
-                    hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm).map(v=>source.replace("playlist.m3u8", v)).reverse()
-                   name_quality = group_quality.match(/RESOLUTION=.*$/gm).map(n=>n.replace("RESOLUTION=", "")).reverse()
-        let playlist={
-            urls: hghest_quality,
-            names: name_quality,
-            headers: new Array(hghest_quality.length).fill({Referer:url})
-        };
-        return playlist;
+                eval(html.match(/eval.*?\n/)[0])
+                // 获取画质列表，并去最高画质
+                let group_quality = fetch(source, {
+                    headers: {
+                        "origin": "https://missav.com"
+                    }
+                })
+                hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm).map(v => source.replace("playlist.m3u8", v)).reverse()
+                name_quality = group_quality.match(/RESOLUTION=.*$/gm).map(n => n.replace("RESOLUTION=", "")).reverse()
+                let playlist = {
+                    urls: hghest_quality,
+                    names: name_quality,
+                    headers: new Array(hghest_quality.length).fill({
+                        Referer: url
+                    })
+                };
+                return playlist;
             }, html, miss.url),
             col_type: 'pic_1_full',
         })
@@ -306,7 +310,9 @@ const miss = {
             title: pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text').small(),
             url: 'hiker://empty',
             col_type: 'rich_text',
-            extra: {lineVisiable:false}
+            extra: {
+                lineVisiable: false
+            }
         })
         const text_secondary_list = pdfa(html, 'body&&.text-secondary')
         let num, actressesList, tagsList, series, makers, directors, labelsList
@@ -569,8 +575,8 @@ const miss = {
                         be(miss.taskList)
                     }
                 }),
-                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t","cover-n") + '@Referer=' + miss.url,
-                desc: pdfh(item, 'a&&alt').toUpperCase() + "⏰" +  pdfh(item, '.absolute&&Text'),
+                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + miss.url,
+                desc: pdfh(item, 'a&&alt').toUpperCase() + "⏰" + pdfh(item, '.absolute&&Text'),
                 col_type: 'movie_2'
             })
         })
