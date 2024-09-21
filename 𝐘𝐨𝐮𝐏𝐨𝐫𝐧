@@ -1,7 +1,7 @@
 const Apollo = {
     version: 20240921,
     empty: "hiker://empty",
-    url: config.host,
+    url: "https://www.youporn.com",
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
