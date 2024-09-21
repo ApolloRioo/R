@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240916,
+    version: 20240921,
     empty: "hiker://empty",
     url: config.host,
     d: [],
@@ -108,7 +108,7 @@ const Apollo = {
         if (page === 1) {
             categoryList.forEach((cate, index) => {
                 Apollo.d.push({
-                    title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()).bold() : cate.title,
+                    title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor("#FFFFFF").bold() : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
                         .lazyRule((index) => {
                             putMyVar("Apo.category", index.toString())
@@ -129,7 +129,7 @@ const Apollo = {
                 })
                 currentCate.sub.forEach((cate, index) => {
                     Apollo.d.push({
-                        title: parseInt(Apollo.data.subCate) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()).bold() : cate.title,
+                        title: parseInt(Apollo.data.subCate) === index ? '““””' + cate.title.fontcolor("#FFFFFF").bold() : cate.title,
                         url: $(Apollo.empty + "#noLoading#")
                             .lazyRule((index) => {
                                 putMyVar("Apo.subCate", index.toString())
