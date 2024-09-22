@@ -472,14 +472,25 @@ const Apollo = {
         });
         if (MY_PAGE == 1) {
             try {
+                if (pdfa(html, "body&&#channelsProfile&&.cover").length > 0) {
+                    var cover = pdfh(html, "body&&#channelsProfile&&.cover&&img&&src");
+                    var title = "““””" + pdfh(html, "body&&#channelsProfile&&h1&&Text").fontcolor("#666666").bold().big() + "\n" + pdfh(html, "body&&#channelsProfile&&.subscribeButton&&Text").fontcolor("#86bac8").bold().big();
+                    var desc = "““””" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li&&Text").fontcolor("#666666").bold() + "\t\t" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li:nth-child(2)&&Text").fontcolor("#666666").bold() + "\n\n" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li:nth-child(3)&&Text").fontcolor("#666666").bold() + "\t\t" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li:nth-child(4)&&Text").fontcolor("#666666").bold();
+                    var img = pdfh(html, "body&&#channelsProfile&&.avatar&&img&&src");
+                } else {
+                    var cover = pdfh(html, "#communityProfileWrapper&&.imageWrapper&&img&&src");
+                    var title = "““””" + pdfh(html, "#communityProfileWrapper&&h1&&Text").fontcolor("#666666").bold().big() + "\n" + pdfh(html, "#communityProfileWrapper&&.subscribeButton&&Text").fontcolor("#86bac8").bold().big();
+                    var desc = "““””" + pdfh(html, "#communityProfileWrapper&&.rankInfo&&Text").fontcolor("#666666").bold() + "\t\t" + pdfh(html, "#communityProfileWrapper&&.rankInfo:nth-child(3)&&Text").fontcolor("#666666").bold() + "\n\n" + pdfh(html, "#communityProfileWrapper&&.rankInfo:nth-child(2)&&Text").fontcolor("#666666").bold();
+                    var img = pdfh(html, "#communityProfileWrapper&&#getAvatar&&img&&src");
+                }
                 Apollo.d.push({
-                    img: pdfh(html, "body&&#channelsProfile&&.cover&&img&&src"),
+                    img: cover,
                     url: "hiker://empty",
                     col_type: "pic_1_full"
                 }, {
-                    title: "““””" + pdfh(html, "body&&#channelsProfile&&h1&&Text").fontcolor("#666666").bold().big() + "\n" + pdfh(html, "body&&#channelsProfile&&.subscribeButton&&Text").fontcolor("#86bac8").bold().big(),
-                    desc: "““””" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li&&Text").fontcolor("#666666").bold() + "\t\t" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li:nth-child(2)&&Text").fontcolor("#666666").bold() + "\n\n" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li:nth-child(3)&&Text").fontcolor("#666666").bold() + "\t\t" + pdfh(html, "body&&#channelsProfile&&.channelStats&&li:nth-child(4)&&Text").fontcolor("#666666").bold(),
-                    img: pdfh(html, "body&&#channelsProfile&&.avatar&&img&&src"),
+                    title: title,
+                    desc: desc,
+                    img: img,
                     url: "hiker://empty",
                     col_type: "movie_1_vertical_pic"
                 })
