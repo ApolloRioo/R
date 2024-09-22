@@ -8,7 +8,7 @@ const miss = {
         subCate: getMyVar('MissAV.subCate', '0'),
     },
     baseParse: () => {
-        const page = parseInt(MY_URL.split('##')[2])
+        const page = parseInt(MY_URL.split('##')[1])
         let categoryList = [{
                 title: '今日热门',
                 path: 'today-hot',
@@ -50,27 +50,27 @@ const miss = {
                 path: '',
                 type: 'video',
                 sub: [{
-                        title: '素人SIRO',
+                        title: 'SIRO',
                         path: 'siro'
                     },
                     {
-                        title: '素人LUXU',
+                        title: 'LUXU',
                         path: 'luxu'
                     },
                     {
-                        title: '素人GANA',
+                        title: 'GANA',
                         path: 'gana'
                     },
                     {
-                        title: '素人PRESTIGE PREMIUM',
+                        title: 'PRESTIGE PREMIUM',
                         path: 'maan'
                     },
                     {
-                        title: '素人S-CUTE',
+                        title: 'S-CUTE',
                         path: 'scute'
                     },
                     {
-                        title: '素人ARA',
+                        title: 'ARA',
                         path: 'ara'
                     },
                 ]
@@ -84,51 +84,54 @@ const miss = {
                         path: 'uncensored-leak'
                     },
                     {
-                        title: '无码FC2',
+                        title: 'FC2',
                         path: 'fc2'
                     },
                     {
-                        title: '无码HEYZO ',
+                        title: 'HEYZO ',
                         path: 'heyzo'
                     },
                     {
-                        title: '无码东京热',
+                        title: '东京热',
                         path: 'tokyohot'
+                    }, {
+                        title: '一本道',
+                        path: '1pondo'
                     },
                     {
-                        title: '无码Caribbeancom',
+                        title: 'Caribbeancom',
                         path: 'caribbeancom'
                     },
                     {
-                        title: '无码Caribbeancompr',
+                        title: 'Caribbeancompr',
                         path: 'caribbeancompr'
                     },
                     {
-                        title: '无码10musume',
+                        title: '10musume',
                         path: '10musume'
                     },
                     {
-                        title: '无码pacopacomama',
+                        title: 'pacopacomama',
                         path: 'pacopacomama'
                     },
                     {
-                        title: '无码Gachinco',
+                        title: 'Gachinco',
                         path: 'gachinco'
                     },
                     {
-                        title: '无码XXX-AV',
+                        title: 'XXX-AV',
                         path: 'xxxav'
                     },
                     {
-                        title: '无码人妻斩',
+                        title: '人妻斩',
                         path: 'marriedslash'
                     },
                     {
-                        title: '无码顽皮 4610',
+                        title: '顽皮 4610',
                         path: 'naughty4610'
                     },
                     {
-                        title: '无码顽皮 0930',
+                        title: '顽皮 0930',
                         path: 'naughty0930'
                     },
                 ]
@@ -144,12 +147,15 @@ const miss = {
                     {
                         title: 'TWAV',
                         path: 'twav'
+                    }, {
+                        title: 'Furuke',
+                        path: 'furuke'
                     },
                 ]
             },
             {
                 title: 'VR',
-                path: 'VR',
+                path: 'genres/VR',
                 type: 'video',
                 sub: []
             },
@@ -182,6 +188,21 @@ const miss = {
                 path: 'makers',
                 type: 'tags',
                 sub: []
+            }, {
+                title: '更多',
+                path: '',
+                type: 'video',
+                sub: [{
+                    title: 'Njav',
+                    path: 'site/njav',
+                    type: 'video',
+                    sub: []
+                }, {
+                    title: 'Supjav',
+                    path: 'site/supjav',
+                    type: 'video',
+                    sub: []
+                }, ]
             },
         ]
         const currentCate = categoryList[miss.data.category]
@@ -199,7 +220,7 @@ const miss = {
                 miss.d.push({
                     title: parseInt(miss.data.category) === index ?
                         '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
-                    url: $(miss.empty + "#noLoading#").lazyRule((index) => {
+                    url: $(miss.empty).lazyRule((index) => {
                         putMyVar("MissAV.category", index.toString())
                         putMyVar("MissAV.subCate", '0')
                         refreshPage(true)
@@ -217,7 +238,7 @@ const miss = {
                         title: parseInt(miss.data.subCate) === index ?
                             '‘‘’’<strong><font color="#ff1493">' + cate.title +
                             '</font></strong>' : cate.title,
-                        url: $(miss.empty + "#noLoading#").lazyRule((index) => {
+                        url: $(miss.empty).lazyRule((index) => {
                             putMyVar("MissAV.subCate", index.toString())
                             refreshPage(true)
                             return "hiker://empty"
@@ -232,7 +253,6 @@ const miss = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
-        log(url)
         switch (type) {
             case 'video':
                 miss.videoType(html)
@@ -253,19 +273,28 @@ const miss = {
         }
         setResult(miss.d)
     },
+
+
     searchParse: () => {
-        miss.d.push({
-            title: "——女/优——",
-            url: "hiker://empty"
-        });
-        miss.avatarType(getResCode());
-        miss.d.push({
-            title: "——影片——",
-            url: "hiker://empty"
-        });
-        miss.videoType(getResCode());
+        if (MY_URL.includes("page=1")) {
+            miss.d.push({
+                title: "——女优——",
+                url: "hiker://empty"
+            });
+            miss.avatarType(getResCode());
+
+            miss.d.push({
+                title: "——影片——",
+                url: "hiker://empty"
+            });
+            miss.videoType2(getResCode());
+        } else {
+            miss.videoType(getResCode());
+        }
         setResult(miss.d)
     },
+
+
     videoParse: (url) => {
         const html = fetch(url, {
             headers: {
@@ -273,10 +302,13 @@ const miss = {
             }
         })
         const title = pdfh(html, 'h1&&Text')
+
         setPageTitle(title)
+
+
         miss.d.push({
             title: '““””' + title.small(),
-            url: url, //'hiker://empty',
+            url: 'hiker://empty',
             col_type: 'text_1',
             extra: {
                 lineVisiable: false
@@ -314,6 +346,7 @@ const miss = {
                 lineVisiable: false
             }
         })
+
         const text_secondary_list = pdfa(html, 'body&&.text-secondary')
         let num, actressesList, tagsList, series, makers, directors, labelsList
         text_secondary_list.forEach(item => {
@@ -496,7 +529,7 @@ const miss = {
         }
         if (labelsList) {
             miss.d.push({
-                title: '类型',
+                title: '标签',
                 url: miss.empty,
                 col_type: 'text_center_1',
                 extra: {
@@ -521,7 +554,10 @@ const miss = {
                 col_type: 'line_blank'
             })
         }
-        /*const videoList = pdfa(html, '.grid.grid-cols-2.gap-5&&.relative')
+
+
+        /*
+        const videoList = pdfa(html, '.grid.grid-cols-2.gap-5&&.relative')
 
         miss.d.push({
           title: '推荐视频',
@@ -544,8 +580,13 @@ const miss = {
             desc: pdfh(item, '.absolute&&Text'),
             col_type: 'movie_2'
           })
-        })*/
+        })
+        */
+
+
     },
+
+
     avatarParse: (url) => {
         const html = fetch(url, {
             headers: {
@@ -554,6 +595,8 @@ const miss = {
         })
         miss.videoType(html)
     },
+
+
     tagsParse: (url) => {
         const html = fetch(url, {
             headers: {
@@ -562,6 +605,8 @@ const miss = {
         })
         miss.videoType(html)
     },
+
+
     videoType: (html) => {
         const list = pdfa(html, '.grid&&.relative')
         list.forEach(item => {
@@ -581,6 +626,28 @@ const miss = {
             })
         })
     },
+
+
+    videoType2: (html) => {
+        const list = pdfa(html, 'body&&.thumbnail')
+        list.forEach(item => {
+            miss.d.push({
+                title: pdfh(item, '.lozad&&alt'),
+                url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
+                    const miss = $.require('hiker://page/miss')
+                    miss.videoParse(MY_URL)
+                    setResult(miss.d)
+                    if (miss.taskList.length > 0) {
+                        be(miss.taskList)
+                    }
+                }),
+                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + miss.url,
+                desc: pdfh(item, 'a&&alt').toUpperCase() + "⏰" + pdfh(item, '.absolute&&Text'),
+                col_type: 'movie_2'
+            })
+        })
+    },
+
     articlesType: (html) => {
         const list = pdfa(html, '.grid&&.rounded-lg')
         list.forEach(item => {
@@ -604,6 +671,8 @@ const miss = {
             })
         })
     },
+
+
     avatarType: (html) => {
         const list = pdfa(html, '.mx-auto.grid&&li')
         list.forEach(item => {
@@ -620,6 +689,8 @@ const miss = {
             })
         })
     },
+
+
     tagsType: (html) => {
         const list = pdfa(html, '.gap-4&&div')
         list.forEach(item => {
@@ -634,6 +705,8 @@ const miss = {
             })
         })
     },
+
+
     updateAvatar: (param) => {
         const actressesHtml = fetch(param.url, {
             headers: {
