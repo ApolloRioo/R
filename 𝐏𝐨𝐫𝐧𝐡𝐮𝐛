@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240922",
+    version: "20240923",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -62,12 +62,12 @@ const Apollo = {
         }, {
             "title": "分类",
             "path": "/categories",
-            "type": "video",
+            "type": "category",
             "sub": []
         }, {
             "title": "明星",
             "path": "",
-            "type": "video",
+            "type": "pornstar",
             "sub": [{
                 "title": "模特",
                 "path": "/pornstars"
@@ -84,12 +84,12 @@ const Apollo = {
         }, {
             "title": "频道",
             "path": "/channels",
-            "type": "video",
+            "type": "channel",
             "sub": []
         }, {
             "title": "片单",
             "path": "/playlists",
-            "type": "video",
+            "type": "playlist",
             "sub": []
         }]
         const currentCate = categoryList[Apollo.data.category]
@@ -226,6 +226,15 @@ const Apollo = {
             case 'video':
                 Apollo.videoType(url, html)
                 break
+            case 'category':
+                if (url.includes("search")) {
+                    Apollo.videoType(url, html)
+                } else {
+                    if (MY_PAGE == 1) {
+                        Apollo.categoryType(html)
+                    }
+                }
+                break
             case 'pornstar':
                 if (url.includes("search")) {
                     Apollo.videoType(url, html)
@@ -233,11 +242,18 @@ const Apollo = {
                     Apollo.pornstarType(html)
                 }
                 break
-            case 'tag':
+            case 'channel':
                 if (url.includes("search")) {
                     Apollo.videoType(url, html)
                 } else {
-                    Apollo.tagType(html)
+                    Apollo.channelType(html)
+                }
+                break
+            case 'playlist':
+                if (url.includes("search")) {
+                    Apollo.videoType(url, html)
+                } else {
+                    Apollo.playlistType(html)
                 }
                 break
             default:
@@ -251,27 +267,30 @@ const Apollo = {
         if (MY_PAGE == 1) {
             Apollo.d.push({
                 col_type: "blank_block",
-            })
+            });
             try {
                 var sort = pdfa(html, 'body&&.subFilterList&&a')
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = Apollo.url + pdfh(item, 'a&&href');
-                    urll = urll.replace(/https?.*(https?.*)/, "$1")
+                    urll = urll.replace(/https?.*(https?.*)/, "$1");
                     Apollo.d.push({
-                        title: (getMyVar('sort', '0') == index || getMyVar('ysort', '0') == index) ? '‘‘’’' + title.fontcolor("#FFFFFF") : title,
+                        title: title,
                         url: urll + $('#noLoading#')
                             .lazyRule((index) => {
-                                putMyVar('sort', index);
-                                putMyVar("url", input);
-                                putMyVar('ysort', index);
-                                putMyVar("yurl", input);
+                                if (MY_URL.includes("hiker://empty")) {
+                                    putMyVar('sort', index);
+                                    putMyVar("url", input);
+                                } else {
+                                    putMyVar('ysort', index);
+                                    putMyVar("yurl", input);
+                                }
                                 refreshPage();
                                 return 'hiker://empty'
                             }, index),
                         col_type: 'scroll_button',
                         extra: {
-                            'backgroundColor': getMyVar('sort', '0') == index ? Apollo.getRangeColors() : ''
+                            'backgroundColor': (MY_URL.includes("hiker://empty") ? getMyVar('sort', '0') == index : getMyVar('ysort', '0') == index) ? Apollo.getRangeColors() : ''
                         }
                     })
                 })
@@ -322,10 +341,13 @@ const Apollo = {
                         title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
                             params.cate_temp[params.index] = params.key.toString()
-                            putMyVar('sort', JSON.stringify(params.cate_temp));
-                            putMyVar("url", input);
-                            putMyVar('ysort', JSON.stringify(params.cate_temp));
-                            putMyVar("yurl", input);
+                            if (MY_URL.includes("hiker://empty")) {
+                                putMyVar('sort', JSON.stringify(params.cate_temp));
+                                putMyVar("url", input);
+                            } else {
+                                putMyVar('ysort', JSON.stringify(params.cate_temp));
+                                putMyVar("yurl", input);
+                            }
                             refreshPage(true)
                             return "hiker://empty"
                         }, {
@@ -407,47 +429,98 @@ const Apollo = {
             })
         })
     },
-    //标签
-    tagType: (html) => {
-        var list = pdfa(html, "body&&.grid.gap-4&&a");
-        list.forEach((item, index) => {
-            var vurl = pdfh(item, 'a&&href');
-            Apollo.d.push({
-                title: '““””' + pdfh(item, "a&&Text").fontcolor("#FFFFFF"),
-                url: vurl + $('##fypage')
-                    .rule(() => {
-                        const Apollo = $.require('hiker://page/Apollo')
-                        Apollo.yijiParse(MY_URL.split("##")[0])
-                        setResult(Apollo.d)
-                    }),
-                col_type: "flex_button",
-                extra: {
-                    'backgroundColor': Apollo.getRangeColors()
-                }
-            })
-        })
-        Apollo.d.push({
-            col_type: "blank_block",
-        })
+    //分类
+    categoryType: (html) => {
+        var tabs = pdfa(html, 'body&&.categoriesTitle'); //大类
+        var conts = pdfa(html, 'body&&.categoriesWrapper'); //小类
 
+        for (var i = 0; i < conts.length; i++) {
+            var list = pdfa(conts[i], 'body&&.catPic');
+            Apollo.d.push({
+                title: pdfh(tabs[i], 'Text').bold(),
+                url: 'toast://点了也没用',
+                col_type: "rich_text"
+            });
+            /*
+                d.push({
+                    col_type: "line"
+                });
+            */
+            list.forEach(item => {
+                var vurl = Apollo.url + pdfh(item, 'a&&href');
+                vurl = vurl.replace(/https?.*(https?.*)/, "$1")
+                Apollo.d.push({
+                    title: pdfh(item, "strong&&Text"),
+                    desc: pdfh(item, ".videoCount&&Text"),
+                    img: pd(item, "img&&src") ? pd(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
+                    url: vurl + $('##fypage')
+                        .rule(() => {
+                            const Apollo = $.require('hiker://page/Apollo')
+                            Apollo.yijiParse(MY_URL.split("##")[0])
+                            setResult(Apollo.d)
+                        }),
+                    col_type: "movie_2",
+                })
+            })
+        }
     },
 
     //明星
     pornstarType: (html) => {
-        var list = pdfa(html, "body&&.mx-auto.grid&&.space-y-4");
+        var list = pdfa(html, "body&&.pornstarList:not(.topPornstars)&&li");
         list.forEach(item => {
-            var vurl = pdfh(item, 'a&&href');
+            var vurl = Apollo.url + pdfh(item, 'a&&href');
+            vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".truncate&&Text") + pdfh(item, "p:last-child&&Text").replace("出道", ""),
-                desc: "🖥" + pdfh(item, ".text-zinc-500&&Text"),
-                img: pdfh(item, "img&&data-src") ? pdfh(item, "img&&data-src") : "https://thumbsnap.com/i/wxDcxfJH.png",
-                url: vurl + $('##fypage')
+                title: pdfh(item, ".performerCardName&&Text"),
+                desc: "🖥" + pdfh(item, ".videos&&Text"),
+                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
+                url: vurl + $('/videos##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.yijiParse(MY_URL.split("##")[0])
                         setResult(Apollo.d)
                     }),
                 col_type: "movie_3",
+            })
+        })
+    },
+    //频道
+    channelType: (html) => {
+        var list = pdfa(html, "body&&.channelsList&&.positionRelative");
+        list.forEach(item => {
+            var vurl = Apollo.url + pdfh(item, 'a&&href');
+            vurl = vurl.replace(/https?.*(https?.*)/, "$1")
+            Apollo.d.push({
+                title: pdfh(item, ".channelNameWrapper&&Text") + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text"),
+                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
+                url: vurl + $('/videos##fypage')
+                    .rule(() => {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.yijiParse(MY_URL.split("##")[0])
+                        setResult(Apollo.d)
+                    }),
+                col_type: "card_pic_3",
+            })
+        })
+    },
+    //片单
+    playlistType: (html) => {
+        var list = pdfa(html, "body&&.playList&&.playlistWrapper");
+        list.forEach(item => {
+            var vurl = Apollo.url + pdfh(item, '.title&&a&&href');
+            vurl = vurl.replace(/https?.*(https?.*)/, "$1")
+            Apollo.d.push({
+                title: pdfh(item, ".title&&Text"),
+                desc: "🖥" + pdfh(item, ".thumbCorners&&Text"),
+                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
+                url: vurl + $('##fypage')
+                    .rule(() => {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.yijiParse(MY_URL.split("##")[0])
+                        setResult(Apollo.d)
+                    }),
+                col_type: "movie_2",
             })
         })
     },
