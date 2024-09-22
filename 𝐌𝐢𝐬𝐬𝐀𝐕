@@ -215,12 +215,13 @@ const miss = {
             url = miss.url + currentCate.path
         }
         url += '?page=' + page
+        log(url)
         if (page === 1) {
             categoryList.forEach((cate, index) => {
                 miss.d.push({
                     title: parseInt(miss.data.category) === index ?
                         '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
-                    url: $(miss.empty).lazyRule((index) => {
+                    url: $(miss.empty+"#noLoading#").lazyRule((index) => {
                         putMyVar("MissAV.category", index.toString())
                         putMyVar("MissAV.subCate", '0')
                         refreshPage(true)
@@ -238,7 +239,7 @@ const miss = {
                         title: parseInt(miss.data.subCate) === index ?
                             '‘‘’’<strong><font color="#ff1493">' + cate.title +
                             '</font></strong>' : cate.title,
-                        url: $(miss.empty).lazyRule((index) => {
+                        url: $(miss.empty+"#noLoading#").lazyRule((index) => {
                             putMyVar("MissAV.subCate", index.toString())
                             refreshPage(true)
                             return "hiker://empty"
