@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240922"
+    version: "20240923",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
