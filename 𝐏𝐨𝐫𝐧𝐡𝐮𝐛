@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202409231",
+    version: "20240924",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -58,6 +58,23 @@ const Apollo = {
             }, {
                 "title": "🇵🇹葡萄牙",
                 "path": "/language/portuguese"
+            }]
+        }, {
+            "title": "我的",
+            "path": "",
+            "type": "login",
+            "sub": [{
+                "title": "👍点赞",
+                "path": "/likedvideos"
+            }, {
+                "title": "💞最爱",
+                "path": "/users/" + getVar("user", "") + "/videos/favorites"
+            }, {
+                "title": "💽片单",
+                "path": "/users/" + getVar("user", "") + "/playlists"
+            }, {
+                "title": "😈登录",
+                "path": "/login"
             }]
         }, {
             "title": "分类",
@@ -164,18 +181,17 @@ const Apollo = {
             } else {
                 url = nextPage;
             };
-        } else if (MY_PAGE > 1) {            
-                url = "没有下一页哦😑"            
+        } else if (MY_PAGE > 1) {
+            url = "没有下一页哦😑"
         }
 
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             }
         })
-
-        log(url)
+        log(url);
         try {
             var next = Apollo.url + pdfh(html, "body&&.pagination&&.page_next&&a&&href")
             next = next.replace(/https?.*(https?.*)/, "$1")
@@ -252,10 +268,90 @@ const Apollo = {
                     Apollo.playlistType(html)
                 }
                 break
+            case 'login':
+                if (url.includes("playlists")) {
+                    Apollo.playlistType(html)
+                } else if (url.includes("login")) {
+                    Apollo.loginType(html)
+                } else {
+                    Apollo.videoType(url, html)
+                }
+                break
             default:
                 Apollo.videoType(url, html)
         }
         setResult(Apollo.d)
+    },
+    //登录
+    loginType: (html) => {
+        if (html.includes("Log Out")) {
+            Apollo.d.push({
+                title: '““””<big><font color=#118811>账号已登录,点击退出账号</font></big>',
+                desc: '““””' + '切换分类刷新页面内容'.fontcolor('#FF0000').big(),
+                url: 'hiker://empty' + $('').lazyRule(() => {
+                    writeFile('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt', '');
+                    const Apollo = $.require('hiker://page/Apollo')
+                    fetch(Apollo.url + "/ja/logout.php", {
+                        headers: {
+                            cookie: fetchPC('hiker://files/rules/Apollo/Cookie/javland_cookie.txt') || '',
+                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
+                        }
+                    })
+                    refreshPage();
+                    return "toast://账号已登出";
+                }),
+                col_type: 'text_center_1',
+                extra: {
+                    lineVisible: false
+                }
+            });
+        } else {
+            Apollo.d.push({
+                title: '““””' + '点击登录账号'.fontcolor('#FF00FF').big(),
+                url: Apollo.url + "/login" + $('').rule(() => {
+                    var d = [];
+                    d.push({
+                        col_type: 'x5_webview_single',
+                        url: MY_URL,
+                        desc: 'list&&screen',
+                        extra: {
+                            lineVisible: false,
+                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36", //PC_UA,             
+                            showProgress: false,
+                            js: $.toString((u) => {
+                                function check() {
+                                    let nodes = document.querySelectorAll('.videoList', 'li[data-video-id]');
+                                    let userNameElement = document.querySelector('.js_userName');
+                                    let userNameText = userNameElement ? userNameElement.textContent.trim() : null;
+                                    fba.putVar("user", userNameText)
+                                    //fba.log(userNameText)
+                                    // var ua = fba.getUa()
+                                    //  fba.log('co::::::' + ua);
+                                    //var htmlContent = document.documentElement.innerHTML;
+
+                                    //if (/基本情報/.test(htmlContent)) {
+                                    var co = fba.getCookie(u);
+                                    fba.log('co::::::' + co);
+                                    if (nodes && nodes.length > 0 && co && userNameText) {
+                                        fba.parseLazyRule($$$().lazyRule((co) => {
+                                            writeFile('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt', co);
+                                            toast('账号已登录');
+                                            back(true);
+                                        }, co));
+                                    } else {
+                                        setTimeout(check, 500);
+                                    }
+                                }
+                                check();
+                            }, MY_URL)
+                        }
+                    });
+                    return setResult(d);
+                }),
+                col_type: 'text_center_1'
+            });
+
+        }
     },
 
     //一级sort
@@ -265,7 +361,7 @@ const Apollo = {
                 col_type: "blank_block",
             });
             try {
-                var sort = pdfa(html, 'body&&.subFilterList&&a')
+                var sort = pdfa(html, 'body&&.subFilterList:not(.hidden)&&a:not(:matches(成就|订阅))')
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = Apollo.url + pdfh(item, 'a&&href');
@@ -425,7 +521,7 @@ const Apollo = {
             })
         })
     },
-    //分类
+    //类别
     categoryType: (html) => {
         var tabs = pdfa(html, 'body&&.categoriesTitle'); //大类
         var conts = pdfa(html, 'body&&.categoriesWrapper'); //小类
@@ -468,8 +564,8 @@ const Apollo = {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".performerCardName&&Text"),
-                desc: "🖥" + pdfh(item, ".videos&&Text"),
+                title: pdfh(item, ".performerCardName&&Text") +
+                    "\n🖥" + pdfh(item, ".videos||.rank_number&&Text"),
                 img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
                 url: vurl + $('/videos##fypage')
                     .rule(() => {
@@ -477,7 +573,7 @@ const Apollo = {
                         Apollo.yijiParse(MY_URL.split("##")[0])
                         setResult(Apollo.d)
                     }),
-                col_type: "movie_3",
+                col_type: "card_pic_3",
             })
         })
     },
@@ -487,35 +583,33 @@ const Apollo = {
             Apollo.d.push({
                 col_type: "blank_block",
             });
-            try {
-                var sort = pdfa(html, '.display-none&&li')
-                sort.forEach((item, index) => {
-                    var title = pdfh(item, 'Text');
-                    var urll = Apollo.url + pdfh(item, 'li&&data-value');
-                    urll = urll.replace(/https?.*(https?.*)/, "$1");
-                    Apollo.d.push({
-                        title: title,
-                        url: urll + $('#noLoading#')
-                            .lazyRule((index) => {
-                                putMyVar('csort', index);
-                                putMyVar("url", input);
-                                refreshPage();
-                                return 'hiker://empty'
-                            }, index),
-                        col_type: 'scroll_button',
-                        extra: {
-                            'backgroundColor': getMyVar('csort', '1') == index ? Apollo.getRangeColors() : ''
-                        }
-                    })
+            var sort = pdfa(html, '.display-none&&li')
+            sort.forEach((item, index) => {
+                var title = pdfh(item, 'Text');
+                var urll = Apollo.url + pdfh(item, 'li&&data-value');
+                urll = urll.replace(/https?.*(https?.*)/, "$1");
+                Apollo.d.push({
+                    title: title,
+                    url: urll + $('#noLoading#')
+                        .lazyRule((index) => {
+                            putMyVar('csort', index);
+                            putMyVar("url", input);
+                            refreshPage();
+                            return 'hiker://empty'
+                        }, index),
+                    col_type: 'scroll_button',
+                    extra: {
+                        'backgroundColor': getMyVar('csort', '1') == index ? Apollo.getRangeColors() : ''
+                    }
                 })
-            } catch {}
+            })
         }
         var list = pdfa(html, "body&&.channelsList&&.positionRelative");
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".channelNameWrapper&&Text").slice(0,16) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text"),
+                title: pdfh(item, ".channelNameWrapper&&Text").slice(0, 16) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text"),
                 img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
                 url: vurl + $('/videos##fypage')
                     .rule(() => {
@@ -529,7 +623,7 @@ const Apollo = {
     },
     //片单
     playlistType: (html) => {
-        var list = pdfa(html, "body&&.playList&&.playlistWrapper");
+        var list = pdfa(html, "body&&.playlistWrapper");
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, '.title&&a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
@@ -563,13 +657,13 @@ const Apollo = {
             } else {
                 url = nextPage;
             };
-        } else if (MY_PAGE > 1) {         
-                url = "没有下一页哦😑"           
+        } else if (MY_PAGE > 1) {
+            url = "没有下一页哦😑"
         }
 
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             }
         })
@@ -618,7 +712,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                "cookie": "bs=raeyscabe8a7ew66zdgehncv1t8wi3ot;bsdd=raeyscabe8a7ew66zdgehncv1t8wi3ot;ss=603859121181211630;sessid=474453869377637466;fg_afaf12e314c5419a855ddc0bf120670f=68723.100000;fg_7d466c3b3b825a5e5f974868b9d87c01=52394.100000;fg_7d31324eedb583147b6dcbea0051c868=91688.100000;__s=66E7568F-42FE722901BB268F76-19921321;__l=66E7568F-42FE722901BB268F76-19921321;accessAgeDisclaimerPH=1;fg_439f2555043a44b8bd91161b5deddd29=28642.100000;entryOrigin=VidPg-premVid;lvv=575131738507129946;vlc=724153866294496651;tj_UUID=ChD_p4-CSAZM7p0ty0wqjKOPEgwIo62dtwYQ397jtAIYAQ==;tj_UUID_v2=ChD_p4-CSAZM7p0ty0wqjKOPEgwIo62dtwYQ397jtAIYAQ==;d_fs=1;d_uidb=15f0129d-d0b7-a0e2-0a3b-b1a0670200ba;d_uid=15f0129d-d0b7-a0e2-0a3b-b1a0670200ba;d_uidb=15f0129d-d0b7-a0e2-0a3b-b1a0670200ba;fg_638b37a99220fbf3b1750e2da022d459=74834.100000;ua=725935d1127ba250122eba7fe6c31da4",
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
@@ -687,16 +781,7 @@ const Apollo = {
                 col_type: "line",
             })
         }
-        /*
-        var 番号 = pdfh(html, "body&&#description&&.text-gray-700:has(span):matches(番号:)&&Text").trim()
-        if (番号 != "") {
-            Apollo.d.push({
-                title: "““””" + 番号.fontcolor("#666666").bold(),
-                url: "hiker://empty",
-                col_type: "text_1"
-            })
-        }
-*/
+
         try {
             var userContainer = pdfh(html, "body&&.userContainer&&a&&Text");
             Apollo.d.push({
@@ -757,7 +842,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
+                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
         });
