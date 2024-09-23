@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240923",
+    version: "202409231",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -164,12 +164,8 @@ const Apollo = {
             } else {
                 url = nextPage;
             };
-        } else if (MY_PAGE > 1) {
-            if (url.endsWith("/zh/")) {
-                url = url
-            } else {
-                url = "没有下一页哦😑"
-            };
+        } else if (MY_PAGE > 1) {            
+                url = "没有下一页哦😑"            
         }
 
         var html = fetch(url, {
@@ -487,12 +483,39 @@ const Apollo = {
     },
     //频道
     channelType: (html) => {
+        if (MY_PAGE == 1) {
+            Apollo.d.push({
+                col_type: "blank_block",
+            });
+            try {
+                var sort = pdfa(html, '.display-none&&li')
+                sort.forEach((item, index) => {
+                    var title = pdfh(item, 'Text');
+                    var urll = Apollo.url + pdfh(item, 'li&&data-value');
+                    urll = urll.replace(/https?.*(https?.*)/, "$1");
+                    Apollo.d.push({
+                        title: title,
+                        url: urll + $('#noLoading#')
+                            .lazyRule((index) => {
+                                putMyVar('csort', index);
+                                putMyVar("url", input);
+                                refreshPage();
+                                return 'hiker://empty'
+                            }, index),
+                        col_type: 'scroll_button',
+                        extra: {
+                            'backgroundColor': getMyVar('csort', '1') == index ? Apollo.getRangeColors() : ''
+                        }
+                    })
+                })
+            } catch {}
+        }
         var list = pdfa(html, "body&&.channelsList&&.positionRelative");
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".channelNameWrapper&&Text") + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text"),
+                title: pdfh(item, ".channelNameWrapper&&Text").slice(0,16) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text"),
                 img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
                 url: vurl + $('/videos##fypage')
                     .rule(() => {
@@ -532,17 +555,34 @@ const Apollo = {
             clearMyVar("ysort");
         }));
         url = getMyVar("yurl", url)
-        if (MY_PAGE !== 1) {
-            url = url.includes("?") ? url + "&page=" + MY_PAGE : url + "?page=" + MY_PAGE
+        //翻页
+        let nextPage = getMyVar("YnextPage", "");
+        if (nextPage && MY_PAGE > 1) {
+            if (url.includes("random")) {
+                url = url
+            } else {
+                url = nextPage;
+            };
+        } else if (MY_PAGE > 1) {         
+                url = "没有下一页哦😑"           
         }
 
-        log(url)
         var html = fetch(url, {
             headers: {
                 //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
-            },
-        });
+            }
+        })
+
+        log(url)
+        try {
+            var next = Apollo.url + pdfh(html, "body&&.pagination&&.page_next&&a&&href")
+            next = next.replace(/https?.*(https?.*)/, "$1")
+            putMyVar("YnextPage", next);
+        } catch {
+            clearMyVar("YnextPage");
+            //log("可能不存在下一页或者下一页定位有问题");
+        }
         if (MY_PAGE == 1) {
             try {
                 if (pdfa(html, "body&&#channelsProfile&&.cover").length > 0) {
