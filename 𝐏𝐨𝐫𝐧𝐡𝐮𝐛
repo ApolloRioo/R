@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240924",
+    version: "202409241",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -12,6 +12,37 @@ const Apollo = {
                 .toString(16))
             .substr(-6);
     }, //随机颜色
+    addPage: function(url, currentPage, lastPage) {
+        var longClick = [{
+            title: '【跳页】【当前>' + currentPage + '<页】【尾页=>' + lastPage + '】',
+            js: $.toString((lastPage, url) => {
+                    return $('', '正确的页码：1=>' + lastPage)
+                        .input((url, lastPage) => {
+                                if (input > 0 && input % 1 == 0) {
+                                    if (url == "https://cn.pornhub.com/") {
+                                        url = "https://cn.pornhub.com/video"
+                                    }
+                                    var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                            return match.charAt(0) + 'page=' + input;
+                                        } else {
+                                            return (url.includes('?') ? '&page=' : '?page=') + input;
+                                        }
+                                    });
+                                    putMyVar("url", jumpu);
+                                    putMyVar("yurl", jumpu);
+                                    refreshPage();
+                                    return 'toast://你已经穿越到了' + input + '页'
+                                } else {
+                                    return "toast://请输入正确的页码"
+                                }
+                            },
+                            url, lastPage)
+                },
+                lastPage, url)
+        }];
+        return longClick
+    },
     baseParse: () => {
         let categoryList = [{
             "title": "首页",
@@ -208,16 +239,36 @@ const Apollo = {
                 title: "🔍",
                 url: $.toString((url) => {
                     if (input.trim() != "") {
+                        if (input.includes("view_video.php")) {
+                            return input + $('')
+                                .rule(() => {
+                                    const Apollo = $.require('hiker://page/Apollo')
+                                    Apollo.videoParse(MY_URL)
+                                    setResult(Apollo.d)
+                                })
+                        } else if (input.includes("pornhub.com")) {
+                            return "hiker://empty#" + input + $('/videos##fypage')
+                                .rule(() => {
+                                    const Apollo = $.require('hiker://page/Apollo')
+                                    Apollo.yijiParse(MY_URL.split("##")[0])
+                                    setResult(Apollo.d)
+                                })
+                        } else {
+                            putMyVar('keyword', input);
+                            var searchUrl = getHome(url) + "/video/search?search=" + input
+                            putMyVar("url", searchUrl);
+                            refreshPage();
+                            return "hiker://empty"
+                        }
+                    } else {
                         putMyVar('keyword', input);
-                        var searchUrl = getHome(url) + "/video/search?search=" + input
+                        var searchUrl = "https://cn.pornhub.com/"
                         putMyVar("url", searchUrl);
                         refreshPage();
-                        return "hiker://empty"
-                    } else {
-                        return "confirm://搜索内容为空.js:'hiker://empty'"
+                        return "toast://搜索内容为空"
                     }
                 }, url),
-                desc: '搜索番号...',
+                desc: '搜索...',
                 col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', '') || "",
@@ -251,26 +302,26 @@ const Apollo = {
                 if (url.includes("search")) {
                     Apollo.videoType(url, html)
                 } else {
-                    Apollo.pornstarType(html)
+                    Apollo.pornstarType(url, html)
                 }
                 break
             case 'channel':
                 if (url.includes("search")) {
                     Apollo.videoType(url, html)
                 } else {
-                    Apollo.channelType(html)
+                    Apollo.channelType(url, html)
                 }
                 break
             case 'playlist':
                 if (url.includes("search")) {
                     Apollo.videoType(url, html)
                 } else {
-                    Apollo.playlistType(html)
+                    Apollo.playlistType(url, html)
                 }
                 break
             case 'login':
                 if (url.includes("playlists")) {
-                    Apollo.playlistType(html)
+                    Apollo.playlistType(url, html)
                 } else if (url.includes("login")) {
                     Apollo.loginType(html)
                 } else {
@@ -464,14 +515,14 @@ const Apollo = {
     //一级视频列表
     videoType: (url, html) => {
         try {
-            var currpagenum = pdfh(html, "body&&.pagination&&.page_current&&Text").match(/\d+/)[0]
+            var currentPage = pdfh(html, "body&&.pagination&&.page_current&&Text").match(/\d+/)[0]
         } catch {
-            var currpagenum = "1"
+            var currentPage = "1"
         }
         try {
-            lastpagenum = "99999"
+            lastPage = "未知"
         } catch {
-            var lastpagenum = currpagenum
+            var lastPage = currentPage
         }
         var list = pdfa(html, "body&&li[data-video-id]");
         list.forEach(item => {
@@ -492,31 +543,7 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
-                    longClick: !url.includes("viewkey") ? [{
-                        title: '【跳页】【当前第>' + currpagenum + '<页】', //【尾页=>' + lastpagenum + '页】
-                        js: $.toString((lastpagenum, url) => {
-                                return $('', '正确的页码：1=>' + lastpagenum + "页")
-                                    .input((url, lastpagenum) => {
-                                            if (input > 0 && input % 1 == 0) {
-                                                var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
-                                                    if (match.startsWith('?page=') || match.startsWith('&page=')) {
-                                                        return match.charAt(0) + 'page=' + input;
-                                                    } else {
-                                                        return (url.includes('?') ? '&page=' : '?page=') + input;
-                                                    }
-                                                });
-                                                putMyVar("url", jumpu);
-                                                putMyVar("yurl", jumpu);
-                                                refreshPage();
-                                                return 'toast://你已经穿越到了' + input + '页'
-                                            } else {
-                                                return "toast://请输入正确的页码"
-                                            }
-                                        },
-                                        url, lastpagenum)
-                            },
-                            lastpagenum, url)
-                    }] : ""
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
                 }
             })
         })
@@ -545,7 +572,7 @@ const Apollo = {
                     title: pdfh(item, "strong&&Text"),
                     desc: pdfh(item, ".videoCount&&Text"),
                     img: pd(item, "img&&src") ? pd(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
-                    url: vurl + $('##fypage')
+                    url: "hiker://empty#" + vurl + $('##fypage')
                         .rule(() => {
                             const Apollo = $.require('hiker://page/Apollo')
                             Apollo.yijiParse(MY_URL.split("##")[0])
@@ -558,27 +585,42 @@ const Apollo = {
     },
 
     //明星
-    pornstarType: (html) => {
+    pornstarType: (url, html) => {
+        try {
+            var currentPage = pdfh(html, "body&&.pagination&&.page_current&&Text").match(/\d+/)[0]
+        } catch {
+            var currentPage = "1"
+        }
+        try {
+            lastPage = "未知"
+        } catch {
+            var lastPage = currentPage
+        }
         var list = pdfa(html, "body&&.pornstarList:not(.topPornstars)&&li");
         list.forEach(item => {
+            var title = pdfh(item, ".performerCardName&&Text") +
+                "\n🖥" + pdfh(item, ".videos&&Text");
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".performerCardName&&Text") +
-                    "\n🖥" + pdfh(item, ".videos||.rank_number&&Text"),
+                title: title,
                 img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
-                url: vurl + $('/videos##fypage')
+                url: "hiker://empty#" + vurl + $('/videos##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.yijiParse(MY_URL.split("##")[0])
                         setResult(Apollo.d)
                     }),
                 col_type: "card_pic_3",
+                extra: {
+                    pageTitle: title,
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                }
             })
         })
     },
     //频道
-    channelType: (html) => {
+    channelType: (url, html) => {
         if (MY_PAGE == 1) {
             Apollo.d.push({
                 col_type: "blank_block",
@@ -604,40 +646,70 @@ const Apollo = {
                 })
             })
         }
+        try {
+            var currentPage = pdfh(html, "body&&.pagination&&.page_current&&Text").match(/\d+/)[0]
+        } catch {
+            var currentPage = "1"
+        }
+        try {
+            lastPage = "未知"
+        } catch {
+            var lastPage = currentPage
+        }
         var list = pdfa(html, "body&&.channelsList&&.positionRelative");
         list.forEach(item => {
+            var title = pdfh(item, ".channelNameWrapper&&Text").slice(0, 16) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text");
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".channelNameWrapper&&Text").slice(0, 16) + "\n🖥" + pdfh(item, ".info:matches(视频)&&Text"),
+                title: title,
                 img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
-                url: vurl + $('/videos##fypage')
+                url: "hiker://empty#" + vurl + $('/videos##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.yijiParse(MY_URL.split("##")[0])
                         setResult(Apollo.d)
                     }),
                 col_type: "card_pic_3",
+                extra: {
+                    pageTitle: title,
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                }
             })
         })
     },
     //片单
-    playlistType: (html) => {
+    playlistType: (url, html) => {
+        try {
+            var currentPage = pdfh(html, "body&&.pagination&&.page_current&&Text").match(/\d+/)[0]
+        } catch {
+            var currentPage = "1"
+        }
+        try {
+            lastPage = "未知"
+        } catch {
+            var lastPage = currentPage
+        }
         var list = pdfa(html, "body&&.playlistWrapper");
         list.forEach(item => {
+            var title = pdfh(item, ".title&&Text");
             var vurl = Apollo.url + pdfh(item, '.title&&a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
             Apollo.d.push({
-                title: pdfh(item, ".title&&Text"),
+                title: title,
                 desc: "🖥" + pdfh(item, ".thumbCorners&&Text"),
                 img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/3uqjc1qq.gif",
-                url: vurl + $('##fypage')
+                url: "hiker://empty#" + vurl + $('##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.yijiParse(MY_URL.split("##")[0])
                         setResult(Apollo.d)
                     }),
                 col_type: "movie_2",
+                extra: {
+                    pageTitle: title,
+                    longClick: !url.includes("viewkey") ? Apollo.addPage(url, currentPage, lastPage) : ""
+                }
             })
         })
     },
@@ -660,22 +732,40 @@ const Apollo = {
         } else if (MY_PAGE > 1) {
             url = "没有下一页哦😑"
         }
-
+        url = url.replace("hiker://empty#", "")
+        var code = JSON.parse(fetch(url, {
+            onlyHeaders: true
+        })).statusCode.toString()
+        if (!code.startsWith("2")) {
+            url = url.replace(/\/videos$/, "")
+        }
         var html = fetch(url, {
             headers: {
                 "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/pornhub_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             }
         })
-
         log(url)
         try {
             var next = Apollo.url + pdfh(html, "body&&.pagination&&.page_next&&a&&href")
             next = next.replace(/https?.*(https?.*)/, "$1")
             putMyVar("YnextPage", next);
         } catch {
-            clearMyVar("YnextPage");
-            //log("可能不存在下一页或者下一页定位有问题");
+            if (url.includes("/playlist/")) {
+                let pageParam = url.match(/page=(\d+)/);
+                let currentPage = pageParam ? parseInt(pageParam[1], 10) : 1;
+                let newPageValue = currentPage + 1;
+                var lazyloadUrl;
+                try {
+                    lazyloadUrl = JSON.parse(html.match(/var PLAYLIST_VIEW =\s?(.+);\n/)[1]).lazyloadUrl
+                    putMyVar("lazyloadUrl", lazyloadUrl)
+                } catch {}
+                next = Apollo.url + getMyVar("lazyloadUrl") + "&page=" + newPageValue
+                putMyVar("YnextPage", next);
+            } else {
+                clearMyVar("YnextPage");
+                //log("可能不存在下一页或者下一页定位有问题");
+            }
         }
         if (MY_PAGE == 1) {
             try {
@@ -788,7 +878,7 @@ const Apollo = {
                 title: userContainer.fontcolor("").bold().big(),
                 img: pdfh(html, "body&&.userContainer&&img&&src"),
                 desc: pdfh(html, "body&&.userContainer&&.userInfo&&Text"),
-                url: Apollo.url + pdfh(html, "body&&.userContainer&&a&&href") + $('/videos##fypage')
+                url: "hiker://empty#" + Apollo.url + pdfh(html, "body&&.userContainer&&a&&href") + $('/videos##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.yijiParse(MY_URL.split("##")[0])
@@ -813,7 +903,7 @@ const Apollo = {
                 var title = pdfh(item, "a&&Text");
                 Apollo.d.push({
                     title: '““””' + title.fontcolor("#FFFFFF"),
-                    url: vurl + $('##fypage')
+                    url: "hiker://empty#" + vurl + $('##fypage')
                         .rule(() => {
                             const Apollo = $.require('hiker://page/Apollo')
                             Apollo.yijiParse(MY_URL.split("##")[0])
