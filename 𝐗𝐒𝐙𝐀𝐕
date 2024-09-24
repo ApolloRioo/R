@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240923",
+    version: "20240925",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -146,14 +146,13 @@ const Apollo = {
 
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
             }
         })
 
         log(url)
         try {
-            var next = pdfh(html, "body&&.inline-flex.isolate&&a[aria-label=Next]&&href")
+            var next = pdfh(html, "body&&.inline-flex.shadow-sm&&a[rel=next]&&href")
             putMyVar("nextPage", next);
         } catch {
             clearMyVar("nextPage");
@@ -225,7 +224,7 @@ const Apollo = {
                 col_type: "blank_block",
             })
             try {
-                var sort = pdfa(html, 'body&&.origin-top-right.w-56.z-10&&a')
+                var sort = pdfa(html, 'body&&.mb-6.flex||.justify-end&&.py-1:last-child&&a')
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = pdfh(item, 'a&&href');
@@ -321,12 +320,12 @@ const Apollo = {
     //一级视频列表
     videoType: (url, html) => {
         try {
-            var currpagenum = pdfh(html, "body&&.inline-flex.isolate&&.text-white&&Text").match(/\d+/)[0]
+            var currpagenum = pdfh(html, "body&&.inline-flex.shadow-sm&&.px-4.cursor-default&&Text").match(/\d+/)[0]
         } catch {
             var currpagenum = "1"
         }
         try {
-            lastpagenum = pdfh(html, "body&&.inline-flex.isolate&&.px-4,-1&&Text").match(/\d+/)[0]
+            lastpagenum = pdfh(html, "body&&.inline-flex.shadow-sm&&.px-4,-1&&Text").match(/\d+/)[0]
         } catch {
             var lastpagenum = currpagenum
         }
@@ -334,7 +333,7 @@ const Apollo = {
         list.forEach(item => {
             var vurl = pdfh(item, 'a&&href');
             var title = pdfh(item, ".truncate&&Text");
-            var img = pdfh(item, "img&&data-src"); //.replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg")
+            var img = pdfh(item, "img&&data-src").replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg");
             Apollo.d.push({
                 title: title,
                 desc: pdfh(item, ".left-1&&Text") + "⏰" + pdfh(item, ".right-1&&Text"),
@@ -343,11 +342,11 @@ const Apollo = {
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.videoParse(MY_URL)
-                        setResult(Apollo.d)
                     }),
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
+                    img: img,
                     longClick: !url.includes("/video/") ? [{
                         title: '【跳页】【当前第>' + currpagenum + '<页】【尾页=>' + lastpagenum + '页】',
                         js: $.toString((lastpagenum, url) => {
@@ -402,16 +401,15 @@ const Apollo = {
         list.forEach(item => {
             var vurl = pdfh(item, 'a&&href');
             Apollo.d.push({
-                title: pdfh(item, ".truncate&&Text") + pdfh(item, "p:last-child&&Text").replace("出道", ""),
-                desc: "🖥" + pdfh(item, ".text-zinc-500&&Text"),
-                img: pdfh(item, "img&&data-src") ? pdfh(item, "img&&data-src") : "https://thumbsnap.com/i/wxDcxfJH.png",
+                title: pdfh(item, ".truncate&&Text") + pdfh(item, "p:last-child&&Text").replace("出道", "") + "\n🖥" + pdfh(item, "p&&Text"),
+                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
                 url: vurl + $('##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
                         Apollo.yijiParse(MY_URL.split("##")[0])
                         setResult(Apollo.d)
                     }),
-                col_type: "movie_3",
+                col_type: "card_pic_3",
             })
         })
     },
@@ -430,8 +428,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
             },
         });
         if (MY_PAGE == 1) {
@@ -454,8 +451,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
             },
         });
         //标题
@@ -481,48 +477,54 @@ const Apollo = {
             }
         })
         //图片        
-        var playervars = html.match(/https?[^"]+\.m3u8/)[0]
+        var playervars = eval(html.match(/eval.*?\n/)[0])
         //log(playervars)
-        var img = pdfh(html, "body&&.video_container&&video&&data-poster");
+        var img = MY_PARAMS.img; //pdfh(html, "body&&video[data-poster]&&data-poster");
         Apollo.d.push({
             img: img,
-            url: playervars + ";{Referer@" + Apollo.url + "}", // + lazy,
+            url: playervars + ";{Referer@" + Apollo.url + "/}", // + lazy,
             col_type: "pic_1_full",
         })
-        var 详细信息 = pdfh(html, "body&&#description&&.mb-1&&Text").trim()
-        if (详细信息 != "") {
-            Apollo.d.push({
-                title: "““””" + "详细信息".fontcolor("#FF00FF").bold(),
-                url: "hiker://empty",
-                col_type: "text_1"
-            })
-            Apollo.d.push({
-                title: 详细信息.fontcolor("#666666").bold(),
-                col_type: "rich_text"
-            })
-            Apollo.d.push({
-                col_type: "line",
-            })
-        }
-        var 番号 = pdfh(html, "body&&#description&&.text-gray-700:has(span):matches(番号:)&&Text").trim()
-        if (番号 != "") {
-            Apollo.d.push({
-                title: "““””" + 番号.fontcolor("#666666").bold(),
-                url: "hiker://empty",
-                col_type: "text_1"
-            })
-        }
-        var 标题 = pdfh(html, "body&&#description&&.text-gray-700:has(span):matches(标题:)&&Text").trim()
-        if (标题 != "") {
-            Apollo.d.push({
-                title: "““””" + 标题.fontcolor("#666666").bold(),
-                url: "hiker://empty",
-                col_type: "text_1"
-            })
-        }
+        try {
+            var 详细信息 = pdfh(html, "body&&.text-secondary.mb-1&&Text").trim()
+            if (详细信息 != "") {
+                Apollo.d.push({
+                    title: "““””" + "详细信息".fontcolor("#FF00FF").bold(),
+                    url: "hiker://empty",
+                    col_type: "text_1"
+                })
+                Apollo.d.push({
+                    title: 详细信息.fontcolor("#666666").bold(),
+                    col_type: "rich_text"
+                })
+                Apollo.d.push({
+                    col_type: "line",
+                })
+            }
+        } catch {}
+        try {
+            var 番号 = pdfh(html, "body&&.text-secondary:matches(番号:)&&Text").trim()
+            if (番号 != "") {
+                Apollo.d.push({
+                    title: "““””" + 番号.fontcolor("#666666").bold(),
+                    url: "hiker://empty",
+                    col_type: "text_1"
+                })
+            }
+        } catch {}
+        try {
+            var 标题 = pdfh(html, "body&&.text-secondary:matches(标题:)&&Text").trim()
+            if (标题 != "") {
+                Apollo.d.push({
+                    title: "““””" + 标题.fontcolor("#666666").bold(),
+                    url: "hiker://empty",
+                    col_type: "text_1"
+                })
+            }
+        } catch {}
         //女优
         try {
-            var list = pdfa(html, "body&&#description&&.text-gray-700:has(span):matches(女优:)&&a");
+            var list = pdfa(html, "body&&.text-secondary:matches(女优:)&&a");
             list.forEach(item => {
                 var vurl = pdfh(item, 'a&&href');
                 var title = pdfh(item, "a&&Text");
@@ -547,7 +549,7 @@ const Apollo = {
         } catch {}
         //标签
         try {
-            var list = pdfa(html, "body&&#description&&.text-gray-700:has(span):matches(标签:)&&a");
+            var list = pdfa(html, "body&&.text-secondary:matches(标签:)&&a");
             list.forEach(item => {
                 var vurl = pdfh(item, 'a&&href');
                 var title = pdfh(item, "a&&Text");
@@ -572,7 +574,49 @@ const Apollo = {
             title: "相关".fontcolor("#FF00FF").bold(),
             col_type: "rich_text"
         })
-        Apollo.videoType(url, html)
+        var vid = url.match(/\/video\/(\d+)/)[1]
+        var result = JSON.parse(post("https://cn.xsz-av.com/api/recommend", {
+            body: {
+                "VID": vid,
+                "count": 27
+            }
+        })).videos;
+
+        function formatDuration(seconds) {
+            // 将秒数取整
+            seconds = Math.floor(seconds);
+            // 计算小时、分钟和秒数
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            // 返回格式化的字符串
+            return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function getTmbFolder(vid) {
+            var max_thumb_folders = 32000
+            var index = Math.floor((vid - 1) / max_thumb_folders)
+            var tmb_folder = index !== 0 ? `tmb${index}` : 'tmb'
+            return tmb_folder;
+        }
+        result.forEach(item => {
+            var img = `https://img.xszcdn.net/w_800/media/videos/${getTmbFolder(item.VID)}/${item.VID}/default.jpg`;
+            Apollo.d.push({
+                title: item.title,
+                desc: (item.channel == 1 ? "无码流出⏰" : "⏰") + formatDuration(item.duration),
+                img: img,
+                url: Apollo.url + `/video/${item.VID}` + $('#noHistory#')
+                    .rule(() => {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.videoParse(MY_URL)
+                    }),
+                col_type: "movie_2",
+                extra: {
+                    pageTitle: item.title,
+                    img: img
+                }
+            })
+        })
         setResult(Apollo.d)
     },
     //搜索
@@ -582,8 +626,7 @@ const Apollo = {
         log(url)
         var html = fetch(url, {
             headers: {
-                //"cookie": fetchPC('hiker://files/rules/Apollo/Cookie/youporn_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
             },
         });
         // log(html)
