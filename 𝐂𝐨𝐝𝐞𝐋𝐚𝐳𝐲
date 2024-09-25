@@ -24,7 +24,7 @@ js: //所在行   ThissAV①16
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                         },
-                        timeout: 2230
+                        timeout: 3223
                     })
                     if (html) {
                         var list = pdfa(html, '.grid&&.relative:has(a[href])');
@@ -72,7 +72,6 @@ js: //所在行   ThissAV①16
                                         name_quality = group_quality.match(/RESOLUTION=.*$/gm)
                                             .map(n => n.replace("RESOLUTION=", ""))
                                             .reverse()
-                                        // copy(hghest_quality[0])
                                         let playlist = {
                                             urls: hghest_quality,
                                             names: name_quality,
@@ -81,7 +80,11 @@ js: //所在行   ThissAV①16
                                                     origin: "https://missav.com/cn/"
                                                 })
                                         };
-                                        return playlist;
+                                        if (getItem("复制视频", "0") == "1") {
+                                            return "copy://" + hghest_quality[0]
+                                        } else {
+                                            return playlist;
+                                        }
                                     } catch {
                                         return "toast://网络错误，请重试😓"
                                     }
@@ -98,6 +101,18 @@ js: //所在行   ThissAV①16
                     js: $.toString((识别码) => {
                         return "https://missav.com/cn/search/" + 识别码
                     }, 识别码)
+                }, {
+                    title: getItem("复制视频", "0") == "0" ? '播放视频⭕️' : "复制视频‼️",
+                    js: $.toString(() => {
+                        if (getItem("复制视频", "0") == "0") {
+                            setItem("复制视频", "1")
+                            refreshPage()
+                        } else {
+                            setItem("复制视频", "0")
+                            refreshPage()
+                        }
+                        return "hiker://empty"
+                    })
                 }]
             }
         });
@@ -110,7 +125,7 @@ js: //所在行   ThissAV①16
                 .lazyRule((识别码) => {
                     var av = "https://njav.tv/zh/v/" + 识别码;
                     var html = fetch(av, {
-                        timeout: 2230
+                        timeout: 3223
                     })
                     if (html) {
                         if (html.includes("请检查地址栏中的网址")) {
@@ -449,7 +464,7 @@ js: //所在行   ThissAV①16
                     } else {
                         var search = "https://jav.guru/?s=" + 识别码;
                         var html = fetch(search, {
-                            timeout: 2230
+                            timeout: 3223
                         })
                         if (html) {
                             var list = pdfa(html, "main&&.inside-article:has(.imgg)");
@@ -597,7 +612,7 @@ js: //所在行   ThissAV①16
                     if (input == "𝐉𝐚𝐯𝐆𝐨") {
                         var av = "https://njav.tv/zh/v/" + 识别码;
                         var html = fetch(av, {
-                            timeout: 2230
+                            timeout: 3223
                         })
                         if (html) {
                             if (html.includes("请检查地址栏中的网址")) {
@@ -625,7 +640,7 @@ js: //所在行   ThissAV①16
                         var av = "https://www.wantav.com/videos/index/id/" + 识别码;
                         var html = fetch(av, {
                             //redirect: false,
-                            timeout: 2230
+                            timeout: 3223
                         })
                         if (html) {
                             var title = pdfh(html, "head&&title&&Text")
@@ -686,7 +701,7 @@ js: //所在行   ThissAV①16
                         var av = "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
                         try {
                             var html = fetch(av, {
-                                timeout: 2230
+                                timeout: 3223
                             })
                             if (html) {
                                 var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
