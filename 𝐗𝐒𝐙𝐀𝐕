@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240925",
+    version: "20240926",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -603,7 +603,7 @@ const Apollo = {
             var img = `https://img.xszcdn.net/w_800/media/videos/${getTmbFolder(item.VID)}/${item.VID}/default.jpg`;
             Apollo.d.push({
                 title: item.title,
-                desc: (item.channel == 1 ? "无码流出⏰" : "⏰") + formatDuration(item.duration),
+                desc: (item.channel == 6 ? "🈚️🦄💦⏰" : "⏰") + formatDuration(item.duration),
                 img: img,
                 url: Apollo.url + `/video/${item.VID}` + $('#noHistory#')
                     .rule(() => {
