@@ -7,7 +7,7 @@ js: //所在行   ThissAV①16
     //             javguru⑦434
     //             7mmtv⑧514
     //             more⑨589
-    //             cilijun⑩802
+    //             cilijun⑩813
     function CodeLazy(识别码) {
         识别码 = 识别码.toLowerCase()
         d.push({
@@ -80,7 +80,7 @@ js: //所在行   ThissAV①16
                                                     origin: "https://missav.com/cn/"
                                                 })
                                         };
-                                        if (getItem("复制视频", "0") == "1") {
+                                        if (getVar("复制视频", "0") == "1") {
                                             return "copy://" + hghest_quality[0]
                                         } else {
                                             return playlist;
@@ -102,13 +102,13 @@ js: //所在行   ThissAV①16
                         return "https://missav.com/cn/search/" + 识别码
                     }, 识别码)
                 }, {
-                    title: getItem("复制视频", "0") == "0" ? '播放视频⭕️' : "复制视频‼️",
+                    title: getVar("复制视频", "0") == "0" ? '播放视频⭕️' : "复制视频‼️",
                     js: $.toString(() => {
-                        if (getItem("复制视频", "0") == "0") {
-                            setItem("复制视频", "1")
+                        if (getVar("复制视频", "0") == "0") {
+                            putVar("复制视频", "1")
                             refreshPage()
                         } else {
-                            setItem("复制视频", "0")
+                            putVar("复制视频", "0")
                             refreshPage()
                         }
                         return "hiker://empty"
