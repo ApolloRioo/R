@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240926",
+    version: "20240927",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -227,7 +227,8 @@ const Apollo = {
                 var sort = pdfa(html, 'body&&.mb-6.flex.justify-end||.mb-6.flex.justify-between&&.py-1&&a')
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
-                    var urll = pdfh(item, 'a&&href');
+                    var urll = Apollo.url + pdfh(item, 'a&&href');
+                    urll = urll.replace(/https?.*(https?.*)/, "$1");
                     Apollo.d.push({
                         title: (getMyVar('sort', '0') == index || getMyVar('ysort', '0') == index) ? '‘‘’’' + title.fontcolor("#FFFFFF") : title,
                         url: urll + $('#noLoading#')
@@ -513,6 +514,16 @@ const Apollo = {
             }
         } catch {}
         try {
+            var 日期 = pdfh(html, "body&&.text-secondary:matches(日期)&&Text").trim()
+            if (日期 != "") {
+                Apollo.d.push({
+                    title: "““””" + 日期.fontcolor("#666666").bold(),
+                    url: "hiker://empty",
+                    col_type: "text_1"
+                })
+            }
+        } catch {}
+        try {
             var 标题 = pdfh(html, "body&&.text-secondary:matches(标题:)&&Text").trim()
             if (标题 != "") {
                 Apollo.d.push({
@@ -549,7 +560,7 @@ const Apollo = {
         } catch {}
         //标签
         try {
-            var list = pdfa(html, "body&&.text-secondary:matches(标签:)&&a");
+            var list = pdfa(html, "body&&.text-secondary:matches(类型)&&a");
             list.forEach(item => {
                 var vurl = pdfh(item, 'a&&href');
                 var title = pdfh(item, "a&&Text");
