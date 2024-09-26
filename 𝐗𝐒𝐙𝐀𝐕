@@ -224,7 +224,7 @@ const Apollo = {
                 col_type: "blank_block",
             })
             try {
-                var sort = pdfa(html, 'body&&.mb-6.flex||.justify-end&&.py-1:last-child&&a')
+                var sort = pdfa(html, 'body&&.mb-6.flex.justify-end||.mb-6.flex.justify-between&&.py-1&&a')
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = pdfh(item, 'a&&href');
@@ -325,7 +325,7 @@ const Apollo = {
             var currpagenum = "1"
         }
         try {
-            lastpagenum = pdfh(html, "body&&.inline-flex.shadow-sm&&.px-4,-1&&Text").match(/\d+/)[0]
+            lastpagenum = pdfh(html, "body&&.relative.inline-flex.shadow-sm&&.px-4,-1&&Text").match(/\d+/)[0]
         } catch {
             var lastpagenum = currpagenum
         }
