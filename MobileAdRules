@@ -22,15 +22,6 @@ m.bilibili.com##.caution-dialog
 ! 无名小站
 btnull.in,btnull.net,btnull.org,btnull.si,btnull.nu,btnull.fun###ly
 
-! fix emturbovid.com player (e.g. supjav.com)
-streamtape.*##script:inject(adjust-setTimeout.js, counter)
-streamtape.*##+js(adjust-setTimeout, counter)
-emturbovid.com###pop
-emturbovid.com##+js(aeld, click, pop)
-emturbovid.com##+js(trusted-set, premium, "'1'")
-emturbovid.com##+js(nowoif)
-emturbovid.com##+js(nostif, window.open)
-##.jw-wrapper > div[style="opacity: 0; visibility: hidden; overflow: hidden; display: block; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"]
 
 !百度搜索
 !自动播放视频
@@ -84,7 +75,7 @@ www.ghxi.com##.clearfix.slider-wrap
 www.ghxi.com##.width-footer-bar.footer > .container
 
 ! 鸭先知 https://www.yxzhi.com
-www.yxzhi.com##li.item-sticky.item:has-text(置顶)
+www.yxzhi.com##.item-sticky
 www.yxzhi.com##.__single_1.wpcom_myimg_wrap
 www.yxzhi.com##.entry-copyright
 www.yxzhi.com##.entry-action
