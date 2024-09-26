@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 20240830,
+    version: "20240926",
     empty: "hiker://empty",
-    url: config.host,
+    url: "https://7mmtv.sx/zh/",
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -12,8 +12,7 @@ const Apollo = {
                 .toString(16))
             .substr(-6);
     }, //随机颜色
-    baseParse: () => {
-        const page = parseInt(MY_URL.split('##')[2])
+    baseParse: () => {        
         let categoryList = [{
             "title": "無碼破解",
             "path": "",
@@ -184,7 +183,7 @@ const Apollo = {
             url = Apollo.url + getMyVar("url", currentCate.path)
         }
         url = url.replace(/https?.*(https?.*)/, "$1")
-        if (page === 1) {
+        if (MY_PAGE === 1) {
             categoryList.forEach((cate, index) => {
                 Apollo.d.push({
                     title: parseInt(Apollo.data.category) === index ? '““””' + cate.title.fontcolor(Apollo.getRangeColors()) : cate.title,
@@ -241,8 +240,8 @@ const Apollo = {
         }
         //翻页
         /*
-        if (page !== 1) {
-            url = url.includes("?") ? url + "&page=" + page : url + "?&page=" + page
+        if (MY_PAGE !== 1) {
+            url = url.includes("?") ? url + "&page=" + MY_PAGE : url + "?&page=" + MY_PAGE
         }
         const html = fetch(url, {
             headers: {
@@ -354,7 +353,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".small&&Text"),
-                img: pdfh(item, "img&&data-src").replace("/m/", "/b/"),
+                img: pdfh(item, "img&&data-src").replace(/\/m\/|\/s\//, "/b/"),
                 url: !vurl.includes("hcomic_") ? vurl + lazy : vurl + lazy1,
                 col_type: col,
                 extra: {
@@ -965,7 +964,7 @@ const Apollo = {
             .replace(/d\.push/g, "Apollo.d.push") || "";
 
         function downcode() {
-            var js = fetch("https://mirror.ghproxy.com/https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+            var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
             writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
             toast("远程数据已更新到本地")
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
