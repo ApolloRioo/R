@@ -353,7 +353,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".small&&Text"),
-                img: pdfh(item, "img&&data-src").replace(/\/m\/|\/s\//, "/b/"),
+                img: pdfh(item, "img&&data-src").replace(/\/m\//, "/b/"),
                 url: !vurl.includes("hcomic_") ? vurl + lazy : vurl + lazy1,
                 col_type: col,
                 extra: {
