@@ -7,7 +7,7 @@ js: //所在行   ThissAV①16
     //             javguru⑦434
     //             7mmtv⑧514
     //             more⑨589
-    //             cilijun⑩813
+    //             cilijun⑩816
     function CodeLazy(识别码) {
         识别码 = 识别码.toLowerCase()
         d.push({
@@ -370,7 +370,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐒𝐮𝐩𝐣𝐚𝐯小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云5oooole/6sm6");
+                                return parsePaste("云6oooole/xxxxxx/tbt0ezaif1tvprn2");
                             }
                         })
                         return "hiker://empty"
@@ -457,7 +457,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云5oooole/r5we");
+                                return parsePaste("云6oooole/xxxxxx/nucw5annyukxpgti");
                             }
                         })
                         return "hiker://empty"
@@ -537,7 +537,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝟕𝐌𝐌𝐓𝐕小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云5oooole/6grf");
+                                return parsePaste("云6oooole/xxxxxx/bws0rdgutd9dm1cj");
                             }
                         })
                         return "hiker://empty"
@@ -605,11 +605,11 @@ js: //所在行   ThissAV①16
         d.push({
             title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQkS8.png',
-            url: $(["𝐀𝐯𝟎𝟏", "𝐉𝐚𝐯𝐆𝐨", "𝐖𝐚𝐧𝐭𝐚𝐯",
+            url: $(["𝐀𝐯𝟎𝟏", "𝐧𝐣𝐚𝐯", "𝐖𝐚𝐧𝐭𝐚𝐯",
                     "𝐉𝐚𝐛𝐥𝐞", "𝐉𝐚𝐯𝐅𝐢𝐧𝐝𝐞𝐫"
                 ], 3)
                 .select((识别码) => {
-                    if (input == "𝐉𝐚𝐯𝐆𝐨") {
+                    if (input == "𝐧𝐣𝐚𝐯") {
                         var av = "https://njav.tv/zh/v/" + 识别码;
                         var html = fetch(av, {
                             timeout: 3223
@@ -789,12 +789,12 @@ js: //所在行   ThissAV①16
                 longClick: [{
                     title: '𝐀𝐯𝟎𝟏',
                     js: $.toString((识别码) => {
-                        return "https://njav.tv/zh/v/" + 识别码;
+                        return "https://www.av01.tv/" + 识别码;
                     }, 识别码)
                 }, {
-                    title: '𝐉𝐚𝐯𝐆𝐨',
+                    title: '𝐧𝐣𝐚𝐯',
                     js: $.toString((识别码) => {
-                        return "https://www.av01.tv/" + 识别码;
+                        return "https://njav.tv/zh/v/" + 识别码;
                     }, 识别码)
                 }, {
                     title: '𝐖𝐚𝐧𝐭𝐚𝐯',
