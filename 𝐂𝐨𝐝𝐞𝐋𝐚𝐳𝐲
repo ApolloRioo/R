@@ -537,7 +537,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝟕𝐌𝐌𝐓𝐕小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/bws0rdgutd9dm1cj");
+                                return parsePaste("云6oooole/xxxxxx/9sseenbnavprm242");
                             }
                         })
                         return "hiker://empty"
