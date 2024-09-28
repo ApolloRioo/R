@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240927",
+    version: "20240928",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -152,7 +152,8 @@ const Apollo = {
 
         log(url)
         try {
-            var next = pdfh(html, "body&&.inline-flex.shadow-sm&&a[rel=next]&&href")
+            var next = Apollo.url + pdfh(html, ".inline-flex.isolate&&a:matches(下一个)&&href")
+            next = next.replace(/.*(http.*)/, "$1")
             putMyVar("nextPage", next);
         } catch {
             clearMyVar("nextPage");
@@ -224,11 +225,11 @@ const Apollo = {
                 col_type: "blank_block",
             })
             try {
-                var sort = pdfa(html, 'body&&.mb-6.flex.justify-end||.mb-6.flex.justify-between&&.py-1&&a')
+                var sort = pdfa(html, '.left-0:not(.hidden)||.right-0:not(.hidden)&&a')
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = Apollo.url + pdfh(item, 'a&&href');
-                    urll = urll.replace(/https?.*(https?.*)/, "$1");
+                    urll = urll.replace(/.*(https?.*)/, "$1");
                     Apollo.d.push({
                         title: (getMyVar('sort', '0') == index || getMyVar('ysort', '0') == index) ? '‘‘’’' + title.fontcolor("#FFFFFF") : title,
                         url: urll + $('#noLoading#')
@@ -332,7 +333,8 @@ const Apollo = {
         }
         var list = pdfa(html, "body&&.thumbnail");
         list.forEach(item => {
-            var vurl = pdfh(item, 'a&&href');
+            var vurl = Apollo.url + pdfh(item, 'a&&href');
+            vurl = vurl.replace(/.*(http.*)/, "$1")
             var title = pdfh(item, ".truncate&&Text");
             var img = pdfh(item, "img&&data-src").replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg");
             Apollo.d.push({
@@ -375,7 +377,8 @@ const Apollo = {
     tagType: (html) => {
         var list = pdfa(html, "body&&.grid.gap-4&&a");
         list.forEach((item, index) => {
-            var vurl = pdfh(item, 'a&&href');
+            var vurl = Apollo.url + pdfh(item, 'a&&href');
+            vurl = vurl.replace(/.*(http.*)/, "$1")
             Apollo.d.push({
                 title: '““””' + pdfh(item, "a&&Text").fontcolor("#FFFFFF"),
                 url: vurl + $('##fypage')
@@ -400,10 +403,11 @@ const Apollo = {
     pornstarType: (html) => {
         var list = pdfa(html, "body&&.mx-auto.grid&&.space-y-4");
         list.forEach(item => {
-            var vurl = pdfh(item, 'a&&href');
+            var vurl = Apollo.url + pdfh(item, 'a&&href');
+            vurl = vurl.replace(/.*(http.*)/, "$1")
             Apollo.d.push({
                 title: pdfh(item, ".truncate&&Text") + pdfh(item, "p:last-child&&Text").replace("出道", "") + "\n🖥" + pdfh(item, "p&&Text"),
-                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src") : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
+                img: pdfh(item, "img&&data-src") ? pdfh(item, "img&&data-src") : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
                 url: vurl + $('##fypage')
                     .rule(() => {
                         const Apollo = $.require('hiker://page/Apollo')
@@ -478,7 +482,8 @@ const Apollo = {
             }
         })
         //图片        
-        var playervars = eval(html.match(/eval.*?\n/)[0])
+        //var playervars = eval(html.match(/eval.*?\n/)[0])
+        var playervars = html.match(/"(https?[^"]+\.m3u8)"/)[1]
         //log(playervars)
         var img = MY_PARAMS.img; //pdfh(html, "body&&video[data-poster]&&data-poster");
         Apollo.d.push({
@@ -487,7 +492,7 @@ const Apollo = {
             col_type: "pic_1_full",
         })
         try {
-            var 详细信息 = pdfh(html, "body&&.text-secondary.mb-1&&Text").trim()
+            var 详细信息 = pdfh(html, "body&&.mb-1&&Text").trim()
             if (详细信息 != "") {
                 Apollo.d.push({
                     title: "““””" + "详细信息".fontcolor("#FF00FF").bold(),
@@ -504,7 +509,7 @@ const Apollo = {
             }
         } catch {}
         try {
-            var 番号 = pdfh(html, "body&&.text-secondary:matches(番号:)&&Text").trim()
+            var 番号 = pdfh(html, "body&&.text-gray-700:matches(番号:)&&Text").trim()
             if (番号 != "") {
                 Apollo.d.push({
                     title: "““””" + 番号.fontcolor("#666666").bold(),
@@ -514,7 +519,7 @@ const Apollo = {
             }
         } catch {}
         try {
-            var 日期 = pdfh(html, "body&&.text-secondary:matches(日期)&&Text").trim()
+            var 日期 = pdfh(html, "body&&.text-gray-700:matches(日期)&&Text").trim()
             if (日期 != "") {
                 Apollo.d.push({
                     title: "““””" + 日期.fontcolor("#666666").bold(),
@@ -524,7 +529,7 @@ const Apollo = {
             }
         } catch {}
         try {
-            var 标题 = pdfh(html, "body&&.text-secondary:matches(标题:)&&Text").trim()
+            var 标题 = pdfh(html, "body&&.text-gray-700:matches(标题:)&&Text").trim()
             if (标题 != "") {
                 Apollo.d.push({
                     title: "““””" + 标题.fontcolor("#666666").bold(),
@@ -535,9 +540,10 @@ const Apollo = {
         } catch {}
         //女优
         try {
-            var list = pdfa(html, "body&&.text-secondary:matches(女优:)&&a");
+            var list = pdfa(html, "body&&.text-gray-700:matches(女优:)&&a");
             list.forEach(item => {
-                var vurl = pdfh(item, 'a&&href');
+                var vurl = Apollo.url + pdfh(item, 'a&&href');
+                vurl = vurl.replace(/.*(http.*)/, "$1");
                 var title = pdfh(item, "a&&Text");
                 Apollo.d.push({
                     title: '““””' + title.fontcolor("#FFFFFF"),
@@ -560,9 +566,10 @@ const Apollo = {
         } catch {}
         //标签
         try {
-            var list = pdfa(html, "body&&.text-secondary:matches(类型)&&a");
+            var list = pdfa(html, "body&&.text-gray-700:matches(类型)&&a");
             list.forEach(item => {
-                var vurl = pdfh(item, 'a&&href');
+                var vurl = Apollo.url + pdfh(item, 'a&&href');
+                vurl = vurl.replace(/.*(http.*)/, "$1");
                 var title = pdfh(item, "a&&Text");
                 Apollo.d.push({
                     title: '““””' + title.fontcolor("#FFFFFF"),
@@ -585,6 +592,8 @@ const Apollo = {
             title: "相关".fontcolor("#FF00FF").bold(),
             col_type: "rich_text"
         })
+        Apollo.videoType(url, html)
+        /*
         var vid = url.match(/\/video\/(\d+)/)[1]
         var result = JSON.parse(post("https://cn.xsz-av.com/api/recommend", {
             body: {
@@ -627,7 +636,7 @@ const Apollo = {
                     img: img
                 }
             })
-        })
+        })*/
         setResult(Apollo.d)
     },
     //搜索
