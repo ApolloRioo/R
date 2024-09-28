@@ -41,7 +41,6 @@ payload:
   - DOMAIN-SUFFIX,tools.fun
   - DOMAIN-SUFFIX,javtiktoker.com
   - DOMAIN,fanyi.900cha.com
-  - DOMAIN,mirror.ghproxy.com
   - DOMAIN,translate.homegu.com
   - DOMAIN,api.piliapp.com
   - DOMAIN,jiami.guimei.work
