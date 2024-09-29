@@ -1,9 +1,14 @@
 const miss = {
-    version: "20240927",
+    version: "20240930",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
     taskList: [],
+    getRangeColors: function() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
+                .toString(16))
+            .substr(-6);
+    }, //随机颜色
     data: {
         category: getMyVar('MissAV.category', '0'),
         subCate: getMyVar('MissAV.subCate', '0'),
@@ -307,7 +312,7 @@ const miss = {
         setPageTitle(title)
 
         miss.d.push({
-            title: '““””' + title.small(),
+            title: '““””' + title.fontcolor("#D2691E").small(),
             url: url,
             col_type: 'text_1',
             extra: {
@@ -341,7 +346,7 @@ const miss = {
         var content = pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text');
         if (content.trim() != "") {
             miss.d.push({
-                title: content.small(),
+                title: content.small().fontcolor("#2E8B57"),
                 url: 'hiker://empty',
                 col_type: 'rich_text',
                 extra: {
@@ -374,7 +379,7 @@ const miss = {
         var 日期 = pdfh(html, 'body&&.text-secondary:matches(日期)&&Text');
         if (日期.trim() != "") {
             miss.d.push({
-                title: '‘‘’’' + 日期,
+                title: '‘‘’’' + 日期.fontcolor("#FF0000"),
                 url: 'hiker://empty',
                 col_type: 'text_1',
                 extra: {
@@ -384,7 +389,7 @@ const miss = {
         }
         if (num) {
             miss.d.push({
-                title: "番号 : " + num,
+                title: "““””番号 : " + num.fontcolor("#1E90FF"),
                 url: 'copy://' + num,
                 col_type: 'text_1',
                 extra: {
@@ -395,9 +400,9 @@ const miss = {
         var 标题 = pdfh(html, 'body&&.text-secondary:matches(标题)&&Text');
         if (标题.trim() != "") {
             miss.d.push({
-                title: '‘‘’’' + 标题.small(),
+                title: 标题.fontcolor("#008B8B").small(),
                 url: 'hiker://empty',
-                col_type: 'text_1',
+                col_type: 'rich_text',
                 extra: {
                     lineVisiable: false
                 }
@@ -416,7 +421,7 @@ const miss = {
                 },
             })*/
             actressesList.forEach((actresses, index) => {
-                let title = pdfh(actresses, 'a&&Text')
+                let title = "““””" + pdfh(actresses, 'a&&Text').fontcolor("#C71585")
                 let url = pdfh(actresses, 'a&&href')
                 miss.taskList.push({
                     func: miss.updateAvatar,
@@ -436,7 +441,7 @@ const miss = {
                         miss.avatarParse(MY_URL)
                         setResult(miss.d)
                     }, title),
-                    col_type: 'avatar',
+                    col_type: 'icon_4_card',
                     extra: {
                         id: 'avatar_' + index,
                     }
@@ -465,7 +470,10 @@ const miss = {
                         miss.tagsParse(MY_URL)
                         setResult(miss.d)
                     }, tag_title),
-                    col_type: 'flex_button'
+                    col_type: 'flex_button',
+                    extra: {
+                        'backgroundColor': miss.getRangeColors()
+                    }
                 })
             })
 
@@ -491,7 +499,10 @@ const miss = {
                     miss.tagsParse(MY_URL)
                     setResult(miss.d)
                 }, series_title),
-                col_type: 'scroll_button'
+                col_type: 'scroll_button',
+                extra: {
+                    'backgroundColor': miss.getRangeColors()
+                }
             })
             miss.d.push({
                 col_type: 'line_blank'
@@ -515,7 +526,10 @@ const miss = {
                     miss.tagsParse(MY_URL)
                     setResult(miss.d)
                 }, makers_title),
-                col_type: 'scroll_button'
+                col_type: 'scroll_button',
+                extra: {
+                    'backgroundColor': miss.getRangeColors()
+                }
             })
             /*miss.d.push({
                 col_type: 'line_blank'
@@ -539,7 +553,10 @@ const miss = {
                     miss.tagsParse(MY_URL)
                     setResult(miss.d)
                 }, directors_title),
-                col_type: 'scroll_button'
+                col_type: 'scroll_button',
+                extra: {
+                    'backgroundColor': miss.getRangeColors()
+                }
             })
             miss.d.push({
                 col_type: 'line_blank'
@@ -565,7 +582,10 @@ const miss = {
                         miss.tagsParse(MY_URL)
                         setResult(miss.d)
                     }, label_title),
-                    col_type: 'scroll_button'
+                    col_type: 'scroll_button',
+                    extra: {
+                        'backgroundColor': miss.getRangeColors()
+                    }
                 })
             })
             miss.d.push({
@@ -593,67 +613,75 @@ const miss = {
             })
         })
 
-        /*
-                const videoList = pdfa(html, '.grid.grid-cols-2.gap-5&&.relative')
-                var path = url.match(/\/(?!.*\/)(.*$)/) ? url.match(/\/(?!.*\/)(.*$)/)[1] : num;
-                var userId = pdfh(html, ".items-center.space-x-6&&a&&href").match(/\/(?!.*\/).*userId=(.*$)/)[1]
-                // 获取当前的 10 位 Unix 时间戳
-                let timestamp = Math.floor(Date.now() / 1000);
-                var URL = "https://client-rapi-missav.recombee.com/missav-default/batch/?frontend_timestamp=" + timestamp + "&frontend_sign=e44727da444086364bb1c6cc66bfe0ca9007a454";
-                
-                        var result = fetch(URL, {
-                            body: JSON.stringify({
-                                "requests": [{
-                                    "method": "POST",
-                                    "path": `/recomms/items/${path}/items/`,
-                                    "params": {
-                                        "targetUserId": userId,
-                                        "count": 16,
-                                        "scenario": "mobile-watch-next",
-                                        "returnProperties": true,
-                                        "includedProperties": [
-                                            "title_cn",
-                                            "duration",
-                                            "has_chinese_subtitle",
-                                            "is_uncensored_leak",
-                                            "dm"
-                                        ],
-                                        "cascadeCreate": true
-                                    }
-                                }],
-                                "distinctRecomms": true
-                            }),
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Referer": ""
-                            },
-                            method: 'POST'
-                        });log(result)
-                        miss.d.push({
-                            title: '推荐视频',
-                            url: miss.empty,
-                            col_type: 'text_center_1',
-                            extra: {
-                                lineVisible: false
-                            },
-                        })
-                        videoList.forEach(item => {
-                            miss.d.push({
-                                title: pdfh(item, '.lozad&&alt'),
-                                url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
-                                    const miss = $.require('hiker://page/Apollo')
-                                    miss.videoParse(MY_URL)
-                                    setResult(miss.d)
-                                    if (miss.taskList.length > 0) {
-                                        be(miss.taskList)
-                                    }
-                                }),
-                                pic_url: pdfh(item, '.lozad&&data-src') + '@Referer=' + miss.url,
-                                desc: pdfh(item, '.absolute&&Text'),
-                                col_type: 'movie_2'
-                            })
-                        })
-                */
+        /*var path = url.match(/\/(?!.*\/)(.*$)/) ? url.match(/\/(?!.*\/)(.*$)/)[1] : num;
+        var userId = pdfh(html, ".items-center.space-x-6&&a&&href").match(/\/(?!.*\/).*userId=(.*$)/)[1]
+        // 获取当前的 10 位 Unix 时间戳
+        let timestamp = Math.floor(Date.now() / 1000);
+        var sign;
+        var URL = `https://client-rapi-missav.recombee.com/missav-default/batch/?frontend_timestamp=${timestamp}&frontend_sign=${sign}`;
+
+        var result = fetch(URL, {
+            body: JSON.stringify({
+                "requests": [{
+                    "method": "POST",
+                    "path": `/recomms/items/${path}/items/`,
+                    "params": {
+                        "targetUserId": userId,
+                        "count": 16,
+                        "scenario": "mobile-watch-next",
+                        "returnProperties": true,
+                        "includedProperties": [
+                            "title_cn",
+                            "duration",
+                            "has_chinese_subtitle",
+                            "is_uncensored_leak",
+                            "dm"
+                        ],
+                        "cascadeCreate": true
+                    }
+                }],
+                "distinctRecomms": true
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: 'POST'
+        });
+        log(result)
+        const videoList = pdfa(html, '.grid.grid-cols-2.gap-5&&.relative')
+        miss.d.push({
+            title: '推荐视频',
+            url: miss.empty,
+            col_type: 'text_center_1',
+            extra: {
+                lineVisible: false
+            },
+        })
+        videoList.forEach(item => {
+            miss.d.push({
+                title: pdfh(item, '.lozad&&alt'),
+                url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
+                    const miss = $.require('hiker://page/Apollo')
+                    miss.videoParse(MY_URL)
+                    setResult(miss.d)
+                    if (miss.taskList.length > 0) {
+                        be(miss.taskList)
+                    }
+                }),
+                pic_url: pdfh(item, '.lozad&&data-src') + '@Referer=' + miss.url,
+                desc: pdfh(item, '.absolute&&Text'),
+                col_type: 'movie_2'
+            })
+        })*/
+        miss.d.push({
+            title: '““””' + "我是有底线的".fontcolor("grey")
+                .small(),
+            url: miss.empty,
+            col_type: "text_center_1",
+            extra: {
+                lineVisible: false
+            }
+        })
         setResult(miss.d)
     },
 
@@ -786,7 +814,7 @@ const miss = {
         })
         updateItem({
             pic_url: pdfh(actressesHtml, '.object-cover.object-top.w-full.h-full&&src'),
-            col_type: 'avatar',
+            //col_type: 'card_pic_3',
             extra: {
                 id: param.index
             }
