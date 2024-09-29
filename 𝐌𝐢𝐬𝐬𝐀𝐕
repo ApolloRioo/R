@@ -421,7 +421,7 @@ const miss = {
                 },
             })*/
             actressesList.forEach((actresses, index) => {
-                let title = "““””" + pdfh(actresses, 'a&&Text').fontcolor("#C71585")
+                let title = pdfh(actresses, 'a&&Text')
                 let url = pdfh(actresses, 'a&&href')
                 miss.taskList.push({
                     func: miss.updateAvatar,
@@ -432,7 +432,7 @@ const miss = {
                     id: 'avatar_' + index,
                 })
                 miss.d.push({
-                    title: title,
+                    title: "““””" + title.fontcolor("#C71585"),
                     desc: '演员',
                     pic_url: miss.empty,
                     url: $(url + '?page=fypage#noHistory#').rule((title) => {
