@@ -1,5 +1,5 @@
 const miss = {
-    version: "20241001",
+    version: "20240930",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -16,201 +16,168 @@ const miss = {
     baseParse: () => {
         const page = parseInt(MY_URL.split('##')[1])
         let categoryList = [{
+            title: '推荐',
+            path: '',
+            type: 'video',
+            sub: [{
                 title: '今日热门',
                 path: 'today-hot',
-                type: 'video',
-                sub: []
-            },
-            {
+            }, {
                 title: '本週热门',
                 path: 'weekly-hot',
-                type: 'video',
-                sub: []
-            },
-            {
+            }, {
                 title: '本月热门',
                 path: 'monthly-hot',
-                type: 'video',
-                sub: []
-            },
-            {
-                title: '中文字幕',
-                path: 'chinese-subtitle',
-                type: 'video',
-                sub: []
-            },
-            {
+            }, {
                 title: '最近更新',
                 path: 'new',
-                type: 'video',
-                sub: []
-            },
-            {
+            }, {
                 title: '新作上市',
                 path: 'release',
+            }]
+        }, {
+            title: '流出',
+            path: 'uncensored-leak',
+            type: 'video',
+            sub: []
+        }, {
+            title: '中字',
+            path: 'chinese-subtitle',
+            type: 'video',
+            sub: []
+        }, {
+            title: '素人',
+            path: '',
+            type: 'video',
+            sub: [{
+                    title: 'SIRO',
+                    path: 'siro'
+                },
+                {
+                    title: 'LUXU',
+                    path: 'luxu'
+                },
+                {
+                    title: 'GANA',
+                    path: 'gana'
+                },
+                {
+                    title: 'PRESTIGE PREMIUM',
+                    path: 'maan'
+                },
+                {
+                    title: 'S-CUTE',
+                    path: 'scute'
+                },
+                {
+                    title: 'ARA',
+                    path: 'ara'
+                },
+            ]
+        }, {
+            title: '无码',
+            path: '',
+            type: 'video',
+            sub: [{
+                title: 'FC2',
+                path: 'fc2'
+            }, {
+                title: 'HEYZO ',
+                path: 'heyzo'
+            }, {
+                title: '东京热',
+                path: 'tokyohot'
+            }, {
+                title: '一本道',
+                path: '1pondo'
+            }, {
+                title: 'Caribbeancom',
+                path: 'caribbeancom'
+            }, {
+                title: 'Caribbeancompr',
+                path: 'caribbeancompr'
+            }, {
+                title: '10musume',
+                path: '10musume'
+            }, {
+                title: 'pacopacomama',
+                path: 'pacopacomama'
+            }, {
+                title: 'Gachinco',
+                path: 'gachinco'
+            }, {
+                title: 'XXX-AV',
+                path: 'xxxav'
+            }, {
+                title: '人妻斩',
+                path: 'marriedslash'
+            }, {
+                title: '顽皮 4610',
+                path: 'naughty4610'
+            }, {
+                title: '顽皮 0930',
+                path: 'naughty0930'
+            }, ]
+        }, {
+            title: '国产',
+            path: '',
+            type: 'video',
+            sub: [{
+                title: '麻豆传媒',
+                path: 'madou'
+            }, {
+                title: 'TWAV',
+                path: 'twav'
+            }, {
+                title: 'Furuke',
+                path: 'furuke'
+            }, ]
+        }, {
+            title: 'VR',
+            path: 'genres/VR',
+            type: 'video',
+            sub: []
+        }, {
+            title: 'AV影评',
+            path: 'articles',
+            type: 'articles',
+            sub: []
+        }, {
+            title: '女优一览',
+            path: 'actresses',
+            type: 'avatar',
+            sub: []
+        }, {
+            title: '女优排行',
+            path: 'actresses/ranking',
+            type: 'avatar',
+            sub: []
+        }, {
+            title: '类型',
+            path: 'genres',
+            type: 'tags',
+            sub: []
+        }, {
+            title: '发行商',
+            path: 'makers',
+            type: 'tags',
+            sub: []
+        }, {
+            title: '更多',
+            path: '',
+            type: 'video',
+            sub: [{
+                title: 'Njav',
+                path: 'site/njav',
                 type: 'video',
-                sub: []
-            },
-            {
-                title: '素人',
-                path: '',
-                type: 'video',
-                sub: [{
-                        title: 'SIRO',
-                        path: 'siro'
-                    },
-                    {
-                        title: 'LUXU',
-                        path: 'luxu'
-                    },
-                    {
-                        title: 'GANA',
-                        path: 'gana'
-                    },
-                    {
-                        title: 'PRESTIGE PREMIUM',
-                        path: 'maan'
-                    },
-                    {
-                        title: 'S-CUTE',
-                        path: 'scute'
-                    },
-                    {
-                        title: 'ARA',
-                        path: 'ara'
-                    },
-                ]
-            },
-            {
-                title: '无码',
-                path: '',
-                type: 'video',
-                sub: [{
-                        title: '无码流出',
-                        path: 'uncensored-leak'
-                    },
-                    {
-                        title: 'FC2',
-                        path: 'fc2'
-                    },
-                    {
-                        title: 'HEYZO ',
-                        path: 'heyzo'
-                    },
-                    {
-                        title: '东京热',
-                        path: 'tokyohot'
-                    }, {
-                        title: '一本道',
-                        path: '1pondo'
-                    },
-                    {
-                        title: 'Caribbeancom',
-                        path: 'caribbeancom'
-                    },
-                    {
-                        title: 'Caribbeancompr',
-                        path: 'caribbeancompr'
-                    },
-                    {
-                        title: '10musume',
-                        path: '10musume'
-                    },
-                    {
-                        title: 'pacopacomama',
-                        path: 'pacopacomama'
-                    },
-                    {
-                        title: 'Gachinco',
-                        path: 'gachinco'
-                    },
-                    {
-                        title: 'XXX-AV',
-                        path: 'xxxav'
-                    },
-                    {
-                        title: '人妻斩',
-                        path: 'marriedslash'
-                    },
-                    {
-                        title: '顽皮 4610',
-                        path: 'naughty4610'
-                    },
-                    {
-                        title: '顽皮 0930',
-                        path: 'naughty0930'
-                    },
-                ]
-            },
-            {
-                title: '国产 AV',
-                path: '',
-                type: 'video',
-                sub: [{
-                        title: '麻豆传媒',
-                        path: 'madou'
-                    },
-                    {
-                        title: 'TWAV',
-                        path: 'twav'
-                    }, {
-                        title: 'Furuke',
-                        path: 'furuke'
-                    },
-                ]
-            },
-            {
-                title: 'VR',
-                path: 'genres/VR',
-                type: 'video',
-                sub: []
-            },
-            {
-                title: 'AV 影评',
-                path: 'articles',
-                type: 'articles',
-                sub: []
-            },
-            {
-                title: '女优一览',
-                path: 'actresses',
-                type: 'avatar',
-                sub: []
-            },
-            {
-                title: '女优排行',
-                path: 'actresses/ranking',
-                type: 'avatar',
-                sub: []
-            },
-            {
-                title: '类型',
-                path: 'genres',
-                type: 'tags',
-                sub: []
-            },
-            {
-                title: '发行商',
-                path: 'makers',
-                type: 'tags',
                 sub: []
             }, {
-                title: '更多',
-                path: '',
+                title: 'Supjav',
+                path: 'site/supjav',
                 type: 'video',
-                sub: [{
-                    title: 'Njav',
-                    path: 'site/njav',
-                    type: 'video',
-                    sub: []
-                }, {
-                    title: 'Supjav',
-                    path: 'site/supjav',
-                    type: 'video',
-                    sub: []
-                }, ]
-            },
-        ]
+                sub: []
+            }, ]
+        }, ]
         const currentCate = categoryList[miss.data.category]
         let url
         const type = currentCate.type
@@ -361,7 +328,7 @@ const miss = {
             let current_title = pdfh(item, 'span&&Text')
             let actressName = '女优'
             if (current_title === '番号:') {
-                num = pdfh(item, '.font-medium&&Text').replace("-UNCENSORED-LEAK","").replace("-CHINESE-SUBTITLE","")
+                num = pdfh(item, '.font-medium&&Text').replace("-UNCENSORED-LEAK", "").replace("-CHINESE-SUBTITLE", "")
             } else if (current_title === actressName + ':') {
                 actressesList = pdfa(item, '.text-secondary&&a')
             } else if (current_title === '类型:') {
