@@ -1,5 +1,5 @@
 const miss = {
-    version: "20240930",
+    version: "20241001",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -347,7 +347,7 @@ const miss = {
         if (日期.trim() != "") {
             miss.d.push({
                 title: '‘‘’’' + 日期.fontcolor("#FF0000"),
-                url: 'hiker://empty',
+                url: "hiker://search?rule=𝐉𝐚𝐯𝐃𝐁&s=" + num,
                 col_type: 'text_1',
                 extra: {
                     lineVisiable: false
@@ -669,11 +669,11 @@ const miss = {
                     },
                 })
             }
-            BTlist.forEach(item => {
+            BTlist.forEach((item, index) => {
                 var url = getMyVar("BTcili");
                 miss.d.push({
                     title: '<b><small><font color="#4682B4"> ' + pdfh(item, 'a&&title') + '</font></small>',
-                    desc: pdfh(item, '.size-date&&Text').replace(" / Convert Date", "📆"),
+                    desc: (index + 1).toString().padStart(2, "0") + "\t💽" + pdfh(item, '.size-date&&Text').replace(" / Convert Date", "📆"),
                     img: "https://img.vinua.cn/images/Ocqpj.png",
                     url: "https:" + pdfh(item, 'a&&href') + $('').lazyRule(() => {
                         var url = pdfh(request(input, {}), '#magnetOpen&&a&&href');
