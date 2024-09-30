@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240930,
+    version: 20241001,
     empty: "hiker://empty",
     url: "https://www.redtube.com",
     d: [],
@@ -237,8 +237,13 @@ const Apollo = {
     //两开花分类
     DynamicSort: (url, html) => {
         if (getMyVar("MY_TYPE") == "主页") {
-            var 分类列表 = 'body&&.videos_sorting_list_item:not(:matches(Language))||.overlay_menu_item:has(.language_list_name)'
-            var 大类列表 = 分类列表;
+            if (url.includes("channel")) {
+                var 分类列表 = '.tm_sorting_dropdown&&li';
+                var 大类列表 = 分类列表;
+            } else {
+                var 分类列表 = 'body&&.videos_sorting_list_item:not(:matches(Language))||.overlay_menu_item:has(.language_list_name)'
+                var 大类列表 = 分类列表;
+            }
         } else {
             if (url.includes("/redtube/")) {
                 var 分类列表 = '.tm_sorting_dropdown&&.videos_sorting_list_item';
@@ -352,7 +357,7 @@ const Apollo = {
             setLists(lists, getMyVar(Apollo.data.category, '0'));
         } else {
             setTabs(tabs, "0");
-            setLists(lists, getMyVar("ysort","0"));
+            setLists(lists, getMyVar("ysort", "0"));
         }
     },
     //一级视频列表
