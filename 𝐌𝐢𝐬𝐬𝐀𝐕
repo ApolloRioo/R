@@ -1,5 +1,5 @@
 const miss = {
-    version: "20240930",
+    version: "20241001",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -361,7 +361,7 @@ const miss = {
             let current_title = pdfh(item, 'span&&Text')
             let actressName = '女优'
             if (current_title === '番号:') {
-                num = pdfh(item, '.font-medium&&Text')
+                num = pdfh(item, '.font-medium&&Text').replace("-UNCENSORED-LEAK","").replace("-CHINESE-SUBTITLE","")
             } else if (current_title === actressName + ':') {
                 actressesList = pdfa(item, '.text-secondary&&a')
             } else if (current_title === '类型:') {
@@ -594,15 +594,18 @@ const miss = {
         }
 
         const CiliList = pdfa(html, '.min-w-full&&tr')
-
-        miss.d.push({
-            title: CiliList.length > 0 ? '磁力下载' + CiliList.length + "条" : "本站暂时没有磁力资源",
-            url: miss.empty,
-            col_type: 'text_center_1',
-            extra: {
-                lineVisible: false
-            },
-        })
+        if (CiliList.length > 0) {
+            miss.d.push({
+                title: '本小站磁力' + CiliList.length + "条",
+                url: miss.empty,
+                col_type: 'text_center_1',
+                extra: {
+                    lineVisible: false
+                },
+            })
+        } else {
+            miss.BTshowParse(num);
+        }
         CiliList.forEach((item, index) => {
             miss.d.push({
                 title: pdfh(item, 'a&&Text'),
@@ -685,7 +688,36 @@ const miss = {
         setResult(miss.d)
     },
 
-
+    BTshowParse: (识别码) => {
+        try {
+            var btsow = "https://btsow.com/search/" + 识别码
+            var BTlist = pdfa(fetch(btsow), "body&&.data-list&&.row,1:");
+            if (BTlist.length > 0) {
+                miss.d.push({
+                    title: 'BTshow磁力' + BTlist.length + "条",
+                    url: btsow,
+                    col_type: 'text_center_1',
+                    extra: {
+                        lineVisible: false
+                    },
+                })
+            }
+            BTlist.forEach(item => {
+                var url = getMyVar("BTcili");
+                miss.d.push({
+                    title: '<b><small><font color="#4682B4"> ' + pdfh(item, 'a&&title') + '</font></small>',
+                    desc: pdfh(item, '.size-date&&Text').replace(" / Convert Date", "📆"),
+                    img: "https://img.vinua.cn/images/Ocqpj.png",
+                    url: "https:" + pdfh(item, 'a&&href') + $('').lazyRule(() => {
+                        var url = pdfh(request(input, {}), '#magnetOpen&&a&&href');
+                        putMyVar("BTcili", url)
+                        return url
+                    }),
+                    col_type: "avatar",
+                })
+            })
+        } catch {}
+    },
     avatarParse: (url) => {
         const html = fetch(url, {
             headers: {
