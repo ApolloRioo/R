@@ -1,4 +1,4 @@
-const miss = {
+const Apollo = {
     version: "20241001",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
@@ -36,49 +36,18 @@ const miss = {
                 path: 'release',
             }]
         }, {
-            title: '流出',
-            path: 'uncensored-leak',
-            type: 'video',
-            sub: []
-        }, {
             title: '中字',
             path: 'chinese-subtitle',
             type: 'video',
             sub: []
         }, {
-            title: '素人',
-            path: '',
-            type: 'video',
-            sub: [{
-                    title: 'SIRO',
-                    path: 'siro'
-                },
-                {
-                    title: 'LUXU',
-                    path: 'luxu'
-                },
-                {
-                    title: 'GANA',
-                    path: 'gana'
-                },
-                {
-                    title: 'PRESTIGE PREMIUM',
-                    path: 'maan'
-                },
-                {
-                    title: 'S-CUTE',
-                    path: 'scute'
-                },
-                {
-                    title: 'ARA',
-                    path: 'ara'
-                },
-            ]
-        }, {
             title: '无码',
             path: '',
             type: 'video',
             sub: [{
+                title: '流出',
+                path: 'uncensored-leak'
+            }, {
                 title: 'FC2',
                 path: 'fc2'
             }, {
@@ -118,6 +87,35 @@ const miss = {
                 title: '顽皮 0930',
                 path: 'naughty0930'
             }, ]
+        }, {
+            title: '素人',
+            path: '',
+            type: 'video',
+            sub: [{
+                    title: 'SIRO',
+                    path: 'siro'
+                },
+                {
+                    title: 'LUXU',
+                    path: 'luxu'
+                },
+                {
+                    title: 'GANA',
+                    path: 'gana'
+                },
+                {
+                    title: 'PRESTIGE PREMIUM',
+                    path: 'maan'
+                },
+                {
+                    title: 'S-CUTE',
+                    path: 'scute'
+                },
+                {
+                    title: 'ARA',
+                    path: 'ara'
+                },
+            ]
         }, {
             title: '国产',
             path: '',
@@ -169,32 +167,28 @@ const miss = {
             sub: [{
                 title: 'Njav',
                 path: 'site/njav',
-                type: 'video',
-                sub: []
             }, {
                 title: 'Supjav',
                 path: 'site/supjav',
-                type: 'video',
-                sub: []
             }, ]
         }, ]
-        const currentCate = categoryList[miss.data.category]
+        const currentCate = categoryList[Apollo.data.category]
         let url
         const type = currentCate.type
         const path = currentCate.path
         if (currentCate.sub.length > 0) {
-            url = miss.url + currentCate.sub[miss.data.subCate].path
+            url = Apollo.url + currentCate.sub[Apollo.data.subCate].path
         } else {
-            url = miss.url + currentCate.path
+            url = Apollo.url + currentCate.path
         }
         url += '?page=' + page
         log(url)
         if (page === 1) {
             categoryList.forEach((cate, index) => {
-                miss.d.push({
-                    title: parseInt(miss.data.category) === index ?
+                Apollo.d.push({
+                    title: parseInt(Apollo.data.category) === index ?
                         '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
-                    url: $(miss.empty + "#noLoading#").lazyRule((index) => {
+                    url: $(Apollo.empty + "#noLoading#").lazyRule((index) => {
                         putMyVar("MissAV.category", index.toString())
                         putMyVar("MissAV.subCate", '0')
                         refreshPage(true)
@@ -204,15 +198,15 @@ const miss = {
                 })
             })
             if (currentCate.sub.length > 0) {
-                miss.d.push({
+                Apollo.d.push({
                     col_type: 'blank_block',
                 })
                 currentCate.sub.forEach((cate, index) => {
-                    miss.d.push({
-                        title: parseInt(miss.data.subCate) === index ?
+                    Apollo.d.push({
+                        title: parseInt(Apollo.data.subCate) === index ?
                             '‘‘’’<strong><font color="#ff1493">' + cate.title +
                             '</font></strong>' : cate.title,
-                        url: $(miss.empty + "#noLoading#").lazyRule((index) => {
+                        url: $(Apollo.empty + "#noLoading#").lazyRule((index) => {
                             putMyVar("MissAV.subCate", index.toString())
                             refreshPage(true)
                             return "hiker://empty"
@@ -229,43 +223,43 @@ const miss = {
         })
         switch (type) {
             case 'video':
-                miss.videoType(html)
+                Apollo.videoType(html)
                 break
             case 'articles':
-                miss.articlesType(html)
+                Apollo.articlesType(html)
                 break
             case 'avatar':
                 if ((path === 'actresses/ranking' && page === 1) || path !== 'actresses/ranking') {
-                    miss.avatarType(html)
+                    Apollo.avatarType(html)
                 }
                 break
             case 'tags':
-                miss.tagsType(html)
+                Apollo.tagsType(html)
                 break
             default:
-                miss.videoType(html)
+                Apollo.videoType(html)
         }
-        setResult(miss.d)
+        setResult(Apollo.d)
     },
 
 
     searchParse: () => {
         if (MY_URL.includes("page=1")) {
-            miss.d.push({
+            Apollo.d.push({
                 title: "——女优——",
                 url: "hiker://empty"
             });
-            miss.avatarType(getResCode());
+            Apollo.avatarType(getResCode());
 
-            miss.d.push({
+            Apollo.d.push({
                 title: "——影片——",
                 url: "hiker://empty"
             });
-            miss.videoType2(getResCode());
+            Apollo.videoType2(getResCode());
         } else {
-            miss.videoType(getResCode());
+            Apollo.videoType(getResCode());
         }
-        setResult(miss.d)
+        setResult(Apollo.d)
     },
 
     videoParse: (url) => {
@@ -278,7 +272,7 @@ const miss = {
         log(url)
         setPageTitle(title)
 
-        miss.d.push({
+        Apollo.d.push({
             title: '““””' + title.fontcolor("#D2691E").small(),
             url: url,
             col_type: 'text_1',
@@ -286,10 +280,10 @@ const miss = {
                 lineVisiable: false
             }
         })
-        miss.d.push({
+        Apollo.d.push({
             desc: pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text'),
-            pic_url: pdfh(html, 'meta[property=og:image]&&content') + '@Referer=' + miss.url,
-            url: $(miss.empty + '#noHistory#').lazyRule((html, url) => {
+            pic_url: pdfh(html, 'meta[property=og:image]&&content') + '@Referer=' + Apollo.url,
+            url: $(Apollo.empty + '#noHistory#').lazyRule((html, url) => {
                 eval(html.match(/eval.*?\n/)[0])
                 // 获取画质列表，并去最高画质
                 let group_quality = fetch(source, {
@@ -307,12 +301,12 @@ const miss = {
                     })
                 };
                 return playlist;
-            }, html, miss.url),
+            }, html, Apollo.url),
             col_type: 'pic_1_full',
         })
         var content = pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text');
         if (content.trim() != "") {
-            miss.d.push({
+            Apollo.d.push({
                 title: content.small().fontcolor("#2E8B57"),
                 url: 'hiker://empty',
                 col_type: 'rich_text',
@@ -343,9 +337,9 @@ const miss = {
                 labelsList = pdfa(item, '.text-secondary&&a')
             }
         })
-        var 日期 = pdfh(html, 'body&&.text-secondary:matches(日期)&&Text');
+        var 日期 = pdfh(html, 'body&&.text-secondary:matches(发行日期:)&&Text');
         if (日期.trim() != "") {
-            miss.d.push({
+            Apollo.d.push({
                 title: '‘‘’’' + 日期.fontcolor("#FF0000"),
                 url: "hiker://search?rule=𝐉𝐚𝐯𝐃𝐁&s=" + num,
                 col_type: 'text_1',
@@ -355,7 +349,7 @@ const miss = {
             })
         }
         if (num) {
-            miss.d.push({
+            Apollo.d.push({
                 title: "““””番号 : " + num.fontcolor("#1E90FF"),
                 url: 'copy://' + num,
                 col_type: 'text_1',
@@ -366,7 +360,7 @@ const miss = {
         }
         var 标题 = pdfh(html, 'body&&.text-secondary:matches(标题)&&Text');
         if (标题.trim() != "") {
-            miss.d.push({
+            Apollo.d.push({
                 title: 标题.fontcolor("#008B8B").small(),
                 url: 'hiker://empty',
                 col_type: 'rich_text',
@@ -375,38 +369,30 @@ const miss = {
                 }
             })
         }
-        miss.d.push({
+        Apollo.d.push({
             col_type: 'line_blank'
         })
         if (actressesList) {
-            /*miss.d.push({
-                title: '演员',
-                url: miss.empty,
-                col_type: 'text_center_1',
-                extra: {
-                    lineVisible: false
-                },
-            })*/
             actressesList.forEach((actresses, index) => {
                 let title = pdfh(actresses, 'a&&Text')
                 let url = pdfh(actresses, 'a&&href')
-                miss.taskList.push({
-                    func: miss.updateAvatar,
+                Apollo.taskList.push({
+                    func: Apollo.updateAvatar,
                     param: {
                         url: url,
                         index: 'avatar_' + index
                     },
                     id: 'avatar_' + index,
                 })
-                miss.d.push({
+                Apollo.d.push({
                     title: "““””" + title.fontcolor("#C71585"),
                     desc: '演员',
-                    pic_url: miss.empty,
+                    pic_url: Apollo.empty,
                     url: $(url + '?page=fypage#noHistory#').rule((title) => {
-                        const miss = $.require('hiker://page/Apollo')
+                        const Apollo = $.require('hiker://page/Apollo')
                         setPageTitle(title)
-                        miss.avatarParse(MY_URL)
-                        setResult(miss.d)
+                        Apollo.avatarParse(MY_URL)
+                        setResult(Apollo.d)
                     }, title),
                     col_type: 'icon_4_card',
                     extra: {
@@ -414,14 +400,14 @@ const miss = {
                     }
                 })
             })
-            miss.d.push({
+            Apollo.d.push({
                 col_type: 'line_blank'
             })
         }
         if (tagsList) {
-            miss.d.push({
+            Apollo.d.push({
                 title: '类型 : ',
-                url: miss.empty,
+                url: Apollo.empty,
                 col_type: 'flex_button',
                 extra: {
                     lineVisible: false
@@ -429,110 +415,110 @@ const miss = {
             })
             tagsList.forEach(tag => {
                 let tag_title = pdfh(tag, 'a&&Text')
-                miss.d.push({
+                Apollo.d.push({
                     title: tag_title,
                     url: $(pdfh(tag, 'a&&href') + '?page=fypage#noHistory#').rule((tag_title) => {
-                        const miss = $.require('hiker://page/Apollo')
+                        const Apollo = $.require('hiker://page/Apollo')
                         setPageTitle(tag_title)
-                        miss.tagsParse(MY_URL)
-                        setResult(miss.d)
+                        Apollo.tagsParse(MY_URL)
+                        setResult(Apollo.d)
                     }, tag_title),
                     col_type: 'flex_button',
                     extra: {
-                        'backgroundColor': miss.getRangeColors()
+                        'backgroundColor': Apollo.getRangeColors()
                     }
                 })
             })
 
-            miss.d.push({
+            Apollo.d.push({
                 col_type: 'line_blank'
             })
         }
         if (series) {
-            miss.d.push({
+            Apollo.d.push({
                 title: '系列 : ',
-                url: miss.empty,
+                url: Apollo.empty,
                 col_type: 'scroll_button',
                 extra: {
                     lineVisible: false
                 },
             })
             let series_title = pdfh(series, 'a&&Text')
-            miss.d.push({
+            Apollo.d.push({
                 title: series_title,
                 url: $(pdfh(series, 'a&&href') + '?page=fypage#noHistory#').rule((series_title) => {
-                    const miss = $.require('hiker://page/Apollo')
+                    const Apollo = $.require('hiker://page/Apollo')
                     setPageTitle(series_title)
-                    miss.tagsParse(MY_URL)
-                    setResult(miss.d)
+                    Apollo.tagsParse(MY_URL)
+                    setResult(Apollo.d)
                 }, series_title),
                 col_type: 'scroll_button',
                 extra: {
-                    'backgroundColor': miss.getRangeColors()
+                    'backgroundColor': Apollo.getRangeColors()
                 }
             })
-            miss.d.push({
+            Apollo.d.push({
                 col_type: 'line_blank'
             })
         }
         if (makers) {
-            miss.d.push({
+            Apollo.d.push({
                 title: '发行商 : ',
-                url: miss.empty,
+                url: Apollo.empty,
                 col_type: 'scroll_button',
                 extra: {
                     lineVisible: false
                 },
             })
             let makers_title = pdfh(makers, 'a&&Text')
-            miss.d.push({
+            Apollo.d.push({
                 title: makers_title,
                 url: $(pdfh(makers, 'a&&href') + '?page=fypage#noHistory#').rule((makers_title) => {
-                    const miss = $.require('hiker://page/Apollo')
+                    const Apollo = $.require('hiker://page/Apollo')
                     setPageTitle(makers_title)
-                    miss.tagsParse(MY_URL)
-                    setResult(miss.d)
+                    Apollo.tagsParse(MY_URL)
+                    setResult(Apollo.d)
                 }, makers_title),
                 col_type: 'scroll_button',
                 extra: {
-                    'backgroundColor': miss.getRangeColors()
+                    'backgroundColor': Apollo.getRangeColors()
                 }
             })
-            /*miss.d.push({
+            /*Apollo.d.push({
                 col_type: 'line_blank'
             })*/
         }
         if (directors) {
-            miss.d.push({
+            Apollo.d.push({
                 title: '导演 : ',
-                url: miss.empty,
+                url: Apollo.empty,
                 col_type: 'scroll_button',
                 extra: {
                     lineVisible: false
                 },
             })
             let directors_title = pdfh(directors, 'a&&Text')
-            miss.d.push({
+            Apollo.d.push({
                 title: directors_title,
                 url: $(pdfh(directors, 'a&&href') + '?page=fypage#noHistory#').rule((directors_title) => {
-                    const miss = $.require('hiker://page/Apollo')
+                    const Apollo = $.require('hiker://page/Apollo')
                     setPageTitle(directors_title)
-                    miss.tagsParse(MY_URL)
-                    setResult(miss.d)
+                    Apollo.tagsParse(MY_URL)
+                    setResult(Apollo.d)
                 }, directors_title),
                 col_type: 'scroll_button',
                 extra: {
-                    'backgroundColor': miss.getRangeColors()
+                    'backgroundColor': Apollo.getRangeColors()
                 }
             })
-            miss.d.push({
+            Apollo.d.push({
                 col_type: 'line_blank'
             })
         }
         if (labelsList) {
-            miss.d.push({
+            Apollo.d.push({
                 title: '标签 : ',
-                url: miss.empty,
+                url: Apollo.empty,
                 col_type: 'scroll_button',
                 extra: {
                     lineVisible: false
@@ -540,44 +526,44 @@ const miss = {
             })
             labelsList.forEach(label => {
                 let label_title = pdfh(label, 'a&&Text')
-                miss.d.push({
+                Apollo.d.push({
                     title: label_title,
                     url: $(pdfh(label, 'a&&href') + '?page=fypage#noHistory#').rule((
                         label_title) => {
-                        const miss = $.require('hiker://page/Apollo')
+                        const Apollo = $.require('hiker://page/Apollo')
                         setPageTitle(label_title)
-                        miss.tagsParse(MY_URL)
-                        setResult(miss.d)
+                        Apollo.tagsParse(MY_URL)
+                        setResult(Apollo.d)
                     }, label_title),
                     col_type: 'scroll_button',
                     extra: {
-                        'backgroundColor': miss.getRangeColors()
+                        'backgroundColor': Apollo.getRangeColors()
                     }
                 })
             })
-            miss.d.push({
+            Apollo.d.push({
                 col_type: 'line_blank'
             })
         }
 
         const CiliList = pdfa(html, '.min-w-full&&tr')
         if (CiliList.length > 0) {
-            miss.d.push({
+            Apollo.d.push({
                 title: '本小站磁力' + CiliList.length + "条",
-                url: miss.empty,
+                url: Apollo.empty,
                 col_type: 'text_center_1',
                 extra: {
                     lineVisible: false
                 },
             })
         } else {
-            miss.BTshowParse(num);
+            Apollo.BTshowParse(num);
         }
         CiliList.forEach((item, index) => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, 'a&&Text'),
                 url: pdfh(item, 'a&&href'),
-                desc: (index + 1).toString().padStart(2, "0") + "\t💽" + pdfh('<table>' + item + '</table>', 'td,1&&Text') + "📆" + pdfh('<table>' + item + '</table>', 'td,2&&Text'),
+                desc: (index + 1).toString().padStart(2, "0") + "\t💽" + Apollo.formatNumber(pdfh('<table>' + item + '</table>', 'td,1&&Text')) + "📆" + pdfh('<table>' + item + '</table>', 'td,2&&Text'),
                 pic_url: "https://img.vinua.cn/images/Ooz4R.jpeg",
                 col_type: 'avatar'
             })
@@ -619,48 +605,65 @@ const miss = {
         });
         log(result)
         const videoList = pdfa(html, '.grid.grid-cols-2.gap-5&&.relative')
-        miss.d.push({
+        Apollo.d.push({
             title: '推荐视频',
-            url: miss.empty,
+            url: Apollo.empty,
             col_type: 'text_center_1',
             extra: {
                 lineVisible: false
             },
         })
         videoList.forEach(item => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, '.lozad&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
-                    const miss = $.require('hiker://page/Apollo')
-                    miss.videoParse(MY_URL)
-                    setResult(miss.d)
-                    if (miss.taskList.length > 0) {
-                        be(miss.taskList)
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                    if (Apollo.taskList.length > 0) {
+                        be(Apollo.taskList)
                     }
                 }),
-                pic_url: pdfh(item, '.lozad&&data-src') + '@Referer=' + miss.url,
+                pic_url: pdfh(item, '.lozad&&data-src') + '@Referer=' + Apollo.url,
                 desc: pdfh(item, '.absolute&&Text'),
                 col_type: 'movie_2'
             })
         })*/
-        miss.d.push({
+        Apollo.d.push({
             title: '““””' + "我是有底线的".fontcolor("grey")
                 .small(),
-            url: miss.empty,
+            url: Apollo.empty,
             col_type: "text_center_1",
             extra: {
                 lineVisible: false
             }
         })
-        setResult(miss.d)
+        setResult(Apollo.d)
     },
-
+    formatNumber: function(input) {
+        // 分离整数、小数和单位
+        var regex = /(\d+)(\.\d+)?([a-zA-Z]+)/;
+        var match = input.match(regex);
+        if (match) {
+            var integerPart = match[1].toString(); // 获取整数部分
+            var decimalPart = match[2] ? match[2].slice(1).toString() : '0'; // 如果没小数部分，默认为 '0'
+            var unitPart = match[3]; // 获取单位部分              
+            // 对整数部分进行补零
+            integerPart = integerPart.padStart(2, '0');
+            // 对小数部分进行补零  
+            decimalPart = decimalPart.padEnd(2, '0');
+            // 合并结果
+            return integerPart + '.' + decimalPart + unitPart;
+        } else {
+            return input
+        }
+    },
     BTshowParse: (识别码) => {
         try {
-            var btsow = "https://btsow.com/search/" + 识别码
-            var BTlist = pdfa(fetch(btsow), "body&&.data-list&&.row,1:");
+            var btsow = "https://btsow.motorcycles/search/" + 识别码
+            var BTlist = pdfa(fetch(btsow), "body&&.data-list&&.row:not(.hidden-xs)");
             if (BTlist.length > 0) {
-                miss.d.push({
+                Apollo.d.push({
                     title: 'BTshow磁力' + BTlist.length + "条",
                     url: btsow,
                     col_type: 'text_center_1',
@@ -671,9 +674,9 @@ const miss = {
             }
             BTlist.forEach((item, index) => {
                 var url = getMyVar("BTcili");
-                miss.d.push({
+                Apollo.d.push({
                     title: '<b><small><font color="#4682B4"> ' + pdfh(item, 'a&&title') + '</font></small>',
-                    desc: (index + 1).toString().padStart(2, "0") + "\t💽" + pdfh(item, '.size-date&&Text').replace(" / Convert Date", "📆"),
+                    desc: (index + 1).toString().padStart(2, "0") + "\t💽" + Apollo.formatNumber(pdfh(item, '.size&&Text')) + "📆" + pdfh(item, '.date&&Text'),
                     img: "https://img.vinua.cn/images/Ocqpj.png",
                     url: "https:" + pdfh(item, 'a&&href') + $('').lazyRule(() => {
                         var url = pdfh(request(input, {}), '#magnetOpen&&a&&href');
@@ -685,13 +688,14 @@ const miss = {
             })
         } catch {}
     },
+
     avatarParse: (url) => {
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
-        miss.videoType(html)
+        Apollo.videoType(html)
     },
 
 
@@ -701,24 +705,24 @@ const miss = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
-        miss.videoType(html)
+        Apollo.videoType(html)
     },
 
 
     videoType: (html) => {
         const list = pdfa(html, '.grid&&.relative')
         list.forEach(item => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, '.lozad&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
-                    const miss = $.require('hiker://page/Apollo')
-                    miss.videoParse(MY_URL)
-                    setResult(miss.d)
-                    if (miss.taskList.length > 0) {
-                        be(miss.taskList)
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                    if (Apollo.taskList.length > 0) {
+                        be(Apollo.taskList)
                     }
                 }),
-                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + miss.url,
+                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + Apollo.url,
                 desc: pdfh(item, 'a&&alt').toUpperCase().replace("-CHINESE-SUBTITLE", "🀄️").replace("-UNCENSORED-LEAK", "🈚️") + "⏰" + pdfh(item, '.absolute,-1&&Text'),
                 col_type: 'movie_2'
             })
@@ -729,17 +733,17 @@ const miss = {
     videoType2: (html) => {
         const list = pdfa(html, 'body&&.thumbnail')
         list.forEach(item => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, '.lozad&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
-                    const miss = $.require('hiker://page/Apollo')
-                    miss.videoParse(MY_URL)
-                    setResult(miss.d)
-                    if (miss.taskList.length > 0) {
-                        be(miss.taskList)
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                    if (Apollo.taskList.length > 0) {
+                        be(Apollo.taskList)
                     }
                 }),
-                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + miss.url,
+                pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + Apollo.url,
                 desc: pdfh(item, 'a&&alt').toUpperCase() + "⏰" + pdfh(item, '.absolute,-1&&Text'),
                 col_type: 'movie_2'
             })
@@ -749,22 +753,22 @@ const miss = {
     articlesType: (html) => {
         const list = pdfa(html, '.grid&&.rounded-lg')
         list.forEach(item => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, 'img&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
-                    const miss = $.require('hiker://page/Apollo')
+                    const Apollo = $.require('hiker://page/Apollo')
                     const html = fetch(MY_URL, {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                         }
                     })
-                    miss.d.push({
+                    Apollo.d.push({
                         title: pdfh(html, 'article&&Html'),
                         col_type: 'rich_text'
                     })
-                    setResult(miss.d)
+                    setResult(Apollo.d)
                 }),
-                pic_url: pdfh(item, 'img&&data-src') + '@Referer=' + miss.url,
+                pic_url: pdfh(item, 'img&&data-src') + '@Referer=' + Apollo.url,
                 col_type: 'movie_2'
             })
         })
@@ -774,15 +778,15 @@ const miss = {
     avatarType: (html) => {
         const list = pdfa(html, '.mx-auto.grid&&li')
         list.forEach(item => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, 'h4&&Text'),
                 url: $(pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule(() => {
-                    const miss = $.require('hiker://page/Apollo')
-                    miss.avatarParse(MY_URL)
-                    setResult(miss.d)
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.avatarParse(MY_URL)
+                    setResult(Apollo.d)
                 }),
                 desc: pdfh(item, '.text-nord10&&Text'),
-                pic_url: pdfh(item, 'img&&src') + '@Referer=' + miss.url,
+                pic_url: pdfh(item, 'img&&src') + '@Referer=' + Apollo.url,
                 col_type: 'icon_round_4'
             })
         })
@@ -792,12 +796,12 @@ const miss = {
     tagsType: (html) => {
         const list = pdfa(html, '.gap-4&&div')
         list.forEach(item => {
-            miss.d.push({
+            Apollo.d.push({
                 title: pdfh(item, 'a&&Text'),
                 url: $(pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule(() => {
-                    const miss = $.require('hiker://page/Apollo')
-                    miss.tagsParse(MY_URL)
-                    setResult(miss.d)
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.tagsParse(MY_URL)
+                    setResult(Apollo.d)
                 }),
                 col_type: 'text_4'
             })
@@ -820,4 +824,4 @@ const miss = {
         })
     },
 }
-$.exports = miss
+$.exports = Apollo
