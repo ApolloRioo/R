@@ -109,12 +109,10 @@ translate.google.com,translate.homegu.com##.VlPnLc
 translate.google.com,translate.homegu.com##.OwOEge
 
 ! 2024年10月1日 https://www.deepl.com
-www.deepl.com##.forced-colors-mode-border.AppBanner-module--banner--7aa19
-www.deepl.com##.relative.bg-neutral-next-50 > .hidden.mobile\:block
+www.deepl.com##.forced-colors-mode-border
+www.deepl.com##.py-3.border-t.border-e.gap-2.justify-center.hidden.bg-neutral-next-50.border-neutral-next-100
 www.deepl.com##footer
-www.deepl.com##.max-md\:flex.py-3.px-\[20px\].border-t.border-e.gap-2.justify-center.hidden.bg-neutral-next-50.border-neutral-next-100
-www.deepl.com##.mobile\:bg-neutral-next-50.\[\.taco210_\&\]\:md\:px-7.\[\.taco210_\&\]\:px-5.max-md\:px-5.px-10.border-neutral-next-100.border-b-1.BasePageHeader-module--container--d81cb.min-h-\[61px\].h-fit.z-\[999\]
-
+www.deepl.com##.relative.bg-neutral-next-50 > .hidden
 
 ! 2024-03-05 http://net.ljxnet.cn
 net.ljxnet.cn,net.netart.cn##.header.el-header
