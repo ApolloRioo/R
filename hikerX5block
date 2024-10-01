@@ -108,11 +108,11 @@ translate.google.com,translate.homegu.com##.VjFXz
 translate.google.com,translate.homegu.com##.VlPnLc
 translate.google.com,translate.homegu.com##.OwOEge
 
-! 2024年10月1日 https://www.deepl.com
+! DeepL翻译 https://www.deepl.com
 www.deepl.com##.forced-colors-mode-border
 www.deepl.com##.py-3.border-t.border-e.gap-2.justify-center.hidden.bg-neutral-next-50.border-neutral-next-100
 www.deepl.com##footer
-www.deepl.com##.relative.bg-neutral-next-50 > .hidden
+
 
 ! 2024-03-05 http://net.ljxnet.cn
 net.ljxnet.cn,net.netart.cn##.header.el-header
