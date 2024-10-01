@@ -3,7 +3,7 @@ const Apollo = {
     empty: "hiker://empty",
     url: "https://www.redtube.com",
     d: [],
-    addPage: function(url, currentPage, lastPage) {
+    MovePageTo: function(url, currentPage, lastPage) {
         if (!currentPage) {
             currentPage = getMyVar("page") ? Number(getMyVar("page")) + Number(MY_PAGE) - 1 : MY_PAGE
         }
@@ -11,7 +11,7 @@ const Apollo = {
             lastPage = "未知"
         }
         var longClick = {
-            title: '【跳页】【当前=' + currentPage + '>' + lastPage + '】',
+            title: '跳页【当前' + currentPage + ' => ' + lastPage + '】',
             js: $.toString((lastPage, url) => {
                     return $('', '正确的页码：1=>' + lastPage)
                         .input((url, lastPage) => {
@@ -56,12 +56,6 @@ const Apollo = {
         clearMyVar("ypage");
         clearMyVar("yurl");
         clearMyVar("ysort");
-        /* clearMyVar("ysort0");
-         clearMyVar("ysort1");
-         clearMyVar("ysort2");
-         clearMyVar("ysort3");
-         clearMyVar("ysort4");
-         clearMyVar("ysort5");*/
         const page = parseInt(MY_URL.split('##')[2])
         let categoryList = [{
             "title": "Recommended",
@@ -425,7 +419,7 @@ const Apollo = {
                             var trans = Apollo.translate(title);
                             return `confirm://${trans}.js: 'hiker://empty' `
                         }, title)
-                    }, Apollo.addPage(url, currentPage, lastPage)] : ""
+                    }, Apollo.MovePageTo(url, currentPage, lastPage)] : ""
                 }
             })
         })
@@ -489,7 +483,7 @@ const Apollo = {
                             var trans = Apollo.translate(title);
                             return `confirm://${trans}.js: 'hiker://empty' `
                         }, title)
-                    }, Apollo.addPage(url)]
+                    }, Apollo.MovePageTo(url)]
                 },
                 col_type: "movie_2",
             })
@@ -520,7 +514,7 @@ const Apollo = {
                             var trans = Apollo.translate(title);
                             return `confirm://${trans}.js: 'hiker://empty' `
                         }, title)
-                    }, Apollo.addPage(url)]
+                    }, Apollo.MovePageTo(url)]
                 },
                 col_type: "movie_3",
             })
