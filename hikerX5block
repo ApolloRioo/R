@@ -112,6 +112,7 @@ translate.google.com,translate.homegu.com##.OwOEge
 www.deepl.com##.forced-colors-mode-border
 www.deepl.com##.py-3.border-t.border-e.gap-2.justify-center.hidden.bg-neutral-next-50.border-neutral-next-100
 www.deepl.com##footer
+www.deepl.com##.relative.bg-neutral-next-50 > .hidden.mobile\:block
 
 
 ! 2024-03-05 http://net.ljxnet.cn
