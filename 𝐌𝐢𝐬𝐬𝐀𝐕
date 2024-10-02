@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241002",
+    version: "202410021",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -339,7 +339,7 @@ const Apollo = {
                             lineVisible: false
                         }
                     })
-                    Apollo.avatarType(html)
+                    Apollo.avatarType(page, html)
                     Apollo.d.push({
                         col_type: "blank_block"
                     })
