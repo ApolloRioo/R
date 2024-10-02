@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202410021",
+    version: "202410023",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -358,7 +358,7 @@ const Apollo = {
     DynamicSort: (html) => {
         const 分类颜色 = Apollo.getRangeColors()
         const 大类定位 = ".mb-6:has(.relative)&&.relative"
-        const 拼接分类 = ""
+        const 拼接分类 = ".mb-3&&.relative"
         const 小类定位 = "body&&.block"
         const 分类标题 = "Text"
         const 分类链接 = "a&&href"
