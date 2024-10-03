@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202410023",
+    version: "20241003",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -44,7 +44,7 @@ const Apollo = {
                 });
             }),
         }];
-        if (pages) {
+        if (typeof(pages) != 'undefined') {
             var extra1 = {
                 title: "尾页" + pages,
                 js: $.toString((pages) => {
@@ -316,21 +316,21 @@ const Apollo = {
 
         switch (type) {
             case 'video':
-                Apollo.videoType(page, html)
+                Apollo.videoType(html, page)
                 break
             case 'articles':
-                Apollo.articlesType(page, html)
+                Apollo.articlesType(html, page)
                 break
             case 'avatar':
                 if ((path === 'actresses/ranking' && page == 1) || path !== 'actresses/ranking') {
-                    Apollo.avatarType(page, html)
+                    Apollo.avatarType(html, page)
                 }
                 break
             case 'tags':
-                Apollo.tagsType(page, html)
+                Apollo.tagsType(html, page)
                 break
             case 'search':
-                if (page == 1) {
+                if (MY_PAGE == 1) {
                     Apollo.d.push({
                         title: '““””' + "搜寻结果".fontcolor("#FF00FF"),
                         url: "hiker://empty",
@@ -339,17 +339,17 @@ const Apollo = {
                             lineVisible: false
                         }
                     })
-                    Apollo.avatarType(page, html)
+                    Apollo.avatarType(html, page)
                     Apollo.d.push({
                         col_type: "blank_block"
                     })
-                    Apollo.videoType(page, html)
+                    Apollo.videoType(html, page)
                 } else {
-                    Apollo.videoType(page, html)
+                    Apollo.videoType(html, page)
                 }
                 break
             default:
-                Apollo.videoType(page, html)
+                Apollo.videoType(html, page)
         }
         setResult(Apollo.d)
     },
@@ -427,7 +427,7 @@ const Apollo = {
     },
     //搜索
     searchParse: () => {
-        if (MY_URL.includes("page=1")) {
+        if (MY_PAGE == 1) {
             Apollo.d.push({
                 title: "——女优——",
                 url: "hiker://empty"
@@ -879,7 +879,7 @@ const Apollo = {
         try {
             var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
         } catch {
-            pages = 1
+            var pages = 1
         }
         addListener("onClose", $.toString(() => {
             clearMyVar("yurl");
@@ -914,11 +914,15 @@ const Apollo = {
             })
         } catch {}
         Apollo.DynamicSort(html)
-        Apollo.videoType(page, html)
+        Apollo.videoType(html, page)
     },
 
-    videoType: (page, html) => {
-        var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
+    videoType: (html, page) => {
+        try {
+            var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
+        } catch (e) {
+            var pages = 1
+        }
         const list = pdfa(html, 'body&&.thumbnail')
         list.forEach(item => {
             Apollo.d.push({
@@ -934,15 +938,19 @@ const Apollo = {
                 pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + Apollo.url,
                 desc: pdfh(item, 'a&&alt').toUpperCase().replace("-CHINESE-SUBTITLE", "🀄️").replace("-UNCENSORED-LEAK", "🈚️") + "⏰" + pdfh(item, '.absolute,-1&&Text'),
                 col_type: 'movie_2',
-                extra: {
+                extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
-                }
+                } : ""
             })
         })
     },
 
-    articlesType: (page, html) => {
-        var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
+    articlesType: (html, page) => {
+        try {
+            var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
+        } catch {
+            var pages = 1
+        }
         const list = pdfa(html, '.grid&&.rounded-lg')
         list.forEach(item => {
             Apollo.d.push({
@@ -962,19 +970,19 @@ const Apollo = {
                 }),
                 pic_url: pdfh(item, 'img&&data-src') + '@Referer=' + Apollo.url,
                 col_type: 'movie_2',
-                extra: {
+                extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
-                }
+                } : ""
             })
         })
     },
 
 
-    avatarType: (page, html) => {
+    avatarType: (html, page) => {
         try {
             var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
         } catch {
-            pages = 1
+            var pages = 1
         }
         const list = pdfa(html, '.mx-auto.grid&&li')
         list.forEach(item => {
@@ -988,19 +996,19 @@ const Apollo = {
                 //desc: 
                 pic_url: pdfh(item, 'img&&src') ? (pdfh(item, 'img&&src') + '@Referer=' + Apollo.url) : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
                 col_type: 'card_pic_3',
-                extra: {
+                extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
-                }
+                } : ""
             })
         })
     },
 
 
-    tagsType: (page, html) => {
+    tagsType: (html, page) => {
         try {
             var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
         } catch {
-            pages = 1
+            var pages = 1
         }
         const list = pdfa(html, '.gap-4&&div')
         list.forEach(item => {
@@ -1012,9 +1020,9 @@ const Apollo = {
                     setResult(Apollo.d)
                 }),
                 col_type: 'text_4',
-                extra: {
+                extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
-                }
+                } : ""
             })
         })
     },
