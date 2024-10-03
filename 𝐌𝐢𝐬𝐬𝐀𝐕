@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202410031",
+    version: "20241004",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -291,6 +291,7 @@ const Apollo = {
         })
         //动态分类
         Apollo.DynamicSort(html)
+        Apollo.ActorSort(url, html)
         //搜索
         if (page == 1) {
             Apollo.d.push({
@@ -408,6 +409,84 @@ const Apollo = {
                             refreshPage(true)
                             return "hiker://empty"
                         }, {
+                            cate_temp: cate_temp,
+                            index: index,
+                            key: key,
+                            page: MY_PAGE,
+                        }),
+                        col_type: 'scroll_button',
+                        extra: {
+                            'backgroundColor': key.toString() === cate_temp[index] ? Apollo.getRangeColors() : ''
+                        }
+                    })
+                })
+                Apollo.d.push({
+                    col_type: "blank_block"
+                });
+            })
+        }
+    },
+    //女优sort
+    ActorSort: (url, html) => {
+        const 分类颜色 = Apollo.getRangeColors()
+        const 大类定位 = "body&&.grid.mb-3&&select"
+        const 拼接分类 = ""
+        const 小类定位 = "body&&option"
+        const 分类标题 = "Text"
+        const 分类链接 = "option&&value"
+        Apollo.d.push({
+            col_type: "blank_block"
+        });
+        try {
+            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+                var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
+            } else {
+                var categories = pdfa(html, 大类定位)
+            }
+        } catch {
+            var categories = pdfa(html, 大类定位)
+        }
+        let init_cate = []
+        for (let i = 0; i < 20; i++) {
+            init_cate.push("0")
+        }
+        var cate_temp_json = getMyVar("asort", JSON.stringify(init_cate))
+        var cate_temp = JSON.parse(cate_temp_json)
+
+        if (MY_PAGE == 1) {
+            categories.forEach((category, index) => {
+                let sub_categories = pdfa(category, 小类定位);
+                sub_categories.forEach((item, key) => {
+                    let title = pdfh(item, 分类标题)
+                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                        title = title.replace(new RegExp(排除, "g"), "")
+                    };
+                    Apollo.d.push({
+                        title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
+                        url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((url, params) => {
+                            params.cate_temp[params.index] = params.key.toString()
+                            if (params.index == 0) {
+                                input = input ? ("&height=" + input) : ""
+                                url = url.replace(/\&height=.*(\&.*)?/, "$1") + input
+                            }
+                            if (params.index == 1) {
+                                input = input ? ("&cup=" + input) : ""
+                                url = url.replace(/\&cup=.*(\&.*)?/, "$1") + input
+                            }
+                            if (params.index == 2) {
+                                input = input ? ("&age=" + input) : ""
+                                url = url.replace(/\&age=.*(\&.*)?/, "$1") + input
+                            }
+                            if (params.index == 3) {
+                                input = input ? ("&debut=" + input) : ""
+                                url = url.replace(/\&debut=.*(\&.*)?/, "$1") + input
+                            }
+                            putMyVar('asort', JSON.stringify(params.cate_temp));
+                            putMyVar("url", url);
+                            clearMyVar("page")
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, url, {
                             cate_temp: cate_temp,
                             index: index,
                             key: key,
