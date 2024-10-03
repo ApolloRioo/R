@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241003",
+    version: "202410031",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -936,7 +936,7 @@ const Apollo = {
                     }
                 }),
                 pic_url: pdfh(item, '.lozad&&data-src').replace("cover-t", "cover-n") + '@Referer=' + Apollo.url,
-                desc: pdfh(item, 'a&&alt').toUpperCase().replace("-CHINESE-SUBTITLE", "🀄️").replace("-UNCENSORED-LEAK", "🈚️") + "⏰" + pdfh(item, '.absolute,-1&&Text'),
+                desc: pdfh(item, 'a&&alt').toUpperCase().replace("-CHINESE-SUBTITLE", "🀄️").replace("-UNCENSORED-LEAK", "✅🈚️") + "⏰" + pdfh(item, '.absolute,-1&&Text'),
                 col_type: 'movie_2',
                 extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
