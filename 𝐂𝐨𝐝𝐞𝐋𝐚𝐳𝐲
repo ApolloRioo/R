@@ -59,6 +59,8 @@ js: //所在行   ThissAV①16
                                             },
                                             timeout: 3000
                                         });
+                                        const 标题 = pdfh(html, 'h1&&Text')
+                                        const 图片 = pdfh(html, 'meta[property=og:image]&&content')
                                         eval(html.match(/eval.*?\n/)[0])
                                         // 获取画质列表，并取最高画质
                                         let group_quality = fetch(source, {
@@ -81,7 +83,7 @@ js: //所在行   ThissAV①16
                                                 })
                                         };
                                         if (getVar("复制视频", "0") == "1") {
-                                            return "copy://" + hghest_quality[0]
+                                            return "copy://" + 标题 + "," + hghest_quality[0] + "," + 图片
                                         } else {
                                             return playlist;
                                         }
