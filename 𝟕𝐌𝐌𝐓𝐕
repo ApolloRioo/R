@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240927",
+    version: "20241005",
     empty: "hiker://empty",
     url: "https://7mmtv.sx/zh/",
     d: [],
@@ -12,7 +12,7 @@ const Apollo = {
                 .toString(16))
             .substr(-6);
     }, //随机颜色
-    baseParse: () => {        
+    baseParse: () => {
         let categoryList = [{
             "title": "無碼破解",
             "path": "",
@@ -838,7 +838,7 @@ const Apollo = {
                 let decUrl = decr_sun(mvarr[a][mvarr_i][1], mvarr[a][mvarr_i][3], mvarr[a][mvarr_i][4], mvarr[a][mvarr_i][0]);
                 //log(decUrl)
                 list.push({
-                    'title': a,
+                    'title': a.replace("28", "DO").replace("29", "🔥ST").replace("37", "🔥SW").replace("38", "🔥VH").replace("39", "EM").replace("40", "🔥TV").replace("41", "US"),
                     'url': decUrl.startsWith('//') ? `https:${decUrl}` : decUrl.replace(/http.*?(http.*)/, "$1")
                 });
             }
@@ -848,21 +848,53 @@ const Apollo = {
         })
 
         var lazy = $('').lazyRule(() => {
+            // 定义一个解析分辨率的函数
+            function getResolution(name) {
+                var match = name.match(/(\d+)/); // 提取降级分辨率
+                return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
+            }
             let videoUrl = '';
             var html = fetch(input)
             //log(html)
             if (input.indexOf("7mmtv.sx") != -1) {
-                //线路40                
+                //TV线路40                
                 var src = html.match(/"(http.*?)"/)[1]
                 var request = fetch(src)
-                let res = request.match(/https.*?m3u8/);
-                videoUrl = res[0] + ";{Referer@https://emturbovid.com/}";
+                let playUrl = request.match(/https.*?m3u8/)[0];
+                var group_quality = fetch(playUrl, {
+                    headers: {
+                        'Referer': input
+                    }
+                });
+                // log(group_quality)
+                hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v))
+                //log(hghest_quality)
+                name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
+
+                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                var sortedData = name_quality.map((name, index) => ({
+                        name,
+                        url: hghest_quality[index]
+                    }))
+                    .sort((a, b) => getResolution(b.name) - getResolution(a.name));
+                // 分开排序后的 names 和 urls 数组
+                var sortedNames = sortedData.map(item => item.name);
+                var sortedUrls = sortedData.map(item => item.url);
+                let playlist = JSON.stringify({
+                    names: sortedNames,
+                    urls: sortedUrls,
+                    headers: new Array(hghest_quality.length).fill({
+                        Referer: ""
+                    })
+                });
+                return playlist;
             } else if (input.indexOf("upns") != -1) {
-                //线路41
+                //US线路41
                 //https://7mmtv.upns.live/#6kx1
                 var url = "https://7mmtv.upns.live/api/v1/video?id=" + input.split("#")[1]
-                var data = fetch(url).trim()
+                var data = fetch(url)
                 var Decode = (word) => {
+                    word = word.trim()
                     eval(getCryptoJS())
                     let key = CryptoJS.enc.Utf8.parse("kiemtienmua911ca")
                     let iv = CryptoJS.enc.Utf8.parse("1234567890oiuytr")
@@ -873,20 +905,75 @@ const Apollo = {
                     }).toString(CryptoJS.enc.Utf8)
                 }
                 var json = JSON.parse(Decode(data))
-                videoUrl = json.cf + '#isVideo=true#;{Referer@https://7mmtv.upns.live/}'
+                var playUrl = json.cf
+                var group_quality = fetch(playUrl, {
+                    headers: {
+                        'Referer': input
+                    }
+                });
+                // log(group_quality)
+                hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v + "#.m3u8"))
+                //log(hghest_quality)
+                name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
+
+                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                var sortedData = name_quality.map((name, index) => ({
+                        name,
+                        url: hghest_quality[index]
+                    }))
+                    .sort((a, b) => getResolution(b.name) - getResolution(a.name));
+                // 分开排序后的 names 和 urls 数组
+                var sortedNames = sortedData.map(item => item.name);
+                var sortedUrls = sortedData.map(item => item.url);
+                let playlist = JSON.stringify({
+                    names: sortedNames,
+                    urls: sortedUrls,
+                    headers: new Array(hghest_quality.length).fill({
+                        Referer: "https://7mmtv.upns.live/"
+                    })
+                });
+                return playlist;
+                //videoUrl = json.cf + '#isVideo=true#;{Origin@https://7mmtv.upns.live&&Referer@https://7mmtv.upns.live/}'
 
             } else if (input.indexOf("mm") != -1) {
-                //线路37+38
+                //线路SW37+VH线路38
                 var script = html.match(/eval(.*\))/)[1]
-                videoUrl = eval(script).match(/(https?.*?)"/)[1]
+                playUrl = eval(script).match(/(https?.*?)"/)[1]
+                var group_quality = fetch(playUrl, {
+                    headers: {
+                        'Referer': input
+                    }
+                });
+                group_quality = group_quality.split("\n\n")[0]
+                // log(group_quality)
+                hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v + "#.m3u8"))
+                //log(hghest_quality)
+                name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
 
+                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                var sortedData = name_quality.map((name, index) => ({
+                        name,
+                        url: hghest_quality[index]
+                    }))
+                    .sort((a, b) => getResolution(b.name) - getResolution(a.name));
+                // 分开排序后的 names 和 urls 数组
+                var sortedNames = sortedData.map(item => item.name);
+                var sortedUrls = sortedData.map(item => item.url);
+                let playlist = JSON.stringify({
+                    names: sortedNames,
+                    urls: sortedUrls,
+                    headers: new Array(hghest_quality.length).fill({
+                        Referer: "https://7mmtv.upns.live/"
+                    })
+                });
+                return playlist;
             } else if (input.indexOf("embedrise") != -1) {
-                //线路39
+                //EM线路39
                 var url = pdfh(html, "source&&src");
-                videoUrl = url + "#isVideo=true#;{Referer@" + getHome(input) + "/}"
-
+                playUrl = url + "#isVideo=true#;{Referer@" + getHome(input) + "/}"
+                return playUrl
             } else if (input.indexOf('dooood') != -1) {
-                //线路28
+                //DO线路28
                 var redirect = JSON.parse(fetch(input, {
                     onlyHeaders: true
                 })).url;
@@ -895,7 +982,7 @@ const Apollo = {
                         referer: input
                     }
                 });
-               // log(htmll)
+                // log(htmll)
                 var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0]
                 var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1]
                 var data = fetch(pass_md5, {
@@ -912,11 +999,11 @@ const Apollo = {
                         a += t.charAt(Math.floor(Math.random() * n));
                     return a + "?token=" + token + "&expiry=" + Date.now();
                 };
-                var urlPlay = data + makePlay(token)
-                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + input + "}"
+                var playUrl = data + makePlay(token)
+                return playUrl + "#isVideo=true#;{Referer@" + input + "}"
 
             } else if (input.indexOf('tapewithadblock') != -1) {
-                //线路29
+                //ST线路29
                 var pattern = html.match(/\('#(.*)'\)/)[1]
                 var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
                 eval(src)
