@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240928",
+    version: "20241005",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -322,12 +322,12 @@ const Apollo = {
     //一级视频列表
     videoType: (url, html) => {
         try {
-            var currpagenum = pdfh(html, "body&&.inline-flex.shadow-sm&&.px-4.cursor-default&&Text").match(/\d+/)[0]
+            var currpagenum = pdfh(html, "nav[aria-label]&&.pointer-events-none&&Text").match(/\d+/)[0] //pdfh(html, "body&&.inline-flex.shadow-sm&&.px-4.cursor-default&&Text").match(/\d+/)[0]
         } catch {
             var currpagenum = "1"
         }
         try {
-            lastpagenum = pdfh(html, "body&&.relative.inline-flex.shadow-sm&&.px-4,-1&&Text").match(/\d+/)[0]
+            lastpagenum = pdfh(html, "nav[aria-label]&&.px-4,-1&&Text").match(/\d+/)[0]
         } catch {
             var lastpagenum = currpagenum
         }
@@ -335,7 +335,7 @@ const Apollo = {
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/.*(http.*)/, "$1")
-            var title = pdfh(item, ".truncate&&Text");
+            var title = pdfh(item, "a&&aria-label");
             var img = pdfh(item, "img&&data-src").replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg");
             Apollo.d.push({
                 title: title,
