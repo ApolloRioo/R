@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241005",
+    version: "20241007",
     empty: "hiker://empty",
     url: "https://7mmtv.sx/zh/",
     d: [],
@@ -353,7 +353,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".small&&Text"),
-                img: pdfh(item, "img&&data-src").replace(/\/m\//, "/b/"),
+                img: pdfh(item, "img&&data-src").replace(/\/m\//, "/b/").replace(/\/s\//, "/b/").replace(/hcomic\/b\//, "hcomic/s/"),
                 url: !vurl.includes("hcomic_") ? vurl + lazy : vurl + lazy1,
                 col_type: col,
                 extra: {
@@ -905,35 +905,7 @@ const Apollo = {
                     }).toString(CryptoJS.enc.Utf8)
                 }
                 var json = JSON.parse(Decode(data))
-                var playUrl = json.cf
-                var group_quality = fetch(playUrl, {
-                    headers: {
-                        'Referer': input
-                    }
-                });
-                // log(group_quality)
-                hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v + "#.m3u8"))
-                //log(hghest_quality)
-                name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
-
-                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
-                var sortedData = name_quality.map((name, index) => ({
-                        name,
-                        url: hghest_quality[index]
-                    }))
-                    .sort((a, b) => getResolution(b.name) - getResolution(a.name));
-                // 分开排序后的 names 和 urls 数组
-                var sortedNames = sortedData.map(item => item.name);
-                var sortedUrls = sortedData.map(item => item.url);
-                let playlist = JSON.stringify({
-                    names: sortedNames,
-                    urls: sortedUrls,
-                    headers: new Array(hghest_quality.length).fill({
-                        Referer: "https://7mmtv.upns.live/"
-                    })
-                });
-                return playlist;
-                //videoUrl = json.cf + '#isVideo=true#;{Origin@https://7mmtv.upns.live&&Referer@https://7mmtv.upns.live/}'
+                return json.cf + '#isVideo=true#;{Origin@https://7mmtv.upns.live&&Referer@https://7mmtv.upns.live/}'
 
             } else if (input.indexOf("mm") != -1) {
                 //线路SW37+VH线路38
