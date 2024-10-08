@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 20240915,
+    version: 20241008,
     empty: "hiker://empty",
-    url: config.host,
+    url: "https://avtoday.io",
     d: [],
     lazy: $('#noHistory#')
         .lazyRule(() => {
@@ -240,7 +240,7 @@ const Apollo = {
         var lundata = pdfa(html, ".featured-swiper&&.swiper-slide").map((x) => {
             var urll = pd(x, "a&&href");
             return {
-                title: '““””' + pdfh(x, ".slide-content&&Text").slice(0, 68).split("").map(b => b.fontcolor(Apollo.getRangeColors()).small()).join(""),
+                title: pdfh(x, ".slide-content&&Text").split("").map(b => b.fontcolor(Apollo.getRangeColors()).small()).join(""),
                 img: pd(x, "img&&src"),
                 url: urll + Apollo.lazy,
             }
@@ -262,15 +262,6 @@ const Apollo = {
             }
 
             arr.push({
-                col_type: "text_1",
-                title: item.title,
-                url: Apollo.empty,
-                extra: {
-                    id: id + 'title',
-                    title: item.title,
-                    lineVisible: false
-                }
-            }, {
                 col_type: col_type,
                 img: item.img,
                 desc: desc,
@@ -279,6 +270,15 @@ const Apollo = {
                 extra: {
                     id: id + 'bar',
                     img: item.img,
+                }
+            }, {
+                col_type: "avatar",
+                title: item.title,
+                url: Apollo.empty,
+                extra: {
+                    id: id + 'title',
+                    title: item.title,
+                    lineVisible: false
                 }
             }, {
                 col_type: "line_blank"
@@ -347,7 +347,7 @@ const Apollo = {
         }
         banner(MY_RULE.title, true, Apollo.d, lundata, {
             time: 3333,
-            col_type: 'pic_1_full',
+            col_type: "card_pic_1",
             desc: '0'
         })
     },
