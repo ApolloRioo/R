@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 20240816,
+    version: 20241009,
     empty: "hiker://empty",
-    url: config.host,
+    url: getItem("link","https://www.javlibrary.com"),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -638,7 +638,7 @@ const Apollo = {
 
     //搜索
     searchParse: (url) => {
-        url = url.replace("hiker://empty##", "")
+        url = Apollo.url + url.replace("hiker://empty##", "")
         log(url)
         var html = fetch(url, {
             headers: {
@@ -1276,7 +1276,7 @@ const Apollo = {
 
     //翻译
     translate: (text) => {
-        var switchtrans = config.switchtrans
+        var switchtrans = true;
         if (switchtrans == true || switchtrans == "彩云小译") {
             try {
                 var to = 'zh'
