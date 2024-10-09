@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241008,
+    version: 20241009,
     empty: "hiker://empty",
     url: "https://avtoday.io",
     d: [],
@@ -274,6 +274,7 @@ const Apollo = {
             }, {
                 col_type: "avatar",
                 title: item.title,
+                img: "https://cdn-icons-png.flaticon.com/128/1384/1384060.png",
                 url: Apollo.empty,
                 extra: {
                     id: id + 'title',
