@@ -1,4 +1,5 @@
 const Apollo = {
+    version: 20241009,
     empty: "hiker://empty",
     url: "https://jav.land",
     d: [],
@@ -525,7 +526,7 @@ const Apollo = {
 
     //搜索
     searchParse: (url) => {
-        url = url.replace("hiker://empty##", "")
+        url = Apollo.url + url.replace("hiker://empty##", "")
         log(url)
         var html = fetch(url, {
             headers: {
@@ -1170,7 +1171,7 @@ const Apollo = {
 
     //翻译
     translate: (text) => {
-        var switchtrans = config.switchtrans
+        var switchtrans = true;
         if (switchtrans == true || switchtrans == "彩云小译") {
             try {
                 var to = 'zh'
