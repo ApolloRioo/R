@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 202408231,
+    version: 20241012,
     empty: "hiker://empty",
-    url: config.host,
+    url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
