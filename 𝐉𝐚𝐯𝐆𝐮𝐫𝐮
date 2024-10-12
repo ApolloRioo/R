@@ -448,12 +448,56 @@ const javguru = {
         })
         log(url)
         const title = pdfh(html, ".posts&&h1&&Text");
+        var desct = title.replace(/(?:\[.*?\])?(?:\(.*?\))?(.*)/, "$1")
         javguru.d.push({
-            title: '““””' + title.fontcolor("#E57A1A"),
-            url: url,
+            title: '““””' + title.fontcolor("#E57A1A").small(),
+            url: "hiker://empty" + $('#noLoading#')
+                .lazyRule((desct) => {
+                    var desc = findItem('transdesc')
+                        .desc
+                    if (!desc) {
+                        const Apollo = $.require('hiker://page/javguru')
+                        var translates = Apollo.translate(desct)
+                        updateItem("transdesc", {
+                            desc: '““””' + translates.fontcolor("red"),
+                        })
+                    } else {
+                        updateItem("transdesc", {
+                            desc: '',
+                        })
+                    }
+                    return "hiker://empty"
+                }, desct),
             col_type: 'text_1',
             extra: {
-                lineVisible: false
+                lineVisible: false,
+                id: 'transdesc',
+                longClick: [{
+                    title: '网页',
+                    js: $.toString(() => {
+                        return "web://" + MY_URL
+                    })
+                }, {
+                    title: '复制',
+                    js: $.toString((title) => {
+                        return "copy://" + title;
+                    }, title)
+                }, {
+                    title: '百度翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://fanyi.baidu.com/#en/zh/" + title
+                    }, title)
+                }, {
+                    title: 'Deepl翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://www.deepl.com/zh/translator-mobile#cn/zh/" + title
+                    }, title)
+                }, {
+                    title: '谷歌翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://translate.google.com/?hl=zh-CN&sl=cn&tl=zh-CN&text=" + title
+                    }, title)
+                }]
             }
         })
         const img = pdfh(html, ".posts&&img&&src");
@@ -742,7 +786,96 @@ const javguru = {
         })
 
         setResult(javguru.d)
-    }
+    },
+
+    //翻译
+    translate: (text) => {
+        var switchtrans = true;
+        if (switchtrans == true || switchtrans == "彩云小译") {
+            try {
+                var to = 'zh'
+                var from = 'auto'
+
+                function init_data(source_lang, target_lang) {
+                    return {
+                        source: '',
+                        detect: true,
+                        os_type: 'ios',
+                        device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
+                        trans_type: source_lang + '2' + target_lang,
+                        media: 'text',
+                        request_id: 424238335,
+                        user_id: '',
+                        dict: true,
+                    }
+                }
+
+                function getRandomNumber() {
+                    const rand = Math.floor(Math.random() * 99999) + 100000
+                    return rand * 1000
+                }
+                const post_data = init_data(from, to)
+                post_data.source = text
+                post_data.request_id = getRandomNumber()
+                let res = fetch('https://interpreter.cyapi.cn/v1/translator', {
+                    method: 'POST',
+                    header: {
+                        'Content-Type': 'application/json',
+                        'x-authorization': 'token ssdj273ksdiwi923bsd9',
+                        'user-agent': 'caiyunInterpreter/5 CFNetwork/1404.0.5 Darwin/22.3.0',
+                    },
+                    body: post_data,
+                })
+                let result = JSON.parse(res)
+                    .target
+                return result + "【☁️】"
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else if (switchtrans == "小牛翻译") {
+            try {
+                var url = "https://api.niutrans.com/NiuTransServer/translation";
+                var api = config.api;
+                if (api) {
+                    if (text != "") {
+                        var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
+                        var from = JSON.parse(fetch(lang, {
+                                timeout: 1000
+                            }))
+                            .language;
+                        var result = post(url, {
+                            body: {
+                                src_text: text,
+                                from: from,
+                                to: "zh",
+                                apikey: api,
+                            },
+                            timeout: 1223
+                        });
+                        var data = JSON.parse(result)
+                        if (data.tgt_text) {
+                            return data.tgt_text + "【🐮】"
+                        } else {
+                            log("翻译失败，使用原文");
+                            return text
+                        }
+                    } else {
+                        log("翻译失败，原文为空");
+                        return text
+                    }
+                } else {
+                    toast("预处理请填写翻译api")
+                    return text
+                }
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else {
+            return text
+        }
+    },
 
 }
 
