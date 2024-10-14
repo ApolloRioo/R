@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241008",
+    version: "20241015",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -569,14 +569,7 @@ const Apollo = {
         })
         var content = pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text');
         if (content.trim() != "") {
-            Apollo.d.push({
-                title: content.small().fontcolor("#2E8B57"),
-                url: 'hiker://empty',
-                col_type: 'rich_text',
-                extra: {
-                    lineVisiable: false
-                }
-            })
+            Apollo.setDesc(content)
         }
 
         const text_secondary_list = pdfa(html, 'body&&.text-secondary')
@@ -624,7 +617,7 @@ const Apollo = {
         var 标题 = pdfh(html, 'body&&.text-secondary:matches(标题)&&Text');
         if (标题.trim() != "") {
             Apollo.d.push({
-                title: 标题.fontcolor("#008B8B").small(),
+                title: 标题.fontcolor("#D2691E").small(),
                 url: 'hiker://empty',
                 col_type: 'rich_text',
                 extra: {
@@ -1120,6 +1113,90 @@ const Apollo = {
                 id: param.index
             }
         })
+    },
+
+    setDesc: (desc) => {
+        function substr(str, maxLength) {
+            let len = 0;
+            for (let i = 0; i < str.length; i++) {
+                if (str.charCodeAt(i) > 255) {
+                    len += 2;
+                } else {
+                    len++;
+                }
+                if (len > maxLength) {
+                    return str.slice(0, i) + '...';
+                }
+            }
+            return str;
+        }
+
+        function setDesc(arr, desc, num) {
+            //log(desc)
+            if (desc == undefined) {
+                return;
+            }
+            desc = desc.constructor == Array ? desc.join('<br>') : desc;
+            if (desc.replace(/(<br>|\s+|<\/?p>|&nbsp;)/g, '').length == 0) {
+                return;
+            }
+
+            const mark = 'desc';
+            num = typeof(num) == 'undefined' ? 100 : num
+            desc = desc.startsWith('　　') ? desc : '　　' + desc;
+            desc = desc.replace(/'/g, "&#39;");
+            desc = desc.replace(/\r\n/g, "<br>");
+            desc = desc.replace(/\r/g, "<br>");
+            desc = desc.replace(/\n/g, "<br>");
+            let sdesc = substr(desc, num);
+
+            var colors = {
+                show: "#008000",
+                hide: "#8A2BE2"
+            }
+
+            var lazy = $(`#noLoading#`).lazyRule((dc, sdc, m, cs) => {
+                var show = storage0.getItem(m, '0');
+                var title = findItem('desc').title;
+                var re = /(<\/big><br>.*?>).+/g;
+                var exp = '展开:';
+                var ret = '收起:';
+                if (show == '1') {
+                    updateItem('desc', {
+                        title: title
+                            .replace(ret, exp)
+                            .replace(re, '$1' + sdc + '</small>')
+                            .replace(/(<\/big><br>\<font color=").*?(">)/, '$1' + cs.hide + '$2')
+
+                    })
+                    storage0.setItem(m, '0');
+                } else {
+                    updateItem('desc', {
+                        title: title
+                            .replace(exp, ret)
+                            .replace(re, '$1' + dc + '</small>')
+                            .replace(/(<\/big><br>\<font color=").*?(">)/, '$1' + cs.show + '$2')
+                    })
+                    storage0.setItem(m, '1');
+                }
+                return `hiker://empty`
+            }, desc, sdesc, mark, colors)
+            var sc = storage0.getItem(mark, '0') == '0' ? '展开:' : '收起:';
+            var dc = storage0.getItem(mark, '0') == '0' ? sdesc : desc;
+            var cs = storage0.getItem(mark, '0') == '0' ? colors.hide : colors.show;
+            arr.push({
+                title: '' + '<b><font color="">∷ 剧情简介	</font></b>' + "<middle><a style='text-decoration: none;' href='" + lazy + "'>" + sc + '</a></big><br><font color="' + cs + '">' + `${dc}` + '</small>',
+                col_type: 'rich_text',
+                extra: {
+                    id: 'desc',
+                    lineSpacing: 6,
+                    textSize: 15,
+                    lineVisible: true,
+                }
+            })
+        }
+
+        setDesc(Apollo.d, desc, 92);
     },
 }
 $.exports = Apollo
