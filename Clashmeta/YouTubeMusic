@@ -7,14 +7,7 @@ payload:
   - DOMAIN,sponsor.ajay.app
   - DOMAIN,lh3.googleusercontent.com
   - DOMAIN,connectivitycheck.gstatic.com
-  - IP-CIDR,74.125.12.72/32
-  - IP-CIDR,142.251.85.166/32
-  - IP-CIDR,172.217.145.102/32
-  - IP-CIDR,172.217.145.134/32
-  - IP-CIDR,172.217.145.106/32
-  - IP-CIDR,172.217.145.41/32
-  - IP-CIDR,142.251.85.199/32
-  - IP-CIDR,142.251.85.200/32
-  - IP-CIDR,209.85.228.102/32
+  - DOMAIN,rr1---sn-npoe7ndl.googlevideo.com
+  - DOMAIN,rr2---sn-un57enez.googlevideo.com
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com
   - PROCESS-NAME,app.rvx.android.apps.youtube.music
