@@ -7,7 +7,6 @@ payload:
   - DOMAIN,sponsor.ajay.app
   - DOMAIN,lh3.googleusercontent.com
   - DOMAIN,connectivitycheck.gstatic.com
-  - DOMAIN,rr1---sn-npoe7ndl.googlevideo.com
-  - DOMAIN,rr2---sn-un57enez.googlevideo.com
+  - DOMAIN-REGEX,rr\d---sn-.*\.googlevideo\.com
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com
   - PROCESS-NAME,app.rvx.android.apps.youtube.music
