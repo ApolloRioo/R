@@ -14,5 +14,6 @@ payload:
   - IP-CIDR,172.217.145.106/32
   - IP-CIDR,142.251.85.199/32
   - IP-CIDR,142.251.85.200/32
+  - IP-CIDR,209.85.228.102/32
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com
   - PROCESS-NAME,app.rvx.android.apps.youtube.music
