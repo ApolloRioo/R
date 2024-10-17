@@ -8,5 +8,4 @@ payload:
   - DOMAIN,lh3.googleusercontent.com
   - DOMAIN,connectivitycheck.gstatic.com
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com
-  - DOMAIN-SUFFIX,googlevideo.com
   - PROCESS-NAME,app.rvx.android.apps.youtube.music
