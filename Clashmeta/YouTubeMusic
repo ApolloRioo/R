@@ -7,5 +7,7 @@ payload:
   - DOMAIN,sponsor.ajay.app
   - DOMAIN,lh3.googleusercontent.com
   - DOMAIN,connectivitycheck.gstatic.com
+  - IP-CIDR,74.125.12.72/32
+  - IP-CIDR,142.251.85.166/32
   - DOMAIN-SUFFIX,returnyoutubedislikeapi.com
   - PROCESS-NAME,app.rvx.android.apps.youtube.music
