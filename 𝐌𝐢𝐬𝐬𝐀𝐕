@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241015",
+    version: "20241020",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -340,11 +340,15 @@ const Apollo = {
                             lineVisible: false
                         }
                     })
-                    Apollo.avatarType(html, page)
+                    try {
+                        Apollo.avatarType(html, page)
+                    } catch {}
                     Apollo.d.push({
                         col_type: "blank_block"
                     })
-                    Apollo.videoType(html, page)
+                    try {
+                        Apollo.videoType(html, page)
+                    } catch {}
                 } else {
                     Apollo.videoType(html, page)
                 }
@@ -511,13 +515,16 @@ const Apollo = {
                 title: "——女优——",
                 url: "hiker://empty"
             });
-            Apollo.avatarType(getResCode());
-
+            try {
+                Apollo.avatarType(getResCode());
+            } catch {}
             Apollo.d.push({
                 title: "——影片——",
                 url: "hiker://empty"
             });
-            Apollo.videoType(getResCode());
+            try {
+                Apollo.videoType(getResCode());
+            } catch {}
         } else {
             Apollo.videoType(getResCode());
         }
