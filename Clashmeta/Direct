@@ -2,10 +2,8 @@ payload:
   - DOMAIN-SUFFIX,res.res
   - IP-CIDR,172.67.148.25/32
   - IP-CIDR,104.21.55.122/32
-  - DOMAIN-SUFFIX,ghp.ci
-  - DOMAIN-SUFFIX,y78k.com
+  - DOMAIN-SUFFIX,o83h.com
   - DOMAIN-SUFFIX,userpicimage.com
-  - DOMAIN-KEYWORD,avtb
   - DOMAIN-SUFFIX,360kan.com
   - DOMAIN-SUFFIX,douban.com
   - DOMAIN-SUFFIX,sharebits.link
@@ -15,7 +13,6 @@ payload:
   - DOMAIN-SUFFIX,cdn2020.com
   - DOMAIN-SUFFIX,xn--u2u927b.com
   - DOMAIN-SUFFIX,yxzhi.com
-  - DOMAIN-SUFFIX,doh.pub
   - DOMAIN-SUFFIX,zmwbf.com
   - DOMAIN-SUFFIX,xhofe.top
   - DOMAIN-SUFFIX,tyrantg.com
@@ -25,7 +22,6 @@ payload:
   - DOMAIN-SUFFIX,nokia.press
   - DOMAIN-SUFFIX,jianguoyun.com
   - DOMAIN-SUFFIX,csdn.net
-  - DOMAIN-SUFFIX,ghproxy.net
   - DOMAIN-SUFFIX,photopea.com
   - DOMAIN-SUFFIX,imgse.com
   - DOMAIN-SUFFIX,ax1x.com
