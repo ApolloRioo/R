@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241021",
+    version: "202410211",
     empty: 'hiker://empty',
     url: 'https://cn.xgroovy.com',
     d: [],
@@ -392,7 +392,7 @@ const Apollo = {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
-        })
+        });
         //动态分类
         //Apollo.DynamicSort(html)
         Apollo.videoSort(html)
@@ -427,6 +427,17 @@ const Apollo = {
                 }
             });
         }
+        if (url == "https://cn.xgroovy.com/") {
+            var country = JSON.parse(fetch("https://cn.xgroovy.com/ajax.php?action=current_country&type=json")).title
+            Apollo.d.push({
+                title: '““””' + country.fontcolor("#FF00FF") + "的热门色情视频",
+                url: "hiker://empty",
+                col_type: "text_1",
+                extra: {
+                    lineVisible: false
+                }
+            })
+        }
 
         switch (type) {
             case 'video':
@@ -450,7 +461,6 @@ const Apollo = {
                             lineVisible: false
                         }
                     })
-
                 }
                 Apollo.videoType(html, page)
                 break
