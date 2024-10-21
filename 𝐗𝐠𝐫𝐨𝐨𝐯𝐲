@@ -391,7 +391,7 @@ const Apollo = {
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)',
-                "cookie": "xg_country=" + getMyVar("countrycode")
+                "cookie": "xg_country=" + getMyVar("countrycode", "")
             }
         });
         //动态分类
@@ -879,7 +879,7 @@ const Apollo = {
     },
 
     countryType: () => {
-        var country = JSON.parse(fetch(Apollo.url + "/ajax.php?action=current_country&type=json")).title
+        //var country = JSON.parse(fetch(Apollo.url + "/ajax.php?action=current_country&type=json")).title
         var countrydata = [{
             "title": "中国",
             "path": "cn"
@@ -1051,9 +1051,6 @@ const Apollo = {
         }, {
             "title": "阿根廷",
             "path": "ar"
-        }, {
-            "title": "香港",
-            "path": "hk"
         }, {
             "title": "马来西亚",
             "path": "my"
@@ -1630,7 +1627,7 @@ const Apollo = {
         }]
         var countryname = countrydata.map(i => i.title)
         Apollo.d.push({
-            title: '““””' + getMyVar("country").fontcolor("#FF00FF") + "的热门色情视频",
+            title: '““””' + getMyVar("country", "").fontcolor("#FF00FF") + "的热门色情视频",
             url: $(countryname, 3).select((countrydata) => {
                 let index = countrydata.findIndex(r => r.title == input);
                 var code = countrydata[index].path
