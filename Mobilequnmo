@@ -1,9 +1,13 @@
 [Adblock Plus 2.0]
 ! Title: R 群魔乱舞!
-! Version: 20240711
-! Homepage:https://api.caonm.net/api/mn/index.php
+! Version: 20241023
+! 
+https://raw.githubusercontent.com/ApolloRioo/R/master/Mobilequnmo
+
 ! by: R
 
+||jijiji.top/dt2.js
+||lib.aidegelin.cn/wenming/cs.js
 ||rltdxt.com/aqx/statics/js/bmfixed.dist.js
 /template/piankuwap/js/afixed.js
 /template/piankuwap/js/afoot.js
