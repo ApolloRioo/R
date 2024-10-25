@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241022",
+    version: "20241026",
     empty: 'hiker://empty',
     url: 'https://cn.xgroovy.com',
     d: [],
@@ -391,7 +391,7 @@ const Apollo = {
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)',
-                "cookie": "xg_country=" + getMyVar("countrycode", "")
+                "cookie": "xg_country=" + getMyVar("countrycode", "cn")
             }
         });
         //动态分类
@@ -1627,7 +1627,7 @@ const Apollo = {
         }]
         var countryname = countrydata.map(i => i.title)
         Apollo.d.push({
-            title: '““””' + getMyVar("country", "").fontcolor("#FF00FF") + "的热门色情视频",
+            title: '““””' + getMyVar("country", "中国").fontcolor("#FF00FF") + "的热门色情视频",
             url: $(countryname, 3).select((countrydata) => {
                 let index = countrydata.findIndex(r => r.title == input);
                 var code = countrydata[index].path
