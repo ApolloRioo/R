@@ -1,13 +1,4 @@
 payload:
   - DOMAIN,music.youtube.com
   - DOMAIN,i.ytimg.com
-  - DOMAIN,youtubei.googleapis.com
-  - DOMAIN,play-fe.googleapis.com
-  - DOMAIN,s.youtube.com
-  - DOMAIN,update.9mod.com
-  - DOMAIN,sponsor.ajay.app
-  - DOMAIN,lh3.googleusercontent.com
-  - DOMAIN,connectivitycheck.gstatic.com
   - DOMAIN-REGEX,rr\d---sn-.*\.googlevideo\.com
-  - DOMAIN-SUFFIX,returnyoutubedislikeapi.com
-  - PROCESS-NAME,app.rvx.android.apps.youtube.music
