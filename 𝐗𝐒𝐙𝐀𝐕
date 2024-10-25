@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241005",
+    version: "20241026",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -335,7 +335,7 @@ const Apollo = {
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/.*(http.*)/, "$1")
-            var title = pdfh(item, "a&&aria-label");
+            var title = pdfh(item, "a,-1&&aria-label||Text");
             var img = pdfh(item, "img&&data-src").replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg");
             Apollo.d.push({
                 title: title,
