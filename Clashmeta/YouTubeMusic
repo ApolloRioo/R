@@ -2,5 +2,7 @@ payload:
   - DOMAIN,music.youtube.com
   - DOMAIN,i.ytimg.com
   - DOMAIN,sponsor.ajay.app
+  - DOMAIN,youtubei.googleapis.com
   - DOMAIN,play-fe.googleapis.com
   - DOMAIN-REGEX,rr\d---sn-.*\.googlevideo\.com
+  - PROCESS-NAME,app.rvx.android.apps.youtube.music
