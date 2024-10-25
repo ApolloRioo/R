@@ -1,5 +1,6 @@
 payload:
   - DOMAIN,music.youtube.com
+  - DOMAIN,i.ytimg.com
   - DOMAIN,youtubei.googleapis.com
   - DOMAIN,play-fe.googleapis.com
   - DOMAIN,s.youtube.com
