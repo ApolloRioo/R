@@ -1,5 +1,6 @@
 payload:
   - DOMAIN,music.youtube.com
   - DOMAIN,i.ytimg.com
+  - DOMAIN,sponsor.ajay.app
   - DOMAIN,play-fe.googleapis.com
   - DOMAIN-REGEX,rr\d---sn-.*\.googlevideo\.com
