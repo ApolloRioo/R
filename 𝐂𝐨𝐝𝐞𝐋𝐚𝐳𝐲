@@ -115,6 +115,18 @@ js: //所在行   ThissAV①16
                         }
                         return "hiker://empty"
                     })
+                }, {
+                    title: '更新远程',
+                    js: $.toString(() => {
+                        try {
+                            var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+                            writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
+                            refreshPage();
+                            return "toast://远程依赖已更新"
+                        } catch {
+                            return "toast://请挂梯子"
+                        }
+                    })
                 }]
             }
         });
