@@ -116,7 +116,7 @@ js: //所在行   ThissAV①16
                         return "hiker://empty"
                     })
                 }, {
-                    title: '更新远程',
+                    title: '更新远程依赖',
                     js: $.toString(() => {
                         try {
                             var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
