@@ -146,7 +146,7 @@ js: //所在行   ThissAV①16
                             return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                         } else {
                             var id = pdfh(html, "#page-video&&v-scope")
-                                .match(/\'(.*)\'/)[1]
+                                .match(/id:.(\d+)/)[1]
                             var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
                             var data = JSON.parse(fetch(video, {
                                 headers: {
@@ -633,7 +633,7 @@ js: //所在行   ThissAV①16
                                 return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                             } else {
                                 var id = pdfh(html, "#page-video&&v-scope")
-                                    .match(/\'(.*)\'/)[1]
+                                    .match(/id:.(\d+)/)[1]
                                 var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
                                 var data = JSON.parse(fetch(video, {
                                     headers: {
