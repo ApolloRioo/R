@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241007",
+    version: "20241114",
     empty: "hiker://empty",
     url: "https://7mmtv.sx/zh/",
     d: [],
@@ -838,7 +838,7 @@ const Apollo = {
                 let decUrl = decr_sun(mvarr[a][mvarr_i][1], mvarr[a][mvarr_i][3], mvarr[a][mvarr_i][4], mvarr[a][mvarr_i][0]);
                 //log(decUrl)
                 list.push({
-                    'title': a.replace("28", "DO").replace("29", "🔥ST").replace("37", "🔥SW").replace("38", "🔥VH").replace("39", "EM").replace("40", "🔥TV").replace("41", "US"),
+                    'title': a.replace("28", "DO").replace("29", "🔥ST").replace("37", "🔥SW").replace("38", "🔥VH").replace("39", "EM").replace("40", "🔥TV").replace("41", "US").replace("42", "SP"),
                     'url': decUrl.startsWith('//') ? `https:${decUrl}` : decUrl.replace(/http.*?(http.*)/, "$1")
                 });
             }
@@ -856,17 +856,33 @@ const Apollo = {
             let videoUrl = '';
             var html = fetch(input)
             //log(html)
-            if (input.indexOf("7mmtv.sx") != -1) {
-                //TV线路40                
-                var src = html.match(/"(http.*?)"/)[1]
-                var request = fetch(src)
+            if (input.indexOf("7mmtv.sx/assets") != -1) {
+                //TV线路42    
+                var group = html.match(/const videoSources[^;]+/)[0]
+                eval(group)
+                sortedData = videoSources.sort((a, b) => b.size - a.size);
+                var sortedNames = sortedData.map(item => item.size);
+                var sortedUrls = sortedData.map(item => item.src);
+                let playlist = JSON.stringify({
+                    names: sortedNames,
+                    urls: sortedUrls,
+                    headers: new Array(sortedData.length).fill({
+                        Referer: "https://7mmtv.sx/"
+                    })
+                });
+                return playlist;
+            } else if (input.indexOf("7mmtv.sx") != -1) {
+                //TV线路40               
+                var s = html.match(/src.?=[^\>]+/)[0];
+                eval(s)
+                var request = fetch(src);
                 let playUrl = request.match(/https.*?m3u8/)[0];
                 var group_quality = fetch(playUrl, {
                     headers: {
                         'Referer': input
                     }
                 });
-                // log(group_quality)
+                //log(group_quality)
                 hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v))
                 //log(hghest_quality)
                 name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
@@ -884,7 +900,7 @@ const Apollo = {
                     names: sortedNames,
                     urls: sortedUrls,
                     headers: new Array(hghest_quality.length).fill({
-                        Referer: ""
+                        Referer: "https://mmtv01.xyz/"
                     })
                 });
                 return playlist;
