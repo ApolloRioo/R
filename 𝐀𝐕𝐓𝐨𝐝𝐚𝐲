@@ -1,11 +1,15 @@
 const Apollo = {
-    version: 20241009,
+    version: 20241122,
     empty: "hiker://empty",
     url: "https://avtoday.io",
     d: [],
     lazy: $('#noHistory#')
         .lazyRule(() => {
-            var html = fetch(input.replace("video/", "player?s="))
+            var html = fetch(input.replace("video/", "player?s="), {
+                headers: {
+                    Referer: "https://avtoday.io/"
+                }
+            })
             var script = html.match(/var m3u8_url.*/)[0]
             eval(script)
             return m3u8_url + ";{Origin@https://avtoday.io&&Referer@https://avtoday.io/}"
