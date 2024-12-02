@@ -1,5 +1,5 @@
 js: //所在行   ThissAV①16
-    //             njav②105
+    //             123av②134
     //             haokan③147
     //             missav④194
     //             Tktube⑤266
@@ -7,7 +7,7 @@ js: //所在行   ThissAV①16
     //             javguru⑦434
     //             7mmtv⑧514
     //             more⑨589
-    //             cilijun⑩816
+    //             cilijun⑩801
     function CodeLazy(识别码) {
         识别码 = 识别码.toLowerCase()
         d.push({
@@ -131,13 +131,13 @@ js: //所在行   ThissAV①16
             }
         });
 
-        //njav
+        //123AV
         d.push({
-            title: '‘‘’’<b><middle><font color="#1E90FF">𝐉𝐚𝐯𝐆𝐨</font></middle>',
+            title: '‘‘’’<b><middle><font color="#1E90FF">𝟏𝟐𝟑𝐀𝐕</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQqwD.png',
             url: $('')
                 .lazyRule((识别码) => {
-                    var av = "https://njav.tv/zh/v/" + 识别码;
+                    var av = "https://123av.com/zh/v/" + 识别码;
                     var html = fetch(av, {
                         timeout: 3223
                     })
@@ -147,7 +147,7 @@ js: //所在行   ThissAV①16
                         } else {
                             var id = pdfh(html, "#page-video&&v-scope")
                                 .match(/id:.(\d+)/)[1]
-                            var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
+                            var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
                             var data = JSON.parse(fetch(video, {
                                 headers: {
                                     "Referer": av
@@ -167,7 +167,7 @@ js: //所在行   ThissAV①16
                 longClick: [{
                     title: '查看网址',
                     js: $.toString((识别码) => {
-                        return "https://njav.tv/zh/v/" + 识别码;
+                        return "https://123av.com/zh/v/" + 识别码;
                     }, 识别码)
                 }]
             }
@@ -619,37 +619,10 @@ js: //所在行   ThissAV①16
         d.push({
             title: '‘‘’’<b><middle><font color="#FF8C00">𝐌𝐨𝐫𝐞</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQkS8.png',
-            url: $(["𝐀𝐯𝟎𝟏", "𝐧𝐣𝐚𝐯", "𝐖𝐚𝐧𝐭𝐚𝐯",
+            url: $(["𝐀𝐯𝟎𝟏", "𝐖𝐚𝐧𝐭𝐚𝐯",
                     "𝐉𝐚𝐛𝐥𝐞", "𝐉𝐚𝐯𝐅𝐢𝐧𝐝𝐞𝐫"
                 ], 3)
                 .select((识别码) => {
-                    if (input == "𝐧𝐣𝐚𝐯") {
-                        var av = "https://njav.tv/zh/v/" + 识别码;
-                        var html = fetch(av, {
-                            timeout: 3223
-                        })
-                        if (html) {
-                            if (html.includes("请检查地址栏中的网址")) {
-                                return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
-                            } else {
-                                var id = pdfh(html, "#page-video&&v-scope")
-                                    .match(/id:.(\d+)/)[1]
-                                var video = "https://njav.tv/zh/ajax/v/" + id + "/videos"
-                                var data = JSON.parse(fetch(video, {
-                                    headers: {
-                                        "Referer": av
-                                    }
-                                }))
-                                var javplayer = data.data.watch[0].url
-                                var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
-                                    .match(/https?.*?\.m3u8/)[0]
-                                return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
-                            }
-                        } else {
-                            return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
-                        }
-                    }
-
                     if (input == "𝐖𝐚𝐧𝐭𝐚𝐯") {
                         var av = "https://www.wantav.com/videos/index/id/" + 识别码;
                         var html = fetch(av, {
@@ -804,11 +777,6 @@ js: //所在行   ThissAV①16
                     title: '𝐀𝐯𝟎𝟏',
                     js: $.toString((识别码) => {
                         return "https://www.av01.tv/" + 识别码;
-                    }, 识别码)
-                }, {
-                    title: '𝐧𝐣𝐚𝐯',
-                    js: $.toString((识别码) => {
-                        return "https://njav.tv/zh/v/" + 识别码;
                     }, 识别码)
                 }, {
                     title: '𝐖𝐚𝐧𝐭𝐚𝐯',
