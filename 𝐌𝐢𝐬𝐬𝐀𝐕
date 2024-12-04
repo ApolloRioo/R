@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241020",
+    version: "20241204",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -694,7 +694,7 @@ const Apollo = {
             })
 
             Apollo.d.push({
-                col_type: 'line_blank'
+                col_type: 'blank_block'
             })
         }
         if (series) {
@@ -721,7 +721,7 @@ const Apollo = {
                 }
             })
             Apollo.d.push({
-                col_type: 'line_blank'
+                col_type: 'blank_block'
             })
         }
         if (makers) {
@@ -775,7 +775,7 @@ const Apollo = {
                 }
             })
             Apollo.d.push({
-                col_type: 'line_blank'
+                col_type: 'blank_block'
             })
         }
         if (labelsList) {
@@ -820,7 +820,7 @@ const Apollo = {
                 },
             })
         } else {
-            Apollo.BTshowParse(num);
+            //Apollo.BTshowParse(num);
         }
         CiliList.forEach((item, index) => {
             Apollo.d.push({
