@@ -184,21 +184,21 @@ js: //所在行   ThissAV①16
             pic_url: 'https://img.vinua.cn/images/IQBFU.png',
             url: $('')
                 .lazyRule((识别码) => {
-                    var av = "http://sousou6.com/vod/search.html?wd=" + 识别码;
+                    var av = "https://www.sousou6.com/search.html?keyword=" + 识别码;
                     var html = fetch(av, {
                         timeout: 3323
                     })
                     if (html) {
-                        var list = pdfa(html, ".post-list&&.video-item")
+                        var list = pdfa(html, ".stui-vodlist&&li")
                         if (list.length < 1) {
                             return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                         } else {
                             var Alist = []
                             list.forEach(item => {
-                                var title = pdfh(item, 'img&&alt');
+                                var title = pdfh(item, 'a&&title');
                                 Alist.push({
                                     title: title,
-                                    url: "http://sousou6.com" + pdfh(item, 'a&&href'),
+                                    url: pdfh(item, 'a&&href'),
                                 })
                             })
                             var Atitle = Alist.map(i => i.title)
@@ -206,8 +206,10 @@ js: //所在行   ThissAV①16
                                 .select((Alist) => {
                                     let index = Alist.findIndex(r => r.title == input);
                                     var html = fetch(Alist[index].url)
-                                    var url = JSON.parse(html.match(/r player_.*?=(.*?)</)[1]).url
-                                    return unescape(url)
+                                    var playUrl = pdfh(html, ".play-btn&&a&&href")
+                                    var h = fetch(playUrl)
+                                    var url = h.match(/https?.*?\.m3u8/)[0]
+                                    return url
                                 }, Alist)
                         }
                     } else {
