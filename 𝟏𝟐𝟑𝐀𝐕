@@ -1,0 +1,235 @@
+const Apollo = {
+    version: "20241204",
+    empty: 'hiker://empty',
+    url: "https://123av.com/zh/",
+    d: [],
+    getRangeColors: function() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
+                .toString(16))
+            .substr(-6);
+    }, //随机颜色
+    pageAdd: function(page) {
+        if (getMyVar("page")) {
+            putMyVar("page", (parseInt(page) + 1) + '');
+        }
+        return;
+    }, //翻页
+    pageMoveto: function(page, pages) {
+        var longClick = [{
+            title: "首页",
+            js: $.toString(() => {
+                putMyVar("page", "1");
+                refreshPage();
+                return "hiker://empty";
+            }),
+        }, {
+            title: "上页",
+            js: $.toString((page) => {
+                if (page > 1) {
+                    putMyVar("page", (parseInt(page) - 1));
+                    refreshPage();
+                    return "hiker://empty";
+                }
+            }, page),
+        }, {
+            title: "第" + page + "页",
+            js: "",
+        }, {
+            title: "跳转",
+            js: $.toString(() => {
+                return $("").input(() => {
+                    putMyVar("page", input);
+                    refreshPage();
+                });
+            }),
+        }];
+        if (typeof(pages) != 'undefined') {
+            var extra1 = {
+                title: "尾页" + pages,
+                js: $.toString((pages) => {
+                    putMyVar("page", pages);
+                    refreshPage();
+                    return "hiker://empty";
+                }, pages),
+            };
+            longClick.push(extra1)
+        }
+        return longClick
+    }, //长按跳页
+    data: {
+        category: getMyVar('Apollo.category', '0'),
+        subCate: getMyVar('Apollo.subCate', '0'),
+    },
+    baseParse: () => {
+        putMyVar("MY_TYPE", "主页");
+        var page = getMyVar("page", MY_PAGE + "")
+        let categoryList = [{
+            "title": "首页",
+            "path": "dm1",
+            "type": "home",
+            "sub": []
+        }, {
+            "title": "观看",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "最近更新",
+                "path": "recent-update"
+            }, {
+                "title": "热门",
+                "path": "trending"
+            }, {
+                "title": "新发布",
+                "path": "new-release"
+            }, {
+                "title": "今天最多观看",
+                "path": "today-hot"
+            }, {
+                "title": "本周最多观看",
+                "path": "weekly-hot"
+            }, {
+                "title": "本月最多观看",
+                "path": "monthly-hot"
+            }, {
+                "title": "审查",
+                "path": "censored"
+            }, {
+                "title": "未审查",
+                "path": "uncensored"
+            }, {
+                "title": "泄露未审查",
+                "path": "uncensored-leaked"
+            }, {
+                "title": "VR",
+                "path": "vr"
+            }]
+        }, {
+            "title": "列表",
+            "path": "",
+            "type": "avatar",
+            "sub": [{
+                "title": "类型",
+                "path": "genres"
+            }, {
+                "title": "制作人",
+                "path": "makers"
+            }, {
+                "title": "热门女演员",
+                "path": "actresses?sort=most_viewed_today"
+            }, {
+                "title": "女演员",
+                "path": "actresses"
+            }, {
+                "title": "系列",
+                "path": "series"
+            }]
+        }, {
+            "title": "业余",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "SIRO",
+                "path": "tags/siro"
+            }, {
+                "title": "LUXU",
+                "path": "tags/259luxu"
+            }, {
+                "title": "200GANA",
+                "path": "tags/200gana"
+            }, {
+                "title": "PRESTIGE PREMIUM",
+                "path": "tags/prestige-premium"
+            }, {
+                "title": "ORECO",
+                "path": "tags/230oreco"
+            }, {
+                "title": "S-CUTE",
+                "path": "tags/s-cute"
+            }, {
+                "title": "ARA",
+                "path": "tags/261ara"
+            }, {
+                "title": "390JAC",
+                "path": "tags/390jac"
+            }, {
+                "title": "328HMDN",
+                "path": "tags/328hmdn"
+            }]
+        }, {
+            "title": "未审查",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "泄露未审查",
+                "path": "uncensored-leaked"
+            }, {
+                "title": "FC2",
+                "path": "tags/fc2"
+            }, {
+                "title": "HEYZO",
+                "path": "dm1/tags/heyzo"
+            }, {
+                "title": "Tokyo-Hot",
+                "path": "tags/tokyo-hot"
+            }, {
+                "title": "1pondo",
+                "path": "dm5/tags/1pondo"
+            }, {
+                "title": "Caribbeancom",
+                "path": "dm6/tags/caribbeancom"
+            }, {
+                "title": "Caribbeancompr",
+                "path": "tags/caribbeancompr"
+            }, {
+                "title": "10musume",
+                "path": "dm11/tags/10musume"
+            }, {
+                "title": "pacopacomama",
+                "path": "tags/pacopacomama"
+            }, {
+                "title": "Gachinco",
+                "path": "tags/gachig"
+            }, {
+                "title": "XXX-AV",
+                "path": "tags/xxx-av"
+            }, {
+                "title": "C0930",
+                "path": "tags/c0930"
+            }, {
+                "title": "H0930",
+                "path": "tags/h0930"
+            }, {
+                "title": "H4610",
+                "path": "tags/h4610"
+            }]
+        }, {
+            "title": "更多",
+            "path": "",
+            "type": "video",
+            "sub": [{
+                "title": "MissAV",
+                "path": "missav"
+            }, {
+                "title": "SupJav",
+                "path": "supjav"
+            }, {
+                "title": "Jable",
+                "path": "jable"
+            }, {
+                "title": "Jav.guru",
+                "path": "javguru"
+            }]
+        }]
+        const currentCate = categoryList[Apollo.data.category]
+        let url
+        var type = currentCate.type
+        var path = currentCate.path
+        if (currentCate.sub.length > 0) {
+            url = getMyVar("url", Apollo.url + currentCate.sub[Apollo.data.subCate].path)
+        } else {
+            url = getMyVar("url", Apollo.url + currentCate.path)
+        }
+        url = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+            if (match.startsWith('?') || match.startsWith('&')) {
+                return match.charAt(0) + 'page=' + page;
+ 
