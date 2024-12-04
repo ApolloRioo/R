@@ -137,27 +137,32 @@ js: //所在行   ThissAV①16
             pic_url: 'https://img.vinua.cn/images/IQqwD.png',
             url: $('')
                 .lazyRule((识别码) => {
-                    var av = "https://123av.com/zh/v/" + 识别码;
+                    var av = "https://123av.com/zh/v/" + 识别码 + "-uncensored-leaked";
                     var html = fetch(av, {
                         timeout: 3223
                     })
                     if (html) {
-                        if (html.includes("请检查地址栏中的网址")) {
-                            return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
-                        } else {
-                            var id = pdfh(html, "#page-video&&v-scope")
-                                .match(/id:.(\d+)/)[1]
-                            var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
-                            var data = JSON.parse(fetch(video, {
-                                headers: {
-                                    "Referer": av
-                                }
-                            }))
-                            var javplayer = data.data.watch[0].url
-                            var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
-                                .match(/https?.*?\.m3u8/)[0]
-                            return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
+                        if (html.includes("请检查地址栏中的URL并重试")) {
+                            var av = "https://123av.com/zh/v/" + 识别码;
+                            var html = fetch(av, {
+                                timeout: 3223
+                            })
                         }
+                        if (html.includes("请检查地址栏中的URL并重试")) {
+                            return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                        }
+                        var id = pdfh(html, "#page-video&&v-scope")
+                            .match(/id:.(\d+)/)[1]
+                        var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
+                        var data = JSON.parse(fetch(video, {
+                            headers: {
+                                "Referer": av
+                            }
+                        }))
+                        var javplayer = data.data.watch[0].url
+                        var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
+                            .match(/https?.*?\.m3u8/)[0]
+                        return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
                     } else {
                         return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
                     }
