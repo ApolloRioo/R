@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241204",
+    version: "20241205",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -317,7 +317,9 @@ const Apollo = {
         switch (type) {
             case 'home':
                 if (MY_PAGE == 1 && !/search/.test(url)) {
-                    Apollo.lunboType(html)
+                    try {
+                        Apollo.lunboType(html)
+                    } catch {}
                     Apollo.homeType(html)
                 }
                 break
