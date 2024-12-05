@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241114",
+    version: "20241205",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -152,7 +152,7 @@ const Apollo = {
 
         log(url)
         try {
-            var next = Apollo.url + pdfh(html, ".inline-flex.isolate&&a:matches(下一个)&&href")
+            var next = Apollo.url + pdfh(html, "body&&.inline-flex[aria-label=\"Go to next page\"]&&href")
             next = next.replace(/.*(http.*)/, "$1")
             putMyVar("nextPage", next);
         } catch {
@@ -336,7 +336,7 @@ const Apollo = {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/.*(http.*)/, "$1")
             var title = pdfh(item, "a,-1&&aria-label||Text");
-            var img = pdfh(item, "img&&data-src||src").replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg").replace(/\/1\.jpg/, "/default.jpg").replace("w_480,q_50", "w_800");
+            var img = Apollo.url + pdfh(item, "img&&data-src||src").replace(/(.*)w_330(.*)\/1\.jpg/, "$1w_800$2/default.jpg").replace(/\/1\.jpg/, "/default.jpg").replace("w_480,q_50", "w_800");
             Apollo.d.push({
                 title: title,
                 desc: pdfh(item, ".left-1&&Text") + "⏰" + pdfh(item, ".right-1&&Text"),
