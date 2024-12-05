@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241012,
+    version: 20241206,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -899,7 +899,7 @@ const Apollo = {
             let videoUrl = '';
             let requestUrl = input.replace("mmsw01", "mmsw02");
             var html = fetch(requestUrl)
-            if (requestUrl.indexOf(config.host) != -1) {
+            if (requestUrl.indexOf(getItem('link', "https://18av.mm-cg.com")) != -1) {
                 let res = html.match(/https.*?m3u8/);
                 if (res == undefined || res.length == 0) {
                     //res = html.match(/file:.\'(.*)\'\},/);
@@ -918,11 +918,12 @@ const Apollo = {
                 })).url;
                 var htmll = fetch(redirect, {
                     headers: {
-                        referer: config.host
+                        "referer": getItem('link', "https://18av.mm-cg.com"),
+                        "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
                     }
                 });
-                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0]
-                var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0];log(pass_md5)
+                var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1];
                 var data = fetch(pass_md5, {
                     headers: {
                         "Referer": redirect
@@ -938,7 +939,7 @@ const Apollo = {
                     return a + "?token=" + token + "&expiry=" + Date.now();
                 };
                 var urlPlay = data + makePlay(token)
-                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + config.host + "/}"
+                videoUrl = urlPlay + "#isVideo=true#;{Referer@" + getItem('link', 'https://18av.mm-cg.com') + "/}"
 
             } else if (requestUrl.indexOf('mm') != -1) {
                 var script = html.match(/eval(.*\))/)[1]
