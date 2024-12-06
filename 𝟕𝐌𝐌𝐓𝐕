@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241114",
+    version: "20241206",
     empty: "hiker://empty",
     url: "https://7mmtv.sx/zh/",
     d: [],
@@ -14,6 +14,11 @@ const Apollo = {
     }, //随机颜色
     baseParse: () => {
         let categoryList = [{
+            "title": "主頁",
+            "path": "",
+            "type": "home",
+            "sub": []
+        }, {
             "title": "無碼破解",
             "path": "",
             "type": "video",
@@ -293,8 +298,8 @@ const Apollo = {
                     Apollo.videoType(url, html)
                 }
                 break
-            case 'actress':
-                //Apollo.avatarType(html)
+            case 'home':
+                Apollo.homeType(html)
                 break
             case 'series':
                 Apollo.seriesType(html)
@@ -304,7 +309,45 @@ const Apollo = {
         }
         setResult(Apollo.d)
     },
-
+    //首页
+    homeType: (html) => {
+        var tabs = pdfa(html, "body&&.block")
+        tabs.forEach(tag => {
+            let list = pdfa(tag, "body&&.video")
+            Apollo.d.push({
+                title: pdfh(tag, "h2&&Text").fontcolor("#FF00FF"),
+                url: "hiker://empty",
+                col_type: "rich_text",
+            })
+            list.forEach(item => {
+                var url = pdfh(item, 'a&&href');
+                var preview = pdfh(item, "video&&data-src");
+                Apollo.d.push({
+                    title: pdfh(item, "h3&&a&&Text"),
+                    desc: pdfh(item, ".small&&Text"),
+                    img: pdfh(item, "img&&data-src").replace(/\/m\//, "/b/").replace(/\/s\//, "/b/").replace(/hcomic\/b\//, "hcomic/s/"),
+                    url: url + $('#noHistory#').rule(() => {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.videoParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
+                    col_type: "movie_2",
+                    extra: {
+                        pageTitle: pdfh(item, "h3&&a&&Text"),
+                        longClick: [{
+                            title: "【10秒预览】",
+                            js: $.toString((preview) => {
+                                return preview
+                            }, preview)
+                        }]
+                    }
+                })
+            })
+            Apollo.d.push({
+                col_type: "blank_block"
+            })
+        })
+    },
     //一级视频列表
     videoType: (url, html) => {
         if (url.includes("hcomic_") && !url.includes("_content")) {
