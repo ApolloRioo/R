@@ -1,5 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
+    version: "20241206",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -531,8 +532,8 @@ const javguru = {
                             "Referer": "https://jav.guru/"
                         }
                     })
-                    var path = html.match(/'.*?(\/.*?\.m3u8)/)[1]
-                    var playUrl = path.includes("com") ? "https:" + path : getHome(location) + path
+                    var path = html.match(/'.*?(\/.*?\.m3u8)/)[1];
+                    var playUrl = path.includes("//") ? "https:" + path : getHome(location) + path
                     return playUrl + ";{Referer@" + location + "}"
                 } else if (location.includes("streamtape")) {
                     //ST线路
@@ -586,7 +587,7 @@ const javguru = {
                             'Referer': "https://jav.guru/"
                         }
                     })
-                    // log(Playhtml)
+                    //log(Playhtml)
                     var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
                     var uas = eval(script)
                     var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
