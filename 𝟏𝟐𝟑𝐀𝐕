@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241205",
+    version: "20241208",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -1084,7 +1084,7 @@ const Apollo = {
             let sdesc = substr(desc, num);
 
             var colors = {
-                show: "#008000",
+                show: "#008B8B",
                 hide: "#8A2BE2"
             }
 
