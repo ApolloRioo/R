@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241206,
+    version: 20241208,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -584,6 +584,13 @@ const Apollo = {
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
             }
         })
+        if (html.includes("同意(enter)")) {
+            var cc = pdfh(html, ".scale_2&&input[type=submit]&&onclick").split("\"")[1]
+            log("獲取cookie地址：" + cc)
+            request(cc)
+            //java.lang.Thread.sleep(500);
+            refreshPage()
+        }
         try {
             var title = pdfh(html, "h1&&Text")
                 .replace("免费AV在线看", "");
