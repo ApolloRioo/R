@@ -1158,7 +1158,7 @@ const Apollo = {
             let sdesc = substr(desc, num);
 
             var colors = {
-                show: "#008000",
+                show: "#008B8B",
                 hide: "#8A2BE2"
             }
 
