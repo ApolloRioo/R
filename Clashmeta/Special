@@ -1,6 +1,4 @@
 payload:
-  - DOMAIN-REGEX,javdb(\d+)?\.com
-  - DOMAIN-SUFFIX,jdbstatic.com
   - DOMAIN-SUFFIX,supjav.com
   - DOMAIN-SUFFIX,catbox.moe
   - DOMAIN-KEYWORD,javmenu
