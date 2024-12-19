@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241208,
+    version: 20241220,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -1061,7 +1061,7 @@ const Apollo = {
             log("获取到的域名：\n" + host)
             setItem('link', host);
             hideLoading();
-            java.lang.Thread.sleep(200);
+            //java.lang.Thread.sleep(200);
             refreshPage();
         }
     }
