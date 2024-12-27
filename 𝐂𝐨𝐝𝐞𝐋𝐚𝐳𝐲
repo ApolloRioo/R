@@ -24,7 +24,7 @@ js: //所在行   ThissAV①16
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                         },
-                        timeout: 3223
+                        timeout: 4923
                     })
                     if (html) {
                         var list = pdfa(html, '.grid&&.relative:has(a[href])');
@@ -57,7 +57,7 @@ js: //所在行   ThissAV①16
                                             headers: {
                                                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                                             },
-                                            timeout: 3000
+                                            timeout: 4923
                                         });
                                         const 标题 = pdfh(html, 'h1&&Text')
                                         const 图片 = pdfh(html, 'meta[property=og:image]&&content')
@@ -139,30 +139,31 @@ js: //所在行   ThissAV①16
                 .lazyRule((识别码) => {
                     var av = "https://123av.com/zh/v/" + 识别码 + "-uncensored-leaked";
                     var html = fetch(av, {
-                        timeout: 3223
+                        timeout: 4923
                     })
                     if (html) {
                         if (html.includes("请检查地址栏中的URL并重试")) {
                             var av = "https://123av.com/zh/v/" + 识别码;
                             var html = fetch(av, {
-                                timeout: 3223
+                                timeout: 4923
                             })
                         }
                         if (html.includes("请检查地址栏中的URL并重试")) {
                             return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                        } else {
+                            var id = pdfh(html, "#page-video&&v-scope")
+                                .match(/id:.(\d+)/)[1]
+                            var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
+                            var data = JSON.parse(fetch(video, {
+                                headers: {
+                                    "Referer": av
+                                }
+                            }))
+                            var javplayer = data.data.watch[0].url
+                            var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
+                                .match(/https?.*?\.m3u8/)[0]
+                            return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
                         }
-                        var id = pdfh(html, "#page-video&&v-scope")
-                            .match(/id:.(\d+)/)[1]
-                        var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
-                        var data = JSON.parse(fetch(video, {
-                            headers: {
-                                "Referer": av
-                            }
-                        }))
-                        var javplayer = data.data.watch[0].url
-                        var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
-                            .match(/https?.*?\.m3u8/)[0]
-                        return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
                     } else {
                         return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
                     }
@@ -186,7 +187,7 @@ js: //所在行   ThissAV①16
                 .lazyRule((识别码) => {
                     var av = "https://www.sousou6.com/search.html?keyword=" + 识别码;
                     var html = fetch(av, {
-                        timeout: 3323
+                        timeout: 4923
                     })
                     if (html) {
                         var list = pdfa(html, ".stui-vodlist&&li")
@@ -310,7 +311,7 @@ js: //所在行   ThissAV①16
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                         },
-                        timeout: 3623
+                        timeout: 4923
                     })
                     if (html) {
                         var list = pdfa(html, '.list-videos&&.item');
@@ -485,7 +486,7 @@ js: //所在行   ThissAV①16
                     } else {
                         var search = "https://jav.guru/?s=" + 识别码;
                         var html = fetch(search, {
-                            timeout: 3223
+                            timeout: 4923
                         })
                         if (html) {
                             var list = pdfa(html, "main&&.inside-article:has(.imgg)");
@@ -568,7 +569,7 @@ js: //所在行   ThissAV①16
                             headers: {
                                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0)"
                             },
-                            timeout: 3223
+                            timeout: 4923
                         })
                         if (html) {
                             var list = pdfa(html, 'body&&.video');
@@ -634,7 +635,7 @@ js: //所在行   ThissAV①16
                         var av = "https://www.wantav.com/videos/index/id/" + 识别码;
                         var html = fetch(av, {
                             //redirect: false,
-                            timeout: 3223
+                            timeout: 4923
                         })
                         if (html) {
                             var title = pdfh(html, "head&&title&&Text")
@@ -653,7 +654,7 @@ js: //所在行   ThissAV①16
                         var av = "https://www.av01.tv/" + 识别码;
                         var htmll = JSON.parse(fetch(av, {
                             onlyHeaders: true,
-                            timeout: 3323
+                            timeout: 4923
                         }))
                         // log(htmll)
                         if (htmll.statusCode != 0) {
@@ -695,7 +696,7 @@ js: //所在行   ThissAV①16
                         var av = "https://jable.tv/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv-$1") + "/";
                         try {
                             var html = fetch(av, {
-                                timeout: 3223
+                                timeout: 4923
                             })
                             if (html) {
                                 var url = html.match(/https?:\/\/\S+?\.m3u8/)[0]
@@ -730,7 +731,7 @@ js: //所在行   ThissAV①16
                         if (JavFinder.length == 0) {
                             var redirect = JSON.parse(fetch(search, {
                                     onlyHeaders: true,
-                                    timeout: 5000
+                                    timeout: 4923
                                 }))
                                 .url
                             if (/\.ai\/\d+/.test(redirect)) {
@@ -759,7 +760,7 @@ js: //所在行   ThissAV①16
                                             headers: {
                                                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                                             },
-                                            timeout: 3000
+                                            timeout: 4923
                                         });
                                         var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
                                         var location = JSON.parse(fetch(src))
