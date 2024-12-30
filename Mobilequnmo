@@ -1,6 +1,6 @@
-[Adblock Plus 2.0]
+ [Adblock Plus 2.0]
 ! Title: R 群魔乱舞!
-! Version: 20241208
+! Version: 20241230
 ! 
 https://raw.githubusercontent.com/ApolloRioo/R/master/Mobilequnmo
 
@@ -251,8 +251,8 @@ https://182.237.3.205:2045/hgjs/abs.js
 ||imgsrc.baidu.com/forum/pic/item/ac4bd11373f082021dcec6070dfbfbedab641bad.jpg$image
 ||ttz73.com^
 ||nanrenvip*.cc/d/m.js
-||*/sucai-img/*.gif^
-||*/cpa-img/*.gif$image
+/sucai-img/*.gif^
+/cpa-img/*.gif$image
 http://www.88kanqiu.fun/sss?uuids=465ed992-be36-11ec-bd49-0800276941af,465edf90-be36-11ec-bd49-0800276941af,465ee18c-be36-11ec-bd49-0800276941af,465ee383-be36-11ec-bd49-0800276941af,465ee3fe-be36-11ec-bd49-0800276941af,465edd75-be36-11ec-bd49-0800276941af,465ee209-be36-11ec-bd49-0800276941af,465ee479-be36-11ec-bd49-0800276941af,465ee095-be36-11ec-bd49-0800276941af
 ||trip.com^
 ||exosrv.com^
@@ -491,7 +491,7 @@ http://www.88kanqiu.fun/sss?uuids=465ed992-be36-11ec-bd49-0800276941af,465edf90-
 ||baidunvks.com^
 ||kzpe4b.cn^
 ||q5wlsk.cn^
-||*.*/piankuwap/js/afoot.js
+/piankuwap/js/afoot.js
 ||43.138.143.245^
 https://www.kaodianjiexi.com/statics/js/dddd.js
 https://www.kaodianjiexi.com/statics/js/guding.js
