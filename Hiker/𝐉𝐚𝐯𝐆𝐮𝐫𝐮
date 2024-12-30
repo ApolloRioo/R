@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20241228",
+    version: "20241230",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -457,7 +457,7 @@ const javguru = {
                     var desc = findItem('transdesc')
                         .desc
                     if (!desc) {
-                        const Apollo = $.require('hiker://page/javguru')
+                        const Apollo = $.require('hiker://page/javguru?rule=𝐉𝐚𝐯𝐆𝐮𝐫𝐮')
                         var translates = Apollo.translate(desct)
                         updateItem("transdesc", {
                             desc: '““””' + translates.fontcolor("red"),
