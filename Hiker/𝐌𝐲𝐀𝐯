@@ -1,5 +1,6 @@
 const Apollo = {
     empty: "hiker://empty",
+    version: "20250101",
     url: config.host ? config.host.replace(/\/$/, "") : "https://javlist.me",
     d: [],
     data: {
@@ -233,14 +234,14 @@ const Apollo = {
                     title: parseInt(Apollo.data.category) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
                         .lazyRule((index) => {
-                        putMyVar("Apo.category", index.toString())
-                        putMyVar("Apo.subCate", '0')
-                        clearMyVar("sort")
-                        clearMyVar("url")
-                        clearMyVar("yurl")
-                        refreshPage()
-                        return "hiker://empty"
-                    }, index),
+                            putMyVar("Apo.category", index.toString())
+                            putMyVar("Apo.subCate", '0')
+                            clearMyVar("sort")
+                            clearMyVar("url")
+                            clearMyVar("yurl")
+                            refreshPage()
+                            return "hiker://empty"
+                        }, index),
                     col_type: 'scroll_button',
                 })
             })
@@ -253,13 +254,13 @@ const Apollo = {
                         title: parseInt(Apollo.data.subCate) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                         url: $(Apollo.empty + "#noLoading#")
                             .lazyRule((index) => {
-                            putMyVar("Apo.subCate", index.toString())
-                            clearMyVar("sort")
-                            clearMyVar("url")
-                            clearMyVar("yurl")
-                            refreshPage()
-                            return "hiker://empty"
-                        }, index),
+                                putMyVar("Apo.subCate", index.toString())
+                                clearMyVar("sort")
+                                clearMyVar("url")
+                                clearMyVar("yurl")
+                                refreshPage()
+                                return "hiker://empty"
+                            }, index),
                         col_type: 'scroll_button',
                     })
                 })
@@ -336,11 +337,11 @@ const Apollo = {
                 title: getMyVar('ysort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: getHome(url) + pdfh(item, 'a&&href') + $('#noLoading#')
                     .lazyRule((index) => {
-                    putMyVar('ysort', index);
-                    putMyVar("yurl", input);
-                    refreshPage();
-                    return 'hiker://empty'
-                }, index),
+                        putMyVar('ysort', index);
+                        putMyVar("yurl", input);
+                        refreshPage();
+                        return 'hiker://empty'
+                    }, index),
                 col_type: 'scroll_button'
             })
         })
@@ -387,18 +388,18 @@ const Apollo = {
                         title: key.toString() === cate_temp[index] ? '““””<b><span style="color: ' + 分类颜色 + '">' + title + '</span></b>' : title,
                         url: $(pdfh(item, 分类链接) + '#noLoading#')
                             .lazyRule((params) => {
-                            params.cate_temp[params.index] = params.key.toString()
+                                params.cate_temp[params.index] = params.key.toString()
 
-                            putMyVar("sort", JSON.stringify(params.cate_temp))
-                            putMyVar("url", input)
-                            refreshPage()
-                            return "hiker://empty"
-                        }, {
-                            cate_temp: cate_temp,
-                            index: index,
-                            key: key,
-                            page: MY_PAGE,
-                        }),
+                                putMyVar("sort", JSON.stringify(params.cate_temp))
+                                putMyVar("url", input)
+                                refreshPage()
+                                return "hiker://empty"
+                            }, {
+                                cate_temp: cate_temp,
+                                index: index,
+                                key: key,
+                                page: MY_PAGE,
+                            }),
                         col_type: 'scroll_button',
                     })
                 })
@@ -578,11 +579,11 @@ const Apollo = {
                     title: getMyVar('sort', '0') == index ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                     url: getHome(url) + item.url + $('#noLoading#')
                         .lazyRule((index) => {
-                        putMyVar('sort', index);
-                        putMyVar("url", input);
-                        refreshPage();
-                        return 'hiker://empty'
-                    }, index),
+                            putMyVar('sort', index);
+                            putMyVar("url", input);
+                            refreshPage();
+                            return 'hiker://empty'
+                        }, index),
                     col_type: 'scroll_button'
                 })
                 if (index == 4 || index == 28 || index == 52) {
@@ -613,10 +614,10 @@ const Apollo = {
                 img: img.startsWith("http") ? img : Apollo.url + img,
                 url: $(getHome(url) + pdfh(item, 'a&&href') + '#noHistory#')
                     .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.videoParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.videoParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
@@ -624,27 +625,27 @@ const Apollo = {
                     longClick: [{
                         title: '【跳页】=>\t最大页\t:【' + lastpagenum + "】",
                         js: $.toString((url, lastpagenum) => {
-                            return $('', '1到' + lastpagenum + '之间的页码')
-                                .input((url, lastpagenum) => {
-                                if (parseInt(input) > 1 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
-                                    var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
-                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
-                                            return match.charAt(0) + 'page=' + input;
+                                return $('', '1到' + lastpagenum + '之间的页码')
+                                    .input((url, lastpagenum) => {
+                                        if (parseInt(input) > 1 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
+                                            var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                                if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                                    return match.charAt(0) + 'page=' + input;
+                                                } else {
+                                                    return (url.includes('?') ? '&page=' : '?page=') + input;
+                                                }
+                                            });
+                                            jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
+                                            putMyVar("url", jumpu);
+                                            putMyVar("yurl", jumpu);
+                                            refreshPage();
+                                            return 'toast://你已经穿越到了' + input + '页'
                                         } else {
-                                            return (url.includes('?') ? '&page=' : '?page=') + input;
+                                            return "toast://请输入正确的页码"
                                         }
-                                    });
-                                    jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
-                                    putMyVar("url", jumpu);
-                                    putMyVar("yurl", jumpu);
-                                    refreshPage();
-                                    return 'toast://你已经穿越到了' + input + '页'
-                                } else {
-                                    return "toast://请输入正确的页码"
-                                }
-                            }, url, lastpagenum)
-                        },
-                        url, lastpagenum)
+                                    }, url, lastpagenum)
+                            },
+                            url, lastpagenum)
                     }]
                 }
             })
@@ -663,12 +664,12 @@ const Apollo = {
                 img: img.includes("domestic") ? img : img.replace("thumbnail-", ""),
                 url: $(getHome(url) + pdfh(item, 'a&&href') + '#noHistory#')
                     .lazyRule(() => {
-                    const html = fetch(input, {
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                        }
-                    })
-                    var binaryStr = html.match(/decodeBinaryString\('(.*?)'\)/)[1]
+                        const html = fetch(input, {
+                            headers: {
+                                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                            }
+                        })
+                        var binaryStr = html.match(/decodeBinaryString\('(.*?)'\)/)[1]
 
                         function decodeBinaryString(binaryStr) {
                             var result = "";
@@ -678,9 +679,9 @@ const Apollo = {
                             }
                             return base64Decode(base64Decode(result));
                         }
-                    var result = decodeBinaryString(binaryStr)
-                    return pdfh(result, "source&&src")
-                }),
+                        var result = decodeBinaryString(binaryStr)
+                        return pdfh(result, "source&&src")
+                    }),
                 col_type: "movie_2",
             })
         })
@@ -702,35 +703,35 @@ const Apollo = {
                     .startsWith("http") ? pdfh(item, 'img&&data-src') : 'https://img.vinua.cn/images/IQ3h0.jpg',
                 url: $(getHome(url) + pdfh(item, 'a&&href') + '#fypage#noHistory#')
                     .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.avatarParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.avatarParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
                 col_type: 'card_pic_3',
                 extra: {
                     longClick: [{
                         title: '【跳页】=>\t最大页\t:【' + lastpagenum + "】",
                         js: $.toString((url, lastpagenum) => {
-                            return $('', '1到' + lastpagenum + '之间的页码')
-                                .input((url, lastpagenum) => {
-                                if (parseInt(input) > 1 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
-                                    var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
-                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
-                                            return match.charAt(0) + 'page=' + input;
+                                return $('', '1到' + lastpagenum + '之间的页码')
+                                    .input((url, lastpagenum) => {
+                                        if (parseInt(input) > 1 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
+                                            var jumpu = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                                if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                                    return match.charAt(0) + 'page=' + input;
+                                                } else {
+                                                    return (url.includes('?') ? '&page=' : '?page=') + input;
+                                                }
+                                            });
+                                            jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
+                                            putMyVar("url", jumpu);
+                                            refreshPage();
+                                            return 'toast://你已经穿越到了' + input + '页'
                                         } else {
-                                            return (url.includes('?') ? '&page=' : '?page=') + input;
+                                            return "toast://请输入正确的页码"
                                         }
-                                    });
-                                    jumpu = jumpu.replace(/https?:\/\/.*?\//, "/")
-                                    putMyVar("url", jumpu);
-                                    refreshPage();
-                                    return 'toast://你已经穿越到了' + input + '页'
-                                } else {
-                                    return "toast://请输入正确的页码"
-                                }
-                            }, url, lastpagenum)
-                        },
-                        url, lastpagenum)
+                                    }, url, lastpagenum)
+                            },
+                            url, lastpagenum)
                     }]
                 }
             })
@@ -814,30 +815,30 @@ const Apollo = {
 
     //翻译
     translate: (text) => {
-        var switchtrans = config.switchtrans
+        var switchtrans = config.switchtrans ? config.switchtrans : true
         if (switchtrans == true || switchtrans == "彩云小译") {
             try {
                 var to = 'zh'
                 var from = 'auto'
 
-                    function init_data(source_lang, target_lang) {
-                        return {
-                            source: '',
-                            detect: true,
-                            os_type: 'ios',
-                            device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
-                            trans_type: source_lang + '2' + target_lang,
-                            media: 'text',
-                            request_id: 424238335,
-                            user_id: '',
-                            dict: true,
-                        }
+                function init_data(source_lang, target_lang) {
+                    return {
+                        source: '',
+                        detect: true,
+                        os_type: 'ios',
+                        device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
+                        trans_type: source_lang + '2' + target_lang,
+                        media: 'text',
+                        request_id: 424238335,
+                        user_id: '',
+                        dict: true,
                     }
+                }
 
-                    function getRandomNumber() {
-                        const rand = Math.floor(Math.random() * 99999) + 100000
-                        return rand * 1000
-                    }
+                function getRandomNumber() {
+                    const rand = Math.floor(Math.random() * 99999) + 100000
+                    return rand * 1000
+                }
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -865,8 +866,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                            timeout: 1000
-                        }))
+                                timeout: 1000
+                            }))
                             .language;
                         var result = post(url, {
                             body: {
@@ -939,24 +940,24 @@ const Apollo = {
         var content = Apollo.translate(story)
         var lazy = $(`#noLoading#`)
             .lazyRule((content) => {
-            if (content !== "") {
-                var title = findItem('content_decid')
-                    .title
-                if (title.includes("<br>\t")) {
-                    updateItem("content_decid", {
-                        title: title.replace(/(.*?)<br>\t.*/, "$1"),
-                    })
+                if (content !== "") {
+                    var title = findItem('content_decid')
+                        .title
+                    if (title.includes("<br>\t")) {
+                        updateItem("content_decid", {
+                            title: title.replace(/(.*?)<br>\t.*/, "$1"),
+                        })
+                    } else {
+                        updateItem("content_decid", {
+                            title: title.replace(/(.*?)<br>\t.*/, "$1") + '<br>\t\t\t\t\t\t\t' + content.small()
+                                .fontcolor("#8A2BE2"),
+                        })
+                    }
+                    return "hiker://empty"
                 } else {
-                    updateItem("content_decid", {
-                        title: title.replace(/(.*?)<br>\t.*/, "$1") + '<br>\t\t\t\t\t\t\t' + content.small()
-                            .fontcolor("#8A2BE2"),
-                    })
+                    return "toast://此篇没有故事简介哦😐"
                 }
-                return "hiker://empty"
-            } else {
-                return "toast://此篇没有故事简介哦😐"
-            }
-        }, content)
+            }, content)
         Apollo.d.push({
             title: "🔥 <a style='text-decoration: none;' href='" + lazy + "'>故事</a> ：" + day_say.replace(/—/g, "")
                 .fontcolor("#FF0000")
@@ -980,10 +981,10 @@ const Apollo = {
         clearMyVar("ysort");
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo')
-            Apollo.avatarParse(MY_URL)
-            setResult(Apollo.d)
-        })
+                const Apollo = $.require('hiker://page/Apollo')
+                Apollo.avatarParse(MY_URL)
+                setResult(Apollo.d)
+            })
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -992,13 +993,28 @@ const Apollo = {
         log(url)
         var title = MY_PARAMS.title;
         Apollo.d.push({
-            title: '““””' + Apollo.translate(title)
-                .replace(/^\d+/, "")
-                .fontcolor("#E57A1A").small(),
-            url: url,
+            title: '““””' + title.fontcolor("#E57A1A").small(),
+            url: "hiker://empty" + $('#noLoading#')
+                .lazyRule((desct) => {
+                    var desc = findItem('transdesc')
+                        .desc
+                    if (!desc) {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        var translates = Apollo.translate(desct)
+                        updateItem("transdesc", {
+                            desc: '““””' + translates.fontcolor("red"),
+                        })
+                    } else {
+                        updateItem("transdesc", {
+                            desc: '',
+                        })
+                    }
+                    return "hiker://empty"
+                }, title),
             col_type: 'text_1',
             extra: {
                 lineVisible: false,
+                id: 'transdesc',
                 longClick: [{
                     title: '网页',
                     js: $.toString(() => {
@@ -1043,48 +1059,48 @@ const Apollo = {
                     title: '““””' + picnum.fontcolor("#FF00FF"),
                     url: Apollo.empty + $("")
                         .lazyRule((list) => {
-                        try {
-                            if (getMyVar("piclist", "收起") == "收起") {
-                                addItemAfter('picnum', {
-                                    title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
-                                    url: "hiker://empty" + $("")
-                                        .lazyRule((list) => {
-                                        for (var i = list.length - 1; i >= 0; i--) {
-                                            deleteItem('previewpic' + i);
-                                        }
-                                        deleteItem('nopiclist');
-                                        putMyVar("piclist", "收起");
-                                        return "hiker://empty"
-                                    }, list),
-                                    col_type: "text_center_1",
-                                    extra: {
-                                        lineVisible: false,
-                                        id: "nopiclist"
-                                    }
-                                })
-                                for (var i = list.length - 1; i >= 0; i--) {
+                            try {
+                                if (getMyVar("piclist", "收起") == "收起") {
                                     addItemAfter('picnum', {
-                                        url: 'hiker://empty',
-                                        img: pdfh(list[i], "a&&href"),
-                                        col_type: "pic_1_full",
+                                        title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
+                                        url: "hiker://empty" + $("")
+                                            .lazyRule((list) => {
+                                                for (var i = list.length - 1; i >= 0; i--) {
+                                                    deleteItem('previewpic' + i);
+                                                }
+                                                deleteItem('nopiclist');
+                                                putMyVar("piclist", "收起");
+                                                return "hiker://empty"
+                                            }, list),
+                                        col_type: "text_center_1",
                                         extra: {
-                                            id: 'previewpic' + i
+                                            lineVisible: false,
+                                            id: "nopiclist"
                                         }
-                                    });
+                                    })
+                                    for (var i = list.length - 1; i >= 0; i--) {
+                                        addItemAfter('picnum', {
+                                            url: 'hiker://empty',
+                                            img: pdfh(list[i], "a&&href"),
+                                            col_type: "pic_1_full",
+                                            extra: {
+                                                id: 'previewpic' + i
+                                            }
+                                        });
+                                    }
+                                    putMyVar("piclist", "展开");
+                                } else {
+                                    for (var i = list.length - 1; i >= 0; i--) {
+                                        deleteItem('previewpic' + i);
+                                    }
+                                    deleteItem('nopiclist');
+                                    putMyVar("piclist", "收起");
                                 }
-                                putMyVar("piclist", "展开");
-                            } else {
-                                for (var i = list.length - 1; i >= 0; i--) {
-                                    deleteItem('previewpic' + i);
-                                }
-                                deleteItem('nopiclist');
-                                putMyVar("piclist", "收起");
+                                return "hiker://empty"
+                            } catch {
+                                return "hiker://empty"
                             }
-                            return "hiker://empty"
-                        } catch {
-                            return "hiker://empty"
-                        }
-                    }, list),
+                        }, list),
                     col_type: "text_center_1",
                     extra: {
                         lineVisible: false,
