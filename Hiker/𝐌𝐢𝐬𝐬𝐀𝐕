@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241208",
+    version: "20250102",
     empty: 'hiker://empty',
     url: 'https://missav.com/cn/',
     d: [],
@@ -367,9 +367,6 @@ const Apollo = {
         const 小类定位 = "body&&.block"
         const 分类标题 = "Text"
         const 分类链接 = "a&&href"
-        Apollo.d.push({
-            col_type: "blank_block"
-        });
         try {
             if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
@@ -391,6 +388,9 @@ const Apollo = {
         var cate_temp = JSON.parse(cate_temp_json)
 
         if (MY_PAGE == 1) {
+            Apollo.d.push({
+                col_type: "blank_block"
+            });
             categories.forEach((category, index) => {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
@@ -438,9 +438,6 @@ const Apollo = {
         const 小类定位 = "body&&option"
         const 分类标题 = "Text"
         const 分类链接 = "option&&value"
-        Apollo.d.push({
-            col_type: "blank_block"
-        });
         try {
             if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
                 var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
@@ -458,6 +455,9 @@ const Apollo = {
         var cate_temp = JSON.parse(cate_temp_json)
 
         if (MY_PAGE == 1) {
+            Apollo.d.push({
+                col_type: "blank_block"
+            });
             categories.forEach((category, index) => {
                 let sub_categories = pdfa(category, 小类定位);
                 sub_categories.forEach((item, key) => {
