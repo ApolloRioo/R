@@ -169,12 +169,15 @@ const Apollo = {
                 url: $.toString((url) => {
                     if (input.trim() != "") {
                         putMyVar('keyword', input);
-                        var searchUrl = getHome(url) + "/zh/search?keyword=" + input
+                        var searchUrl = getHome(url) + "/search?what=" + input
                         putMyVar("url", searchUrl);
                         refreshPage();
                         return "hiker://empty"
                     } else {
-                        return "confirm://搜索内容为空.js:'hiker://empty'"
+                        clearMyVar("url");
+                        refreshPage();
+                        return "hiker://empty"
+                        //return "confirm://搜索内容为空.js:'hiker://empty'"
                     }
                 }, url),
                 desc: '搜索...',
