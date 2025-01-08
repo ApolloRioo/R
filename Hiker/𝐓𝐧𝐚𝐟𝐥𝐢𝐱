@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250108",
+    version: "20250109",
     empty: 'hiker://empty',
     url: "https://www.tnaflix.com",
     d: [],
@@ -71,22 +71,22 @@ const Apollo = {
         }, {
             "title": "Categories",
             "path": "/categories",
-            "type": "video",
+            "type": "avatar",
             "sub": []
         }, {
             "title": "Channels",
             "path": "/channels",
-            "type": "video",
+            "type": "channel",
             "sub": []
         }, {
             "title": "Pornstars",
             "path": "/pornstars",
-            "type": "video",
+            "type": "channel",
             "sub": []
         }, {
             "title": "Tags",
             "path": "/tags",
-            "type": "video",
+            "type": "tag",
             "sub": []
         }]
         const currentCate = categoryList[Apollo.data.category]
@@ -202,6 +202,12 @@ const Apollo = {
                 break
             case 'avatar':
                 Apollo.avatarType(html, page)
+                break
+            case 'channel':
+                Apollo.channelType(html, page)
+                break
+            case 'tag':
+                Apollo.tagType(html, page)
                 break
             case 'search':
                 if (MY_PAGE == 1) {
@@ -484,30 +490,87 @@ const Apollo = {
     },
 
     avatarType: (html, page) => {
-        try {
-            var pages = pdfh(html, "body&&.form-control-text&&Text").replace(/\,/g, "").match(/\d+/)[0]
-        } catch {
-            var pages = 1
-        }
-        const list = pdfa(html, 'body&&.box-item')
+        /* try {
+             var pages = pdfh(html, "body&&.form-control-text&&Text").replace(/\,/g, "").match(/\d+/)[0]
+         } catch {
+             var pages = 1
+         }*/
+        const list = pdfa(html, "body&&.col-6")
         list.forEach(item => {
             var img = pdfh(item, 'img&&src');
             Apollo.d.push({
-                title: pdfh(item, '.detail&&Text').replace("视频", ""),
+                title: pdfh(item, '.thumb-title&&Text'),
+                desc: pdfh(item, 'span&&Text'),
                 img: img,
-                url: $(Apollo.url + pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule(() => {
+                url: $(pdfh(item, 'a&&href') + '/featured#fypage#noHistory#').rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
+                    MY_URL = MY_URL.split("#")[0]
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
                 }),
-                col_type: img ? "card_pic_3" : 'text_2',
+                col_type: "movie_3",
                 extra: page ? {
-                    longClick: Apollo.pageMoveto(page, pages)
+                    longClick: Apollo.pageMoveto(page)
                 } : ""
             })
         })
     },
-
+    //频道
+    channelType: (html, page) => {
+        /* try {
+             var pages = pdfh(html, "body&&.form-control-text&&Text").replace(/\,/g, "").match(/\d+/)[0]
+         } catch {
+             var pages = 1
+         }*/
+        const list = pdfa(html, "body&&.col-6:not(:has(h3))")
+        list.forEach(item => {
+            var img = pdfh(item, 'img&&src');
+            var url = pdfh(item, 'a&&href');
+            Apollo.d.push({
+                title: pdfh(item, '.thumb-title&&Text'),
+                desc: pdfh(item, 'span&&Text'),
+                img: img,
+                url: url + $('?page=fypage#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    //MY_URL = MY_URL.split("#")[0]
+                    Apollo.yijiParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: url.includes("channel") ? "movie_2" : "movie_3",
+                extra: page ? {
+                    longClick: Apollo.pageMoveto(page)
+                } : ""
+            })
+        })
+    },
+    //标签
+    tagType: (html, page) => {
+        /* try {
+             var pages = pdfh(html, "body&&.form-control-text&&Text").replace(/\,/g, "").match(/\d+/)[0]
+         } catch {
+             var pages = 1
+         }*/
+        const list = pdfa(html, "body&&.col-sm-2")
+        list.forEach(item => {
+            //var img = pdfh(item, 'img&&src');
+            var url = pdfh(item, 'a&&href');
+            Apollo.d.push({
+                title: pdfh(item, 'Text'),
+                desc: pdfh(item, 'span&&Text'),
+                //img: img,
+                url: url + $('&page=fypage#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    //MY_URL = MY_URL.split("#")[0]
+                    Apollo.yijiParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: "text_2",
+                extra: page ? {
+                    longClick: Apollo.pageMoveto(page)
+                } : ""
+            })
+        })
+    },
     //首页轮播
     lunboType: (html) => {
         var lundata = pdfa(html, "#top-carousel&&.box-item").map((x) => {
