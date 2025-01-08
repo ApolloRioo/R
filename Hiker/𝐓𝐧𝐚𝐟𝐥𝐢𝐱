@@ -88,6 +88,11 @@ const Apollo = {
             "path": "/tags",
             "type": "tag",
             "sub": []
+        }, {
+            "title": "Kuzu_v0",
+            "path": "/search?what=Kuzu_v0&page=1",
+            "type": "video",
+            "sub": []
         }]
         const currentCate = categoryList[Apollo.data.category]
         let url
