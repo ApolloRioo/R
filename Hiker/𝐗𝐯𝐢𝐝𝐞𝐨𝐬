@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241029",
+    version: "20250110",
     empty: 'hiker://empty',
     url: "https://www.xvideos.com",
     d: [],
@@ -859,22 +859,23 @@ const Apollo = {
             clearMyVar("page")
         }));
         url = getMyVar("yurl", url).replace("hiker://empty#", "")
-        url = url.replace(/\/\d+$|$/, (match) => {
-            if (page > 0) {
-                if (match.startsWith("/")) {
-                    return match.charAt(0) + page
-                } else {
-                    return "/" + page;
-                }
-            } else {
-                if (match.startsWith("/")) {
-                    return match.charAt(0)
-                } else {
-                    return ""
-                }
-            }
-        })
+
         if (url.includes("/tags/")) {
+            url = url.replace(/\/\d+$|$/, (match) => {
+                if (page > 0) {
+                    if (match.startsWith("/")) {
+                        return match.charAt(0) + page
+                    } else {
+                        return "/" + page;
+                    }
+                } else {
+                    if (match.startsWith("/")) {
+                        return match.charAt(0)
+                    } else {
+                        return ""
+                    }
+                }
+            })
             log(url)
             Apollo.pageAdd(page)
             var html = fetch(url, {
