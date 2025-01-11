@@ -159,7 +159,7 @@ js: //所在行   ThissAV①16
                                     "Referer": av
                                 }
                             }))
-                            var javplayer = data.data.watch[0].url
+                            var javplayer = data.result.watch[0].url
                             var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
                                 .match(/https?.*?\.m3u8/)[0]
                             return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
