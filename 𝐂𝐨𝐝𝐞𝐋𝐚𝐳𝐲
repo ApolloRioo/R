@@ -19,7 +19,7 @@ js: //所在行   ThissAV①16
             pic_url: 'https://img.vinua.cn/images/IQlH7.png',
             url: $('')
                 .lazyRule((识别码) => {
-                    var search = "https://missav.com/cn/search/" + 识别码;
+                    var search = "https://missav.ws/cn/search/" + 识别码;
                     var html = fetch(search, {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -65,7 +65,7 @@ js: //所在行   ThissAV①16
                                         // 获取画质列表，并取最高画质
                                         let group_quality = fetch(source, {
                                             headers: {
-                                                "origin": "https://missav.com"
+                                                "origin": "https://missav.ws"
                                             }
                                         })
                                         hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
@@ -79,7 +79,7 @@ js: //所在行   ThissAV①16
                                             names: name_quality,
                                             headers: new Array(hghest_quality.length)
                                                 .fill({
-                                                    origin: "https://missav.com/cn/"
+                                                    origin: "https://missav.ws/cn/"
                                                 })
                                         };
                                         if (getVar("复制视频", "0") == "1") {
@@ -101,7 +101,7 @@ js: //所在行   ThissAV①16
                 longClick: [{
                     title: '查看搜索',
                     js: $.toString((识别码) => {
-                        return "https://missav.com/cn/search/" + 识别码
+                        return "https://missav.ws/cn/search/" + 识别码
                     }, 识别码)
                 }, {
                     title: getVar("复制视频", "0") == "0" ? '播放视频⭕️' : "复制视频‼️",
