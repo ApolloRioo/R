@@ -119,7 +119,7 @@ js: //所在行   ThissAV①16
                     title: '更新远程依赖',
                     js: $.toString(() => {
                         try {
-                            var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+                            var js = fetch(base64Decode("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0Fwb2xsb1Jpb28vUi9tYXN0ZXIv8J2QgvCdkKjwnZCd8J2QnvCdkIvwnZCa8J2Qs/CdkLI="));
                             writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
                             refreshPage();
                             return "toast://远程依赖已更新"
