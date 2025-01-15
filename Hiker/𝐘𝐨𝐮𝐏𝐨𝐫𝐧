@@ -565,7 +565,7 @@ const Apollo = {
     },
     //翻译
     translate: (text) => {
-        var switchtrans = config.switchtrans
+        var switchtrans = "彩云小译"
         if (switchtrans == true || switchtrans == "彩云小译") {
             try {
                 var to = 'zh'
