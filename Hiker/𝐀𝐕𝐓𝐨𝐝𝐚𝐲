@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241122,
+    version: 20250116,
     empty: "hiker://empty",
     url: "https://avtoday.io",
     d: [],
@@ -410,7 +410,7 @@ const Apollo = {
         } catch {
             var lastpagenum = currpagenum
         }
-        var list = pdfa(html, "body&&.thumbnail");
+        var list = pdfa(html, "body&&.thumbnail:not(:matches([AD]))");
         list.forEach(item => {
             var vurl = pd(item, 'a&&href');
             Apollo.d.push({
