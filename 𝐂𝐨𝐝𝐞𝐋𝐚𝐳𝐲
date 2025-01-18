@@ -837,9 +837,9 @@ js: //所在行   ThissAV①16
                         return "https://yandex.com/search/touch/?text=" + 识别码;
                     }, 识别码)
                 }, {
-                    title: '聚搜R',
+                    title: '聚搜',
                     js: $.toString((识别码) => {
-                        return "hiker://search?s=" + 识别码 + "&group=①R&simple=false"
+                        return "hiker://search?s=" + 识别码 + "&group=②生&simple=false"
                     }, 识别码)
                 }]
             }
