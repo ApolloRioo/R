@@ -3,8 +3,8 @@ js: //所在行   ThissAV①16
     //             haokan③147
     //             missav④194
     //             Tktube⑤266
-    //             supjav⑥347
-    //             javguru⑦434
+    //             supjav⑥385
+    //             javguru⑦471
     //             7mmtv⑧514
     //             more⑨589
     //             cilijun⑩801
@@ -392,7 +392,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐒𝐮𝐩𝐣𝐚𝐯小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/tbt0ezaif1tvprn2");
+                                return parsePaste("云6oooole/xxxxxx/dmwehmfyfgln8xle");
                             }
                         })
                         return "hiker://empty"
@@ -479,7 +479,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/nucw5annyukxpgti");
+                                return parsePaste("云6oooole/xxxxxx/t3stfr7cniupyiqv");
                             }
                         })
                         return "hiker://empty"
