@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241220,
+    version: 20250123,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -486,7 +486,7 @@ const Apollo = {
         Apollo.d.push({
             col_type: "blank_block",
         })
-        var chtml = fetch("https://18av.mm-cg.com/zh/chinese_categorylist/list/index.html")
+        var chtml = fetch(Apollo.url+"/zh/chinese_categorylist/list/index.html")
         const sort = pdfa(chtml, 'body&&.posts&&.post')
         sort.forEach((item, index) => {
             var title = pdfh(item, 'Text');
