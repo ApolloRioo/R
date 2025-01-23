@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250223",
+    version: "20250123",
     empty: "hiker://empty",
     url: getItem('link', 'https://javmenu.com/zh'),
     d: [],
@@ -1059,13 +1059,22 @@ const Apollo = {
     //获取地址
     HostParse: (url, html) => {
         if (!html.includes("JAV目录大全") && !url.includes("没有下一页哦")) {
-            let fabu = "http://javmenu.link/"
-            let js = pdfh(fetch(fabu), "body&&script,1&&Html")
-            eval(js)
-            let link = link_str + "/zh"
-            setItem('link', link);
-            toast('更新域名');
-            log("最新地址:" + link)
+            try {
+                let fabu = "http://javmenu.link/"
+                let js = pdfh(fetch(fabu), "body&&script,1&&Html")
+                eval(js)
+                let link = link_str + "/zh"
+                setItem('link', link);
+                refreshPage();
+                toast('更新域名');
+                log("最新地址:" + link)
+            } catch {
+                let link = "https://javmenu.com/zh"
+                setItem('link', link);
+                refreshPage();
+                toast('更新域名');
+                log("最新地址:" + link)
+            }
         }
     }
 
