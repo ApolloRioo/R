@@ -1,7 +1,7 @@
 const Apollo = {
     version: "20250223",
     empty: "hiker://empty",
-    url: "https://javmenu.com/zh",
+    url: getItem('link', 'https://javmenu.com/zh'),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -105,13 +105,13 @@ const Apollo = {
                     title: parseInt(Apollo.data.category) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                     url: $(Apollo.empty + "#noLoading#")
                         .lazyRule((index) => {
-                        putMyVar("Apo.category", index.toString())
-                        putMyVar("Apo.subCate", '0')
-                        clearMyVar("sort")
-                        clearMyVar("url")
-                        refreshPage(true)
-                        return "hiker://empty"
-                    }, index),
+                            putMyVar("Apo.category", index.toString())
+                            putMyVar("Apo.subCate", '0')
+                            clearMyVar("sort")
+                            clearMyVar("url")
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
                     col_type: 'scroll_button',
                 })
             })
@@ -124,12 +124,12 @@ const Apollo = {
                         title: parseInt(Apollo.data.subCate) === index ? '‘‘’’<strong><font color="#ff1493">' + cate.title + '</font></strong>' : cate.title,
                         url: $(Apollo.empty + "#noLoading#")
                             .lazyRule((index) => {
-                            putMyVar("Apo.subCate", index.toString())
-                            clearMyVar("sort")
-                            clearMyVar("url")
-                            refreshPage(true)
-                            return "hiker://empty"
-                        }, index),
+                                putMyVar("Apo.subCate", index.toString())
+                                clearMyVar("sort")
+                                clearMyVar("url")
+                                refreshPage(true)
+                                return "hiker://empty"
+                            }, index),
                         col_type: 'scroll_button',
                     })
                 })
@@ -158,6 +158,7 @@ const Apollo = {
             }
         })
         log(url)
+        Apollo.HostParse(url, html)
         try {
             var next = pdfh(html, ".pagination&&li:matches(›)&&a&&href")
             putMyVar("nextPage", next);
@@ -201,7 +202,7 @@ const Apollo = {
     //一级sort
     videoSort: (html, url) => {
         function addParam(key, value) {
-            let[baseUrl, queryString] = url.split('?');
+            let [baseUrl, queryString] = url.split('?');
             let params = queryString ? queryString.split('&')
                 .map(p => p.split('=')) : [];
             let paramFound = false;
@@ -238,10 +239,10 @@ const Apollo = {
                     .test(url) ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: url.split('?')[0].replace("https://javmenu.com/zh", "") + eval(button) + $('#noLoading#')
                     .lazyRule(() => {
-                    putMyVar("url", input);
-                    refreshPage(false);
-                    return 'hiker://empty'
-                }),
+                        putMyVar("url", input);
+                        refreshPage(false);
+                        return 'hiker://empty'
+                    }),
                 col_type: 'scroll_button'
             })
             if (sort.length > 5 ? index == 3 : index == 2) {
@@ -254,7 +255,7 @@ const Apollo = {
 
     videoSort1: (html, url) => {
         function addParam(key, value) {
-            let[baseUrl, queryString] = url.split('?');
+            let [baseUrl, queryString] = url.split('?');
             let params = queryString ? queryString.split('&')
                 .map(p => p.split('=')) : [];
             let paramFound = false;
@@ -291,10 +292,10 @@ const Apollo = {
                     .test(url) ? '‘‘’’<strong><font color="#ff1493">' + title + '</font></strong>' : title,
                 url: url.split('?')[0] + eval(button) + $('#noLoading#')
                     .lazyRule(() => {
-                    putMyVar("yurl", input);
-                    refreshPage(false);
-                    return 'hiker://empty'
-                }),
+                        putMyVar("yurl", input);
+                        refreshPage(false);
+                        return 'hiker://empty'
+                    }),
                 col_type: 'scroll_button'
             })
             if (sort.length > 5 ? index == 3 : index == 2) {
@@ -329,7 +330,7 @@ const Apollo = {
             categories.forEach((category, index) => {
                 let sub_categories = pdfa(category, 小类定位)
                     .filter(t => pdfh(t, 'Text')
-                    .trim() !== '');
+                        .trim() !== '');
                 let genre_title = pdfa(category, "body&&.genre-title")
                     .map(t => pdfh(t, "Text"));
                 sub_categories.forEach((item, key) => {
@@ -349,44 +350,44 @@ const Apollo = {
                         title: (c_array.indexOf(value.toString()) !== -1 || key == 0) ? '““””<b><span style="color: ' + 分类颜色 + '">' + title + '</span></b>' : title,
                         url: urll + $('#noLoading#')
                             .lazyRule((params, key, url) => {
-                            params.cate_temp[params.index] = params.key.toString()
-                            putVar(MY_RULE.title, JSON.stringify(params.cate_temp))
+                                params.cate_temp[params.index] = params.key.toString()
+                                putVar(MY_RULE.title, JSON.stringify(params.cate_temp))
 
-                            function addFilterParam(key, value) {
-                                let params = url.match(/c=([^&]+)/) ? url.match(/c=([^&]+)/)[1] : "";
-                                if (params) {
-                                    var c_array = params.split(",");
-                                } else {
-                                    var c_array = [];
+                                function addFilterParam(key, value) {
+                                    let params = url.match(/c=([^&]+)/) ? url.match(/c=([^&]+)/)[1] : "";
+                                    if (params) {
+                                        var c_array = params.split(",");
+                                    } else {
+                                        var c_array = [];
+                                    }
+                                    if (!c_array.includes(value.toString())) {
+                                        if (c_array.length < 5) c_array.push(value.toString());
+                                    } else {
+                                        c_array.splice(c_array.indexOf(value.toString()), 1)
+                                    }
+                                    paramsc = c_array.join(',');
+                                    if (params != "") {
+                                        urlsc = url.replace(/(\?|&)c=[^&]+/, "$1c=" + paramsc)
+                                    } else {
+                                        urlsc = url.includes("?") ? (url + "&c=" + paramsc) : (url + "?c=" + paramsc)
+                                    }
+                                    return urlsc
                                 }
-                                if (!c_array.includes(value.toString())) {
-                                    if (c_array.length < 5) c_array.push(value.toString());
+                                if (key == 0) {
+                                    putMyVar("url", input)
                                 } else {
-                                    c_array.splice(c_array.indexOf(value.toString()), 1)
+                                    var inputt = eval(input)
+                                        .replace("https://javmenu.com/zh", "")
+                                    putMyVar("url", inputt)
                                 }
-                                paramsc = c_array.join(',');
-                                if (params != "") {
-                                    urlsc = url.replace(/(\?|&)c=[^&]+/, "$1c=" + paramsc)
-                                } else {
-                                    urlsc = url.includes("?") ? (url + "&c=" + paramsc) : (url + "?c=" + paramsc)
-                                }
-                                return urlsc
-                            }
-                            if (key == 0) {
-                                putMyVar("url", input)
-                            } else {
-                                var inputt = eval(input)
-                                    .replace("https://javmenu.com/zh", "")
-                                putMyVar("url", inputt)
-                            }
-                            refreshPage(true)
-                            return "hiker://empty"
-                        }, {
-                            cate_temp: cate_temp,
-                            index: index,
-                            key: key,
-                            page: MY_PAGE,
-                        }, key, url),
+                                refreshPage(true)
+                                return "hiker://empty"
+                            }, {
+                                cate_temp: cate_temp,
+                                index: index,
+                                key: key,
+                                page: MY_PAGE,
+                            }, key, url),
                         col_type: 'scroll_button',
                     })
                 })
@@ -414,37 +415,37 @@ const Apollo = {
                 img: pdfh(item, ".lazyload&&data-src"),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#')
                     .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.videoParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.videoParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
                 col_type: "movie_2",
                 extra: {
                     pageTitle: pdfh(item, ".lazyload&&alt"),
                     longClick: lastpagenum > 0 ? [{
                         title: '【跳页】【当前' + currpagenum + '】=>\t最大页\t:【' + lastpagenum + "】",
                         js: $.toString((currpagenum, lastpagenum, lurl) => {
-                            return $('', '1到' + lastpagenum + '之间的页码')
-                                .input((lastpagenum, lurl) => {
-                                if (parseInt(input) > 0 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
-                                    var jumpu = lurl.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
-                                        if (match.startsWith('?page=') || match.startsWith('&page=')) {
-                                            return match.charAt(0) + 'page=' + input;
-                                        } else {
-                                            return (lurl.includes('?') ? '&page=' : '?page=') + input;
-                                        }
-                                    });
-                                    putMyVar("url", jumpu);
-                                    putMyVar("yurl", jumpu);
-                                    refreshPage(false);
-                                    return 'toast://你已经穿越到了' + input + '页'
-                                } else {
-                                    return "toast://请输入正确的页码"
-                                }
+                                return $('', '1到' + lastpagenum + '之间的页码')
+                                    .input((lastpagenum, lurl) => {
+                                            if (parseInt(input) > 0 && parseInt(input) <= parseInt(lastpagenum) && parseInt(input) % 1 == 0) {
+                                                var jumpu = lurl.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                                                    if (match.startsWith('?page=') || match.startsWith('&page=')) {
+                                                        return match.charAt(0) + 'page=' + input;
+                                                    } else {
+                                                        return (lurl.includes('?') ? '&page=' : '?page=') + input;
+                                                    }
+                                                });
+                                                putMyVar("url", jumpu);
+                                                putMyVar("yurl", jumpu);
+                                                refreshPage(false);
+                                                return 'toast://你已经穿越到了' + input + '页'
+                                            } else {
+                                                return "toast://请输入正确的页码"
+                                            }
+                                        },
+                                        lastpagenum, lurl)
                             },
-                            lastpagenum, lurl)
-                        },
-                        currpagenum, lastpagenum, lurl)
+                            currpagenum, lastpagenum, lurl)
                     }] : ''
                 }
             })
@@ -461,10 +462,10 @@ const Apollo = {
                 pic_url: pdfh(item, 'img&&data-src') + '@Referer=',
                 url: $(pdfh(item, 'a&&href') + '#fypage#noHistory#')
                     .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.avatarParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.avatarParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
                 col_type: 'card_pic_3'
             })
         })
@@ -475,7 +476,7 @@ const Apollo = {
         //随机颜色
         var getRangeColors = function() {
             return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
-                .toString(16))
+                    .toString(16))
                 .substr(-6);
         }
         var list = pdfa(html, '.card-deck&&.col-lg-2')
@@ -487,10 +488,10 @@ const Apollo = {
                 // pic_url: pdfh(item, 'img&&data-src') + '@Referer=',
                 url: $(Apollo.url + pdfh(item, 'a&&href') + '#fypage#noHistory#')
                     .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.avatarParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.avatarParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
                 col_type: 'flex_button'
             })
         })
@@ -552,10 +553,10 @@ const Apollo = {
         });
         var yiji = $('#fypage#noHistory#')
             .rule(() => {
-            const Apollo = $.require('hiker://page/Apollo')
-            Apollo.avatarParse(MY_URL)
-            setResult(Apollo.d)
-        })
+                const Apollo = $.require('hiker://page/Apollo')
+                Apollo.avatarParse(MY_URL)
+                setResult(Apollo.d)
+            })
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -569,21 +570,21 @@ const Apollo = {
             title: '““””' + title.fontcolor("#E57A1A").small(),
             url: "hiker://empty" + $('#noLoading#')
                 .lazyRule((desct) => {
-                var desc = findItem('transdesc')
-                    .desc
-                if (!desc) {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    var translates = Apollo.translate(desct)
-                    updateItem("transdesc", {
-                        desc: '““””' + translates.fontcolor("red"),
-                    })
-                } else {
-                    updateItem("transdesc", {
-                        desc: '',
-                    })
-                }
-                return "hiker://empty"
-            }, desct),
+                    var desc = findItem('transdesc')
+                        .desc
+                    if (!desc) {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        var translates = Apollo.translate(desct)
+                        updateItem("transdesc", {
+                            desc: '““””' + translates.fontcolor("red"),
+                        })
+                    } else {
+                        updateItem("transdesc", {
+                            desc: '',
+                        })
+                    }
+                    return "hiker://empty"
+                }, desct),
             col_type: 'text_1',
             extra: {
                 lineVisible: false,
@@ -653,49 +654,49 @@ const Apollo = {
                         .fontcolor("#FF00FF"),
                     url: Apollo.empty + $("")
                         .lazyRule((list) => {
-                        try {
-                            if (getMyVar("piclist", "收起") == "收起") {
-                                addItemAfter('picnum', {
-                                    title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
-                                    url: "hiker://empty" + $("")
-                                        .lazyRule((list) => {
-                                        for (var i = list.length - 1; i >= 0; i--) {
-                                            deleteItem('previewpic' + i);
-                                        }
-                                        deleteItem('nopiclist');
-                                        putMyVar("piclist", "收起");
-                                        return "hiker://empty"
-                                    }, list),
-                                    col_type: "text_center_1",
-                                    extra: {
-                                        lineVisible: false,
-                                        id: "nopiclist"
-                                    }
-                                })
-                                for (var i = list.length - 1; i >= 0; i--) {
+                            try {
+                                if (getMyVar("piclist", "收起") == "收起") {
                                     addItemAfter('picnum', {
-                                        url: 'hiker://empty',
-                                        img: pdfh(list[i], "a&&href")
-                                            .replace(/.*(https?.*)/, "$1"),
-                                        col_type: "pic_1_full",
+                                        title: '““””' + "【收起图片】".fontcolor("#FF00FF"),
+                                        url: "hiker://empty" + $("")
+                                            .lazyRule((list) => {
+                                                for (var i = list.length - 1; i >= 0; i--) {
+                                                    deleteItem('previewpic' + i);
+                                                }
+                                                deleteItem('nopiclist');
+                                                putMyVar("piclist", "收起");
+                                                return "hiker://empty"
+                                            }, list),
+                                        col_type: "text_center_1",
                                         extra: {
-                                            id: 'previewpic' + i
+                                            lineVisible: false,
+                                            id: "nopiclist"
                                         }
-                                    });
+                                    })
+                                    for (var i = list.length - 1; i >= 0; i--) {
+                                        addItemAfter('picnum', {
+                                            url: 'hiker://empty',
+                                            img: pdfh(list[i], "a&&href")
+                                                .replace(/.*(https?.*)/, "$1"),
+                                            col_type: "pic_1_full",
+                                            extra: {
+                                                id: 'previewpic' + i
+                                            }
+                                        });
+                                    }
+                                    putMyVar("piclist", "展开");
+                                } else {
+                                    for (var i = list.length - 1; i >= 0; i--) {
+                                        deleteItem('previewpic' + i);
+                                    }
+                                    deleteItem('nopiclist');
+                                    putMyVar("piclist", "收起");
                                 }
-                                putMyVar("piclist", "展开");
-                            } else {
-                                for (var i = list.length - 1; i >= 0; i--) {
-                                    deleteItem('previewpic' + i);
-                                }
-                                deleteItem('nopiclist');
-                                putMyVar("piclist", "收起");
+                                return "hiker://empty"
+                            } catch {
+                                return "hiker://empty"
                             }
-                            return "hiker://empty"
-                        } catch {
-                            return "hiker://empty"
-                        }
-                    }, list),
+                        }, list),
                     col_type: "text_center_1",
                     extra: {
                         lineVisible: false,
@@ -900,10 +901,10 @@ const Apollo = {
                 img: pdfh(item, ".lazyload&&data-src"),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#')
                     .rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.videoParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.videoParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
                 col_type: "movie_2",
                 extra: {
                     pageTitle: pdfh(item, ".lazyload&&alt"),
@@ -947,24 +948,24 @@ const Apollo = {
                 var to = 'zh'
                 var from = 'auto'
 
-                    function init_data(source_lang, target_lang) {
-                        return {
-                            source: '',
-                            detect: true,
-                            os_type: 'ios',
-                            device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
-                            trans_type: source_lang + '2' + target_lang,
-                            media: 'text',
-                            request_id: 424238335,
-                            user_id: '',
-                            dict: true,
-                        }
+                function init_data(source_lang, target_lang) {
+                    return {
+                        source: '',
+                        detect: true,
+                        os_type: 'ios',
+                        device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
+                        trans_type: source_lang + '2' + target_lang,
+                        media: 'text',
+                        request_id: 424238335,
+                        user_id: '',
+                        dict: true,
                     }
+                }
 
-                    function getRandomNumber() {
-                        const rand = Math.floor(Math.random() * 99999) + 100000
-                        return rand * 1000
-                    }
+                function getRandomNumber() {
+                    const rand = Math.floor(Math.random() * 99999) + 100000
+                    return rand * 1000
+                }
                 const post_data = init_data(from, to)
                 post_data.source = text
                 post_data.request_id = getRandomNumber()
@@ -992,8 +993,8 @@ const Apollo = {
                     if (text != "") {
                         var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
                         var from = JSON.parse(fetch(lang, {
-                            timeout: 1000
-                        }))
+                                timeout: 1000
+                            }))
                             .language;
                         var result = post(url, {
                             body: {
@@ -1054,6 +1055,18 @@ const Apollo = {
             log("读取失败更新远程数据")
         }
         CodeLazy(识别码)
+    },
+    //获取地址
+    HostParse: (url, html) => {
+        if (!html.includes("JAV目录大全") && !url.includes("没有下一页哦")) {
+            let fabu = "http://javmenu.link/"
+            let js = pdfh(fetch(fabu), "body&&script,1&&Html")
+            eval(js)
+            let link = link_str + "/zh"
+            setItem('link', link);
+            toast('更新域名');
+            log("最新地址:" + link)
+        }
     }
 
 }
