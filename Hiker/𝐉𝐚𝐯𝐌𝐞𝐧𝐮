@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20240922",
+    version: "20250223",
     empty: "hiker://empty",
     url: "https://javmenu.com/zh",
     d: [],
@@ -566,7 +566,7 @@ const Apollo = {
             .replace("免费AV在线看", "");
         var desct = title;
         Apollo.d.push({
-            title: '““””' + title.fontcolor("#E57A1A"),
+            title: '““””' + title.fontcolor("#E57A1A").small(),
             url: "hiker://empty" + $('#noLoading#')
                 .lazyRule((desct) => {
                 var desc = findItem('transdesc')
