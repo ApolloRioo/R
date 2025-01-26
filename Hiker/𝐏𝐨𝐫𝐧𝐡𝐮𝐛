@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250121",
+    version: "20250126",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -561,7 +561,7 @@ const Apollo = {
         } catch {
             var currentPage = "1"
         }
-        var list = pdfa(html, "body&&li[data-video-id]");
+        var list = pdfa(html, "body&&li[data-video-id]:has(a)");
         list.forEach(item => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/https?.*(https?.*)/, "$1")
