@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 20241009,
+    version: 20250202,
     empty: "hiker://empty",
-    url: getItem("link","https://www.javlibrary.com"),
+    url: getItem("link","https://www.r86m.com"),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
