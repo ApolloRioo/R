@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250131",
+    version: "20250202",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -553,11 +553,10 @@ const Apollo = {
                 lineVisiable: false
             }
         })
+        var id = pdfh(html, "#page-video&&v-scope").match(/id:.(\d+)/)[1]
         Apollo.d.push({
             pic_url: pdfh(html, '#player&&data-poster') + '@Referer=' + Apollo.url,
-            url: $(url + '#noHistory#').lazyRule((html) => {
-                var id = pdfh(html, "#page-video&&v-scope")
-                    .match(/id:.(\d+)/)[1]
+            url: $(url + '#noHistory#').lazyRule((id) => {
                 var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
                 var data = JSON.parse(fetch(video, {
                     headers: {
@@ -568,7 +567,7 @@ const Apollo = {
                 var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
                     .match(/https?.*?\.m3u8/)[0]
                 return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
-            }, html),
+            }, id),
             col_type: 'pic_1_full',
         })
 
