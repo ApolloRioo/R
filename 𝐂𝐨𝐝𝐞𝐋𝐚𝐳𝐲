@@ -669,7 +669,7 @@ js: //所在行   ThissAV①16
                                 return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                             } else {
                                 var html = fetch(location)
-                                var src = "https://www.av01.tv" + pdfh(html, "script[referrerpolicy]&&src")
+                                var src = "https://www.av01.tv" + pdfh(html, "body&&script[referrerpolicy]&&src")
                                 var load_video = fetch(src, {
                                     headers: {
                                         "Referer": location,
