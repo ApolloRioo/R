@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250112",
+    version: "20250214",
     empty: 'hiker://empty',
     url: "https://missav.ws/cn/",
     d: [],
@@ -350,7 +350,9 @@ const Apollo = {
                         Apollo.videoType(html, page)
                     } catch {}
                 } else {
-                    Apollo.videoType(html, page)
+                    try {
+                        Apollo.videoType(html, page)
+                    } catch {}
                 }
                 break
             default:
@@ -510,6 +512,7 @@ const Apollo = {
     },
     //搜索
     searchParse: () => {
+        log(MY_URL)
         if (MY_PAGE == 1) {
             Apollo.d.push({
                 title: "——女优——",
@@ -526,7 +529,9 @@ const Apollo = {
                 Apollo.videoType(getResCode());
             } catch {}
         } else {
-            Apollo.videoType(getResCode());
+            try {
+                Apollo.videoType(getResCode());
+            } catch {}
         }
         setResult(Apollo.d)
     },
