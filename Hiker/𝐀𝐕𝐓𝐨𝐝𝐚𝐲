@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20250116,
+    version: 20250215,
     empty: "hiker://empty",
     url: "https://avtoday.io",
     d: [],
@@ -199,7 +199,7 @@ const Apollo = {
         var html = fetch(url, {
             headers: {
                 "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/avtoday_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
+                "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36_",
             }
         })
 
@@ -226,7 +226,9 @@ const Apollo = {
         switch (type) {
             case 'home':
                 if (MY_PAGE == 1 && !/search/.test(url)) {
-                    Apollo.lunboType(html)
+                    try {
+                        Apollo.lunboType(html)
+                    } catch {}
                 }
                 Apollo.videoType(url, html)
                 break
@@ -369,7 +371,7 @@ const Apollo = {
                         url: MY_URL,
                         desc: 'list&&screen',
                         extra: {
-                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36", //PC_UA,             
+                            "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36", //PC_UA,             
                             showProgress: false,
                             js: $.toString((u) => {
                                 function check() {
