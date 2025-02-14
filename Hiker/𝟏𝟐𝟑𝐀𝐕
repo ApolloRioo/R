@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250202",
+    version: "20250215",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -65,7 +65,7 @@ const Apollo = {
         var page = getMyVar("page", MY_PAGE + "")
         let categoryList = [{
             "title": "首页",
-            "path": "dm1",
+            "path": "",
             "type": "home",
             "sub": []
         }, {
@@ -74,34 +74,34 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "最近更新",
-                "path": "dm1/recent-update"
+                "path": "dm2/recent-update"
             }, {
                 "title": "热门",
-                "path": "dm1/trending"
+                "path": "dm2/trending"
             }, {
                 "title": "新发布",
-                "path": "dm1/new-release"
+                "path": "dm2/new-release"
             }, {
                 "title": "今天最多观看",
-                "path": "dm1/today-hot"
+                "path": "dm2/today-hot"
             }, {
                 "title": "本周最多观看",
-                "path": "dm1/weekly-hot"
+                "path": "dm2/weekly-hot"
             }, {
                 "title": "本月最多观看",
-                "path": "dm1/monthly-hot"
+                "path": "dm2/monthly-hot"
             }, {
                 "title": "审查",
-                "path": "dm1/censored"
+                "path": "dm2/censored"
             }, {
                 "title": "未审查",
-                "path": "dm1/uncensored"
+                "path": "dm2/uncensored"
             }, {
                 "title": "泄露未审查",
-                "path": "dm1/uncensored-leaked"
+                "path": "dm2/uncensored-leaked"
             }, {
                 "title": "VR",
-                "path": "dm1/vr"
+                "path": "dm2/vr"
             }]
         }, {
             "title": "列表",
@@ -129,31 +129,31 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "SIRO",
-                "path": "dm1/tags/siro"
+                "path": "dm2/tags/siro"
             }, {
                 "title": "LUXU",
-                "path": "dm1/tags/259luxu"
+                "path": "dm2/tags/259luxu"
             }, {
                 "title": "200GANA",
-                "path": "dm1/tags/200gana"
+                "path": "dm2/tags/200gana"
             }, {
                 "title": "PRESTIGE PREMIUM",
-                "path": "dm1/tags/prestige-premium"
+                "path": "dm2/tags/prestige-premium"
             }, {
                 "title": "ORECO",
-                "path": "dm1/tags/230oreco"
+                "path": "dm2/tags/230oreco"
             }, {
                 "title": "S-CUTE",
-                "path": "dm1/tags/s-cute"
+                "path": "dm2/tags/s-cute"
             }, {
                 "title": "ARA",
-                "path": "dm1/tags/261ara"
+                "path": "dm2/tags/261ara"
             }, {
                 "title": "390JAC",
-                "path": "dm1/tags/390jac"
+                "path": "dm2/tags/390jac"
             }, {
                 "title": "328HMDN",
-                "path": "dm1/tags/328hmdn"
+                "path": "dm2/tags/328hmdn"
             }]
         }, {
             "title": "未审查",
@@ -161,46 +161,46 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "泄露未审查",
-                "path": "dm1/uncensored-leaked"
+                "path": "dm2/uncensored-leaked"
             }, {
                 "title": "FC2",
-                "path": "dm1/tags/fc2"
+                "path": "dm2/tags/fc2"
             }, {
                 "title": "HEYZO",
-                "path": "dm10/tags/heyzo"
+                "path": "dm17/tags/heyzo"
             }, {
                 "title": "Tokyo-Hot",
-                "path": "dm1/tags/tokyo-hot"
+                "path": "dm2/tags/tokyo-hot"
             }, {
                 "title": "1pondo",
-                "path": "dm21/tags/1pondo"
+                "path": "dm26/tags/1pondo"
             }, {
                 "title": "Caribbeancom",
-                "path": "dm22/tags/caribbeancom"
+                "path": "dm27/tags/caribbeancom"
             }, {
                 "title": "Caribbeancompr",
-                "path": "dm7/tags/caribbeancompr"
+                "path": "dm10/tags/caribbeancompr"
             }, {
                 "title": "10musume",
-                "path": "dm24/tags/10musume"
+                "path": "dm28/tags/10musume"
             }, {
                 "title": "pacopacomama",
-                "path": "dm9/tags/pacopacomama"
+                "path": "dm15/tags/pacopacomama"
             }, {
                 "title": "Gachinco",
-                "path": "dm1/tags/gachig"
+                "path": "dm2/tags/gachig"
             }, {
                 "title": "XXX-AV",
-                "path": "dm1/tags/xxx-av"
+                "path": "dm2/tags/xxx-av"
             }, {
                 "title": "C0930",
-                "path": "dm1/tags/c0930"
+                "path": "dm2/tags/c0930"
             }, {
                 "title": "H0930",
-                "path": "dm1/tags/h0930"
+                "path": "dm2/tags/h0930"
             }, {
                 "title": "H4610",
-                "path": "dm1/tags/h4610"
+                "path": "dm2/tags/h4610"
             }]
         }, {
             "title": "更多",
@@ -208,7 +208,7 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "MissAV",
-                "path": "dm2/missav"
+                "path": "dm3/missav"
             }, {
                 "title": "SupJav",
                 "path": "supjav"
