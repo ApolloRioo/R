@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250215",
+    version: "20250216",
     empty: 'hiker://empty',
     url: "https://missav.ws/cn/",
     d: [],
@@ -545,7 +545,7 @@ const Apollo = {
         })
         const title = pdfh(html, 'h1&&Text')
         log(url)
-        setPageTitle(title)
+        //setPageTitle(title)
 
         Apollo.d.push({
             title: '““””' + title.fontcolor("#D2691E").small(),
@@ -1009,8 +1009,9 @@ const Apollo = {
         }
         const list = pdfa(html, 'body&&.thumbnail')
         list.forEach(item => {
+            var title = pdfh(item, '.lozad&&alt');
             Apollo.d.push({
-                title: pdfh(item, '.lozad&&alt'),
+                title: title,
                 url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
                     Apollo.videoParse(MY_URL)
@@ -1023,8 +1024,11 @@ const Apollo = {
                 desc: pdfh(item, 'a&&alt').toUpperCase().replace("-CHINESE-SUBTITLE", "🀄️").replace("-UNCENSORED-LEAK", "✅🈚️") + "⏰" + pdfh(item, '.absolute,-1&&Text'),
                 col_type: 'movie_2',
                 extra: page ? {
-                    longClick: Apollo.pageMoveto(page, pages)
-                } : ""
+                    longClick: Apollo.pageMoveto(page, pages),
+                    pageTitle: title
+                } : {
+                    pageTitle: title
+                }
             })
         })
     },
