@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250101",
+    version: "20250216",
     empty: "hiker://empty",
     url: "https://cn.xsz-av.com",
     d: [],
@@ -462,7 +462,7 @@ const Apollo = {
         //标题
         var title = pdfh(html, "body&&h1&&Text");
         Apollo.d.push({
-            title: '““””' + title.fontcolor("#E57A1A"),
+            title: '““””' + title.fontcolor("#E57A1A").small(),
             url: url,
             col_type: 'text_1',
             extra: {
