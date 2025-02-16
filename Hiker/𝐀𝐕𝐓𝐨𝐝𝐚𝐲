@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20250215,
+    version: 20250216,
     empty: "hiker://empty",
     url: "https://avtoday.io",
     d: [],
@@ -196,14 +196,16 @@ const Apollo = {
             };
         }
 
-        var html = fetch(url, {
-            headers: {
-                "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/avtoday_cookie.txt') || '',
-                "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36_",
-            }
-        })
-
+        /*
+          var html = fetch(url, {
+              headers: {
+                  "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/avtoday_cookie.txt') || '',
+                  "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36_",
+              }
+          })*/
+        var html = fetchCodeByWebView(url)
         log(url)
+
         try {
             var next = pd(html, ".justify-between&&li:matches(Next)&&a&&href")
             putMyVar("nextPage", next);
@@ -361,10 +363,11 @@ const Apollo = {
 
     //一级视频列表
     videoType: (url, html) => {
-        if (/Just\sa\smoment/.test(html)) {
+        if (/Just\sa\smoment|请稍候.../.test(html)) {
             Apollo.d.push({
                 title: '““””' + '获取cookie'.fontcolor('#FF00FF').big(),
-                url: url + $('').rule(() => {
+                url: url,
+                /*url: url + $('').rule(() => {
                     var d = [];
                     d.push({
                         col_type: 'x5_webview_single',
@@ -397,8 +400,18 @@ const Apollo = {
                         }
                     });
                     return setResult(d);
-                }),
+                }),*/
                 col_type: 'text_center_1'
+            }, {
+                title: '““””' + '点击刷新'.fontcolor('#FF0000').big(),
+                url: $('').lazyRule(() => {
+                    refreshPage()
+                    return "hiker://empty"
+                }),
+                col_type: 'text_center_1',
+                extra: {
+                    lineVisible: false,
+                }
             });
         }
 
@@ -450,12 +463,14 @@ const Apollo = {
     searchParse: (url) => {
         url = url.replace("hiker://empty##", "")
         log(url)
+        /*
         var html = fetch(url, {
             headers: {
                 "cookie": fetchPC('hiker://files/rules/Apollo/Cookie/avtoday_cookie.txt') || '',
                 "User-Agent": "Mozilla/5.0 (Linux; Android 12; PFVM10 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046285 Mobile Safari/537.36",
             },
-        });
+        });*/
+        var html = fetchCodeByWebView(url)
         Apollo.videoType(url, html)
         setResult(Apollo.d)
     },
