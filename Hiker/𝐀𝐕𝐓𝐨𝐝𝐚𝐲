@@ -5,7 +5,7 @@ const Apollo = {
     d: [],
     lazy: $('#noHistory#')
         .lazyRule(() => {
-            var html = fetch(input.replace("video/", "player?s="), {
+            var html = fetchCodeByWebView(input.replace("video/", "player?s="), {
                 headers: {
                     Referer: "https://avtoday.io/"
                 }
