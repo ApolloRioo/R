@@ -2,7 +2,7 @@ payload:
   - DOMAIN-SUFFIX,supjav.com
   - DOMAIN-SUFFIX,catbox.moe
   #- DOMAIN-SUFFIX,7mmtv.sx
-  #- DOMAIN-KEYWORD,javdb
+  - DOMAIN-KEYWORD,javdb
   - DOMAIN-KEYWORD,javmenu
   - DOMAIN-KEYWORD,d0000d
   - DOMAIN-KEYWORD,dood
