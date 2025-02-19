@@ -1,11 +1,13 @@
 payload:
-  - DOMAIN-SUFFIX,supjav.com
+  - DOMAIN-SUFFIX,supjav.com  #过cf
   - DOMAIN-SUFFIX,catbox.moe
+# 非日本地区
   - DOMAIN-SUFFIX,jav.guru
   - DOMAIN-SUFFIX,eemmhh01.com
   - DOMAIN-SUFFIX,avtoday.io
   - DOMAIN-SUFFIX,jdbstatic.com
   - DOMAIN-KEYWORD,javdb
+
   - DOMAIN-KEYWORD,javmenu
   - DOMAIN-KEYWORD,d0000d
   - DOMAIN-KEYWORD,dood
