@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20250105",
+    version: "20250221",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -644,8 +644,10 @@ const javguru = {
 
         var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
         var list = pdfa(html, ".ssmenu&&a[id]")
-        var code = html.match(/iframe_url":"[^"]+/g)
-            .map(m => m.match(/iframe_url":"(.*)/)[1])
+        try {
+            var code = html.match(/iframe_url":"[^"]+/g)
+                .map(m => m.match(/iframe_url":"(.*)/)[1])
+        } catch {}
         list.forEach((item, index) => {
             var title = pdfh(item, 'Text')
             var url = base64Decode(code[index])
