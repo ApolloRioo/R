@@ -594,6 +594,9 @@ const javguru = {
                     //log(jwplayer)  
                     return jwplayer + ";{Referer@" + location + "}"
 
+                } else if (/vidjav\.net/.test(location)) {
+                    //VI线路
+                    return "video://" + location
                 } else if (/vtbe\.to|maxstream|streamhihi/.test(location)) {
                     //JK线路//VTU线路//LU线路
                     function evaldecode(text) {
@@ -642,7 +645,7 @@ const javguru = {
                 }
             }, url)
 
-        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
+        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM VI", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
         var list = pdfa(html, ".ssmenu&&a[id]")
         try {
             var code = html.match(/iframe_url":"[^"]+/g)
@@ -653,7 +656,7 @@ const javguru = {
             var url = base64Decode(code[index])
             javguru.d.push({
                 title: Playlined.indexOf(title) >= 0 ? '🗯““””' + title.bold()
-                    .fontcolor("#98C0FE") + "🗯" : '🗯““””' + title.bold() + "🗯",
+                    .fontcolor("#1E90FF") + "🗯" : '🗯““””' + title.bold() + "🗯",
                 url: url + lazy,
                 col_type: "text_2"
             })
