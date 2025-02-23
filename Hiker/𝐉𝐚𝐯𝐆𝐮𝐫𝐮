@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20250221",
+    version: "20250224",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -531,10 +531,34 @@ const javguru = {
                         headers: {
                             "Referer": "https://jav.guru/"
                         }
-                    })
-                    var path = html.match(/'.*?(\/.*?\.m3u8)/)[1];
-                    var playUrl = path.includes("//") ? "https:" + path : getHome(location) + path
-                    return playUrl + ";{Referer@" + location + "}"
+                    });
+                    var playUrl = pdfh(html, "#video_player&&data-hash")
+                    var group_quality = fetch(playUrl)
+                    hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v))
+                    //log(hghest_quality)
+                    name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
+                    //log(name_quality)
+                    // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                    function getResolution(name) {
+                        var match = name.match(/(\d+)/); // 提取降级分辨率
+                        return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
+                    }
+                    var sortedData = name_quality.map((name, index) => ({
+                            name,
+                            url: hghest_quality[index]
+                        }))
+                        .sort((a, b) => getResolution(b.name) - getResolution(a.name));
+                    // 分开排序后的 names 和 urls 数组
+                    var sortedNames = sortedData.map(item => item.name);
+                    var sortedUrls = sortedData.map(item => item.url);
+                    let playlist = JSON.stringify({
+                        names: sortedNames,
+                        urls: sortedUrls,
+                        headers: new Array(hghest_quality.length).fill({
+                            Referer: ""
+                        })
+                    });
+                    return playlist;
                 } else if (location.includes("streamtape")) {
                     //ST线路
                     var html = fetch(location, {
