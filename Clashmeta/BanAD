@@ -2,6 +2,7 @@
 
 payload:
 # 个人去广告
+  - DOMAIN-SUFFIX,umengcloud.com
   - DOMAIN-SUFFIX,stripchat.com
   - DOMAIN-SUFFIX,twinrdsyn.com
   - DOMAIN-SUFFIX,synonymdetected.com
