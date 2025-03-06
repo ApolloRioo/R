@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250215",
+    version: "20250306",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -95,7 +95,7 @@ const Apollo = {
                 "path": "dm2/censored"
             }, {
                 "title": "未审查",
-                "path": "dm2/uncensored"
+                "path": "dm3/uncensored"
             }, {
                 "title": "泄露未审查",
                 "path": "dm2/uncensored-leaked"
@@ -164,28 +164,28 @@ const Apollo = {
                 "path": "dm2/uncensored-leaked"
             }, {
                 "title": "FC2",
-                "path": "dm2/tags/fc2"
+                "path": "dm3/tags/fc2"
             }, {
                 "title": "HEYZO",
-                "path": "dm17/tags/heyzo"
+                "path": "dm23/tags/heyzo"
             }, {
                 "title": "Tokyo-Hot",
                 "path": "dm2/tags/tokyo-hot"
             }, {
                 "title": "1pondo",
-                "path": "dm26/tags/1pondo"
+                "path": "dm31/tags/1pondo"
             }, {
                 "title": "Caribbeancom",
-                "path": "dm27/tags/caribbeancom"
+                "path": "dm32/tags/caribbeancom"
             }, {
                 "title": "Caribbeancompr",
-                "path": "dm10/tags/caribbeancompr"
+                "path": "dm12/tags/caribbeancompr"
             }, {
                 "title": "10musume",
-                "path": "dm28/tags/10musume"
+                "path": "dm32/tags/10musume"
             }, {
                 "title": "pacopacomama",
-                "path": "dm15/tags/pacopacomama"
+                "path": "dm22/tags/pacopacomama"
             }, {
                 "title": "Gachinco",
                 "path": "dm2/tags/gachig"
