@@ -1,6 +1,6 @@
 const Apollo = {
-    version: 202503131,
-    update: `云6oooole/xxxxxx/kwyuxjpz2s2oba5o
+    version: 202503132,
+    update: `云6oooole/xxxxxx/ug05qax8u62u4ioq
 
 小程序：𝐒𝐮𝐩𝐣𝐚𝐯`.split("\n")[0]
 }
