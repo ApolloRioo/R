@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250306",
+    version: "20250315",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -167,25 +167,25 @@ const Apollo = {
                 "path": "dm3/tags/fc2"
             }, {
                 "title": "HEYZO",
-                "path": "dm23/tags/heyzo"
+                "path": "dm24/tags/heyzo"
             }, {
                 "title": "Tokyo-Hot",
                 "path": "dm2/tags/tokyo-hot"
             }, {
                 "title": "1pondo",
-                "path": "dm31/tags/1pondo"
+                "path": "dm33/tags/1pondo"
             }, {
                 "title": "Caribbeancom",
-                "path": "dm32/tags/caribbeancom"
+                "path": "dm34/tags/caribbeancom"
             }, {
                 "title": "Caribbeancompr",
                 "path": "dm12/tags/caribbeancompr"
             }, {
                 "title": "10musume",
-                "path": "dm32/tags/10musume"
+                "path": "dm35/tags/10musume"
             }, {
                 "title": "pacopacomama",
-                "path": "dm22/tags/pacopacomama"
+                "path": "dm25/tags/pacopacomama"
             }, {
                 "title": "Gachinco",
                 "path": "dm2/tags/gachig"
