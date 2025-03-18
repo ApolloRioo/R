@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250318",
+    version: "20250319",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -543,8 +543,8 @@ const Apollo = {
                 }
             })
         })
-        var maker = pdfh(html, "body&&#video-actors,1&&a&&href")
-        if (maker) {
+        try {
+            var maker = pdfh(html, "body&&#video-actors,1&&a&&href")
             var studio = pdfh(html, "body&&#video-actors,1&&a&&Text")
             Apollo.d.push({
                 title: "片商 : ““””" + studio.fontcolor("#FF00FF"),
@@ -558,7 +558,7 @@ const Apollo = {
                     pageTitle: studio
                 }
             })
-        }
+        } catch {}
         Apollo.d.push({
             col_type: 'blank_block'
         })
