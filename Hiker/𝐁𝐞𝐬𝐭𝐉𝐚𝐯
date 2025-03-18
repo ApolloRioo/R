@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250318",
+    version: "20250319",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -661,7 +661,7 @@ const Apollo = {
                     setResult(Apollo.d)
                 }),
                 col_type: "card_pic_3",
-                pic_url: img.replace("resize/s360", "images"),
+                pic_url: img ? img : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
                 //desc: "⏰" + pdfh(item, '.duration&&Text'),
                 extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
