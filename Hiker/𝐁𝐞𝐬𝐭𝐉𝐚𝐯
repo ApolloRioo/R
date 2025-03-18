@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250319",
+    version: "202503191",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -421,7 +421,7 @@ const Apollo = {
                     var desc = findItem('transdesc')
                         .desc
                     if (!desc) {
-                        const Apollo = $.require('hiker://page/apollo')
+                        const Apollo = $.require('hiker://page/Apollo')
                         var translates = Apollo.translate(desct)
                         updateItem("transdesc", {
                             desc: '““””' + translates.fontcolor("red"),
