@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250319",
+    version: "20250318",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -411,7 +411,8 @@ const Apollo = {
             }
         })
         log(url)
-        const title = pdfh(html, 'h1&&Text')
+        const title = pdfh(html, '.video-description&&Text');
+
         //setPageTitle(title)
         Apollo.d.push({
             title: '““””' + title.fontcolor("#D2691E").small(),
@@ -498,33 +499,6 @@ const Apollo = {
                 }
             })
         }
-
-        var content = pdfh(html, '.video-description&&Text');
-        Apollo.d.push({
-            title: '““””' + content.fontcolor("#D2691E").small(),
-            url: "hiker://empty" + $('#noLoading#')
-                .lazyRule((desct) => {
-                    var desc = findItem('content')
-                        .desc
-                    if (!desc) {
-                        const Apollo = $.require('hiker://page/Apollo')
-                        var translates = Apollo.translate(desct)
-                        updateItem("content", {
-                            desc: '““””' + translates.fontcolor("red"),
-                        })
-                    } else {
-                        updateItem("content", {
-                            desc: '',
-                        })
-                    }
-                    return "hiker://empty"
-                }, content),
-            col_type: 'text_1',
-            extra: {
-                id: 'content',
-                lineVisiable: false
-            }
-        })
 
         var actressesList = pdfa(html, "body&&#video-actors&&a")
         actressesList.forEach((actresses, index) => {
