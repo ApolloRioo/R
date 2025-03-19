@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202503191",
+    version: "202503192",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -500,7 +500,7 @@ const Apollo = {
             })
         }
 
-        var actressesList = pdfa(html, "body&&#video-actors&&a")
+        var actressesList = pdfa(html, "body&&#video-actors:matches(女優)&&a")
         actressesList.forEach((actresses, index) => {
             let title = pdfh(actresses, 'a&&Text')
             let url = pdfh(actresses, 'a&&href')
@@ -518,8 +518,8 @@ const Apollo = {
             })
         })
         try {
-            var maker = pdfh(html, "body&&#video-actors,1&&a&&href")
-            var studio = pdfh(html, "body&&#video-actors,1&&a&&Text")
+            var maker = pdfh(html, "body&&#video-actors:matches(片商)&&a&&href")
+            var studio = pdfh(html, "body&&#video-actors:matches(片商)&&a&&Text")
             Apollo.d.push({
                 title: "片商 : ““””" + studio.fontcolor("#FF00FF"),
                 url: $(maker + 'page/fypage/#noHistory#').rule(() => {
