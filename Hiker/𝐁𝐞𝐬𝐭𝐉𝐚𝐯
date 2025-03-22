@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202503192",
+    version: "20250322",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -483,23 +483,25 @@ const Apollo = {
                 url: 'copy://' + num,
                 col_type: 'text_center_1',
                 extra: {
-                    // lineVisible: false
+                    lineVisible: false
                 },
             })
         }
-
+        Apollo.d.push({
+            col_type: 'blank_block'
+        })
         var 日期 = pdfh(html, '#video-date&&Text');
         if (日期.trim() != "") {
             Apollo.d.push({
-                title: '““””' + 日期.fontcolor(""),
+                title: '““””' + 日期.fontcolor("red"),
                 url: "hiker://search?rule=𝐉𝐚𝐯𝐃𝐁&s=" + num.replace(" [泄露未审查]", ""),
-                col_type: 'text_center_1',
+                col_type: "text_center_1",
                 extra: {
                     lineVisiable: false
                 }
             })
         }
-
+        
         var actressesList = pdfa(html, "body&&#video-actors:matches(女優)&&a")
         actressesList.forEach((actresses, index) => {
             let title = pdfh(actresses, 'a&&Text')
