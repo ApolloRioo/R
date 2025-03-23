@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20250224",
+    version: "20250323",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -578,7 +578,7 @@ const javguru = {
                         }))
                         .url
                     return urlPlay + ";{Referer@" + location + "}"
-                } else if (/d0000d|dood|ds2play/.test(location)) {
+                } else if (/d0000d|dood|ds2play|all3do/.test(location)) {
                     //DD线路
                     var html = fetch(location, {
                         headers: {
@@ -614,8 +614,8 @@ const javguru = {
                     //log(Playhtml)
                     var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
                     var uas = eval(script)
-                    var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
-                    //log(jwplayer)  
+                    var jwplayer = uas.match(/"(https?[^\"\'\n]+m3u8.*?)"/)[1]
+                    //log(uas)  
                     return jwplayer + ";{Referer@" + location + "}"
 
                 } else if (/vidjav\.net/.test(location)) {
