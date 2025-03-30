@@ -1,7 +1,7 @@
 const Apollo = {
-    version: 20250202,
+    version: 20250330,
     empty: "hiker://empty",
-    url: getItem("link","https://www.r86m.com"),
+    url: getItem("link", "https://www.r86m.com"),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -239,9 +239,9 @@ const Apollo = {
         if (MY_PAGE == 1 && !/genres\.php|search\.php/.test(url)) {
             Apollo.d.push({
                 title: "🔍",
-                url: $.toString(() => {
+                url: $.toString((host) => {
                     putMyVar('keyword', input);
-                    var searchUrl = config.host + "/cn/vl_searchbyid.php?keyword=" + input
+                    var searchUrl = host + "/cn/vl_searchbyid.php?keyword=" + input;
                     try {
                         var url = JSON.parse(fetch(searchUrl, {
                             onlyHeaders: true
@@ -272,7 +272,7 @@ const Apollo = {
                     } catch {
                         return "hiker://empty"
                     }
-                }),
+                }, Apollo.url),
                 desc: '快捷番号搜索...',
                 col_type: "input",
                 extra: {
