@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250315",
+    version: "20250331",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -77,13 +77,13 @@ const Apollo = {
                 "path": "dm2/recent-update"
             }, {
                 "title": "热门",
-                "path": "dm2/trending"
+                "path": "dm3/trending"
             }, {
                 "title": "新发布",
                 "path": "dm2/new-release"
             }, {
                 "title": "今天最多观看",
-                "path": "dm2/today-hot"
+                "path": "dm3/today-hot"
             }, {
                 "title": "本周最多观看",
                 "path": "dm2/weekly-hot"
@@ -167,7 +167,7 @@ const Apollo = {
                 "path": "dm3/tags/fc2"
             }, {
                 "title": "HEYZO",
-                "path": "dm24/tags/heyzo"
+                "path": "dm25/tags/heyzo"
             }, {
                 "title": "Tokyo-Hot",
                 "path": "dm2/tags/tokyo-hot"
@@ -185,7 +185,7 @@ const Apollo = {
                 "path": "dm35/tags/10musume"
             }, {
                 "title": "pacopacomama",
-                "path": "dm25/tags/pacopacomama"
+                "path": "dm26/tags/pacopacomama"
             }, {
                 "title": "Gachinco",
                 "path": "dm2/tags/gachig"
