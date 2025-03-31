@@ -185,18 +185,18 @@ js: //所在行   ThissAV①16
             }
         });
 
-        //haokan
+        //𝐁𝐞𝐬𝐭𝐉𝐚𝐯
         d.push({
-            title: '‘‘’’<b><middle><font color="#8A2BE2">𝐇𝐚𝐨𝐤𝐚𝐧</font></middle>',
+            title: '‘‘’’<b><middle><font color="#FF00FF">𝐁𝐞𝐬𝐭𝐉𝐚𝐯</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQBFU.png',
             url: $('')
                 .lazyRule((识别码) => {
-                    var av = "https://www.sousou6.com/search.html?keyword=" + 识别码;
+                    var av = "https://www.bestjavporn.com/zh/search/" + 识别码 + "/";
                     var html = fetch(av, {
                         timeout: 4923
                     })
                     if (html) {
-                        var list = pdfa(html, ".stui-vodlist&&li")
+                        var list = pdfa(html, "body&&article")
                         if (list.length < 1) {
                             return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                         } else {
@@ -213,10 +213,105 @@ js: //所在行   ThissAV①16
                                 .select((Alist) => {
                                     let index = Alist.findIndex(r => r.title == input);
                                     var html = fetch(Alist[index].url)
-                                    var playUrl = pdfh(html, ".play-btn&&a&&href")
-                                    var h = fetch(playUrl)
-                                    var url = h.match(/https?.*?\.m3u8/)[0]
-                                    return url
+
+                                    function dex(_0x358aa5, _0x22f95b) {
+                                        var _0x5bdf39 = window0.btoa(_0x358aa5 + "_0x58fe15").split("").reverse().join("");
+                                        var _0x149721 = [];
+                                        var _0x5bb29b = 0;
+                                        var _0x4c92ba;
+                                        var _0x30de44 = "";
+                                        for (var _0x58fdad = 0; _0x58fdad < 256; _0x58fdad++) {
+                                            _0x149721[_0x58fdad] = _0x58fdad;
+                                        }
+                                        for (_0x58fdad = 0; _0x58fdad < 256; _0x58fdad++) {
+                                            _0x5bb29b = (_0x5bb29b + _0x149721[_0x58fdad] + _0x5bdf39.charCodeAt(_0x58fdad % _0x5bdf39.length)) % 256;
+                                            _0x4c92ba = _0x149721[_0x58fdad];
+                                            _0x149721[_0x58fdad] = _0x149721[_0x5bb29b];
+                                            _0x149721[_0x5bb29b] = _0x4c92ba;
+                                        }
+                                        _0x58fdad = 0;
+                                        _0x5bb29b = 0;
+                                        var _0x1e6b80 = window0.atob(_0x22f95b);
+                                        for (var _0x8a9b07 = 0; _0x8a9b07 < _0x1e6b80.length; _0x8a9b07++) {
+                                            _0x58fdad = (_0x58fdad + 1) % 256;
+                                            _0x5bb29b = (_0x5bb29b + _0x149721[_0x58fdad]) % 256;
+                                            _0x4c92ba = _0x149721[_0x58fdad];
+                                            _0x149721[_0x58fdad] = _0x149721[_0x5bb29b];
+                                            _0x149721[_0x5bb29b] = _0x4c92ba;
+                                            _0x30de44 += String.fromCharCode(_0x1e6b80.charCodeAt(_0x8a9b07) ^ _0x149721[(_0x149721[_0x58fdad] + _0x149721[_0x5bb29b]) % 256]);
+                                        }
+                                        return window0.atob(_0x30de44);
+                                    }
+
+                                    function _0x2bbbcf(_0x3247db, _0x52949c) {
+                                        var _0x30219c = window0.btoa(_0x52949c + "_0x58a0e3")["split"]("")["reverse"]()["join"]("");
+                                        var _0x824e0 = [];
+                                        var _0x2db30b = 0;
+                                        var _0x3d00bd;
+                                        var _0x2dae66 = "";
+                                        for (var _0x408b92 = 0; _0x408b92 < 256; _0x408b92++) {
+                                            _0x824e0[_0x408b92] = _0x408b92;
+                                        }
+                                        for (_0x408b92 = 0; _0x408b92 < 256; _0x408b92++) {
+                                            _0x2db30b = (_0x2db30b + _0x824e0[_0x408b92] + _0x30219c["charCodeAt"](_0x408b92 % _0x30219c["length"])) % 256;
+                                            _0x3d00bd = _0x824e0[_0x408b92];
+                                            _0x824e0[_0x408b92] = _0x824e0[_0x2db30b];
+                                            _0x824e0[_0x2db30b] = _0x3d00bd;
+                                        }
+                                        _0x408b92 = 0;
+                                        _0x2db30b = 0;
+                                        var _0x359364 = window0.atob(_0x3247db);
+                                        for (var _0x54652b = 0; _0x54652b < _0x359364["length"]; _0x54652b++) {
+                                            _0x408b92 = (_0x408b92 + 1) % 256;
+                                            _0x2db30b = (_0x2db30b + _0x824e0[_0x408b92]) % 256;
+                                            _0x3d00bd = _0x824e0[_0x408b92];
+                                            _0x824e0[_0x408b92] = _0x824e0[_0x2db30b];
+                                            _0x824e0[_0x2db30b] = _0x3d00bd;
+                                            _0x2dae66 += String["fromCharCode"](_0x359364["charCodeAt"](_0x54652b) ^ _0x824e0[(_0x824e0[_0x408b92] + _0x824e0[_0x2db30b]) % 256]);
+                                        }
+                                        return window0.atob(_0x2dae66);
+                                    }
+
+                                    var mpu = pdfh(html, '#video-player&&data-mpu')
+                                    var id = pdfh(html, '#video-player-area&&video-id')
+                                    var ver = pdfh(html, '#video-player-area&&video_ver')
+                                    var api = "https://video.bestjavporn.com/api/play/"
+                                    try {
+                                        var postdata = JSON.parse(post(api, {
+                                            headers: {
+                                                "Referer": "https://www.bestjavporn.com/"
+                                            },
+                                            body: {
+                                                "sources": dex(id, mpu),
+                                                "ver": ver
+                                            }
+                                        })).data
+                                        postdata = "https:" + dex(id, postdata)
+                                        var playdata = pdfh(request(postdata), '#jwplayer&&data-fb5c9')
+                                        var playkey = window0.btoa(postdata.split('com')[1]).substring(8, 24)
+                                        var video = JSON.parse(window0.atob(_0x2bbbcf(playdata, playkey)));
+                                        var source = video[0].file;
+                                    } catch {}
+                                    try {
+                                        var group_quality = fetch(source);
+                                        hghest_quality = group_quality.match(/^[^#\n]+/gm)
+                                            .map(v => source.replace(/master\.m3u8.*/, v))
+                                            .reverse()
+                                        name_quality = group_quality.match(/RESOLUTION=[^\,]+/gm)
+                                            .map(n => n.replace("RESOLUTION=", ""))
+                                            .reverse()
+                                        let playlist = {
+                                            urls: hghest_quality,
+                                            names: name_quality,
+                                            headers: new Array(hghest_quality.length)
+                                                .fill({
+                                                    //origin: ""
+                                                })
+                                        };
+                                        return playlist
+                                    } catch {
+                                        return source + "#isVideo=true#"
+                                    }
                                 }, Alist)
                         }
                     } else {
@@ -228,7 +323,7 @@ js: //所在行   ThissAV①16
                 longClick: [{
                     title: '查看网址',
                     js: $.toString((识别码) => {
-                        return "http://sousou6.com/vod/search.html?wd=" + 识别码;
+                        return "https://www.bestjavporn.com/zh/search/" + 识别码 + "/";
                     }, 识别码)
                 }]
             }
@@ -398,7 +493,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐒𝐮𝐩𝐣𝐚𝐯小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/dmwehmfyfgln8xle");
+                                return parsePaste("云6oooole/xxxxxx/zplru22ut4ifw7wk");
                             }
                         })
                         return "hiker://empty"
@@ -485,7 +580,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝐉𝐚𝐯𝐆𝐮𝐫𝐮小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/t3stfr7cniupyiqv");
+                                return parsePaste("云6oooole/xxxxxx/41myhn5cqpgzx7gh");
                             }
                         })
                         return "hiker://empty"
@@ -565,7 +660,7 @@ js: //所在行   ThissAV①16
                             title: '依赖检测',
                             content: '检测到缺少𝟕𝐌𝐌𝐓𝐕小程序\n请用力摁确定!',
                             confirm: () => {
-                                return parsePaste("云6oooole/xxxxxx/9sseenbnavprm242");
+                                return parsePaste("云6oooole/xxxxxx/xxgbrpxodr23whe1");
                             }
                         })
                         return "hiker://empty"
