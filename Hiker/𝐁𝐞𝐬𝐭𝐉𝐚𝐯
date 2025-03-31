@@ -201,7 +201,7 @@ const Apollo = {
                 url: $.toString((url) => {
                     if (input.trim() != "") {
                         putMyVar('keyword', input);
-                        var searchUrl = getHome(url) + "/search/" + input + "/"
+                        var searchUrl = getHome(url) + "/zh/search/" + input + "/"
                         putMyVar("url", searchUrl);
                         refreshPage();
                         return "hiker://empty"
@@ -543,7 +543,7 @@ const Apollo = {
                     postdata = "https:" + dex(id, postdata)
                     var playdata = pdfh(request(postdata), '#jwplayer&&data-fb5c9')
                     var playkey = window0.btoa(postdata.split('com')[1]).substring(8, 24)
-                    var video = JSON.parse(window0.atob(_0x2bbbcf(playdata, playkey)))
+                    var video = JSON.parse(window0.atob(_0x2bbbcf(playdata, playkey)));
                     var source = video[0].file
                 } catch {}
                 try {
@@ -593,7 +593,7 @@ const Apollo = {
             })
         }
 
-        var 日期 = pdfh(html, '#video-date&&Text');
+        var 日期 = pdfh(html, '#video-date&&Text').replace("發布", "");
         if (日期.trim() != "") {
             Apollo.d.push({
                 title: '““””' + 日期.fontcolor("red"),
