@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250331",
+    version: "20250401",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -563,10 +563,20 @@ const Apollo = {
                         "Referer": input
                     }
                 }));
-                var javplayer = data.result.watch[0].url
-                var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
-                    .match(/https?.*?\.m3u8/)[0]
-                return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
+                var javplayer = []
+                data.result.watch.forEach(item => {
+                    javplayer.push({
+                        url: item.url
+                    })
+                });
+                var playUrl = bf(javplayer).map(item => pdfh(item, "#player&&v-scope").match(/https?.*?\.m3u8/)[0].replace(/\\\//g, '/'))
+                let playlist = {
+                    urls: playUrl,
+                    headers: new Array(playUrl.length).fill({
+                        Referer: "https://javplayer.me/"
+                    })
+                };
+                return playlist
             }, id),
             col_type: 'pic_1_full',
         })
