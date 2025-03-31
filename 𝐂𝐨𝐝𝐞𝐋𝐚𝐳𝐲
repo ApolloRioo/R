@@ -165,10 +165,20 @@ js: //所在行   ThissAV①16
                                     "Referer": av
                                 }
                             }))
-                            var javplayer = data.result.watch[0].url
-                            var playUrl = pdfh(fetch(javplayer), "#player&&v-scope")
-                                .match(/https?.*?\.m3u8/)[0]
-                            return playUrl.replace(/\\\//g, '/') + ";{Referer@" + javplayer + "}"
+                            var javplayer = []
+                            data.result.watch.forEach(item => {
+                                javplayer.push({
+                                    url: item.url
+                                })
+                            });
+                            var playUrl = bf(javplayer).map(item => pdfh(item, "#player&&v-scope").match(/https?.*?\.m3u8/)[0].replace(/\\\//g, '/'))
+                            let playlist = {
+                                urls: playUrl,
+                                headers: new Array(playUrl.length).fill({
+                                    Referer: "https://javplayer.me/"
+                                })
+                            };
+                            return playlist
                         }
                     } else {
                         return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
