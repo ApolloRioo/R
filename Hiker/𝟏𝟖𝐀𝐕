@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20250123,
+    version: 20250402,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -444,7 +444,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, "h3&&a&&Text"),
                 desc: pdfh(item, ".meta&&Text"),
-                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src").replace("/s/", "/b/") : "https://thumbsnap.com/i/wxDcxfJH.png",
+                img: pdfh(item, "img&&src") ? pdfh(item, "img&&src").replace("/s/", "/b/").replace("fbhost", "fchost") : "https://thumbsnap.com/i/wxDcxfJH.png",
                 url: vurl + lazy,
                 col_type: col,
                 extra: {
@@ -486,7 +486,7 @@ const Apollo = {
         Apollo.d.push({
             col_type: "blank_block",
         })
-        var chtml = fetch(Apollo.url+"/zh/chinese_categorylist/list/index.html")
+        var chtml = fetch(Apollo.url + "/zh/chinese_categorylist/list/index.html")
         const sort = pdfa(chtml, 'body&&.posts&&.post')
         sort.forEach((item, index) => {
             var title = pdfh(item, 'Text');
@@ -929,7 +929,8 @@ const Apollo = {
                         "User-Agent": "Mozilla/5.0 (Linux; Android 12; SM-G9750 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.72 MQQBrowser/6.2 TBS/046279 Mobile Safari/537.36",
                     }
                 });
-                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0];log(pass_md5)
+                var pass_md5 = getHome(redirect) + htmll.match(/\/pass_md5[^"']+/)[0];
+                log(pass_md5)
                 var token = htmll.match(/cookieIndex.*?\'(.*?)\'/)[1];
                 var data = fetch(pass_md5, {
                     headers: {
