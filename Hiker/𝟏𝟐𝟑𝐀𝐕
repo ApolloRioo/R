@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250406",
+    version: "20250407",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -529,11 +529,11 @@ const Apollo = {
             if (img) {
                 Apollo.d.push({
                     title: pdfh(item, '.detail&&Text'),
-                    url: url + $('#noHistory#').rule(() => {
-                        const Apollo = $.require('hiker://page/Apollo')
+                    url: url + $('#noHistory#').rule((t) => {
+                        const Apollo = $.require('hiker://page/Apollo?rule='+t)
                         Apollo.videoParse(MY_URL)
                         setResult(Apollo.d)
-                    }),
+                    },MY_RULE.title),
                     pic_url: img.replace("resize/s360", "images"),
                     desc: "⏰" + pdfh(item, '.duration&&Text'),
                     col_type: 'movie_2',
@@ -638,12 +638,12 @@ const Apollo = {
             let url = Apollo.url + pdfh(actresses, 'a&&href')
             Apollo.d.push({
                 title: "演员 : ““””" + title.fontcolor("#C71585"),
-                url: $(url + '?page=fypage#noHistory#').rule((title) => {
-                    const Apollo = $.require('hiker://page/Apollo')
+                url: $(url + '?page=fypage#noHistory#').rule((title,t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
                     setPageTitle(title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, title),
+                }, title,MY_RULE.title),
                 col_type: 'scroll_button',
             })
         })
@@ -664,12 +664,12 @@ const Apollo = {
             let tag_title = pdfh(tag, 'a&&Text')
             Apollo.d.push({
                 title: tag_title,
-                url: $(Apollo.url + pdfh(tag, 'a&&href') + '?page=fypage#noHistory#').rule((tag_title) => {
-                    const Apollo = $.require('hiker://page/Apollo')
+                url: $(Apollo.url + pdfh(tag, 'a&&href') + '?page=fypage#noHistory#').rule((tag_title,t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
                     setPageTitle(tag_title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, tag_title),
+                }, tag_title,MY_RULE.title),
                 col_type: 'scroll_button',
                 extra: {
                     'backgroundColor': Apollo.getRangeColors()
@@ -693,12 +693,12 @@ const Apollo = {
             let series_title = pdfh(series, 'a&&Text')
             Apollo.d.push({
                 title: series_title,
-                url: $(Apollo.url + pdfh(series, 'a&&href') + '?page=fypage#noHistory#').rule((series_title) => {
-                    const Apollo = $.require('hiker://page/Apollo')
+                url: $(Apollo.url + pdfh(series, 'a&&href') + '?page=fypage#noHistory#').rule((series_title,t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
                     setPageTitle(series_title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, series_title),
+                }, series_title,MY_RULE.title),
                 col_type: 'scroll_button',
                 extra: {
                     'backgroundColor': Apollo.getRangeColors()
@@ -722,12 +722,12 @@ const Apollo = {
             let makers_title = pdfh(makers, 'a&&Text')
             Apollo.d.push({
                 title: makers_title,
-                url: $(Apollo.url + pdfh(makers, 'a&&href') + '?page=fypage#noHistory#').rule((makers_title) => {
-                    const Apollo = $.require('hiker://page/Apollo')
+                url: $(Apollo.url + pdfh(makers, 'a&&href') + '?page=fypage#noHistory#').rule((makers_title,t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
                     setPageTitle(makers_title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, makers_title),
+                }, makers_title,MY_RULE.title),
                 col_type: 'scroll_button',
                 extra: {
                     'backgroundColor': Apollo.getRangeColors()
@@ -750,12 +750,12 @@ const Apollo = {
                 Apollo.d.push({
                     title: label_title,
                     url: $(Apollo.url + pdfh(label, 'a&&href') + '?page=fypage#noHistory#').rule((
-                        label_title) => {
-                        const Apollo = $.require('hiker://page/Apollo')
+                        label_title,t) => {
+                        const Apollo = $.require('hiker://page/Apollo?rule='+t)
                         setPageTitle(label_title)
                         Apollo.yijiParse(MY_URL)
                         setResult(Apollo.d)
-                    }, label_title),
+                    }, label_title,MY_RULE.title),
                     col_type: 'scroll_button',
                     extra: {
                         'backgroundColor': Apollo.getRangeColors()
@@ -865,8 +865,8 @@ const Apollo = {
         list.forEach(item => {
             Apollo.d.push({
                 title: pdfh(item, 'img&&alt'),
-                url: $(pdfh(item, 'a&&href') + '#noHistory#').rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
+                url: $(pdfh(item, 'a&&href') + '#noHistory#').rule((t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
                     const html = fetch(MY_URL, {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -877,7 +877,7 @@ const Apollo = {
                         col_type: 'rich_text'
                     })
                     setResult(Apollo.d)
-                }),
+                },MY_RULE.title),
                 pic_url: pdfh(item, 'img&&data-src') + '@Referer=' + Apollo.url,
                 col_type: 'movie_2',
                 extra: page ? {
@@ -899,11 +899,11 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, '.detail&&Text').replace("视频", ""),
                 img: img,
-                url: $(Apollo.url + pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
+                url: $(Apollo.url + pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule((t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }),
+                },MY_RULE.title),
                 col_type: img ? "card_pic_3" : 'text_2',
                 extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
@@ -914,128 +914,270 @@ const Apollo = {
 
     //首页轮播
     lunboType: (html) => {
-        var lundata = pdfa(html, "#top-carousel&&.box-item").map((x) => {
-            var urll = Apollo.url + pdfh(x, "a&&href");
+        //轮播Html
+        let getHtml = (image) => `
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        .carousel-container {
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /* 确保溢出部分被隐藏 */
+    border-radius: 10px;    
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+    width: 100%;
+    aspect-ratio: 1.8; /height: 45vw* 自动调整高度以保持宽高比 */
+    object-fit: cover;
+    border-radius: 10px; /* 确保图片和容器边角一致 */
+    display: block; /* 确保没有额外的间隙 */
+}
+
+.carousel-item {
+    flex: 0 0 100%; /* 确保轮播项宽度为容器宽度 */
+    box-sizing: border-box; /* 确保内边距和边框计算在内 */
+}
+
+.carousel-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.carousel-button {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 4px;
+    background-color: #808080; /* 灰色 */
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicator.active {
+    background-color: #00FF00; /* 绿色 */
+}
+
+.carousel-title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.carousel-caption h5 {
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.carousel-caption p {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #cccccc;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel" data-images='${JSON.stringify(image)}'>
+            <!-- 这里将通过JavaScript动态插入图片 -->
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" id="prevBtn">〈</button>
+            <button class="carousel-button" id="nextBtn">〉</button>
+        </div>
+        <div class="carousel-indicators" id="carouselIndicators">
+            <!-- 这里将通过JavaScript动态插入指示器 -->
+        </div>
+        <div class="carousel-title" id="carouselTitle">标题</div>
+    </div>
+
+</body>
+</html>
+`;
+        //轮播函数
+        function lunbo(d, image, sui) {
+            let Html = getHtml(image);
+            let path = getPath("hiker://files/_cache/fylunbo.html");
+            writeFile(path, '<!DOCTYPE html><html lang="zh"><body></body></html>');
+            let px = fetch('hiker://files/cache/lunboWindh.txt') || "188";
+            d.push({
+                col_type: "x5_webview_single",
+                url: path + "#a=" + sui,
+                desc: "list&&" + px,
+                extra: {
+                    js: $.toString((Html) => {
+                        // 监听窗口大小变化
+                        window.addEventListener('resize', function() {
+                            // 获取当前窗口的宽度
+                            var screenWidth = window.innerWidth;
+                            // 计算窗口宽度的49%
+                            var percentageWidth = Math.round(screenWidth * 0.56);
+                            let path = "hiker://files/cache/lunboWindh.txt";
+                            fba.writeFile(path, percentageWidth);
+                        });
+                        document.documentElement.innerHTML = Html;
+
+                        let currentIndex = 0;
+                        let carouselInterval;
+
+                        const carousel = document.getElementById('carousel');
+                        const carouselIndicators = document.getElementById('carouselIndicators');
+                        const carouselTitle = document.getElementById('carouselTitle');
+                        let images = JSON.parse(carousel.dataset.images); // 获取初始图片数据
+
+                        function updateCarousel() {
+                            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                            carouselTitle.textContent = images[currentIndex].title;
+                            document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
+                                indicator.classList.toggle('active', index === currentIndex);
+                            });
+                        }
+
+                        function createCarousel() {
+                            carousel.innerHTML = '';
+                            carouselIndicators.innerHTML = '';
+
+                            images.forEach((image, index) => {
+                                const imgElement = document.createElement('a');
+                                imgElement.href = `${image.link}#${image.src}#${image.title}#${image.sode}`;
+                                imgElement.classList.add('carousel-item');
+                                imgElement.innerHTML = `<img src="${decodeURIComponent(image.src)}" alt="${image.title}">`;
+                                carousel.appendChild(imgElement);
+
+                                const indicator = document.createElement('div');
+                                indicator.classList.add('carousel-indicator');
+                                indicator.addEventListener('click', () => {
+                                    currentIndex = index;
+                                    updateCarousel();
+                                    resetCarouselInterval();
+                                });
+                                carouselIndicators.appendChild(indicator);
+                            });
+
+                            if (currentIndex >= images.length) {
+                                currentIndex = 0;
+                            }
+                            updateCarousel();
+                            startCarouselInterval();
+                        }
+
+                        function startCarouselInterval() {
+                            carouselInterval = setInterval(() => {
+                                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                                updateCarousel();
+                            }, 3333); // 设置自动轮播时间为3秒
+                        }
+
+                        function resetCarouselInterval() {
+                            clearInterval(carouselInterval);
+                            startCarouselInterval();
+                        }
+
+                        document.getElementById('prevBtn').addEventListener('click', () => {
+                            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                            updateCarousel();
+                            resetCarouselInterval();
+                        });
+
+                        document.getElementById('nextBtn').addEventListener('click', () => {
+                            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                            updateCarousel();
+                            resetCarouselInterval();
+                        });
+
+                        // 初始化轮播图
+                        createCarousel();
+
+                    }, Html),
+                    urlInterceptor: $.toString((game, sui, myurle) => {
+                        return $.toString((game, sui, myurle, input) => {
+                            let pat = input.split("#");
+                            let title = decodeURIComponent(pat[2]);
+                            let url = `hiker://empty##${pat[0]}#noHistory##autoCache${game}`;
+                            let findRule = "js:" + $$$.toString((url, myurle) => {
+                                url = url.replace("hiker://empty##", "")
+                                eval(fetch('hiker://files/rules/Apollo/' + myurle + '.js'))
+                                Apollo.videoParse(url)
+                            }, url, myurle);
+                            let img = `${pat[1]}@Referer=`;
+                            let desc = decodeURIComponent(pat[3]);
+                            fba.open(JSON.stringify({
+                                rule: myurle,
+                                title: `${title}「${sui}」`,
+                                url: url,
+                                findRule: findRule,
+                                extra: {
+                                    title: title,
+                                    desc: desc,
+                                    img: img,
+                                    inheritTitle: false,
+                                    pageTitle: `${title}「${sui}」`
+                                }
+                            }));
+                        }, game, sui, myurle, input);
+                    }, game, sui, MY_RULE.title),
+                    //cls: "cls_fylunbo",
+                    ua: MOBILE_UA,
+                    //imgLongClick: false
+                }
+            });
+        };
+        let lundata = [];
+        // 假设传入的图片数据
+        lundata = pdfa(html, "#top-carousel&&.box-item").map(item => {
             return {
-                title: pdfh(x, ".name&&Text"), //pdfh(x, ".name&&Text").split("").map(b => b.fontcolor(Apollo.getRangeColors()).small()).join(""),
-                img: pdfh(x, "img&&src").replace("resize/s500", "images"),
-                url: urll + $('#noHistory#').rule(() => {
-                    const Apollo = $.require('hiker://page/Apollo')
-                    Apollo.videoParse(MY_URL)
-                    setResult(Apollo.d)
-                }),
-            }
-        });
-
-        function banner(title, start, arr, data, cfg) {
-            let id = title + 'lunbo';
-            var rnum = Math.floor(Math.random() * data.length);
-            var item = data[rnum];
-            putMyVar('rnum', rnum);
-            let time = 5000;
-            let col_type = 'pic_1_card';
-            let color = "#FF0000";
-            let desc = '';
-            if (cfg != undefined) {
-                time = cfg.time ? cfg.time : time;
-                col_type = cfg.col_type ? cfg.col_type : col_type;
-                desc = cfg.desc ? cfg.desc : desc;
-            }
-            item.title = "““””" + item.title.fontcolor(color)
-            arr.push({
-                    col_type: col_type,
-                    img: item.img,
-                    desc: desc,
-                    title: item.title,
-                    url: item.url,
-                    extra: {
-                        id: id + 'bar',
-                        img: item.img,
-                    }
-                },
-                /*{
-                               col_type: "avatar",
-                               title: item.title,
-                               img: "https://cdn-icons-png.flaticon.com/128/1384/1384060.png",
-                               url: Apollo.empty,
-                               extra: {
-                                   id: id + 'title',
-                                   title: item.title,
-                                   lineVisible: false
-                               }
-                           }, {
-                               col_type: "line_blank"
-                           }*/
-            )
-
-            if (start == false || getMyVar('benstart', 'true') == 'false') {
-                unRegisterTask(id)
-                return
-            }
-
-            //log(data)
-
-            let obj = {
-                data: data,
+                title: pdfh(item, ".name&&Text"),
+                src: pdfh(item, "img&&src").replace("resize/s500", "images").replace("@Referer=", ""),
+                sode: "",
+                link: Apollo.url + pdfh(item, "a&&href")
             };
-
-            registerTask(id, time, $.toString((obj, id, color) => {
-                var data = obj.data;
-                var rum = getMyVar('rnum');
-
-                var i = Number(getMyVar('banneri', '0'));
-                if (rum != '') {
-                    i = Number(rum) + 1
-                    clearMyVar('rnum')
-                } else {
-                    i = i + 1;
-                }
-
-                log(i)
-                //log(data.length)
-
-                if (i > data.length - 1) {
-                    i = 0
-                }
-                var item = data[i];
-                //log(item)
-                item.title = "““””" + item.title.fontcolor(color)
-                try {
-                    updateItem(id + 'bar', {
-                        title: item.title,
-                        img: item.img,
-                        url: item.url,
-                        extra: {
-                            title: item.title,
-                            img: item.img,
-                            //name: item.title.replace(/<[^>]+>/g, ''),
-                            //sname: item.extra.sname,
-                            //stype: item.extra.stype,
-                            //surl: item.url,
-                            //img:item.img,
-                            //pageTitle: item.title.replace(/<[^>]+>/g, ''),
-                        }
-                    })
-                    updateItem(id + 'title', {
-                        title: item.title,
-                        extra: {
-                            title: item.title,
-                            lineVisible: false
-                        }
-                    })
-                } catch (e) {
-                    log(e.message)
-                    unRegisterTask(id)
-                }
-                putMyVar('banneri', i);
-
-            }, obj, id, color))
-        }
-        banner(MY_RULE.title, true, Apollo.d, lundata, {
-            time: 1333,
-            col_type: "card_pic_1",
-            desc: '0'
-        })
+        });
+        let game = "#"; //"##gameTheme##immersiveTheme#" 二级模式
+        lunbo(Apollo.d, lundata, "𝟏𝟐𝟑𝐀𝐕");
     },
 
     //首页
@@ -1055,11 +1197,11 @@ const Apollo = {
                     title: title,
                     desc: pdfh(item, ".duration&&Text") + "\t" + pdfh(item, ".video-duration&&Text"),
                     img: pdfh(item, "img&&data-src").replace("resize/s360", "images"),
-                    url: url + $('#noHistory#').rule(() => {
-                        const Apollo = $.require('hiker://page/Apollo')
+                    url: url + $('#noHistory#').rule((t) => {
+                        const Apollo = $.require('hiker://page/Apollo?rule='+t)
                         Apollo.videoParse(MY_URL)
                         setResult(Apollo.d)
-                    }),
+                    },MY_RULE.title),
                     col_type: "movie_2",
                 })
             })
