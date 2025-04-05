@@ -934,14 +934,14 @@ const Apollo = {
             putMyVar('rnum', rnum);
             let time = 5000;
             let col_type = 'pic_1_card';
-            let color = "white";
+            let color = "#FF0000";
             let desc = '';
             if (cfg != undefined) {
                 time = cfg.time ? cfg.time : time;
                 col_type = cfg.col_type ? cfg.col_type : col_type;
                 desc = cfg.desc ? cfg.desc : desc;
             }
-
+            item.title = "““””" + item.title.fontcolor(color)
             arr.push({
                     col_type: col_type,
                     img: item.img,
@@ -979,7 +979,7 @@ const Apollo = {
                 data: data,
             };
 
-            registerTask(id, time, $.toString((obj, id) => {
+            registerTask(id, time, $.toString((obj, id, color) => {
                 var data = obj.data;
                 var rum = getMyVar('rnum');
 
@@ -990,7 +990,8 @@ const Apollo = {
                 } else {
                     i = i + 1;
                 }
-                //log(i)
+
+                log(i)
                 //log(data.length)
 
                 if (i > data.length - 1) {
@@ -998,6 +999,7 @@ const Apollo = {
                 }
                 var item = data[i];
                 //log(item)
+                item.title = "““””" + item.title.fontcolor(color)
                 try {
                     updateItem(id + 'bar', {
                         title: item.title,
@@ -1027,10 +1029,10 @@ const Apollo = {
                 }
                 putMyVar('banneri', i);
 
-            }, obj, id))
+            }, obj, id, color))
         }
         banner(MY_RULE.title, true, Apollo.d, lundata, {
-            time: 3333,
+            time: 1333,
             col_type: "card_pic_1",
             desc: '0'
         })
