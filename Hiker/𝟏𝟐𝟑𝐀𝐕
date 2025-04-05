@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250401",
+    version: "20250406",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -74,34 +74,34 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "最近更新",
-                "path": "dm2/recent-update"
+                "path": "recent-update"
             }, {
                 "title": "热门",
-                "path": "dm3/trending"
+                "path": "trending"
             }, {
                 "title": "新发布",
-                "path": "dm2/new-release"
+                "path": "new-release"
             }, {
                 "title": "今天最多观看",
-                "path": "dm3/today-hot"
+                "path": "today-hot"
             }, {
                 "title": "本周最多观看",
-                "path": "dm2/weekly-hot"
+                "path": "weekly-hot"
             }, {
                 "title": "本月最多观看",
-                "path": "dm2/monthly-hot"
+                "path": "monthly-hot"
             }, {
                 "title": "审查",
-                "path": "dm2/censored"
+                "path": "censored"
             }, {
                 "title": "未审查",
-                "path": "dm3/uncensored"
+                "path": "uncensored"
             }, {
                 "title": "泄露未审查",
-                "path": "dm2/uncensored-leaked"
+                "path": "uncensored-leaked"
             }, {
                 "title": "VR",
-                "path": "dm2/vr"
+                "path": "vr"
             }]
         }, {
             "title": "列表",
@@ -129,31 +129,31 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "SIRO",
-                "path": "dm2/tags/siro"
+                "path": "tags/siro"
             }, {
                 "title": "LUXU",
-                "path": "dm2/tags/259luxu"
+                "path": "tags/259luxu"
             }, {
                 "title": "200GANA",
-                "path": "dm2/tags/200gana"
+                "path": "tags/200gana"
             }, {
                 "title": "PRESTIGE PREMIUM",
-                "path": "dm2/tags/prestige-premium"
+                "path": "tags/prestige-premium"
             }, {
                 "title": "ORECO",
-                "path": "dm2/tags/230oreco"
+                "path": "tags/230oreco"
             }, {
                 "title": "S-CUTE",
-                "path": "dm2/tags/s-cute"
+                "path": "tags/s-cute"
             }, {
                 "title": "ARA",
-                "path": "dm2/tags/261ara"
+                "path": "tags/261ara"
             }, {
                 "title": "390JAC",
-                "path": "dm2/tags/390jac"
+                "path": "tags/390jac"
             }, {
                 "title": "328HMDN",
-                "path": "dm2/tags/328hmdn"
+                "path": "tags/328hmdn"
             }]
         }, {
             "title": "未审查",
@@ -161,46 +161,46 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "泄露未审查",
-                "path": "dm2/uncensored-leaked"
+                "path": "uncensored-leaked"
             }, {
                 "title": "FC2",
-                "path": "dm3/tags/fc2"
+                "path": "tags/fc2"
             }, {
                 "title": "HEYZO",
-                "path": "dm25/tags/heyzo"
+                "path": "tags/heyzo"
             }, {
                 "title": "Tokyo-Hot",
-                "path": "dm2/tags/tokyo-hot"
+                "path": "tags/tokyo-hot"
             }, {
                 "title": "1pondo",
-                "path": "dm33/tags/1pondo"
+                "path": "tags/1pondo"
             }, {
                 "title": "Caribbeancom",
-                "path": "dm34/tags/caribbeancom"
+                "path": "tags/caribbeancom"
             }, {
                 "title": "Caribbeancompr",
-                "path": "dm12/tags/caribbeancompr"
+                "path": "tags/caribbeancompr"
             }, {
                 "title": "10musume",
-                "path": "dm35/tags/10musume"
+                "path": "tags/10musume"
             }, {
                 "title": "pacopacomama",
-                "path": "dm26/tags/pacopacomama"
+                "path": "tags/pacopacomama"
             }, {
                 "title": "Gachinco",
-                "path": "dm2/tags/gachig"
+                "path": "tags/gachig"
             }, {
                 "title": "XXX-AV",
-                "path": "dm2/tags/xxx-av"
+                "path": "tags/xxx-av"
             }, {
                 "title": "C0930",
-                "path": "dm2/tags/c0930"
+                "path": "tags/c0930"
             }, {
                 "title": "H0930",
-                "path": "dm2/tags/h0930"
+                "path": "tags/h0930"
             }, {
                 "title": "H4610",
-                "path": "dm2/tags/h4610"
+                "path": "tags/h4610"
             }]
         }, {
             "title": "更多",
@@ -208,7 +208,7 @@ const Apollo = {
             "type": "video",
             "sub": [{
                 "title": "MissAV",
-                "path": "dm3/missav"
+                "path": "missav"
             }, {
                 "title": "SupJav",
                 "path": "supjav"
@@ -240,7 +240,7 @@ const Apollo = {
         if (url.includes("search")) {
             type = "search"
         }
-        log(url)
+
         if (MY_PAGE == 1) {
             categoryList.forEach((cate, index) => {
                 Apollo.d.push({
@@ -283,11 +283,21 @@ const Apollo = {
                 })
             }
         }
-        const html = fetch(url, {
+        var html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
+        if (html.includes("Click here to continue")) {
+            url = pdfh(html, "body&&#body&&a&&href")
+            html = fetch(url, {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                }
+            })
+        }
+        log(url)
+
         //动态分类
         Apollo.DynamicSort(html)
         Apollo.ActorSort(url, html)
