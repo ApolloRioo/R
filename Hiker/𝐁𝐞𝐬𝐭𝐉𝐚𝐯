@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250401",
+    version: "20250405",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -545,11 +545,12 @@ const Apollo = {
                     var playkey = window0.btoa(postdata.split('com')[1]).substring(8, 24)
                     var video = JSON.parse(window0.atob(_0x2bbbcf(playdata, playkey)));
                     var source = video[0].file
+                    source = source.startsWith("http") ? source : "https:" + source
                 } catch {}
                 try {
                     var group_quality = fetch(source)
                     hghest_quality = group_quality.match(/^[^#\n]+/gm)
-                        .map(v => source.replace(/master\.m3u8.*/, v))
+                        .map(v => source.replace(/master\.m3u8.*/, v) + "#isVideo=true#")
                         .reverse()
                     name_quality = group_quality.match(/RESOLUTION=[^\,]+/gm)
                         .map(n => n.replace("RESOLUTION=", ""))
@@ -559,12 +560,13 @@ const Apollo = {
                         names: name_quality,
                         headers: new Array(hghest_quality.length)
                             .fill({
-                                //origin: ""
+                                "Referer": "https://video.bestjavporn.com/"
                             })
                     };
+                    log(playlist)
                     return playlist
                 } catch {
-                    return source + "#isVideo=true#"
+                    return source + "#isVideo=true#;{Referer@https://video.bestjavporn.com/}"
                 }
             }),
             col_type: 'pic_1_full',
