@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250407",
+    version: "202504071",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -511,8 +511,16 @@ const Apollo = {
         }
     },
     //搜索
-    searchParse: () => {
-        Apollo.videoType(getResCode());
+    searchParse: (url) => {
+        keyword = url.split("##")[1]
+        url = Apollo.url + "search?keyword=" + keyword + "&page=" + MY_PAGE
+        log(url)
+        var html = fetch(url, {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            },
+        });
+        Apollo.videoType(html);
         setResult(Apollo.d)
     },
 
@@ -530,10 +538,10 @@ const Apollo = {
                 Apollo.d.push({
                     title: pdfh(item, '.detail&&Text'),
                     url: url + $('#noHistory#').rule((t) => {
-                        const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                        const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                         Apollo.videoParse(MY_URL)
                         setResult(Apollo.d)
-                    },MY_RULE.title),
+                    }, MY_RULE.title),
                     pic_url: img.replace("resize/s360", "images"),
                     desc: "⏰" + pdfh(item, '.duration&&Text'),
                     col_type: 'movie_2',
@@ -638,12 +646,12 @@ const Apollo = {
             let url = Apollo.url + pdfh(actresses, 'a&&href')
             Apollo.d.push({
                 title: "演员 : ““””" + title.fontcolor("#C71585"),
-                url: $(url + '?page=fypage#noHistory#').rule((title,t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                url: $(url + '?page=fypage#noHistory#').rule((title, t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     setPageTitle(title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, title,MY_RULE.title),
+                }, title, MY_RULE.title),
                 col_type: 'scroll_button',
             })
         })
@@ -664,12 +672,12 @@ const Apollo = {
             let tag_title = pdfh(tag, 'a&&Text')
             Apollo.d.push({
                 title: tag_title,
-                url: $(Apollo.url + pdfh(tag, 'a&&href') + '?page=fypage#noHistory#').rule((tag_title,t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                url: $(Apollo.url + pdfh(tag, 'a&&href') + '?page=fypage#noHistory#').rule((tag_title, t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     setPageTitle(tag_title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, tag_title,MY_RULE.title),
+                }, tag_title, MY_RULE.title),
                 col_type: 'scroll_button',
                 extra: {
                     'backgroundColor': Apollo.getRangeColors()
@@ -693,12 +701,12 @@ const Apollo = {
             let series_title = pdfh(series, 'a&&Text')
             Apollo.d.push({
                 title: series_title,
-                url: $(Apollo.url + pdfh(series, 'a&&href') + '?page=fypage#noHistory#').rule((series_title,t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                url: $(Apollo.url + pdfh(series, 'a&&href') + '?page=fypage#noHistory#').rule((series_title, t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     setPageTitle(series_title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, series_title,MY_RULE.title),
+                }, series_title, MY_RULE.title),
                 col_type: 'scroll_button',
                 extra: {
                     'backgroundColor': Apollo.getRangeColors()
@@ -722,12 +730,12 @@ const Apollo = {
             let makers_title = pdfh(makers, 'a&&Text')
             Apollo.d.push({
                 title: makers_title,
-                url: $(Apollo.url + pdfh(makers, 'a&&href') + '?page=fypage#noHistory#').rule((makers_title,t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                url: $(Apollo.url + pdfh(makers, 'a&&href') + '?page=fypage#noHistory#').rule((makers_title, t) => {
+                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     setPageTitle(makers_title)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                }, makers_title,MY_RULE.title),
+                }, makers_title, MY_RULE.title),
                 col_type: 'scroll_button',
                 extra: {
                     'backgroundColor': Apollo.getRangeColors()
@@ -750,12 +758,12 @@ const Apollo = {
                 Apollo.d.push({
                     title: label_title,
                     url: $(Apollo.url + pdfh(label, 'a&&href') + '?page=fypage#noHistory#').rule((
-                        label_title,t) => {
-                        const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                        label_title, t) => {
+                        const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                         setPageTitle(label_title)
                         Apollo.yijiParse(MY_URL)
                         setResult(Apollo.d)
-                    }, label_title,MY_RULE.title),
+                    }, label_title, MY_RULE.title),
                     col_type: 'scroll_button',
                     extra: {
                         'backgroundColor': Apollo.getRangeColors()
@@ -866,7 +874,7 @@ const Apollo = {
             Apollo.d.push({
                 title: pdfh(item, 'img&&alt'),
                 url: $(pdfh(item, 'a&&href') + '#noHistory#').rule((t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     const html = fetch(MY_URL, {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
@@ -877,7 +885,7 @@ const Apollo = {
                         col_type: 'rich_text'
                     })
                     setResult(Apollo.d)
-                },MY_RULE.title),
+                }, MY_RULE.title),
                 pic_url: pdfh(item, 'img&&data-src') + '@Referer=' + Apollo.url,
                 col_type: 'movie_2',
                 extra: page ? {
@@ -900,10 +908,10 @@ const Apollo = {
                 title: pdfh(item, '.detail&&Text').replace("视频", ""),
                 img: img,
                 url: $(Apollo.url + pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule((t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
-                },MY_RULE.title),
+                }, MY_RULE.title),
                 col_type: img ? "card_pic_3" : 'text_2',
                 extra: page ? {
                     longClick: Apollo.pageMoveto(page, pages)
@@ -1198,10 +1206,10 @@ const Apollo = {
                     desc: pdfh(item, ".duration&&Text") + "\t" + pdfh(item, ".video-duration&&Text"),
                     img: pdfh(item, "img&&data-src").replace("resize/s360", "images"),
                     url: url + $('#noHistory#').rule((t) => {
-                        const Apollo = $.require('hiker://page/Apollo?rule='+t)
+                        const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                         Apollo.videoParse(MY_URL)
                         setResult(Apollo.d)
-                    },MY_RULE.title),
+                    }, MY_RULE.title),
                     col_type: "movie_2",
                 })
             })
