@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202504071",
+    version: "202504072",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -536,7 +536,7 @@ const Apollo = {
             var url = Apollo.url + pdfh(item, 'a&&href');
             if (img) {
                 Apollo.d.push({
-                    title: pdfh(item, '.detail&&Text'),
+                    title: pdfh(item, '.detail&&Text').replace("[泄露未审查]", "🔥"),
                     url: url + $('#noHistory#').rule((t) => {
                         const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                         Apollo.videoParse(MY_URL)
@@ -1202,7 +1202,7 @@ const Apollo = {
                 let url = Apollo.url + pdfh(item, "a&&href")
                 let title = pdfh(item, ".detail&&Text");
                 Apollo.d.push({
-                    title: title,
+                    title: title.replace("[泄露未审查]", "🔥"),
                     desc: pdfh(item, ".duration&&Text") + "\t" + pdfh(item, ".video-duration&&Text"),
                     img: pdfh(item, "img&&data-src").replace("resize/s360", "images"),
                     url: url + $('#noHistory#').rule((t) => {
