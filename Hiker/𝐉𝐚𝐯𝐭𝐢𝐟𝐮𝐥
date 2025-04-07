@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250407",
+    version: "20250408",
     empty: 'hiker://empty',
     url: "https://javtiful.com",
     d: [],
@@ -95,11 +95,6 @@ const Apollo = {
                 "title": "Uncensored",
                 "path": "/uncensored"
             }]
-        }, {
-            "title": "Categories",
-            "path": "/categories",
-            "type": "avatar",
-            "sub": []
         }, {
             "title": "Channels",
             "path": "/channels",
@@ -284,7 +279,7 @@ const Apollo = {
 
         if (MY_PAGE == 1) {
             categories.forEach((category, index) => {
-                let sub_categories = pdfa(category, 小类定位);
+                let sub_categories = pdfa(category, 小类定位).reverse();
                 sub_categories.forEach((item, key) => {
                     let title = pdfh(item, 分类标题)
                     if (typeof(排除) != 'undefined' && 排除 != '') {
@@ -350,9 +345,11 @@ const Apollo = {
         list.forEach(item => {
             var img = pdfh(item, 'img&&data-src');
             var url = pdfh(item, 'a&&href');
+            var title = pdfh(item, 'img&&alt');
+            var channelname = pdfh(item, ".channel-name&&Text");
             if (url.includes(Apollo.url)) {
                 Apollo.d.push({
-                    title: pdfh(item, 'img&&alt'),
+                    title: channelname.includes("Reducing") ? "🔥" + title : title,
                     url: url + $('#noHistory#').rule((t) => {
                         const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                         Apollo.videoParse(MY_URL)
@@ -436,14 +433,14 @@ const Apollo = {
                 let url = pdfh(item, "a&&href") + "?page=fypage"
                 let title = pdfh(item, "a&&Text");
                 Apollo.d.push({
-                    title: title,
+                    title: index == 0 ? "““””" + title.fontcolor("#FF00FF") : title,
                     img: pdfh(item, "img&&src"),
                     url: url + $('#noHistory#').rule((t) => {
                         const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                         Apollo.yijiParse(MY_URL)
                         setResult(Apollo.d)
                     }, MY_RULE.title),
-                    col_type: index == 0 ? "icon_4_card" : "flex_button",
+                    col_type: index == 0 ? "card_pic_3" : "flex_button",
                     extra: {
                         'backgroundColor': Apollo.getRangeColors(),
                         pageTitle: title
@@ -512,58 +509,26 @@ const Apollo = {
         Apollo.videoType(html, page)
     },
 
-    articlesType: (html, page) => {
-        try {
-            var pages = pdfh(html, "body&&.mt-6.justify-between&&form&&Text").match(/\d+/)[0]
-        } catch {
-            var pages = 1
-        }
-        const list = pdfa(html, '.grid&&.rounded-lg')
-        list.forEach(item => {
-            Apollo.d.push({
-                title: pdfh(item, 'img&&alt'),
-                url: $(pdfh(item, 'a&&href') + '#noHistory#').rule((t) => {
-                    const Apollo = $.require('hiker://page/Apollo?rule=' + t)
-                    const html = fetch(MY_URL, {
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                        }
-                    })
-                    Apollo.d.push({
-                        title: pdfh(html, 'article&&Html'),
-                        col_type: 'rich_text'
-                    })
-                    setResult(Apollo.d)
-                }, MY_RULE.title),
-                pic_url: pdfh(item, 'img&&data-src') + '@Referer=' + Apollo.url,
-                col_type: 'movie_2',
-                extra: page ? {
-                    longClick: Apollo.pageMoveto(page, pages)
-                } : ""
-            })
-        })
-    },
-
     avatarType: (html, page) => {
-        try {
-            var pages = pdfh(html, "body&&.form-control-text&&Text").replace(/\,/g, "").match(/\d+/)[0]
-        } catch {
-            var pages = 1
-        }
-        const list = pdfa(html, 'body&&.box-item')
+        /* try {
+             var pages = pdfh(html, "body&&.form-control-text&&Text").replace(/\,/g, "").match(/\d+/)[0]
+         } catch {
+             var pages = 1
+         }*/
+        const list = pdfa(html, 'body&&.col')
         list.forEach(item => {
             var img = pdfh(item, 'img&&src');
             Apollo.d.push({
-                title: pdfh(item, '.detail&&Text').replace("视频", ""),
+                title: pdfh(item, '.channel-item__name_details&&a&&Text') + "\t\t\n📺" + pdfh(item, '.channel-item__name_details__total_videos&&Text'),
                 img: img,
-                url: $(Apollo.url + pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule((t) => {
+                url: $(pdfh(item, 'a&&href') + '?page=fypage#noHistory#').rule((t) => {
                     const Apollo = $.require('hiker://page/Apollo?rule=' + t)
                     Apollo.yijiParse(MY_URL)
                     setResult(Apollo.d)
                 }, MY_RULE.title),
-                col_type: img ? "card_pic_3" : 'text_2',
+                col_type: "card_pic_3",
                 extra: page ? {
-                    longClick: Apollo.pageMoveto(page, pages)
+                    longClick: Apollo.pageMoveto(page)
                 } : ""
             })
         })
