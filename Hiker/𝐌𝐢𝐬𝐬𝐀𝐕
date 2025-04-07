@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250216",
+    version: "20250407",
     empty: 'hiker://empty',
     url: "https://missav.ws/cn/",
     d: [],
@@ -214,6 +214,9 @@ const Apollo = {
             path: '',
             type: 'video',
             sub: [{
+                title: '123AV',
+                path: 'site/123av',
+            }, {
                 title: 'Njav',
                 path: 'site/njav',
             }, {
