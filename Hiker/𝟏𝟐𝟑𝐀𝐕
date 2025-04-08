@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "202504072",
+    version: "20250408",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -612,7 +612,7 @@ const Apollo = {
                 url: "hiker://search?rule=𝐉𝐚𝐯𝐃𝐁&s=" + num.replace(" [泄露未审查]", ""),
                 col_type: 'text_1',
                 extra: {
-                    lineVisiable: false
+                    lineVisible: false
                 }
             })
         }
