@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20250330,
+    version: 20250410,
     empty: "hiker://empty",
     url: getItem("link", "https://www.r86m.com"),
     d: [],
@@ -1411,11 +1411,11 @@ const Apollo = {
                 confirm: $.toString(() => {
                     showLoading('正在获取域名，请稍候');
                     let host;
-                    var homeLink = "https://javlib.com/";
+                    var homeLink = "https://github.com/javlibcom" //"https://javlib.com/";
                     var hhtml = fetch(homeLink, {
                         dns: 'https://dns.alidns.com/dns-query'
                     })
-                    cnhost = pdfh(hhtml, "body&&p:matches(简体中文)&&a&&href");
+                    cnhost = pdfh(hhtml, ".vcard-details&&a&&href") //pdfh(hhtml, "body&&p:matches(简体中文)&&a&&href");
                     host = cnhost.replace(/\/cn.*/, '')
                     log("免翻地址：" + host);
                     toast("免翻地址：" + host)
