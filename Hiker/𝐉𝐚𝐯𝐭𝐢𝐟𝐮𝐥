@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250408",
+    version: "20250409",
     empty: 'hiker://empty',
     url: "https://javtiful.com",
     d: [],
@@ -421,10 +421,11 @@ const Apollo = {
         var tabs = pdfa(html, ".video-details&&.video-details__item:has(a)")
         tabs.forEach((tag, index) => {
             let list = pdfa(tag, "body&&a")
+            var line = pdfh(tag, ".video-details__label&&Text");
             Apollo.d.push({
-                title: pdfh(tag, ".video-details__label&&Text"),
+                title: line,
                 url: "hiker://empty",
-                col_type: index == 0 ? "text_1" : "flex_button",
+                col_type: line.indexOf("Actress") != -1 ? "text_1" : "flex_button",
                 extra: {
                     lineVisible: false
                 }
@@ -440,7 +441,7 @@ const Apollo = {
                         Apollo.yijiParse(MY_URL)
                         setResult(Apollo.d)
                     }, MY_RULE.title),
-                    col_type: index == 0 ? "card_pic_3" : "flex_button",
+                    col_type: line.indexOf("Actress") != -1 ? "card_pic_3" : "flex_button",
                     extra: {
                         'backgroundColor': Apollo.getRangeColors(),
                         pageTitle: title
