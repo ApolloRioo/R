@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250408",
+    version: "20250411",
     empty: 'hiker://empty',
     url: "https://123av.com/zh/",
     d: [],
@@ -287,9 +287,16 @@ const Apollo = {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
-        })
+        });
         if (html.includes("Click here to continue")) {
             url = pdfh(html, "body&&#body&&a&&href")
+            url = url.replace(/(\?page=\d+|\&page=\d+|$)/, (match) => {
+                if (match.startsWith('?') || match.startsWith('&')) {
+                    return match.charAt(0) + 'page=' + page;
+                } else {
+                    return (url.includes('?') ? '&page=' : '?page=') + page;
+                }
+            });
             html = fetch(url, {
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
