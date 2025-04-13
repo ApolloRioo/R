@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250413",
+    version: "20250414",
     empty: 'hiker://empty',
     url: "https://javfinder.ai",
     d: [],
@@ -471,14 +471,16 @@ const Apollo = {
             let list = pdfa(tag, "body&&a")
             var line = pdfh(tag, "Text")
             line = /Date/.test(line) ? line : line.replace(/(.*:|^).*/, "$1");
-            Apollo.d.push({
-                title: line,
-                url: "hiker://empty",
-                col_type: /Date/.test(line) ? "rich_text" : "flex_button",
-                extra: {
-                    lineVisible: false
-                }
-            })
+            if (line != "") {
+                Apollo.d.push({
+                    title: line,
+                    url: "hiker://empty",
+                    col_type: /Date/.test(line) ? "rich_text" : "flex_button",
+                    extra: {
+                        lineVisible: false
+                    }
+                })
+            }
             list.forEach((item, indexx) => {
                 let url = pd(item, "a&&href") + "/page-fypage"
                 let title = pdfh(item, "a&&Text");
