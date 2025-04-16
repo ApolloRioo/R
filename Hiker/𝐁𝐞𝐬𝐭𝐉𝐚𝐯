@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250406",
+    version: "20250417",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -565,7 +565,7 @@ const Apollo = {
                             })
                     };
                     //log(playlist)
-                    return playlist
+                    return JSON.stringify(playlist)
                 } catch {
                     return source + "#isVideo=true#;{Referer@https://video.bestjavporn.com/}"
                 }
