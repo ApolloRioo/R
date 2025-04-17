@@ -61,7 +61,7 @@ js: //所在行   ThissAV①16
                                     });
                                     const 标题 = pdfh(html, 'h1&&Text')
                                     const 图片 = pdfh(html, 'meta[property=og:image]&&content');
-                                    eval(html.match(/eval.*?\n/g).pop())
+                                    eval(html.match(/eval.*?source.*\n/)[0])
                                     // 获取画质列表，并取最高画质
                                     let group_quality = fetch(source, {
                                         headers: {
