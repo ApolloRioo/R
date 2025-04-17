@@ -8,6 +8,7 @@ js: //所在行   ThissAV①16
     //             7mmtv⑧514
     //             more⑨589
     //             cilijun⑩801
+
     function CodeLazy(识别码) {
         识别码 = 识别码.toLowerCase()
         d.push({
@@ -59,28 +60,34 @@ js: //所在行   ThissAV①16
                                         timeout: 4923
                                     });
                                     const 标题 = pdfh(html, 'h1&&Text')
-                                    const 图片 = pdfh(html, 'meta[property=og:image]&&content')
-                                    eval(html.match(/eval.*?\n/)[0])
+                                    const 图片 = pdfh(html, 'meta[property=og:image]&&content');
+                                    eval(html.match(/eval.*?\n/g).pop())
                                     // 获取画质列表，并取最高画质
                                     let group_quality = fetch(source, {
                                         headers: {
                                             "origin": "https://missav.ws"
                                         }
-                                    })
+                                    });
+                                    //log(group_quality)
                                     hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm)
                                         .map(v => source.replace("playlist.m3u8", v))
-                                        .reverse()
                                     name_quality = group_quality.match(/RESOLUTION=.*$/gm)
                                         .map(n => n.replace("RESOLUTION=", ""))
-                                        .reverse()
-                                    let playlist = {
-                                        urls: hghest_quality,
-                                        names: name_quality,
-                                        headers: new Array(hghest_quality.length)
-                                            .fill({
-                                                origin: "https://missav.ws/cn/"
-                                            })
-                                    };
+                                    // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                                    var sortedData = name_quality.map((name, index) => ({
+                                        name,
+                                        url: hghest_quality[index]
+                                    })).sort((a, b) => b.name.match(/(\d+)/)[1] - a.name.match(/(\d+)/)[1]);
+                                    // 分开排序后的 names 和 urls 数组
+                                    var sortedNames = sortedData.map(item => item.name);
+                                    var sortedUrls = sortedData.map(item => item.url);
+                                    let playlist = JSON.stringify({
+                                        names: sortedNames,
+                                        urls: sortedUrls,
+                                        headers: new Array(hghest_quality.length).fill({
+                                            Referer: "https://missav.ws/"
+                                        })
+                                    });
                                     if (getVar("复制视频", "0") == "1") {
                                         return "copy://" + 标题 + "," + hghest_quality[0] + "," + 图片
                                     } else {
@@ -189,6 +196,7 @@ js: //所在行   ThissAV①16
             }, 识别码),
             col_type: 'icon_5',
             extra: {
+                cls: "playlist 𝟏𝟐𝟑𝐀𝐕",
                 longClick: [{
                     title: '查看网址',
                     js: $.toString((识别码) => {
