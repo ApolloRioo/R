@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250417",
+    version: "20250418",
     empty: 'hiker://empty',
     url: "https://www.bestjavporn.com/zh/",
     d: [],
@@ -550,15 +550,12 @@ const Apollo = {
                 } catch {}
                 try {
                     var group_quality = fetch(source)
-                    hghest_quality = group_quality.match(/^[^#\n]+/gm)
-                        .map(v => source.replace(/master\.m3u8.*/, v) + "#isVideo=true#")
-                        .reverse()
-                    name_quality = group_quality.match(/RESOLUTION=[^\,]+/gm)
-                        .map(n => n.replace("RESOLUTION=", ""))
-                        .reverse()
+                    hghest_quality = group_quality.match(/^[^#\n]+/gm).map(v => source.replace(/master\.m3u8.*/, v) + "#isVideo=true#").reverse()
+                    name_quality = group_quality.match(/RESOLUTION=[^\,]+/gm).map(n => n.replace("RESOLUTION=", "")).reverse()
+                    name_quality = name_quality.slice(0, hghest_quality.length)
                     let playlist = {
-                        urls: hghest_quality,
                         names: name_quality,
+                        urls: hghest_quality,
                         headers: new Array(hghest_quality.length)
                             .fill({
                                 "Referer": "https://video.bestjavporn.com/"
