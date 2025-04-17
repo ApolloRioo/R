@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250417",
+    version: "20250418",
     empty: 'hiker://empty',
     url: "https://missav.ws/cn/",
     d: [],
@@ -562,7 +562,7 @@ const Apollo = {
             desc: pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text'),
             pic_url: pdfh(html, 'meta[property=og:image]&&content') + '@Referer=' + Apollo.url,
             url: $(Apollo.empty + '#noHistory#').lazyRule((html, url) => {
-                eval(html.match(/eval.*?\n/g).pop())
+                eval(html.match(/eval.*?source.*\n/)[0])
                 // 获取画质列表，并去最高画质
                 let group_quality = fetch(source, {
                     headers: {
