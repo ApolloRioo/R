@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250407",
+    version: "20250417",
     empty: 'hiker://empty',
     url: "https://missav.ws/cn/",
     d: [],
@@ -562,22 +562,30 @@ const Apollo = {
             desc: pdfh(html, '.text-secondary.break-all.line-clamp-2&&Text'),
             pic_url: pdfh(html, 'meta[property=og:image]&&content') + '@Referer=' + Apollo.url,
             url: $(Apollo.empty + '#noHistory#').lazyRule((html, url) => {
-                eval(html.match(/eval.*?\n/)[0])
+                eval(html.match(/eval.*?\n/g).pop())
                 // 获取画质列表，并去最高画质
                 let group_quality = fetch(source, {
                     headers: {
                         "origin": "https://missav.com"
                     }
                 })
-                hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm).map(v => source.replace("playlist.m3u8", v)).reverse()
-                name_quality = group_quality.match(/RESOLUTION=.*$/gm).map(n => n.replace("RESOLUTION=", "")).reverse()
-                let playlist = {
-                    urls: hghest_quality,
-                    names: name_quality,
+                hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm).map(v => source.replace("playlist.m3u8", v))
+                name_quality = group_quality.match(/RESOLUTION=.*$/gm).map(n => n.replace("RESOLUTION=", ""))
+                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                var sortedData = name_quality.map((name, index) => ({
+                    name,
+                    url: hghest_quality[index]
+                })).sort((a, b) => b.name.match(/(\d+)/)[1] - a.name.match(/(\d+)/)[1]);
+                // 分开排序后的 names 和 urls 数组
+                var sortedNames = sortedData.map(item => item.name);
+                var sortedUrls = sortedData.map(item => item.url);
+                let playlist = JSON.stringify({
+                    names: sortedNames,
+                    urls: sortedUrls,
                     headers: new Array(hghest_quality.length).fill({
-                        Referer: url
+                        Referer: "https://missav.ws/"
                     })
-                };
+                });
                 return playlist;
             }, html, Apollo.url),
             col_type: 'pic_1_full',
