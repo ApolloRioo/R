@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20240921,
+    version: 20250425,
     empty: "hiker://empty",
     url: "https://www.youporn.com",
     d: [],
@@ -245,11 +245,11 @@ const Apollo = {
         } catch {
             var lastpagenum = currpagenum
         }
-        var list = pdfa(html, "body&&.video-box");
+        var list = pdfa(html, "body&&.video-box:has(a)");
         list.forEach(item => {
             var vurl = pd(item, 'a&&href');
             Apollo.d.push({
-                title: pdfh(item, ".video-title&&Text"),
+                title: pdfh(item, ".video-title-wrapper&&Text"),
                 desc: "🖥" + pdfh(item, ".video-best-resolution&&Text") + "\t\t⏰" + pdfh(item, ".video-duration&&Text"),
                 img: pd(item, "img&&data-src") ? pd(item, "img&&data-src") : "https://thumbsnap.com/i/wxDcxfJH.png",
                 url: vurl + $('#noHistory#')
@@ -410,7 +410,7 @@ const Apollo = {
         //标题
         var title = pdfh(html, "body&&h1&&Text");
         Apollo.d.push({
-            title: '““””' + title.fontcolor("#E57A1A"),
+            title: '““””' + title.fontcolor("#E57A1A").small(),
             url: url + $('#noLoading#')
                 .lazyRule((title) => {
                     var desc = findItem('transdesc')
