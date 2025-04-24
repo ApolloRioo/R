@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20241001,
+    version: 20250425,
     empty: "hiker://empty",
     url: "https://www.redtube.com",
     d: [],
@@ -367,10 +367,10 @@ const Apollo = {
             var lastPage = currentPage
         }
         var list = pdfa(html, "body&&.videoblock_list");
-        list.forEach(item => {
+        list.forEach((item,index) => {
             var vurl = Apollo.url + pdfh(item, 'a&&href');
             vurl = vurl.replace(/.*(http.*)/, "$1");
-            var title = pdfh(item, ".video_title&&Text");
+            var title = pdfh(item, ".video-title-wrapper&&a&&title");
             Apollo.d.push({
                 title: title,
                 desc: "\t\t⏰" + pdfh(item, ".duration&&Text"),
@@ -412,6 +412,7 @@ const Apollo = {
                 col_type: "movie_2",
                 extra: {
                     pageTitle: title,
+                    cls: "playlist " + index,
                     longClick: !url.includes("viewkey") ? [{
                         title: "翻译",
                         js: $.toString((title) => {
