@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241206",
+    version: "20250425",
     empty: "hiker://empty",
     url: "https://7mmtv.sx/zh/",
     d: [],
@@ -1008,7 +1008,7 @@ const Apollo = {
                 var redirect = JSON.parse(fetch(input, {
                     onlyHeaders: true
                 })).url;
-                var htmll = fetch(redirect, {
+                var htmll = fetchCodeByWebView(redirect, {
                     headers: {
                         referer: input
                     }
@@ -1069,7 +1069,10 @@ const Apollo = {
             Apollo.d.push({
                 title: item.title,
                 url: item.url + lazy,
-                col_type: col
+                col_type: col,
+                extra: {
+                    cls: "playlist " + index
+                }
             })
         })
     },
