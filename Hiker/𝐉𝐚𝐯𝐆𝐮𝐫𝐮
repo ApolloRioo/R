@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20250323",
+    version: "20250425",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -621,8 +621,20 @@ const javguru = {
                 } else if (/vidjav\.net/.test(location)) {
                     //VI线路
                     return "video://" + location
-                } else if (/vtbe\.to|maxstream|streamhihi/.test(location)) {
-                    //JK线路//VTU线路//LU线路
+                } else if (/streamhihi/.test(location)) {
+                    //LU线路
+                    var html = fetch(location, {
+                        headers: {
+                            "Referer": "https://jav.guru/"
+                        }
+                    });
+                    var file = html.match(/file:.*?(http[^'"]+)/)[1]
+                    /*var m3u8 = fetch(file).match(/http[^\n]+/)[0]
+                    var mm = fetch(m3u8)
+                    log(mm)*/
+                    return file
+                } else if (/vtbe\.to|maxstream/.test(location)) {
+                    //JK线路//VTU线路
                     function evaldecode(text) {
                         var code = '';
                         var s = text.replace(/^eval/, '')
@@ -682,7 +694,10 @@ const javguru = {
                 title: Playlined.indexOf(title) >= 0 ? '🗯““””' + title.bold()
                     .fontcolor("#1E90FF") + "🗯" : '🗯““””' + title.bold() + "🗯",
                 url: url + lazy,
-                col_type: "text_2"
+                col_type: "text_2",
+                extra: {
+                    cls: "playlist " + index
+                }
             })
         })
         if (list.length % 2 != 0) {
