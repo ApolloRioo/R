@@ -508,178 +508,178 @@ const javguru = {
             col_type: "pic_1_full",
         })
 
-        var lazy = $('')
-            .lazyRule((url) => {
-                var src = fetch(input)
-                    .match(/iframe.*?src="(.*?=)/)[1]
-                var id = input.replace(/.*?=(.*?)&.*/, "$1")
-                id = id.split('')
-                    .reverse()
-                    .join('');
-                var url = `${src}${id}`;
-                var location = JSON.parse(fetch(url, {
+        var lazy = $('').lazyRule((url) => {
+            try {
+                var src = fetch(input).match(/iframe.*?src="(.*?=)/)[1]
+            } catch {
+                return "toast://没有视频资源，请网页查看"
+            }
+            var id = input.replace(/.*?=(.*?)&.*/, "$1")
+            id = id.split('').reverse().join('');
+            var url = `${src}${id}`;
+
+            var location = JSON.parse(fetch(url, {
+                headers: {
+                    "Referer": input,
+                },
+                onlyHeaders: true
+            })).url
+            log(location)
+            if (location.includes("emturbovid.com")) {
+                //TV线路
+                var html = fetch(location, {
+                    headers: {
+                        "Referer": "https://jav.guru/"
+                    }
+                });
+                var playUrl = pdfh(html, "#video_player&&data-hash")
+                var group_quality = fetch(playUrl)
+                hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v))
+                //log(hghest_quality)
+                name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
+                //log(name_quality)
+                // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                function getResolution(name) {
+                    var match = name.match(/(\d+)/); // 提取降级分辨率
+                    return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
+                }
+                var sortedData = name_quality.map((name, index) => ({
+                        name,
+                        url: hghest_quality[index]
+                    }))
+                    .sort((a, b) => getResolution(b.name) - getResolution(a.name));
+                // 分开排序后的 names 和 urls 数组
+                var sortedNames = sortedData.map(item => item.name);
+                var sortedUrls = sortedData.map(item => item.url);
+                let playlist = JSON.stringify({
+                    names: sortedNames,
+                    urls: sortedUrls,
+                    headers: new Array(hghest_quality.length).fill({
+                        Referer: ""
+                    })
+                });
+                return playlist;
+            } else if (location.includes("streamtape")) {
+                //ST线路
+                var html = fetch(location, {
+                    headers: {
+                        'Referer': "https://jav.guru/"
+                    }
+                })
+                var pattern = html.match(/\('#(.*)'\)/)[1]
+                var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
+                eval(src)
+                var link = "https:" + srclink + "&stream=1"
+                var urlPlay = JSON.parse(fetch(link, {
                         headers: {
-                            "Referer": input,
+                            "Referer": location,
                         },
                         onlyHeaders: true
                     }))
                     .url
-                log(location)
-                if (location.includes("emturbovid.com")) {
-                    //TV线路
-                    var html = fetch(location, {
-                        headers: {
-                            "Referer": "https://jav.guru/"
-                        }
-                    });
-                    var playUrl = pdfh(html, "#video_player&&data-hash")
-                    var group_quality = fetch(playUrl)
-                    hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v))
-                    //log(hghest_quality)
-                    name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, ""))
-                    //log(name_quality)
-                    // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
-                    function getResolution(name) {
-                        var match = name.match(/(\d+)/); // 提取降级分辨率
-                        return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
+                return urlPlay + ";{Referer@" + location + "}"
+            } else if (/d0000d|dood|ds2play|all3do/.test(location)) {
+                //DD线路
+                var html = fetch(location, {
+                    headers: {
+                        'Referer': "https://jav.guru/"
                     }
-                    var sortedData = name_quality.map((name, index) => ({
-                            name,
-                            url: hghest_quality[index]
-                        }))
-                        .sort((a, b) => getResolution(b.name) - getResolution(a.name));
-                    // 分开排序后的 names 和 urls 数组
-                    var sortedNames = sortedData.map(item => item.name);
-                    var sortedUrls = sortedData.map(item => item.url);
-                    let playlist = JSON.stringify({
-                        names: sortedNames,
-                        urls: sortedUrls,
-                        headers: new Array(hghest_quality.length).fill({
-                            Referer: ""
-                        })
-                    });
-                    return playlist;
-                } else if (location.includes("streamtape")) {
-                    //ST线路
-                    var html = fetch(location, {
-                        headers: {
-                            'Referer': "https://jav.guru/"
-                        }
-                    })
-                    var pattern = html.match(/\('#(.*)'\)/)[1]
-                    var src = "var srclink = " + html.match(new RegExp("'" + pattern + ".*?=([^;]+)"))[1]
-                    eval(src)
-                    var link = "https:" + srclink + "&stream=1"
-                    var urlPlay = JSON.parse(fetch(link, {
-                            headers: {
-                                "Referer": location,
-                            },
-                            onlyHeaders: true
-                        }))
-                        .url
-                    return urlPlay + ";{Referer@" + location + "}"
-                } else if (/d0000d|dood|ds2play|all3do/.test(location)) {
-                    //DD线路
-                    var html = fetch(location, {
-                        headers: {
-                            'Referer': "https://jav.guru/"
-                        }
-                    })
-                    var pass_md5 = getHome(location) + html.match(/\/pass_md5[^"']+/)[0]
-                    var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
-                    var data = fetch(pass_md5, {
-                        headers: {
-                            "Referer": location
-                        }
-                    })
-
-                    function makePlay(token) {
-                        for (var a = "",
-                                t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-                                n = t.length,
-                                o = 0; 10 > o; o++)
-                            a += t.charAt(Math.floor(Math.random() * n));
-                        return a + "?token=" + token + "&expiry=" + Date.now();
-                    };
-                    var urlPlay = data + makePlay(token)
-                    return urlPlay + "#isVideo=true#;{Referer@" + location + "}"
-                } else if (/cindyeyefinal|fc2stream|javclan/.test(location)) {
-                    //SB线路//FST线路//VOE线路
-                    //log(location)
-                    var Playhtml = fetch(location, {
-                        headers: {
-                            'Referer': "https://jav.guru/"
-                        }
-                    })
-                    //log(Playhtml)
-                    var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
-                    var uas = eval(script)
-                    var jwplayer = uas.match(/"(https?[^\"\'\n]+m3u8.*?)"/)[1]
-                    //log(uas)  
-                    return jwplayer + ";{Referer@" + location + "}"
-
-                } else if (/vidjav\.net/.test(location)) {
-                    //VI线路
-                    return "video://" + location
-                } else if (/streamhihi/.test(location)) {
-                    //LU线路
-                    var html = fetch(location, {
-                        headers: {
-                            "Referer": "https://jav.guru/"
-                        }
-                    });
-                    var file = html.match(/file:.*?(http[^'"]+)/)[1]
-                    /*var m3u8 = fetch(file).match(/http[^\n]+/)[0]
-                    var mm = fetch(m3u8)
-                    log(mm)*/
-                    return file
-                } else if (/vtbe\.to|maxstream/.test(location)) {
-                    //JK线路//VTU线路
-                    function evaldecode(text) {
-                        var code = '';
-                        var s = text.replace(/^eval/, '')
-                            .replace('return p', 'code+=p')
-                        eval(s);
-                        return code;
+                })
+                var pass_md5 = getHome(location) + html.match(/\/pass_md5[^"']+/)[0]
+                var token = html.match(/cookieIndex.*?\'(.*?)\'/)[1]
+                var data = fetch(pass_md5, {
+                    headers: {
+                        "Referer": location
                     }
+                })
 
-                    const hostRegex = (url) => {
-                        const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,6}/i);
-                        return match ? match[0] : url;
-                    };
+                function makePlay(token) {
+                    for (var a = "",
+                            t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+                            n = t.length,
+                            o = 0; 10 > o; o++)
+                        a += t.charAt(Math.floor(Math.random() * n));
+                    return a + "?token=" + token + "&expiry=" + Date.now();
+                };
+                var urlPlay = data + makePlay(token)
+                return urlPlay + "#isVideo=true#;{Referer@" + location + "}"
+            } else if (/cindyeyefinal|fc2stream|javclan/.test(location)) {
+                //SB线路//FST线路//VOE线路
+                //log(location)
+                var Playhtml = fetch(location, {
+                    headers: {
+                        'Referer': "https://jav.guru/"
+                    }
+                })
+                //log(Playhtml)
+                var script = pdfh(Playhtml, "body>script&&Html").replace("eval", "")
+                var uas = eval(script)
+                var jwplayer = uas.match(/"(https?[^\"\'\n]+m3u8.*?)"/)[1]
+                //log(uas)  
+                return jwplayer + ";{Referer@" + location + "}"
 
-                    let host = hostRegex("https://jav.guru/")
+            } else if (/vidjav\.net/.test(location)) {
+                //VI线路
+                return "video://" + location
+            } else if (/streamhihi/.test(location)) {
+                //LU线路
+                var html = fetch(location, {
+                    headers: {
+                        "Referer": "https://jav.guru/"
+                    }
+                });
+                var file = html.match(/file:.*?(http[^'"]+)/)[1]
+                /*var m3u8 = fetch(file).match(/http[^\n]+/)[0]
+                var mm = fetch(m3u8)
+                log(mm)*/
+                return file
+            } else if (/vtbe\.to|maxstream/.test(location)) {
+                //JK线路//VTU线路
+                function evaldecode(text) {
+                    var code = '';
+                    var s = text.replace(/^eval/, '')
+                        .replace('return p', 'code+=p')
+                    eval(s);
+                    return code;
+                }
 
-                    var html = fetch(location, {
+                const hostRegex = (url) => {
+                    const match = url.match(/^(?:https?:\/\/)?(?:www\.)?([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,6}/i);
+                    return match ? match[0] : url;
+                };
+
+                let host = hostRegex("https://jav.guru/")
+
+                var html = fetch(location, {
+                    headers: {
+                        Referer: host,
+                    }
+                })
+                var iframe = pdfa(html, "iframe");
+
+                if (iframe.length > 0) {
+                    html = fetch(pdfh(iframe[0], "iframe&&src"), {
                         headers: {
                             Referer: host,
                         }
                     })
-                    var iframe = pdfa(html, "iframe");
-
-                    if (iframe.length > 0) {
-                        html = fetch(pdfh(iframe[0], "iframe&&src"), {
-                            headers: {
-                                Referer: host,
-                            }
-                        })
-                    }
-
-                    var scripts = pdfa(html, "body&&script");
-                    let script = scripts.filter(x => x.includes('eval'))
-                        .map(m => pdfh(m, "script&&Html"))[0];
-                    if (script == undefined) {
-                        return 'toast://无数据'
-                    }
-
-                    let m3u8 = /file:"(.*?)"/g.exec(evaldecode(script))[1];
-                    return m3u8
-
-                } else {
-                    log("革命尚未成功,同志仍需努力=>" + location)
-                    return "confirm://咳,本线路这个地址并没有解析，日志已打印出，敬请查看.js:'hiker://empty' "
                 }
-            }, url)
+
+                var scripts = pdfa(html, "body&&script");
+                let script = scripts.filter(x => x.includes('eval'))
+                    .map(m => pdfh(m, "script&&Html"))[0];
+                if (script == undefined) {
+                    return 'toast://无数据'
+                }
+
+                let m3u8 = /file:"(.*?)"/g.exec(evaldecode(script))[1];
+                return m3u8
+
+            } else {
+                log("革命尚未成功,同志仍需努力=>" + location)
+                return "confirm://咳,本线路这个地址并没有解析，日志已打印出，敬请查看.js:'hiker://empty' "
+            }
+        }, url)
 
         var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM VI", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
         var list = pdfa(html, ".ssmenu&&a[id]")
