@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250418",
+    version: "20250430",
     empty: 'hiker://empty',
     url: "https://missav.ws/cn/",
     d: [],
@@ -237,6 +237,9 @@ const Apollo = {
             if (match.startsWith('?') || match.startsWith('&')) {
                 return match.charAt(0) + 'page=' + page;
             } else {
+                if (page == 1) {
+                    return ""
+                }
                 return (url.includes('?') ? '&page=' : '?page=') + page;
             }
         });
@@ -291,7 +294,7 @@ const Apollo = {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
-        })
+        });
         //动态分类
         Apollo.DynamicSort(html)
         Apollo.ActorSort(url, html)
