@@ -307,6 +307,9 @@ js: //所在行   ThissAV①16
                                         }
                                     })).data
                                     postdata = "https:" + dex(id, postdata)
+                                    if (postdata == "https://video.bestjavporn.com/white.html") {
+                        return "confirm://视频资源尚未上传，敬请期待.js:'hiker://empty'"//"toast://视频资源尚未上传，敬请期待"
+                    }
                                     var playdata = pdfh(request(postdata), '#jwplayer&&data-fb5c9')
                                     var playkey = window0.btoa(postdata.replace(/https?:\/\/.*?(\/.*)/, "$1")).substring(8, 24);
                                     var video = JSON.parse(window0.atob(_0x2bbbcf(playdata, playkey)));
