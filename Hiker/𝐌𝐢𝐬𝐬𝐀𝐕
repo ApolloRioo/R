@@ -1,7 +1,7 @@
 const Apollo = {
-    version: "20250430",
+    version: "20250509",
     empty: 'hiker://empty',
-    url: "https://missav.ai/cn/",
+    url: "https://missav.ws/cn/",
     d: [],
     taskList: [],
     getRangeColors: function() {
@@ -586,7 +586,7 @@ const Apollo = {
                     names: sortedNames,
                     urls: sortedUrls,
                     headers: new Array(hghest_quality.length).fill({
-                        Referer: "https://missav.ai/"
+                        Referer: getHome(url) + "/"
                     })
                 });
                 return playlist;
