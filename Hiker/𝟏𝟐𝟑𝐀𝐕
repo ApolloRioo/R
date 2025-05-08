@@ -1,7 +1,7 @@
 const Apollo = {
-    version: "20250411",
+    version: "20250508",
     empty: 'hiker://empty',
-    url: "https://123av.com/zh/",
+    url: "https://123av.ws/zh/",
     d: [],
     getRangeColors: function() {
         return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
@@ -582,7 +582,7 @@ const Apollo = {
         Apollo.d.push({
             pic_url: pdfh(html, '#player&&data-poster') + '@Referer=' + Apollo.url,
             url: $(url + '#noHistory#').lazyRule((id) => {
-                var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
+                var video = getHome(input) + "/zh/ajax/v/" + id + "/videos";
                 var data = JSON.parse(fetch(video, {
                     headers: {
                         "Referer": input
