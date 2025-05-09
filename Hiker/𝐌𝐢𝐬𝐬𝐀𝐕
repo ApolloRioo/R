@@ -1,7 +1,7 @@
 const Apollo = {
     version: "20250509",
     empty: 'hiker://empty',
-    url: "https://missav.ws/cn/",
+    url: "https://missav.live/cn/",
     d: [],
     taskList: [],
     getRangeColors: function() {
@@ -544,11 +544,11 @@ const Apollo = {
 
     //二级
     videoParse: (url) => {
-        const html = fetch(url, {
+        var html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
-        })
+        });
         const title = pdfh(html, 'h1&&Text')
         log(url)
         //setPageTitle(title)
@@ -569,7 +569,7 @@ const Apollo = {
                 // 获取画质列表，并去最高画质
                 let group_quality = fetch(source, {
                     headers: {
-                        "origin": "https://missav.com"
+                        "origin": getHome(url)
                     }
                 })
                 hghest_quality = group_quality.match(/^(.*)\.m3u8$/gm).map(v => source.replace("playlist.m3u8", v))
