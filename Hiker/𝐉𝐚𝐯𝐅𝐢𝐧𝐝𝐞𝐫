@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250414",
+    version: "20250509",
     empty: 'hiker://empty',
     url: "https://javfinder.ai",
     d: [],
@@ -457,7 +457,7 @@ const Apollo = {
                     var uas = eval(script)
                     var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
                     //log(jwplayer)  
-                    return jwplayer + ";{Referer@" + location + "}"
+                    return jwplayer + ";{Referer@" + getHome(location) + "/}"
                 } catch {
                     return "toast://网络出错请重试"
                 }
