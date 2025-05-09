@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20250425,
+    version: 20250509,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -1002,7 +1002,7 @@ const Apollo = {
             .replace(/d\.push/g, "Apollo.d.push") || "";
 
         function downcode() {
-            var js = fetch("https://mirror.ghproxy.com/https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
+            var js = fetch("https://raw.githubusercontent.com/ApolloRioo/R/master/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲");
             writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
             toast("远程数据已更新到本地")
             codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
