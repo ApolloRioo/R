@@ -1,8 +1,8 @@
 js:
-    /*所在行 20250509 ThissAV①18
+    /*所在行          ThissAV①18
                       123av②140
                       bestjav③210
-                      missav④358
+                      𝐗𝐒𝐙𝐀𝐕④358
                       Tktube⑤430
                       supjav⑥510
                       javguru⑦595
@@ -15,9 +15,9 @@ js:
         d.push({
             col_type: "line_blank",
         })
-        //ThissAV
+        //missav
         d.push({
-            title: '‘‘’’<b><middle><font color="#FF0000">𝐓𝐡𝐢𝐬𝐀𝐕</font></middle>',
+            title: '‘‘’’<b><middle><font color="#FF0000">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQlH7.png',
             url: $('').lazyRule((识别码) => {
                 var search = "https://missav.live/cn/search/" + 识别码;
@@ -354,51 +354,31 @@ js:
             }
         });
 
-        //MISSAV
+        //𝐗𝐒𝐙𝐀𝐕
         d.push({
-            title: '‘‘’’<b><middle><font color="#63A233">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
+            title: '‘‘’’<b><middle><font color="#63A233">𝐗𝐒𝐙𝐀𝐕</font></middle>',
             pic_url: 'https://img.vinua.cn/images/zHhaL.png',
             url: $('').lazyRule((识别码) => {
-                var search = "https://missav.to/search/movie/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
+                var search = "https://cn.xsz-av.com/search/videos/" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
                 var html = fetch(search, {
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                     },
                 })
-                var list = pdfa(html, '.videos-list&&article');
+                var list = pdfa(html, 'body&&.thumbnail').slice(0, 6);
                 var miss = []
                 list.forEach(item => {
-                    var desc = pdfh(item, 'a&&title')
-                        .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                        .match(/^\[(.*?)\]/)[1] : "Original";
+                    var desc = pdfh(item, ".left-1&&Text") + pdfh(item, 'a,-1&&Text')
                     miss.push({
                         title: desc,
-                        url: pdfh(item, 'a&&href'),
+                        url: "https://cn.xsz-av.com" + pdfh(item, 'a&&href'),
                     })
                 })
                 if (miss.length == 0) {
-                    var search0 = "https://missav.to/search/movie/" + 识别码.replace(/\-|\_/, "%20");
-                    var html0 = fetch(search, {
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
-                        }
-                    })
-                    var list0 = pdfa(html0, '.videos-list&&article');
-                    list0.forEach(item => {
-                        var desc0 = pdfh(item, 'a&&title')
-                            .match(/^\[(.*?)\]/) ? pdfh(item, 'a&&title')
-                            .match(/^\[(.*?)\]/)[1] : "Original";
-                        miss.push({
-                            title: desc0,
-                            url: pdfh(item, 'a&&href'),
-                        })
-                    })
-                    if (miss.length == 0) {
-                        miss = [{
-                            "title": "本平台尚未上传此番号视频",
-                            "url": "hiker://empty"
-                        }]
-                    }
+                    miss = [{
+                        "title": "本平台尚未上传此番号视频",
+                        "url": "hiker://empty"
+                    }]
                 }
                 var misstype = miss.map(i => i.title)
                 return $(misstype, 1)
@@ -408,9 +388,9 @@ js:
                         } else {
                             let index = miss.findIndex(r => r.title == input);
 
-                            var htm = fetch(miss[index].url);
-                            var playUrl = "https://emb.missav.to/embedmv/hls/" + htm.match(/id=([^\'"&]+)/)[1] + ".m3u8"
-                            return playUrl
+                            var html = fetch(miss[index].url);
+                            var playUrl = html.match(/"(https?[^"]+\.m3u8)"/)[1]        
+                            return playUrl+ ";{Referer@https://cn.xsz-av.com/}"
                         }
                     }, miss)
             }, 识别码),
@@ -419,7 +399,7 @@ js:
                 longClick: [{
                     title: '查看搜索',
                     js: $.toString((识别码) => {
-                        return "https://missav.to/search/movie/" + 识别码
+                        return "https://cn.xsz-av.com/search/videos/" + 识别码
                     }, 识别码)
                 }]
             }
