@@ -1,7 +1,7 @@
 const Apollo = {
-    version: "20250123",
+    version: "20250512",
     empty: "hiker://empty",
-    url: getItem('link', 'https://javmenu.com/zh'),
+    url: "https://javmenu.com/zh",//getItem('link', 'https://javmenu.com/zh'),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -158,7 +158,6 @@ const Apollo = {
             }
         })
         log(url)
-        Apollo.HostParse(url, html)
         try {
             var next = pdfh(html, ".pagination&&li:matches(›)&&a&&href")
             putMyVar("nextPage", next);
@@ -166,7 +165,8 @@ const Apollo = {
             clearMyVar("nextPage");
             // log("可能不存在下一页或者下一页定位有问题");
         }
-
+        //Apollo.HostParse(url, html)
+        
         if (page === 1) {
             Apollo.videoSort(html, url)
             Apollo.d.push({
