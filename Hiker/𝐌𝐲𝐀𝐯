@@ -1,6 +1,6 @@
 const Apollo = {
     empty: "hiker://empty",
-    version: "20250101",
+    version: "20250516",
     url: config.host ? config.host.replace(/\/$/, "") : "https://javlist.me",
     d: [],
     data: {
@@ -943,14 +943,14 @@ const Apollo = {
                 if (content !== "") {
                     var title = findItem('content_decid')
                         .title
-                    if (title.includes("<br>\t")) {
-                        updateItem("content_decid", {
-                            title: title.replace(/(.*?)<br>\t.*/, "$1"),
-                        })
-                    } else {
+                    if (!title.includes("<br>\t")) {
                         updateItem("content_decid", {
                             title: title.replace(/(.*?)<br>\t.*/, "$1") + '<br>\t\t\t\t\t\t\t' + content.small()
                                 .fontcolor("#8A2BE2"),
+                        })
+                    } else {
+                        updateItem("content_decid", {
+                            title: title.replace(/(.*?)<br>\t.*/, "$1"),
                         })
                     }
                     return "hiker://empty"
@@ -961,7 +961,7 @@ const Apollo = {
         Apollo.d.push({
             title: "🔥 <a style='text-decoration: none;' href='" + lazy + "'>故事</a> ：" + day_say.replace(/—/g, "")
                 .fontcolor("#FF0000")
-                .small(),
+                .small() + '<br>\t\t\t\t\t\t\t' + content.fontcolor("#E57A1A").small(),
             url: "hiker://empty",
             col_type: "rich_text",
             extra: {
@@ -1306,22 +1306,25 @@ const Apollo = {
                 extra: {
                     lineVisible: false,
                     longClick: [{
-                        title: 'Pikpak',
+                        title: '柚子',
                         js: $.toString((url) => {
-                            return "pikpakapp://mypikpak.com/xpan/main_tab?tab=1&add_url=" + url;
-                        }, url)
-                    }, {
-                        title: '幻影',
-                        js: $.toString((url) => {
-                            openAppIntent('com.xingsu.downloader', 'com.e4a.runtime.android.mainActivity', {
+                            openAppIntent('com.yuzuyuzu.download', 'com.e4a.runtime.android.mainActivity', {
                                 intentData: url
                             })
                             return "hiker://empty";
                         }, url)
                     }, {
-                        title: '小白',
+                        title: '鲨鱼',
                         js: $.toString((url) => {
-                            openAppIntent('xb.download.com', 'io.dcloud.PandoraEntry', {
+                            openAppIntent('com.bclsapp.download', 'com.bclsapp.download.intentActivity', {
+                                intentData: url
+                            })
+                            return "hiker://empty";
+                        }, url)
+                    }, {
+                        title: '浩克',
+                        js: $.toString((url) => {
+                            openAppIntent('com.sausage.download', 'com.sausage.download.ui.v1.activity.MainActivity', {
                                 intentData: url
                             })
                             return "hiker://empty";
@@ -1329,10 +1332,7 @@ const Apollo = {
                     }, {
                         title: '迅雷',
                         js: $.toString((url) => {
-                            openAppIntent('com.xunlei.downloadprovider', 'com.xunlei.downloadprovider.launch.LaunchActivity2', {
-                                intentData: url
-                            })
-                            return "hiker://empty";
+                            return "hiker://page/diaoyong?rule=迅雷&page=fypage#" + url
                         }, url)
                     }, {
                         title: '二驴',
@@ -1343,12 +1343,17 @@ const Apollo = {
                             return "hiker://empty";
                         }, url)
                     }, {
-                        title: '悟空',
+                        title: '闪存云',
                         js: $.toString((url) => {
-                            openAppIntent('com.yfoo.wkDownloader', 'com.yfoo.wkDownloader.MainActivity', {
+                            openAppIntent('com.shanxiazaidown', 'com.e4a.runtime.android.mainActivity', {
                                 intentData: url
                             })
                             return "hiker://empty";
+                        }, url)
+                    }, {
+                        title: 'Pikpak',
+                        js: $.toString((url) => {
+                            return "pikpakapp://mypikpak.com/xpan/main_tab?tab=1&add_url=" + url;
                         }, url)
                     }]
                 }
