@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250512",
+    version: "20250519",
     empty: "hiker://empty",
     url: "https://javmenu.com/zh",//getItem('link', 'https://javmenu.com/zh'),
     d: [],
@@ -617,7 +617,7 @@ const Apollo = {
                 }]
             }
         })
-        const img = pdfh(html, "meta[property=og:image]&&content");
+        const img = pdfh(html, "#player&&data-poster");
         const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
@@ -715,7 +715,7 @@ const Apollo = {
                 .fontcolor("#FFD000") + pdfh(html, "body&&.card-body&&.code&&span,-1&&Text")
                 .fontcolor("green") : '““””' + pdfh(html, "body&&.card-body&&.code&&span,-1&&Text")
                 .fontcolor("#FF00FF"),
-            url: pdfh(html, "body&&.card-body&&.code&&a&&Text") ? Apollo.url + pdfh(html, "body&&.card-body&&.code&&a&&href") + yiji : Apollo.empty,
+            url: pdfh(html, "body&&.card-body&&.code&&a&&Text") ? pdfh(html, "body&&.card-body&&.code&&a&&href") + yiji : Apollo.empty,
             col_type: "scroll_button",
             extra: {
                 pageTitle: pdfh(html, "body&&.card-body&&.code&&a&&Text")
@@ -727,8 +727,8 @@ const Apollo = {
             url: Apollo.empty,
             col_type: "scroll_button",
         }, {
-            title: pdfh(html, 'body&&.card-body&&.d-flex:contains(日期:)&&Text') ? pdfh(html, 'body&&.card-body&&.d-flex:contains(日期:)&&Text')
-                .replace("日期: ", "") : "N/A",
+            title: pdfh(html, 'body&&.card-body&&.d-flex:matches(日期:|发佈于)&&Text') ? pdfh(html, 'body&&.card-body&&.d-flex:matches(日期:|发佈于)&&Text')
+                .replace(/日期: |发佈于: /, "") : "N/A",
             url: Apollo.empty,
             col_type: "scroll_button",
         }, {
@@ -752,7 +752,7 @@ const Apollo = {
                 })
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#1E90FF">' + makers + '</font></middle></b>',
-                    url: Apollo.url + pdfh(html, 'body&&.card-body&&.d-flex:contains(製作:)&&a&&href') + yiji,
+                    url: pdfh(html, 'body&&.card-body&&.d-flex:contains(製作:)&&a&&href') + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: makers
@@ -776,7 +776,7 @@ const Apollo = {
                 var title = parseDomForHtml(arts[i], 'Text');
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#c13141">' + title + '</font></middle></b>',
-                    url: Apollo.url + pdfh(arts[i], 'a&&href') + yiji,
+                    url: pdfh(arts[i], 'a&&href') + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: title,
@@ -817,7 +817,7 @@ const Apollo = {
                 })
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#1E90FF">' + director + '</font></middle></b>',
-                    url: Apollo.url + pdfh(html, 'body&&.card-body&&.d-flex:contains(导演:)&&a&&href') + yiji,
+                    url: pdfh(html, 'body&&.card-body&&.d-flex:contains(导演:)&&a&&href') + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: director
@@ -840,7 +840,7 @@ const Apollo = {
             for (var i in arts) {
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#1E8884">' + parseDomForHtml(arts[i], 'Text') + '</font></middle></b>',
-                    url: Apollo.url + pdfh(arts[i], 'a&&href') + yiji,
+                    url: pdfh(arts[i], 'a&&href') + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: parseDomForHtml(arts[i], 'Text')
@@ -863,7 +863,7 @@ const Apollo = {
             for (var i in arts) {
                 Apollo.d.push({
                     title: '‘‘’’<b><middle><font color="#67E0FA">' + parseDomForHtml(arts[i], 'Text') + '</font></middle></b>',
-                    url: Apollo.url + pdfh(arts[i], 'a&&href') + yiji,
+                    url: pdfh(arts[i], 'a&&href') + yiji,
                     col_type: 'scroll_button',
                     extra: {
                         pageTitle: parseDomForHtml(arts[i], 'Text')
