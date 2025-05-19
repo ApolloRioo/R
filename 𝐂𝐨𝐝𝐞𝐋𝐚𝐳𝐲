@@ -90,7 +90,8 @@ js:
                                         })
                                     });
                                     if (getVar("复制视频", "0") == "1") {
-                                        return "copy://" + 标题 + "," + hghest_quality[0] + "," + 图片
+
+                                        return "copy://" + 标题 + "," + sortedUrls[0] + "," + 图片
                                     } else {
                                         return playlist;
                                     }
@@ -389,8 +390,8 @@ js:
                             let index = miss.findIndex(r => r.title == input);
 
                             var html = fetch(miss[index].url);
-                            var playUrl = html.match(/"(https?[^"]+\.m3u8)"/)[1]        
-                            return playUrl+ ";{Referer@https://cn.xsz-av.com/}"
+                            var playUrl = html.match(/"(https?[^"]+\.m3u8)"/)[1]
+                            return playUrl + ";{Referer@https://cn.xsz-av.com/}"
                         }
                     }, miss)
             }, 识别码),
