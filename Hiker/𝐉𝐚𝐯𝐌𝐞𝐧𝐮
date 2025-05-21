@@ -1,7 +1,7 @@
 const Apollo = {
-    version: "20250519",
+    version: "20250522",
     empty: "hiker://empty",
-    url: "https://javmenu.com/zh",//getItem('link', 'https://javmenu.com/zh'),
+    url: "https://javmenu.com/zh", //getItem('link', 'https://javmenu.com/zh'),
     d: [],
     data: {
         category: getMyVar('Apo.category', '0'),
@@ -159,14 +159,14 @@ const Apollo = {
         })
         log(url)
         try {
-            var next = pdfh(html, ".pagination&&li:matches(›)&&a&&href")
+            var next = pdfh(html, ".pagination&&.active+li&&a&&href")
             putMyVar("nextPage", next);
         } catch {
             clearMyVar("nextPage");
             // log("可能不存在下一页或者下一页定位有问题");
         }
         //Apollo.HostParse(url, html)
-        
+
         if (page === 1) {
             Apollo.videoSort(html, url)
             Apollo.d.push({
@@ -521,7 +521,7 @@ const Apollo = {
         })
         log(url)
         try {
-            var next = pdfh(html, ".pagination&&li:matches(›)&&a&&href")
+            var next = pdfh(html, ".pagination&&.active+li&&a&&href")
             putMyVar("nextPage1", next);
         } catch {
             clearMyVar("nextPage1");
@@ -617,7 +617,7 @@ const Apollo = {
                 }]
             }
         })
-        const img = pdfh(html, "#player&&data-poster");
+        const img = pdfh(html, "#player||#player0&&data-poster");
         const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
