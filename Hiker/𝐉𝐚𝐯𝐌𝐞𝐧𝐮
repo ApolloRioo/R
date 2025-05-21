@@ -617,7 +617,7 @@ const Apollo = {
                 }]
             }
         })
-        const img = pdfh(html, "#player||#player0&&data-poster");
+        const img = pdfh(html, "#pills-preview&&.lazyload&&data-src") ? pdfh(html, "#pills-preview&&.lazyload&&data-src") : pdfh(html, "#player||#player0&&data-poster");
         const preview = pdfh(html, "#pills-preview&&source&&src")
         Apollo.d.push({
             img: img,
