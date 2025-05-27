@@ -1,0 +1,896 @@
+const Apollo = {
+    version: "20250526",
+    empty: 'hiker://empty',
+    url: "https://www.javbus.com",
+    d: [],
+    getRangeColors: function() {
+        return '#' + ('00000' + (Math.random() * 0x1000000 << 0)
+                .toString(16))
+            .substr(-6);
+    }, //随机颜色
+    pageAdd: function(page) {
+        if (getMyVar("page")) {
+            putMyVar("page", (parseInt(page) + 1) + '');
+        }
+        return;
+    }, //翻页
+    pageMoveto: function(page, pages) {
+        var longClick = [{
+            title: "首页",
+            js: $.toString(() => {
+                putMyVar("page", "1");
+                refreshPage();
+                return "hiker://empty";
+            }),
+        }, {
+            title: "上页",
+            js: $.toString((page) => {
+                if (page > 1) {
+                    putMyVar("page", (parseInt(page) - 1));
+                    refreshPage();
+                    return "hiker://empty";
+                }
+            }, page),
+        }, {
+            title: "第" + page + "页",
+            js: "",
+        }, {
+            title: "跳转",
+            js: $.toString(() => {
+                return $("").input(() => {
+                    putMyVar("page", input);
+                    refreshPage();
+                });
+            }),
+        }];
+        if (typeof(pages) != 'undefined') {
+            var extra1 = {
+                title: "尾页" + pages,
+                js: $.toString((pages) => {
+                    putMyVar("page", pages);
+                    refreshPage();
+                    return "hiker://empty";
+                }, pages),
+            };
+            longClick.push(extra1)
+        }
+        return longClick
+    }, //长按跳页
+    data: {
+        category: getMyVar('Apollo.category', '0'),
+        subCate: getMyVar('Apollo.subCate', '0'),
+    },
+    baseParse: () => {
+        putMyVar("MY_TYPE", "主页");
+        var page = getMyVar("page", MY_PAGE + "")
+        let categoryList = [{
+            "title": "有碼",
+            "path": "/",
+            "type": "video",
+            "sub": []
+        }, {
+            "title": "無碼",
+            "path": "/uncensored/",
+            "type": "video",
+            "sub": []
+        }, {
+            "title": "有碼類別",
+            "path": "/genre/",
+            "type": "video",
+            "sub": []
+        }, {
+            "title": "無碼類別",
+            "path": "/uncensored/genre/",
+            "type": "video",
+            "sub": []
+        }, {
+            "title": "有碼女優",
+            "path": "/actresses/",
+            "type": "video",
+            "sub": []
+        }, {
+            "title": "無碼女優",
+            "path": "/uncensored/actresses/",
+            "type": "video",
+            "sub": []
+        }, {
+            "title": "論壇",
+            "path": "/forum/",
+            "type": "video",
+            "sub": []
+        }]
+        const currentCate = categoryList[Apollo.data.category]
+        let url
+        var type = currentCate.type
+        var path = currentCate.path
+        if (currentCate.sub.length > 0) {
+            url = getMyVar("url", Apollo.url + currentCate.sub[Apollo.data.subCate].path)
+        } else {
+            url = getMyVar("url", Apollo.url + currentCate.path)
+        }
+        url = url.replace(/(\/page\/\d+|$)/, (match) => {
+            if (match.startsWith('/page') || match.startsWith('&&')) {
+                return match.charAt(0) + 'page/' + page + "/";
+            } else {
+                return "page/" + page + "/";
+            }
+        });
+        Apollo.pageAdd(page)
+        if (url.includes("search")) {
+            type = "search"
+        }
+        log(url)
+        if (MY_PAGE == 1) {
+            categoryList.forEach((cate, index) => {
+                Apollo.d.push({
+                    title: parseInt(Apollo.data.category) === index ?
+                        '‘‘’’' + cate.title.fontcolor("#FFFFFF") : cate.title,
+                    url: $(Apollo.empty + "#noLoading#").lazyRule((index) => {
+                        putMyVar("Apollo.category", index.toString())
+                        putMyVar("Apollo.subCate", '0')
+                        clearMyVar("url")
+                        clearMyVar("page")
+                        refreshPage(true)
+                        return "hiker://empty"
+                    }, index),
+                    extra: {
+                        'backgroundColor': parseInt(Apollo.data.category) === index ? Apollo.getRangeColors() : ''
+                    },
+                    col_type: 'scroll_button',
+                })
+            })
+            if (currentCate.sub.length > 0) {
+                Apollo.d.push({
+                    col_type: 'blank_block',
+                })
+                currentCate.sub.forEach((cate, index) => {
+                    Apollo.d.push({
+                        title: parseInt(Apollo.data.subCate) === index ?
+                            '‘‘’’' + cate.title.fontcolor("#FFFFFF") : cate.title,
+                        url: $(Apollo.empty + "#noLoading#").lazyRule((index) => {
+                            putMyVar("Apollo.subCate", index.toString());
+                            clearMyVar("url")
+                            clearMyVar("page")
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, index),
+                        extra: {
+                            'backgroundColor': parseInt(Apollo.data.subCate) === index ? Apollo.getRangeColors() : ''
+                        },
+                        col_type: 'scroll_button',
+                    })
+                })
+            }
+        }
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
+        //动态分类
+        //Apollo.DynamicSort(html)  
+        //Apollo.videoSort(html)
+        //搜索
+        if (MY_PAGE == 1) {
+            Apollo.d.push({
+                title: "🔍",
+                url: $.toString((url) => {
+                    if (input.trim() != "") {
+                        putMyVar('keyword', input);
+                        var searchUrl = getHome(url) + "/zh/search/" + input + "/"
+                        putMyVar("url", searchUrl);
+                        refreshPage();
+                        return "hiker://empty"
+                    } else {
+                        return "confirm://搜索内容为空.js:'hiker://empty'"
+                    }
+                }, url),
+                desc: '搜索...',
+                col_type: "input",
+                extra: {
+                    defaultValue: getMyVar('keyword', '') || "",
+                }
+            });
+        }
+
+        switch (type) {
+            case 'home':
+                if (MY_PAGE == 1 && !/search/.test(url)) {
+                    try {
+                        Apollo.homeType(html)
+                    } catch {}
+                }
+                break
+            case 'video':
+                Apollo.videoType(html, page)
+                break
+            case 'avatar':
+                Apollo.avatarType(html, page)
+                break
+            case 'maker':
+                Apollo.makerType(html, page)
+                break
+            case 'search':
+                if (MY_PAGE == 1) {
+                    Apollo.d.push({
+                        title: '““””' + "搜寻结果".fontcolor("#FF00FF"),
+                        url: "hiker://empty",
+                        col_type: "text_1",
+                        extra: {
+                            lineVisible: false
+                        }
+                    })
+                    Apollo.d.push({
+                        col_type: "blank_block"
+                    })
+                }
+                Apollo.videoType(html, page)
+                break
+            default:
+                Apollo.videoType(html, page)
+        }
+        setResult(Apollo.d)
+    },
+
+    //一级sort
+    videoSort: (html) => {
+        if (MY_PAGE == 1) {
+            Apollo.d.push({
+                col_type: "blank_block",
+            });
+            try {
+                var sort = pdfa(html, '.filters-options&&a')
+                sort.forEach((item, index) => {
+                    var title = pdfh(item, 'Text');
+                    var urll = Apollo.url + pdfh(item, 'a&&href');
+                    urll = urll.replace(/https?.*(https?.*)/, "$1");
+                    Apollo.d.push({
+                        title: title,
+                        url: urll + $('#noLoading#')
+                            .lazyRule((index) => {
+                                if (getMyVar("MY_TYPE") == "主页") {
+                                    putMyVar('sort', index);
+                                    putMyVar("url", input);
+                                } else {
+                                    putMyVar('ysort', index);
+                                    putMyVar("yurl", input);
+                                }
+                                refreshPage();
+                                return 'hiker://empty'
+                            }, index),
+                        col_type: 'scroll_button',
+                        extra: {
+                            'backgroundColor': (getMyVar("MY_TYPE") == "主页" ? getMyVar('sort', '0') == index : getMyVar('ysort', '0') == index) ? Apollo.getRangeColors() : ''
+                        }
+                    })
+                })
+            } catch {}
+        }
+    },
+    //动态分类
+    DynamicSort: (html) => {
+        const 分类颜色 = Apollo.getRangeColors()
+        const 大类定位 = ".justify-content-between&&.dropdown-menu"
+        const 拼接分类 = ""
+        const 小类定位 = "body&&a"
+        const 分类标题 = "Text"
+        const 分类链接 = "a&&href"
+        Apollo.d.push({
+            col_type: "blank_block"
+        });
+        try {
+            if (typeof(拼接分类) != 'undefined' && 拼接分类 != '') {
+                var categories = pdfa(html, 大类定位).concat(pdfa(html, 拼接分类))
+            } else {
+                var categories = pdfa(html, 大类定位)
+            }
+        } catch {
+            var categories = pdfa(html, 大类定位)
+        }
+        let init_cate = []
+        for (let i = 0; i < 20; i++) {
+            init_cate.push("0")
+        }
+        if (getMyVar("MY_TYPE") == "主页") {
+            var cate_temp_json = getMyVar("sort", JSON.stringify(init_cate))
+        } else {
+            var cate_temp_json = getMyVar("ysort", JSON.stringify(init_cate))
+        }
+        var cate_temp = JSON.parse(cate_temp_json)
+
+        if (MY_PAGE == 1) {
+            categories.forEach((category, index) => {
+                let sub_categories = pdfa(category, 小类定位);
+                sub_categories.forEach((item, key) => {
+                    let title = pdfh(item, 分类标题)
+                    if (typeof(排除) != 'undefined' && 排除 != '') {
+                        title = title.replace(new RegExp(排除, "g"), "")
+                    };
+                    Apollo.d.push({
+                        title: key.toString() === cate_temp[index] ? '““””' + title.fontcolor(分类颜色) : title,
+                        url: $(pdfh(item, 分类链接) + '#noLoading#').lazyRule((params) => {
+                            params.cate_temp[params.index] = params.key.toString()
+                            if (getMyVar("MY_TYPE") == "主页") {
+                                putMyVar('sort', JSON.stringify(params.cate_temp));
+                                putMyVar("url", input);
+                            } else {
+                                putMyVar('ysort', JSON.stringify(params.cate_temp));
+                                putMyVar("yurl", input);
+                            }
+                            clearMyVar("page")
+                            refreshPage(true)
+                            return "hiker://empty"
+                        }, {
+                            cate_temp: cate_temp,
+                            index: index,
+                            key: key,
+                            page: MY_PAGE,
+                        }),
+                        col_type: 'scroll_button',
+                        extra: {
+                            'backgroundColor': key.toString() === cate_temp[index] ? Apollo.getRangeColors() : ''
+                        }
+                    })
+                })
+                /* Apollo.d.push({
+                     col_type: "blank_block"
+                 });*/
+            })
+        }
+    },
+    //搜索
+    searchParse: (url) => {
+        keyword = url.split("##")[1]
+        url = Apollo.url + "/search/" + keyword + "/page/" + MY_PAGE + "/"
+        log(url)
+        var html = fetch(url, {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+            },
+        });
+        Apollo.videoType(html);
+        setResult(Apollo.d)
+    },
+    //列表
+    videoType: (html, page) => {
+        /*try {
+            var pages = pdfh(html, ".pagination:has(a)&&a,-1&&href").match(/page\/(\d+)/)[1];
+        } catch (e) {
+            var pages = 1
+        }*/
+        const list = pdfa(html, "body&&.item")
+        list.forEach(item => {
+            var 识别码 = pdfh(item, 'date&&Text');
+            var title = 识别码 + pdfh(item, "img&&title");
+            var img = pd(item, "img&&src").replace(/thumbs|thumb/g, "cover").replace(/(\.\w+$)/, "_b$1") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+            var url = pdfh(item, 'a&&href');
+            var longClick = [{
+                title: '复制番号',
+                js: $.toString((识别码) => {
+                    return 'copy://' + 识别码
+                }, 识别码)
+            }]
+            Apollo.d.push({
+                title: title,
+                url: url + $('#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.videoParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                pic_url: img,
+                desc: pdfh(item, '.item-tag&&Text') + "⏰" + pdfh(item, 'date,-1&&Text'),
+                col_type: 'movie_2',
+                extra: {
+                    pageTitle: title,
+                    longClick: page ? Apollo.pageMoveto(page).concat(longClick) : ""
+                }
+            })
+        })
+    },
+    //二级
+    videoParse: (url) => {
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
+        log(url)
+        const title = pdfh(html, 'h3&&Text');
+
+        //setPageTitle(title)
+        Apollo.d.push({
+            title: '““””' + title.fontcolor("#D2691E").small(),
+            url: "hiker://empty" + $('#noLoading#')
+                .lazyRule((desct) => {
+                    var desc = findItem('transdesc')
+                        .desc
+                    if (!desc) {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        var translates = Apollo.translate(desct)
+                        updateItem("transdesc", {
+                            desc: '““””' + translates.fontcolor("red").small(),
+                        })
+                    } else {
+                        updateItem("transdesc", {
+                            desc: '',
+                        })
+                    }
+                    return "hiker://empty"
+                }, title),
+            col_type: 'text_1',
+            extra: {
+                lineVisible: false,
+                id: 'transdesc',
+                longClick: [{
+                    title: '网页',
+                    js: $.toString(() => {
+                        return "web://" + MY_URL
+                    })
+                }, {
+                    title: '复制',
+                    js: $.toString((title) => {
+                        return "copy://" + title;
+                    }, title)
+                }, {
+                    title: '百度翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://fanyi.baidu.com/#en/zh/" + title
+                    }, title)
+                }, {
+                    title: 'Deepl翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://www.deepl.com/zh/translator-mobile#cn/zh/" + title
+                    }, title)
+                }, {
+                    title: '谷歌翻译',
+                    js: $.toString((title) => {
+                        return "x5://https://translate.google.com/?hl=zh-CN&sl=cn&tl=zh-CN&text=" + title
+                    }, title)
+                }]
+            }
+        })
+        var 识别码 = pdfh(html, '.movie&&.info&&p:matches(識別碼)&&span,1&&Text');
+        Apollo.d.push({
+            pic_url: Apollo.url + pdfh(html, ".movie&&.screencap&&img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}',
+            url: $(识别码).lazyRule(() => {
+                var av = "https://123av.com/zh/v/" + input + "-uncensored-leaked";
+                var html = fetch(av, {
+                    timeout: 4923
+                })
+                if (html) {
+                    if (html.includes("请检查地址栏中的URL并重试")) {
+                        var av = "https://123av.com/zh/v/" + input;
+                        html = fetch(av, {
+                            timeout: 4923
+                        })
+                    }
+                    if (html.includes("请检查地址栏中的URL并重试")) {
+                        var sav = "https://123av.com/zh/search?keyword=" + input;
+                        htm = fetch(sav, {
+                            timeout: 4923
+                        })
+                        var list = pdfa(htm, "body&&.box-item")
+                        if (list.length > 0) {
+                            var av = "https://123av.com/zh/" + pdfh(list[0], "a&&href")
+                            html = fetch(av, {
+                                timeout: 4923
+                            })
+                        } else {
+                            return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
+                        }
+                    }
+                    if (html.includes("Click here to continue")) {
+                        hr = pdfh(html, "#body&&a&&href")
+                        html = fetch(hr, {
+                            timeout: 4923
+                        })
+                    }
+                    var id = pdfh(html, "#page-video&&v-scope")
+                        .match(/id:.(\d+)/)[1]
+                    var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
+                    var data = JSON.parse(fetch(video, {
+                        headers: {
+                            "Referer": av
+                        }
+                    }))
+                    var javplayer = []
+                    data.result.watch.forEach(item => {
+                        javplayer.push({
+                            url: item.url
+                        })
+                    });
+                    var playUrl = bf(javplayer).map(item => pdfh(item, "#player&&v-scope").match(/https?.*?\.m3u8/)[0].replace(/\\\//g, '/'))
+                    var name = Array.from(playUrl, (_, index) => "分集" + (index + 1));
+                    var playlist = JSON.stringify({
+                        urls: playUrl,
+                        names: name,
+                        headers: new Array(playUrl.length).fill({
+                            Referer: "https://javplayer.me/"
+                        })
+                    });
+                    if (playUrl.length == 1) {
+                        return playUrl[0]
+                    }
+                    return playlist
+                } else {
+                    return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
+                }
+            }),
+            col_type: 'pic_1_full',
+        })
+        try {
+            var pics = pdfa(html, "#sample-waterfall&&a").map(i => pdfh(i, "a&&href").startsWith("http") ? pdfh(i, "a&&href") : Apollo.url + pdfh(i, "a&&href")).join("&&")
+        } catch {}
+        Apollo.d.push({
+            title: '““””' + Apollo.yiyan().split("").map(b => b.fontcolor(Apollo.getRangeColors()).small()).join(""),
+            url: $('').lazyRule((pics) => {
+                return pics ? "pics://" + pics : "confirm://没有图片预览哦😐.js:'hiker://empty' "
+            }, pics),
+            col_type: "text_1",
+            extra: {
+                lineVisible: false
+            }
+        })
+        //外链播放
+        Apollo.CodeParse(识别码);
+        Apollo.d.push({
+            col_type: 'big_blank_block'
+        })
+        Apollo.d.push({
+            col_type: 'big_blank_block'
+        })
+        Apollo.d.push({
+            col_type: 'big_blank_block'
+        })
+        Apollo.d.push({
+            col_type: 'big_blank_block'
+        })
+        var num
+        if (num) {
+            Apollo.d.push({
+                title: "““””" + num.fontcolor("#1E90FF"),
+                url: 'copy://' + num,
+                col_type: 'scroll_button',
+                extra: {
+                    lineVisible: false
+                },
+            })
+        }
+
+        var 日期 = pdfh(html, '#video-date&&Text').replace("發布", "");
+        if (日期.trim() != "") {
+            Apollo.d.push({
+                title: '““””' + 日期.fontcolor("red"),
+                url: "hiker://search?rule=𝐉𝐚𝐯𝐃𝐁&s=" + num.replace(" [泄露未审查]", ""),
+                col_type: "scroll_button",
+                extra: {
+                    lineVisiable: false
+                }
+            })
+        }
+        Apollo.d.push({
+            col_type: 'blank_block'
+        })
+        var actressesList = pdfa(html, "body&&#video-actors:matches(女優)&&a")
+        actressesList.forEach((actresses, index) => {
+            let title = pdfh(actresses, 'a&&Text')
+            let url = pdfh(actresses, 'a&&href')
+            Apollo.d.push({
+                title: "演员 : ““””" + title.fontcolor("#FF00FF"),
+                url: $(url + 'page/fypage/#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.yijiParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: 'scroll_button',
+                extra: {
+                    pageTitle: title
+                }
+            })
+        })
+        try {
+            var maker = pdfh(html, "body&&#video-actors:matches(片商)&&a&&href")
+            var studio = pdfh(html, "body&&#video-actors:matches(片商)&&a&&Text")
+            Apollo.d.push({
+                title: "片商 : ““””" + studio.fontcolor("#FF00FF"),
+                url: $(maker + 'page/fypage/#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.yijiParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: 'scroll_button',
+                extra: {
+                    pageTitle: studio
+                }
+            })
+        } catch {}
+        Apollo.d.push({
+            col_type: 'blank_block'
+        })
+
+        var labelsList = pdfa(html, ".tags-list&&a")
+        if (labelsList[0]) {
+            Apollo.d.push({
+                title: '标签 : ',
+                url: Apollo.empty,
+                col_type: 'flex_button',
+                extra: {
+                    lineVisible: false
+                },
+            })
+            labelsList.forEach(label => {
+                let label_title = pdfh(label, 'a&&Text')
+                Apollo.d.push({
+                    title: label_title,
+                    url: $(pdfh(label, 'a&&href') + 'page/fypage/#noHistory#').rule(() => {
+                        const Apollo = $.require('hiker://page/Apollo')
+                        Apollo.yijiParse(MY_URL)
+                        setResult(Apollo.d)
+                    }),
+                    col_type: 'flex_button',
+                    extra: {
+                        pageTitle: label_title,
+                        'backgroundColor': "#FF00FF"
+                    }
+                })
+            })
+            Apollo.d.push({
+                col_type: 'line_blank'
+            })
+        }
+
+        Apollo.d.push({
+            title: '推荐视频',
+            url: Apollo.empty,
+            col_type: 'text_center_1',
+            extra: {
+                lineVisible: false
+            },
+        })
+        Apollo.videoType(html)
+        Apollo.d.push({
+            title: '““””' + "我是有底线的".fontcolor("grey")
+                .small(),
+            url: Apollo.empty,
+            col_type: "text_center_1",
+            extra: {
+                lineVisible: false
+            }
+        })
+        setResult(Apollo.d)
+    },
+
+    //一级.简
+    yijiParse: (url) => {
+        putMyVar("MY_TYPE", "一级")
+        var page = getMyVar("page", MY_PAGE + "")
+        addListener("onClose", $.toString(() => {
+            clearMyVar("yurl");
+            clearMyVar("ysort");
+            clearMyVar("page")
+        }));
+        url = getMyVar("yurl", url)
+        url = url.replace(/(\/page\/\d+|$)/, (match) => {
+            if (match.startsWith('/page') || match.startsWith('&&')) {
+                return match.charAt(0) + 'page/' + page;
+            } else {
+                return "page/" + page;
+            }
+        });
+        log(url)
+        Apollo.pageAdd(page)
+        const html = fetch(url, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+            }
+        })
+        Apollo.videoSort(html)
+        Apollo.videoType(html, page)
+    },
+
+    makerType: (html, page) => {
+        try {
+            var pages = pdfh(html, ".pagination:has(a)&&a,-1&&href").match(/page\/(\d+)/)[1];
+        } catch (e) {
+            var pages = 1
+        }
+        const list = pdfa(html, 'body&&article')
+        list.forEach(item => {
+            var img = pdfh(item, "img&&data-lazy-src||src");
+            var url = pdfh(item, 'a&&href');
+            Apollo.d.push({
+                title: pdfh(item, ".cat-title&&Text"),
+                pic_url: img,
+                url: $(url + 'page/fypage/#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.yijiParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: 'movie_2',
+                extra: page ? {
+                    longClick: Apollo.pageMoveto(page, pages)
+                } : ""
+            })
+        })
+    },
+
+    avatarType: (html, page) => {
+        try {
+            var pages = pdfh(html, ".pagination:has(a)&&a,-1&&href").match(/page\/(\d+)/)[1];
+        } catch (e) {
+            var pages = 1
+        }
+        const list = pdfa(html, 'body&&article')
+        list.forEach(item => {
+            var img = pdfh(item, "img&&data-lazy-src||src");
+            var url = pdfh(item, 'a&&href');
+            Apollo.d.push({
+                title: pdfh(item, ".actor-title&&Text"),
+                url: $(url + 'page/fypage/#noHistory#').rule(() => {
+                    const Apollo = $.require('hiker://page/Apollo')
+                    Apollo.yijiParse(MY_URL)
+                    setResult(Apollo.d)
+                }),
+                col_type: "card_pic_3",
+                pic_url: img ? img : "https://thumbsnap.com/i/sySMQ7Mg.jpg",
+                //desc: "⏰" + pdfh(item, '.duration&&Text'),
+                extra: page ? {
+                    longClick: Apollo.pageMoveto(page, pages)
+                } : ""
+            })
+        })
+    },
+    //外链播放
+    CodeParse: (识别码) => {
+        Apollo.d.push({
+            col_type: 'blank_block',
+        })
+        var codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
+            .replace(/d\.push/g, "Apollo.d.push") || "";
+
+        function downcode() {
+            var js = fetch(base64Decode("aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0Fwb2xsb1Jpb28vUi9tYXN0ZXIv8J2QgvCdkKjwnZCd8J2QnvCdkIvwnZCa8J2Qs/CdkLI="));
+            writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', js);
+            toast("远程数据已更新到本地")
+            codelazy = fetch('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js')
+                .replace(/d\.push/g, "Apollo.d.push")
+        }
+        if (!codelazy) {
+            downcode()
+        }
+        try {
+            eval(codelazy)
+        } catch {
+            downcode()
+            eval(codelazy)
+            log("读取失败更新远程数据")
+        }
+        CodeLazy(识别码)
+    },
+    //每日一言
+    yiyan: () => {
+        //author:粉妹
+        function save_day_say_cache() {
+            let day_say_cache = {}
+            let day_say_html = fetch('https://v1.hitokoto.cn', {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                },
+            })
+            day_say_html = JSON.parse(day_say_html)
+            day_say_cache['content'] = day_say_html['hitokoto']
+            day_say_cache['time'] = Math.floor(Date.now() / 1000)
+            storage0.putMyVar('daysay', day_say_cache)
+            return day_say_html['hitokoto']
+        }
+
+        let day_say = ''
+        try {
+            let day_say_cache = {}
+            let day_time = 0
+            if (storage0.getMyVar('daysay')) {
+                day_say_cache = storage0.getMyVar('daysay', {})
+                day_time = day_say_cache['time']
+                if (Math.floor(Date.now() / 1000) - day_time >= 600) {
+                    day_say = save_day_say_cache()
+                } else {
+                    day_say = day_say_cache['content']
+                }
+            } else {
+                day_say = save_day_say_cache()
+            }
+        } catch {
+            day_say = ''
+        }
+        return day_say
+    },
+    //翻译
+    translate: (text) => {
+        var switchtrans = true;
+        if (switchtrans == true || switchtrans == "彩云小译") {
+            try {
+                var to = 'zh'
+                var from = 'auto'
+
+                function init_data(source_lang, target_lang) {
+                    return {
+                        source: '',
+                        detect: true,
+                        os_type: 'ios',
+                        device_id: 'F1F902F7-1780-4C88-848D-71F35D88A602',
+                        trans_type: source_lang + '2' + target_lang,
+                        media: 'text',
+                        request_id: 424238335,
+                        user_id: '',
+                        dict: true,
+                    }
+                }
+
+                function getRandomNumber() {
+                    const rand = Math.floor(Math.random() * 99999) + 100000
+                    return rand * 1000
+                }
+                const post_data = init_data(from, to)
+                post_data.source = text
+                post_data.request_id = getRandomNumber()
+                let res = fetch('https://interpreter.cyapi.cn/v1/translator', {
+                    method: 'POST',
+                    header: {
+                        'Content-Type': 'application/json',
+                        'x-authorization': 'token ssdj273ksdiwi923bsd9',
+                        'user-agent': 'caiyunInterpreter/5 CFNetwork/1404.0.5 Darwin/22.3.0',
+                    },
+                    body: post_data,
+                })
+                let result = JSON.parse(res)
+                    .target
+                return result + "【☁️】"
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else if (switchtrans == "小牛翻译") {
+            try {
+                var url = "https://api.niutrans.com/NiuTransServer/translation";
+                var api = config.api;
+                if (api) {
+                    if (text != "") {
+                        var lang = "https://test.niutrans.com/NiuTransServer/language?src_text=" + text + "&source=text";
+                        var from = JSON.parse(fetch(lang, {
+                                timeout: 1000
+                            }))
+                            .language;
+                        var result = post(url, {
+                            body: {
+                                src_text: text,
+                                from: from,
+                                to: "zh",
+                                apikey: api,
+                            },
+                            timeout: 1223
+                        });
+                        var data = JSON.parse(result)
+                        if (data.tgt_text) {
+                            return data.tgt_text + "【🐮】"
+                        } else {
+                            log("翻译失败，使用原文");
+                            return text
+                        }
+                    } else {
+                        log("翻译失败，原文为空");
+                        return text
+                    }
+                } else {
+                    toast("预处理请填写翻译api")
+                    return text
+                }
+            } catch {
+                log("翻译失败，使用原文");
+                return text
+            }
+        } else {
+            return text
+        }
+    },
+}
+$.exports = Apollo
