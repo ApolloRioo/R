@@ -156,42 +156,53 @@ js:
                         })
                     }
                     if (html.includes("请检查地址栏中的URL并重试")) {
-                        return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
-                    } else {
-                        if (html.includes("Click here to continue")) {
-                            hr = pdfh(html, "#body&&a&&href")
-                            html = fetch(hr, {
+                        var sav = "https://123av.com/zh/search?keyword=" + input;
+                        htm = fetch(sav, {
+                            timeout: 4923
+                        })
+                        var list = pdfa(htm, "body&&.box-item")
+                        if (list.length > 0) {
+                            var av = "https://123av.com/zh/" + pdfh(list[0], "a&&href")
+                            html = fetch(av, {
                                 timeout: 4923
                             })
+                        } else {
+                            return "confirm://本平台尚未上传此番号视频.js:'hiker://empty' "
                         }
-                        var id = pdfh(html, "#page-video&&v-scope")
-                            .match(/id:.(\d+)/)[1]
-                        var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
-                        var data = JSON.parse(fetch(video, {
-                            headers: {
-                                "Referer": av
-                            }
-                        }))
-                        var javplayer = []
-                        data.result.watch.forEach(item => {
-                            javplayer.push({
-                                url: item.url
-                            })
-                        });
-                        var playUrl = bf(javplayer).map(item => pdfh(item, "#player&&v-scope").match(/https?.*?\.m3u8/)[0].replace(/\\\//g, '/'))
-                        var name = Array.from(playUrl, (_, index) => "分集" + (index + 1));
-                        var playlist = JSON.stringify({
-                            urls: playUrl,
-                            names: name,
-                            headers: new Array(playUrl.length).fill({
-                                Referer: "https://javplayer.me/"
-                            })
-                        });
-                        if (playUrl.length == 1) {
-                            return playUrl[0]
-                        }
-                        return playlist
                     }
+                    if (html.includes("Click here to continue")) {
+                        hr = pdfh(html, "#body&&a&&href")
+                        html = fetch(hr, {
+                            timeout: 4923
+                        })
+                    }
+                    var id = pdfh(html, "#page-video&&v-scope")
+                        .match(/id:.(\d+)/)[1]
+                    var video = "https://123av.com/zh/ajax/v/" + id + "/videos"
+                    var data = JSON.parse(fetch(video, {
+                        headers: {
+                            "Referer": av
+                        }
+                    }))
+                    var javplayer = []
+                    data.result.watch.forEach(item => {
+                        javplayer.push({
+                            url: item.url
+                        })
+                    });
+                    var playUrl = bf(javplayer).map(item => pdfh(item, "#player&&v-scope").match(/https?.*?\.m3u8/)[0].replace(/\\\//g, '/'))
+                    var name = Array.from(playUrl, (_, index) => "分集" + (index + 1));
+                    var playlist = JSON.stringify({
+                        urls: playUrl,
+                        names: name,
+                        headers: new Array(playUrl.length).fill({
+                            Referer: "https://javplayer.me/"
+                        })
+                    });
+                    if (playUrl.length == 1) {
+                        return playUrl[0]
+                    }
+                    return playlist
                 } else {
                     return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
                 }
