@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250526",
+    version: "20250527",
     empty: 'hiker://empty',
     url: "https://www.javbus.com",
     d: [],
@@ -108,17 +108,27 @@ const Apollo = {
         } else {
             url = getMyVar("url", Apollo.url + currentCate.path)
         }
-        url = url.replace(/(\/page\/\d+|$)/, (match) => {
-            if (match.startsWith('/page') || match.startsWith('&&')) {
-                return match.charAt(0) + 'page/' + page + "/";
-            } else {
-                return "page/" + page + "/";
-            }
-        });
-        Apollo.pageAdd(page)
         if (url.includes("search")) {
             type = "search"
+            url = url.replace(/search\/([^\&]*?)\/\d+|search\/(.*?)\&|$/, (match) => {
+                if (match.endsWith('\d') || match.startsWith('&&')) {
+                    return match.charAt(0) + 'earch/$1/' + page;
+                } else if (match.endsWith('&')) {
+                    return match.charAt(0) + `earch/${getMyVar('keyword', '')}/` + page + "&";
+                } else {
+                    return "/" + page;
+                }
+            });
+        } else {
+            url = url.replace(/(\/page\/\d+|$)/, (match) => {
+                if (match.startsWith('/page') || match.startsWith('&&')) {
+                    return match.charAt(0) + 'page/' + page + "/";
+                } else {
+                    return "page/" + page + "/";
+                }
+            });
         }
+        Apollo.pageAdd(page)
         log(url)
         if (MY_PAGE == 1) {
             categoryList.forEach((cate, index) => {
@@ -134,7 +144,22 @@ const Apollo = {
                         return "hiker://empty"
                     }, index),
                     extra: {
-                        'backgroundColor': parseInt(Apollo.data.category) === index ? Apollo.getRangeColors() : ''
+                        'backgroundColor': parseInt(Apollo.data.category) === index ? Apollo.getRangeColors() : '',
+                        longClick: [{
+                            title: '已有磁力',
+                            js: $.toString(() => {
+                                setItem("mag", "existmag=mag");
+                                refreshPage();
+                                return 'hiker://empty'
+                            })
+                        }, {
+                            title: '全部影片',
+                            js: $.toString(() => {
+                                setItem("mag", "existmag=all");
+                                refreshPage();
+                                return 'hiker://empty'
+                            })
+                        }]
                     },
                     col_type: 'scroll_button',
                 })
@@ -164,7 +189,8 @@ const Apollo = {
         }
         const html = fetch(url, {
             headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)',
+                'Cookie': getItem("mag", "existmag=mag")
             }
         })
         //动态分类
@@ -177,15 +203,24 @@ const Apollo = {
                 url: $.toString((url) => {
                     if (input.trim() != "") {
                         putMyVar('keyword', input);
-                        var searchUrl = getHome(url) + "/zh/search/" + input + "/"
+                        var searchUrl = getHome(url) + "/search/" + input // + "&type=1&parent=ce"
                         putMyVar("url", searchUrl);
+                        clearMyVar("ysort")
                         refreshPage();
                         return "hiker://empty"
                     } else {
-                        return "confirm://搜索内容为空.js:'hiker://empty'"
+                        if (getItem("mag", "existmag=mag") != "existmag=mag") {
+                            setItem("mag", "existmag=mag");
+                            refreshPage();
+                            return 'toast://切换到已有磁力'
+                        } else {
+                            setItem("mag", "existmag=all");
+                            refreshPage();
+                            return 'toast://切换到全部影片'
+                        }
                     }
                 }, url),
-                desc: '搜索...',
+                desc: '無碼请在此搜索...',
                 col_type: "input",
                 extra: {
                     defaultValue: getMyVar('keyword', '') || "",
@@ -211,7 +246,7 @@ const Apollo = {
                 Apollo.makerType(html, page)
                 break
             case 'search':
-                if (MY_PAGE == 1) {
+                /*if (MY_PAGE == 1) {
                     Apollo.d.push({
                         title: '““””' + "搜寻结果".fontcolor("#FF00FF"),
                         url: "hiker://empty",
@@ -223,7 +258,8 @@ const Apollo = {
                     Apollo.d.push({
                         col_type: "blank_block"
                     })
-                }
+                }*/
+                Apollo.videoSort(html)
                 Apollo.videoType(html, page)
                 break
             default:
@@ -239,7 +275,7 @@ const Apollo = {
                 col_type: "blank_block",
             });
             try {
-                var sort = pdfa(html, '.filters-options&&a')
+                var sort = pdfa(html, ".search-header&&li")
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = Apollo.url + pdfh(item, 'a&&href');
@@ -258,7 +294,7 @@ const Apollo = {
                                 refreshPage();
                                 return 'hiker://empty'
                             }, index),
-                        col_type: 'scroll_button',
+                        col_type: 'flex_button',
                         extra: {
                             'backgroundColor': (getMyVar("MY_TYPE") == "主页" ? getMyVar('sort', '0') == index : getMyVar('ysort', '0') == index) ? Apollo.getRangeColors() : ''
                         }
@@ -341,11 +377,12 @@ const Apollo = {
     //搜索
     searchParse: (url) => {
         keyword = url.split("##")[1]
-        url = Apollo.url + "/search/" + keyword + "/page/" + MY_PAGE + "/"
+        url = Apollo.url + "/search/" + keyword + "/" + MY_PAGE
         log(url)
         var html = fetch(url, {
             headers: {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0)",
+                'Cookie': "existmag=all"
             },
         });
         Apollo.videoType(html);
@@ -362,7 +399,11 @@ const Apollo = {
         list.forEach(item => {
             var 识别码 = pdfh(item, 'date&&Text');
             var title = 识别码 + pdfh(item, "img&&title");
-            var img = pd(item, "img&&src").replace(/thumbs|thumb/g, "cover").replace(/(\.\w+$)/, "_b$1") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+            if (MY_TYPE == "search") {
+                var img = Apollo.url + pdfh(item, "img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+            } else {
+                var img = Apollo.url + pdfh(item, "img&&src").replace(/thumbs|thumb/g, "cover").replace(/(\.\w+$)/, "_b$1") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+            }
             var url = pdfh(item, 'a&&href');
             var longClick = [{
                 title: '复制番号',
@@ -408,7 +449,7 @@ const Apollo = {
                         const Apollo = $.require('hiker://page/Apollo')
                         var translates = Apollo.translate(desct)
                         updateItem("transdesc", {
-                            desc: '““””' + translates.fontcolor("red").small(),
+                            desc: '““””' + translates.fontcolor("red"),
                         })
                     } else {
                         updateItem("transdesc", {
@@ -528,7 +569,15 @@ const Apollo = {
             }, pics),
             col_type: "text_1",
             extra: {
-                lineVisible: false
+                lineVisible: false,
+                longClick: [{
+                    title: '更新外链播放',
+                    js: $.toString(() => {
+                        writeFile('hiker://files/rules/Apollo/𝐂𝐨𝐝𝐞𝐋𝐚𝐳𝐲.js', '');
+                        refreshPage();
+                        return "hiker://empty"
+                    })
+                }]
             }
         })
         //外链播放
