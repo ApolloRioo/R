@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250529",
+    version: "20250530",
     empty: 'hiker://empty',
     url: "https://www.javbus.com",
     d: [],
@@ -86,12 +86,12 @@ const Apollo = {
             "sub": []
         }, {
             "title": "有碼類別",
-            "path": "/genre/",
+            "path": "/genre",
             "type": "category",
             "sub": []
         }, {
             "title": "無碼類別",
-            "path": "/uncensored/genre/",
+            "path": "/uncensored/genre",
             "type": "category",
             "sub": []
         }, {
@@ -162,7 +162,9 @@ const Apollo = {
                         putMyVar("Apollo.category", index.toString())
                         putMyVar("Apollo.subCate", '0')
                         clearMyVar("url")
-                        clearMyVar("page")
+                        clearMyVar("page");
+                        clearItem("GenreUrl")
+                        clearItem("genre")
                         refreshPage(true)
                         return "hiker://empty"
                     }, index),
@@ -225,6 +227,7 @@ const Apollo = {
                 title: "🔍",
                 url: $.toString((url) => {
                     if (input.trim() != "") {
+                        input = input.replace(/ /g, "+")
                         putMyVar('keyword', input);
                         var searchUrl = getHome(url) + "/search/" + input // + "&type=1&parent=ce"
                         putMyVar("url", searchUrl);
@@ -266,7 +269,7 @@ const Apollo = {
                 Apollo.avatarType(html, page)
                 break
             case 'category':
-                Apollo.categoryType(html)
+                Apollo.categoryType(html, page)
                 break
             case 'search':
                 /*if (MY_PAGE == 1) {
@@ -283,7 +286,11 @@ const Apollo = {
                     })
                 }*/
                 Apollo.videoSort(html)
-                Apollo.videoType(html, page)
+                if (url.includes("searchstar")) {
+                    Apollo.avatarType(html, page)
+                } else {
+                    Apollo.videoType(html, page)
+                }
                 break
             default:
                 Apollo.videoType(html, page)
@@ -401,7 +408,7 @@ const Apollo = {
     },
     //搜索
     searchParse: (url) => {
-        keyword = url.split("##")[1]
+        keyword = url.split("##")[1].replace(/ /g, "+")
         url = Apollo.url + "/search/" + keyword + "/" + MY_PAGE
         log(url)
         var html = fetch(url, {
@@ -426,9 +433,9 @@ const Apollo = {
             var 识别码 = pdfh(item, 'date&&Text');
             var title = 识别码 + pdfh(item, "img&&title");
             if (MY_TYPE == "search") {
-                var img = Apollo.url + pdfh(item, "img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+                var img = pdfh(item, "img&&src").startsWith("http") ? pdfh(item, "img&&src") : Apollo.url + pdfh(item, "img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
             } else {
-                var img = Apollo.url + pdfh(item, "img&&src").replace(/thumbs|thumb/g, "cover").replace(/(\.\w+$)/, "_b$1") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+                var img = pdfh(item, "img&&src").startsWith("http") ? pdfh(item, "img&&src") : Apollo.url + pdfh(item, "img&&src").replace(/thumbs|thumb/g, "cover").replace(/(\.\w+$)/, "_b$1") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
             }
             var url = pdfh(item, 'a&&href');
             var longClick = [{
@@ -439,7 +446,7 @@ const Apollo = {
             }]
             d.push({
                 title: title,
-                url: url + $('#noHistory#').rule(() => {
+                url: "hiker://empty##" + url + $('#noHistory#').rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
                     Apollo.videoParse(MY_URL)
                     setResult(Apollo.d)
@@ -457,66 +464,69 @@ const Apollo = {
     //二级
     videoParse: (url) => {
         var d = Apollo.d;
+        url = url.replace("hiker://empty##", "")
         const html = fetch(url, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
             }
         })
         log(url)
-        const title = pdfh(html, 'h3&&Text');
+        try {
+            var title = pdfh(html, 'h3&&Text');
+            //setPageTitle(title)
+            d.push({
+                title: '““””' + title.fontcolor("#D2691E").small(),
+                url: "hiker://empty" + $('#noLoading#')
+                    .lazyRule((desct) => {
+                        var desc = findItem('transdesc')
+                            .desc
+                        if (!desc) {
+                            const Apollo = $.require('hiker://page/Apollo')
+                            var translates = Apollo.translate(desct)
+                            updateItem("transdesc", {
+                                desc: '““””' + translates.fontcolor("red"),
+                            })
+                        } else {
+                            updateItem("transdesc", {
+                                desc: '',
+                            })
+                        }
+                        return "hiker://empty"
+                    }, title),
+                col_type: 'text_1',
+                extra: {
+                    lineVisible: false,
+                    id: 'transdesc',
+                    longClick: [{
+                        title: '网页',
+                        js: $.toString(() => {
+                            return "web://" + MY_URL
+                        })
+                    }, {
+                        title: '复制',
+                        js: $.toString((title) => {
+                            return "copy://" + title;
+                        }, title)
+                    }, {
+                        title: '百度翻译',
+                        js: $.toString((title) => {
+                            return "x5://https://fanyi.baidu.com/#en/zh/" + title
+                        }, title)
+                    }, {
+                        title: 'Deepl翻译',
+                        js: $.toString((title) => {
+                            return "x5://https://www.deepl.com/zh/translator-mobile#cn/zh/" + title
+                        }, title)
+                    }, {
+                        title: '谷歌翻译',
+                        js: $.toString((title) => {
+                            return "x5://https://translate.google.com/?hl=zh-CN&sl=cn&tl=zh-CN&text=" + title
+                        }, title)
+                    }]
+                }
+            })
+        } catch {}
 
-        //setPageTitle(title)
-        d.push({
-            title: '““””' + title.fontcolor("#D2691E").small(),
-            url: "hiker://empty" + $('#noLoading#')
-                .lazyRule((desct) => {
-                    var desc = findItem('transdesc')
-                        .desc
-                    if (!desc) {
-                        const Apollo = $.require('hiker://page/Apollo')
-                        var translates = Apollo.translate(desct)
-                        updateItem("transdesc", {
-                            desc: '““””' + translates.fontcolor("red"),
-                        })
-                    } else {
-                        updateItem("transdesc", {
-                            desc: '',
-                        })
-                    }
-                    return "hiker://empty"
-                }, title),
-            col_type: 'text_1',
-            extra: {
-                lineVisible: false,
-                id: 'transdesc',
-                longClick: [{
-                    title: '网页',
-                    js: $.toString(() => {
-                        return "web://" + MY_URL
-                    })
-                }, {
-                    title: '复制',
-                    js: $.toString((title) => {
-                        return "copy://" + title;
-                    }, title)
-                }, {
-                    title: '百度翻译',
-                    js: $.toString((title) => {
-                        return "x5://https://fanyi.baidu.com/#en/zh/" + title
-                    }, title)
-                }, {
-                    title: 'Deepl翻译',
-                    js: $.toString((title) => {
-                        return "x5://https://www.deepl.com/zh/translator-mobile#cn/zh/" + title
-                    }, title)
-                }, {
-                    title: '谷歌翻译',
-                    js: $.toString((title) => {
-                        return "x5://https://translate.google.com/?hl=zh-CN&sl=cn&tl=zh-CN&text=" + title
-                    }, title)
-                }]
-            }
-        })
         var 识别码 = pdfh(html, '.movie&&.info&&p:matches(識別碼)&&span,1&&Text');
         d.push({
             pic_url: Apollo.url + pdfh(html, ".movie&&.screencap&&img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}',
@@ -779,7 +789,7 @@ const Apollo = {
             })
         }
         try {
-            var script = html.match(/var gid[\s\S]+var img.*/)[0];
+            var script = html.match(/var gid[\s\S]+var img.+/)[0];
             eval(script)
             var Curl = `https://www.javbus.com/ajax/uncledatoolsbyajax.php?gid=${gid}&lang=zh&img=${img}&uc=${uc}&floor=38`
             var htm = fetch(Curl, {
@@ -855,9 +865,6 @@ const Apollo = {
                         }, {
                             title: '迅雷',
                             js: $.toString((url) => {
-                                /*openAppIntent('com.xunlei.downloadprovider', 'com.xunlei.downloadprovider.launch.LaunchActivity', {
-                                    intentData: url
-                                })*/
                                 return "hiker://page/diaoyong?rule=迅雷&page=fypage#" + url
                             }, url)
                         }, {
@@ -885,7 +892,7 @@ const Apollo = {
             var url = pdfh(item, 'a&&href');
             d.push({
                 title: title,
-                url: url + $('#noHistory#').rule(() => {
+                url: "hiker://empty##" + url + $('#noHistory#').rule(() => {
                     const Apollo = $.require('hiker://page/Apollo')
                     Apollo.videoParse(MY_URL)
                     setResult(Apollo.d)
@@ -941,6 +948,7 @@ const Apollo = {
                     title: pdfh(html, "#waterfall&&.avatar-box&&img&&title"),
                     img: Apollo.url + pdfh(html, "#waterfall&&.avatar-box&&img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}',
                     desc: pdfh(html, "#waterfall&&.avatar-box&&.photo-info&&Text"),
+                    url: "hiker://empty",
                     col_type: "movie_1_vertical_pic",
                     extra: {
                         lineVisible: false,
@@ -987,7 +995,7 @@ const Apollo = {
         Apollo.videoType(html, page)
     },
 
-    categoryType: (html) => {
+    categoryType: (html, page) => {
         var d = Apollo.d;
         if (MY_PAGE == 1) {
             var tags = pdfa(html, "body&&h4").slice(0, -1)
@@ -996,20 +1004,38 @@ const Apollo = {
                 d.push({
                     title: "““””" + (pdfh(tag, "Text") + ":").fontcolor("red"),
                     url: "hiker://empty",
-                    col_type: "flex_button",
+                    col_type: "scroll_button",
                 })
                 list = pdfa(lists[index], "body&&a")
                 list.forEach(item => {
-                    let url = pdfh(item, "a&&href")
+                    let url = pdfh(item, "a&&href");
                     let title = pdfh(item, "Text");
                     d.push({
-                        title: getMyVar("url") == url ? "““””" + title.fontcolor("#FF00FF") : title,
-                        url: "hiker://empty##" + $(url + '/fypage#noHistory#').rule(() => {
-                            const Apollo = $.require('hiker://page/Apollo')
-                            Apollo.yijiParse(MY_URL)
-                            setResult(Apollo.d)
+                        title: getItem("genre", "").split("-").includes(url.replace(/.*\//, "")) ? "““””" + title.fontcolor("#FF00FF") : title,
+                        url: $(url).lazyRule(() => {
+                            var match = input.match(/(.*\/)(.*$)/)
+                            var url = match[1]
+                            var value = match[2]
+                            var curGenres = getItem("genre", "")
+                            var genre;
+                            if (curGenres == "") {
+                                genre = []
+                            } else {
+                                genre = curGenres.split("-")
+                            }
+                            if (!genre.includes(value)) {
+                                genre.push(value)
+                            } else {
+                                genre.splice(genre.indexOf(value), 1)
+                            }
+                            var genres = genre.join("-")
+                            var GenreUrl = url + genres;
+                            setItem("genre", genres);
+                            setItem("GenreUrl", GenreUrl);
+                            refreshPage();
+                            return "hiker://empty"
                         }),
-                        col_type: "flex_button",
+                        col_type: "scroll_button",
                     })
                 })
                 d.push({
@@ -1017,6 +1043,22 @@ const Apollo = {
                 })
             })
         }
+        var GenreUrl = getItem("GenreUrl", "") == "" ? "" : (getItem("GenreUrl", "") + "/1")
+        GenreUrl = GenreUrl.replace(/(\/\d+$|$)/, (match) => {
+            if (match.startsWith('/') || match.startsWith('&&')) {
+                return match.charAt(0) + page;
+            } else {
+                return ""
+            }
+        });
+        log(GenreUrl)
+        var ghtml = fetch(GenreUrl, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)',
+                'Cookie': getItem("mag", "existmag=mag")
+            }
+        })
+        Apollo.videoType(ghtml, page)
     },
 
     avatarType: (html, page) => {
@@ -1028,7 +1070,7 @@ const Apollo = {
         }*/
         const list = pdfa(html, '#waterfall&&.item')
         list.forEach(item => {
-            var img = Apollo.url + pdfh(item, "img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
+            var img = pdfh(item, "img&&src").startsWith("http") ? pdfh(item, "img&&src") : Apollo.url + pdfh(item, "img&&src") + '@headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0)","Referer":"https://www.javbus.com/"}';
             var url = pdfh(item, 'a&&href');
             d.push({
                 title: pdfh(item, ".photo-info&&Text"),
