@@ -1,5 +1,5 @@
 const Apollo = {
-    version: 20250509,
+    version: 20250530,
     empty: "hiker://empty",
     url: getItem('link', "https://18av.mm-cg.com"),
     d: [],
@@ -626,7 +626,7 @@ const Apollo = {
             })
         } catch {}
 
-        const img = pdfh(html, "#dz_video&&img&&src");
+        const img = pdfh(html, "#dz_video&&img&&src").replace("fbhost1", "fchost1");
         Apollo.d.push({
             img: img,
             url: "hiker://empty",
