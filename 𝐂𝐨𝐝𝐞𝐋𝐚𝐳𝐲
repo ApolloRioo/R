@@ -156,7 +156,7 @@ js:
                         })
                     }
                     if (html.includes("请检查地址栏中的URL并重试")) {
-                        var sav = "https://123av.com/zh/search?keyword=" + input;
+                        var sav = "https://123av.com/zh/search?keyword=" + 识别码;
                         htm = fetch(sav, {
                             timeout: 4923
                         })
