@@ -1,1 +1,890 @@
-1
+js:
+    var version = "20250604";
+var rrules = [
+    /*{
+        name: "MP4吧",
+        page: true,
+        find: function(s, page) {
+            //https://domp4.icu/
+            function decrypt_t() {
+                eval(getCryptoJS())
+                let search_AesKey = CryptoJS.enc.Utf8.parse('7890789078907890')
+                let search_time = (Date['parse'](new Date()) / 1000).toString()
+                // AES加密，使用ECB模式和Pkcs7填充
+                let search_encrypted_data = CryptoJS.AES.encrypt(search_time, search_AesKey, {
+                    mode: CryptoJS.mode.ECB,
+                    padding: CryptoJS.pad.Pkcs7,
+                })
+                let search_t = search_encrypted_data.toString()
+
+                return search_t
+            }
+            var items = []
+            var key_word = encodeURIComponent(s)
+            var current_page = page
+            var html = post('https://m.200mp4.cc/search/', {
+                body: {
+                    wd: key_word,
+                    p: current_page,
+                    t: decrypt_t()
+                },
+            })
+            var list = parseDomForArray(html, '#list_all&&ul&&li')
+            for (var i = 0; i < list.length; i++) {
+                var title = parseDomForHtml(list[i], 'h2&&Text')
+                var img = parseDom(list[i], '.lazy&&data-original')
+                var url = parseDomForHtml(list[i], 'h2&&a&&href')
+                var cont = parseDomForHtml(list[i], '.text_info--h2&&Text')
+                items.push({
+                    title: title,
+                    img: img,
+                    url: "https://m.200mp4.cc/" + url,
+                    content: cont,
+                })
+            }
+            return items
+        },
+        findAliUrl(input) {
+            return $("hiker://empty").rule((input) => {
+                let d = [];
+                //let html = fetch(input);
+                var html = fetchCodeByWebView(input, {
+                    checkJs: $.toString(() => {
+                        return document.querySelector('.url-left')
+                    })
+                })
+                var Biglist = parseDomForArray(html, "body&&.down-list");
+
+                function mergeListItems(bigList) {
+                    let result = [];
+                    bigList.forEach(sublist => {
+                        let items = pdfa(sublist, "body&&li");
+                        result = result.concat(items);
+                    });
+                    return result;
+                }
+                let list = mergeListItems(Biglist);
+                for (var i = 0; i < list.length; i++) {
+                    let originUrl = parseDomForHtml(list[i], "a&&href");
+                    d.push({
+                        title: parseDomForHtml(list[i], "a&&title"),
+                        url: $("#noLoading#").lazyRule((originUrl) => {
+                            eval(JSON.parse(request("hiker://page/data")).rule);
+                            return getModeUrl(originUrl, "", getItem("openMode"));
+                        }, originUrl),
+                        col_type: "text_1",
+                    });
+                }
+                setResult(d);
+            }, input);
+        }
+    }, */
+    {
+        name: "老王磁力",
+        page: true,
+        find: function(s, page) {
+            // 工具函数laowangso.com
+            function isEmpty(x) {
+                if (x == null || x == undefined || x == '') {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+            function randomString(len, charSet) {
+                charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+                var randomString = ''
+                for (var i = 0; i < len; i++) {
+                    var randomPoz = Math.floor(Math.random() * charSet.length)
+                    randomString += charSet.substring(randomPoz, randomPoz + 1)
+                }
+                return randomString
+            }
+
+            function formatDate(fmt, date) {
+                var o = {
+                    'M+': date.getMonth() + 1,
+                    'd+': date.getDate(),
+                    'h+': date.getHours(),
+                    'm+': date.getMinutes(),
+                    's+': date.getSeconds(),
+                    'q+': Math.floor((date.getMonth() + 3) / 3),
+                    S: date.getMilliseconds(),
+                }
+                if (/(y+)/.test(fmt)) {
+                    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+                }
+                for (var k in o) {
+                    if (new RegExp('(' + k + ')').test(fmt)) {
+                        fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length))
+                    }
+                }
+                return fmt
+            }
+
+            function clPassCookie() {
+                let lwAywcUid = randomString(10) + '_' + formatDate('yyyyMMddhhmmss', new Date())
+                let lwCookies = fetchCookie(
+                    'https://laowangso.top/anti/recaptcha/v4/verify?token=' +
+                    randomString(100) +
+                    '&aywcUid=' +
+                    lwAywcUid +
+                    '&costtime=' + (Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000), {
+                        headers: {
+                            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+                            cookie: 'aywcUid=' + lwAywcUid,
+                        },
+                        redirect: false,
+                    }
+                )
+                let lwCookie1 = lwCookies.match(/fct=.*?;/gm)[0]
+                let lwCookie2 = lwCookies.match(/JSESSIONID=.*?;/gm)[0]
+
+                return lwCookie2 + lwCookie1 + 'aywcUid=' + lwAywcUid
+            }
+
+            function clRuleTest(keyWord, page) {
+                let lwRes = []
+
+                // 首次尝试过盾Cookie是否可用
+                let accessCookies = getItem('clj_lw_cookie', '')
+                if (!accessCookies) {
+                    console.log('老王磁力：没有过盾cookie，启动自动获取')
+                    accessCookies = clPassCookie()
+                    setItem('clj_lw_cookie', accessCookies)
+                }
+
+                let refererUrl = 'https://laowangso.top/search?keyword=' + encodeURIComponent(keyWord)
+                //let accessUrl =
+                'https://laowangso.top/search?keyword=' +
+                encodeURIComponent(keyWord) + "&sos=relevance&sofs=all&sot=all&soft=all&som=auto&p=" + page
+                let accessUrl =
+                    'https://laowangso.top/search?keyword=' +
+                    encodeURIComponent(keyWord) + "&sos=date&sofs=all&sot=all&soft=all&som=auto&p=" + page
+
+                let accessRes = fetch(accessUrl, {
+                    withStatusCode: true,
+                    redirect: false,
+                    headers: {
+                        cookie: accessCookies,
+                        referer: refererUrl,
+                        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+                    },
+                })
+
+                accessRes = JSON.parse(accessRes)
+
+                let accessStatusCode = accessRes.statusCode
+
+                if (accessStatusCode != 200) {
+                    console.log('老王磁力：重新获取过盾cookie')
+                    accessCookies = clPassCookie()
+                    setItem('clj_lw_cookie', accessCookies)
+                    accessRes = fetch(accessUrl, {
+                        withStatusCode: true,
+                        redirect: false,
+                        headers: {
+                            cookie: accessCookies,
+                            referer: refererUrl,
+                            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+                        },
+                    })
+                    accessRes = JSON.parse(accessRes)
+                } else {
+                    console.log('老王磁力：运气很好，过盾cookie还能用')
+                }
+
+                let searchRes = accessRes.body
+                let searchResItems = parseDomForArray(searchRes, 'body&&.search-panel')
+
+                for (let i = 2; i < searchResItems.length; i++) {
+                    let item_title = parseDomForHtml(searchResItems[i], 'body&&h3.panel-title&&a&&Text')
+                    let item_url = 'https://laowangso.top' + parseDomForHtml(searchResItems[i], 'body&&h3.panel-title&&a&&href')
+                    let item_desc = parseDomForHtml(searchResItems[i], 'body&&.panel-footer&&Text')
+                    if (item_desc.indexOf('KB') != -1) {
+                        continue
+                    }
+                    lwRes.push({
+                        title: item_title.small(),
+                        desc: item_desc,
+                        url: $().lazyRule(
+                            (item_url, accessUrl) => {
+                                let accessCookies = getItem('clj_lw_cookie', '')
+                                let accessRes = fetch(item_url, {
+                                    headers: {
+                                        cookie: accessCookies,
+                                        referer: accessUrl,
+                                        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+                                    },
+                                })
+                                let play_url = parseDomForHtml(accessRes, 'body&&#magnet&&href')
+                                eval(JSON.parse(request('hiker://page/data')).rule)
+                                return getModeUrl(play_url, '', getItem('openMode'))
+                            },
+                            item_url,
+                            accessUrl
+                        ),
+                    })
+                }
+                return lwRes
+            }
+            return clRuleTest(s, page)
+        }
+    }, {
+        name: "BTSOW",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://btsow.pics";
+            let api = "/search/" + encodeURIComponent(s) + "/page/" + page;
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, ".data-list&&.row:not(.hidden-xs)");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                var urll = pdfh(arr[i], "a&&href");
+                d.push({
+                    title: pdfh(arr[i], "a&&title").small(),
+                    desc: pdfh(arr[i], ".size-date&&Text"),
+                    url: urll.startsWith("http") ? urll : "https:" + urll,
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input, {}), '#magnetOpen&&a&&href');
+            return html;
+        }
+    }, {
+        name: "BtFox",
+        page: true,
+        find: function(s, page) {
+            //发布网址  https://btfox.xyz
+            let basicUrl = "http://btfox19.top";
+            /* if (page == 1) {
+                 let location = JSON.parse(post(basicUrl, {
+                     body: {
+                         wd: encodeURIComponent(s)
+                     },
+                     onlyHeaders: true
+                 })).url
+                 putMyVar("BtFox", location)
+             }*/
+            let api = basicUrl + "/s?wd=" + base64Encode(s) + "&sort=time&page=" + page;
+            let html = eval(pdfh(request(api), "script&&Html").replace(/document\.write\((.*)\)/, "$1").replace("window.", "window0."));
+            let arr = pdfa(html, "body&&.item");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&title").small(),
+                    desc: pdfh(arr[i], ".threadlist_note&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href")
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = eval(pdfh(request(input), "script&&Html").replace(/document\.write\((.*)\)/, "$1").replace("window.", "window0."));
+            var magnet = pdfh(html, "#mag-link&&value")
+            return magnet;
+        }
+    }, {
+        name: "SOBT",
+        page: true,
+        find: function(s, page) {
+            //发布网址  http://sobt.me/
+            let basicUrl = "https://sobt18.cfd";
+            let api = "/q/" + base64Encode(s) + "?sort=rel&page=" + page;
+            let html = request(basicUrl + api)
+            let arr = pdfa(html, "body&&.search-item");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".item-bar&&Text"),
+                    url: pdfh(arr[i], "a&&href").replace("/torrent/", "magnet:?xt=urn:btih:").replace(".html", ""),
+                });
+            }
+            return d;
+        },
+    }, {
+        name: "东京图书馆",
+        page: false,
+        find: function(s, page) {
+            let basicUrl = "https://www.tokyotosho.info";
+            let api = "/search.php?terms=" + encodeURIComponent(s) + "&type=0&searchName=true&searchComment=true&size_min=&size_max=&username=";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, ".listing&&tr:has(.desc-top)");
+            let desc = pdfa(html, ".listing&&tr:has(.desc-bot)");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "Text").small(),
+                    desc: pdfh(desc[i], "Text"),
+                    url: pdfh(arr[i], "a,1&&href")
+                });
+            }
+            return d;
+        },
+    }, {
+        name: "BT4G",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://bt4gprx.com";
+            let api = "/search?q=" + encodeURIComponent(s) + "&p=" + page;
+            let html = request(basicUrl + api)
+            let arr = pdfa(html, "body&&.result-item");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], "p&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input), '.card-body&&a&&href');
+            var ciliUrl = html.replace(/.*hash\//, "magnet:?xt=urn:btih:").replace("?name", "&dn")
+            return ciliUrl;
+        }
+    }, {
+        name: "BT目录",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://btmulu.cyou";
+            let api = "/search/" + encodeURIComponent(s) + "/page-" + page + ".html";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.item:not(:matches(在线播放))");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], "p&&Text"),
+                    url: pdfh(arr[i], "a&&href").replace("/hash/", "magnet:?xt=urn:btih:").replace(".html", ""),
+                });
+            }
+            return d;
+        },
+    }, {
+        name: "种子吧",
+        page: true,
+        find: function(s, page) {
+            //发布网址  http://zhongziba.cc/
+            let basicUrl = "https://zzb10.top";
+            let api = "/search?wd=" + base64Encode(s) + "&sort=rel&page=" + page;
+            let html = request(basicUrl + api)
+            let arr = pdfa(html, "body&&.media");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".search-info&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var ciliUrl = pdfh(request(input), '.bt-opt&&a&&href');
+            return ciliUrl;
+        }
+    }, {
+        name: "小草磁力",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://xcbt5.xyz";
+            let api = "/search/kw-" + encodeURIComponent(s) + "-" + page + ".html";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.search-item");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".item-bar&&Text"),
+                    url: pdfh(arr[i], "a&&href").replace("/hash/", "magnet:?xt=urn:btih:").replace(".html", ""),
+                });
+            }
+            return d;
+        },
+    }, {
+        name: "磁力蜘蛛",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://btmovi.cyou";
+            let api = "/so/" + encodeURIComponent(s) + "_rel_" + page + ".html";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.search-item");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".item-bar&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input), '#m_link&&value');
+            return html;
+        }
+    }, {
+        //永久地址：https://sofan.club/
+        name: "搜番",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://cdn.sofan.one:65533";
+            let api = "/s?word=" + encodeURIComponent(s) + "&page=" + page;
+            let html = request(basicUrl + api, {
+                headers: {
+
+                    Referer: "https://cdn.sofan.one/"
+                }
+            });
+            let arr = pdfa(html, "body&&.list-unstyled");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".result-resource-meta-info--.common-link&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input, {
+                headers: {
+                    Referer: "https://cdn.sofan.one/"
+                }
+            }), '#magnet-link&&a&&href');
+            return html;
+        }
+    }, {
+        name: "CiLiGeGe",
+        page: true,
+        find: function(s, page) {
+            //发布网址  https://www.ciligege.com
+
+            let basicUrl = "https://www.ciligege2.com";
+            let api = "/search/" + encodeURIComponent(s) + "/" + page;
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, ".bt-list&&.bt-card");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "Text").small(),
+                    desc: pdfh(arr[i], ".bt-card-body&&Text"),
+                    url: pdfh(arr[i], "a&&href").replace("/search/", "magnet:?xt=urn:btih:")
+                });
+            }
+            return d;
+        },
+    }, {
+        //永久地址：https://btfox.one/
+        name: "磁力狐",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://cache.foxs.top";
+            let api = "/search?word=" + encodeURIComponent(s) + "&page=" + page;
+            let html = request(basicUrl + api, {
+                headers: {
+
+                    Referer: "https://cache.foxs.top"
+                }
+            });
+            let arr = pdfa(html, "body&&.search-box");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".layui-show&&Text").replace(/(.*?)文件数量.*/, "$1"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input, {
+                headers: {
+                    Referer: "https://cache.foxs.top"
+                }
+            }), '#link-url&&a&&href');
+            return html;
+        }
+    }, {
+        //永久地址：https://ciliduo.org/
+        name: "磁力多",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://doc2.htmcdn.com:39988";
+            let api = "/search?word=" + encodeURIComponent(s) + "&sort=&page=" + page;
+            let html = request(basicUrl + api, {
+                headers: {
+                    Referer: "https://doc.htmcdn.com:39988"
+                }
+            });
+            let arr = pdfa(html, "body&&.ssbox:has(a)");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "h3&&Text").small(),
+                    desc: pdfh(arr[i], "Text").match(/添加时间.*/)[0].split("文件数")[0],
+                    url: pdfh(arr[i], "a:matches(磁力链接)&&href"),
+                });
+            }
+            return d;
+        }
+    }, {
+        //https://www.sokankan.top/
+        name: "BT吃力",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://www.sokk48.buzz";
+            let api = "/search/" + encodeURIComponent(s) + "/page-" + page + ".html";
+            let html = request(basicUrl + api, {
+                headers: {
+                    "Cookie": "language=7273f2cdedddc3d5229a0b7cfe68dab3486a50e3d1d84d6d6f0cba266d10ac7aa%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22zh-CN%22%3B%7D"
+                }
+            });
+            let arr = pdfa(html, ".list-view&&.item:not(:matches(在线播放))");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "h4--.label&&Text").small(),
+                    desc: pdfh(arr[i], "p&&Text").match(/(文件大小.*?)文件数量/)[1].slice(0, -9),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input), '.list-unstyled&&a&&href');
+            return html;
+        }
+    }, {
+        name: "0Magnet",
+        page: false,
+        find: function(s, page) {
+            let basicUrl = "https://wuji.me";
+            let api = "/search?q=" + encodeURIComponent(s);
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "table&&tr");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "p&&Text").small(),
+                    desc: pdfh(arr[i], "Text").match(/\d+(\.?\d+)?[gmkb]+/i)[0],
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input), '.magnet-box&&input&&value');
+            return html;
+        }
+    }, {
+        name: "磁力搜索",
+        page: false,
+        find: function(s, page) {
+            let basicUrl = "https://cilisousuo.com";
+            let api = "/search?q=" + encodeURIComponent(s);
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, ".list&&.item");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], ".filename&&Text").small(),
+                    desc: pdfh(arr[i], ".size&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input, {}), 'body&&.magnet-box&&input&&value');
+            return html;
+        }
+    }, {
+        //永久地址：cihu.xyz
+        name: "磁狐搜索",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://www.maddening5.xyz";
+            let api = "/search/" + encodeURIComponent(s) + "_ctime_" + page + ".html";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.panel");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], "tbody&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input), ".downbutton&&a&&href");
+            return html;
+        }
+    }, {
+        name: "磁力发", //cilifa.com
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://www.cilifa666.shop/api/ssbc";
+            let html = JSON.parse(post(basicUrl, {
+                body: {
+                    key: encodeURIComponent(s),
+                    type: "all",
+                    from: page
+                }
+            }));
+            let arr = html.data.infos.torrent;
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: arr[i].name_simple.small(),
+                    desc: arr[i].createdate,
+                    url: "magnet:?xt=urn:btih:" + arr[i].infohash,
+                });
+            }
+            return d;
+        },
+    }, {
+        //永久地址：https://www.zhaocili.xyz/
+        name: "找磁力",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://100mag.vip";
+            let api = "/s.php?q=" + encodeURIComponent(s);
+            let url = JSON.parse(request(basicUrl + api, {
+                onlyHeaders: true
+            })).url;
+            let html = request(url.replace('.html', '_' + page + '.html'))
+            let arr = pdfa(html, "tbody&&tr:has(a[title])");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                var urll = pdfh(arr[i], "a&&href");
+                d.push({
+                    title: pdfh(arr[i], "a&&title").small(),
+                    desc: pdfh(arr[i], "Text").match(/\d+(?:\.\d+)?(?:\s+)?[gmkb]+.*?(?:\-\d+)/i)[0],
+                    url: urll.startsWith("http") ? urll : "https:" + urll,
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            let html = pdfh(fetch(input), "#input-magnet&&value")
+            return html;
+        }
+    }, {
+        //永久地址：https://soucili.info/
+        name: "磁力宅",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://0j2yoali.alipaycloud.world";
+            let api = "/request/?request_type=esearch_v11&keywords=" + encodeURIComponent(s) + "&device_id=305202be-3cec-51df-d436-cd0dd7e500cb&page=" + (page - 1);
+            let html = JSON.parse(fetch(basicUrl + api));
+            let arr = html.videos;
+            let d = [];
+            for (let it of arr) {
+                d.push({
+                    title: it.filename.small(),
+                    desc: it.create_time + " " + it.file_size,
+                    url: "magnet:?xt=urn:btih:" + it.moc,
+                });
+            }
+            return d;
+        },
+    }, {
+        name: "磁力酷",
+        page: true,
+        find(s, page) {
+            let url = "https://ciliku.net/toSearch";
+            let json = post(url, {
+                headers: {
+                    origin: "https://ciliku.net",
+                    Referer: "https://ciliku.net/",
+                },
+                body: {
+                    "keyword": s,
+                    "page": page - 1,
+                    "size": 15
+                }
+            });
+            json = JSON.parse(json);
+            let list = json.data.content;
+            let d = [];
+
+            function formatFileSize(size) {
+                if (size === 0) return '0 Bytes';
+                var units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                var i = Math.floor(Math.log(size) / Math.log(1024));
+                return `${(size / Math.pow(1024, i)).toFixed(2)} ${units[i]}`;
+            }
+            for (let it of list) {
+                var date = new Date(it.timestamp);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+                var formattedDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+                d.push({
+                    title: it.name.small(),
+                    url: "magnet:?xt=urn:btih:" + it.btih,
+                    desc: "文件大小：" + formatFileSize(it.size) + "\t\t收录时间：" + formattedDate,
+                });
+            }
+            return d;
+        }
+    }, {
+        name: "磁力地球",
+        page: true,
+        find: function(s, page) {
+            //发布网址  https://www.cilidiqiu.top/
+
+            function str2hex(str) {
+                var val = "";
+                var i = 0;
+                for (; i < str.length; i++) {
+                    val += str.charCodeAt(i).toString(16);
+                }
+                return val;
+            }
+
+            function utf16to8(str) {
+                var out, i, len, c;
+                out = "";
+                len = str.length;
+                for (i = 0; i < len; i++) {
+                    c = str.charCodeAt(i);
+                    if ((c >= 0x0001) && (c <= 0x007F)) {
+                        out += str.charAt(i);
+                    } else if (c > 0x07FF) {
+                        out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                        out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                        out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+                    } else {
+                        out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                        out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+                    }
+                }
+                return out;
+            }
+
+            let basicUrl = "https://www.cilidiqiu.cc";
+            let api = "/search/" + str2hex(utf16to8(s)) + "-" + page + "-id.html";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, ".list&&dt:has(a)");
+            let desc = pdfa(html, ".list&&dt+dd:not(:has(a))");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(desc[i], "Text"),
+                    url: pdfh(arr[i], "a&&href").replace("/detail/", "magnet:?xt=urn:btih:").replace(".html", ""),
+                });
+            }
+
+            return d;
+        },
+    }, {
+        //永久地址：https://clgou.cyou/ https://魔法猫咪.lol/
+        name: "磁力狗猫",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://clgclg.com";
+            let api = "/search-" + encodeURIComponent(s) + "-0-0-" + page + ".html";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.ssbox");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], ".title&&Text").small(),
+                    desc: pdfh(arr[i], ".sbar&&Text").match(/(添加时间.*?)最近/)[1],
+                    url: pdfh(arr[i], ".sbar&&a&&href"),
+                });
+            }
+            return d;
+        },
+    }, {
+        //发布地址：http://fb.ciligoufabuye1.xyz:1234/
+        name: "磁力猫狗",
+        page: true,
+        find: function(s, page) {
+            var word111 = s
+            var encodebefore = base64Encode(word111);
+            encodebefore = 'VjdwwW29' + encodebefore + 'NjdwwW24';
+            var encodebefore1111 = encodebefore.replace(/\+/g, "jGYXWgx13");
+            md5pwd = encodebefore1111;
+            let basicUrl = "https://clm5.clmapp1.xyz";
+            let api = "/cllj.php?name=" + md5pwd + "&sort=&page=" + page;
+            let html = request(basicUrl + api, {
+                headers: {
+                    "Cookie": "sssfwz=qwsdsddsdsdse"
+                }
+            });
+            let arr = pdfa(html, "#Search_list_wrapper&&li:has(.Search_list_info)");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".Search_list_info&&Text").match(/(大小.*?)热度/)[1],
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input), '#Information_copy_text&&value');
+            return html;
+        }
+    }, {
+        name: "磁搜.com", //https://磁搜.com
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://q5m备用网址-icisou点com.cilihttp.com";
+            let api = "/search.php?key=" + encodeURIComponent(s) + "&p=" + page;
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.ssbox");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], ".sbar&&Text"),
+                    url: basicUrl + pdfh(arr[i], "a&&href"),
+                });
+            }
+            return d;
+        },
+        findAliUrl(input) {
+            var html = pdfh(request(input, {}), 'span&&href');
+            return html;
+        }
+    }, {
+        name: "U3C3",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://m0m0m1m.mnmnmnmnmn.com";
+            let api = "/?p=" + page + "&search2=eelja3lfe1a1&search=" + encodeURIComponent(s);
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "tbody&&.default:not(:matches([置顶]))");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                d.push({
+                    title: pdfh(arr[i], "a,1&&title").small(),
+                    desc: "【" + pdfh(arr[i], "a&&title") + "】" + pdfh(arr[i], "Text").replace(/.*(\d+(?:\.\d+)?[gmbGMB]+.*)暗网禁区/, "$1"),
+                    url: pdfh(arr[i], "a,3&&href"),
+                });
+            }
+            return d;
+        },
+    }
+];
+
+$.exports = {
+    rrules,
+    version
+}
