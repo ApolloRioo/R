@@ -1,5 +1,5 @@
 js:
-    var version = "20250604";
+    var version = "20250608";
 var rrules = [
     /*{
         name: "MP4吧",
@@ -254,6 +254,25 @@ var rrules = [
             var html = pdfh(request(input, {}), '#magnetOpen&&a&&href');
             return html;
         }
+    }, {
+        name: "BTDigg",
+        page: true,
+        find: function(s, page) {
+            let basicUrl = "https://www.btdig.com";
+            let api = "/search?q=" + encodeURIComponent(s) + "&p=" + (page - 1) + "&order=0";
+            let html = request(basicUrl + api);
+            let arr = pdfa(html, "body&&.one_result");
+            let d = [];
+            for (let i = 0; i < arr.length; i++) {
+                var urll = pdfh(arr[i], ".fa-magnet&&a&&href");
+                d.push({
+                    title: pdfh(arr[i], "a&&Text").small(),
+                    desc: pdfh(arr[i], "div[style=display:table-cell]:has(span)&&Text"),
+                    url: urll
+                });
+            }
+            return d;
+        },
     }, {
         name: "BtFox",
         page: true,
