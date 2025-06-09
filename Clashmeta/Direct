@@ -1,7 +1,5 @@
 payload:
   - DOMAIN-SUFFIX,dizhi-jifangg-com.com
-  - IP-CIDR,172.67.148.25/32
-  - IP-CIDR,104.21.55.122/32
   - DOMAIN-KEYWORD,cilichi
   - DOMAIN-SUFFIX,f6bh.com
   - DOMAIN-SUFFIX,集芳阁.com
@@ -36,7 +34,6 @@ payload:
   - DOMAIN-SUFFIX,haikuoshijie.com
   - DOMAIN-SUFFIX,kuocaicdn.com
   - DOMAIN-SUFFIX,hulichuang.mobi
-  - DOMAIN-SUFFIX,userpicimage.com
   - DOMAIN-SUFFIX,gaoding.com
   - DOMAIN-SUFFIX,tools.fun
   - DOMAIN-SUFFIX,javtiktoker.com
@@ -48,11 +45,45 @@ payload:
   - DOMAIN-KEYWORD,woaizhonghua
   - DOMAIN-KEYWORD,youku.com
   - DOMAIN-SUFFIX,lzzyimg.com
-  - DOMAIN-SUFFIX,wogg.net
-  - DOMAIN-SUFFIX,wogg.bf
   - DOMAIN-SUFFIX,888484.xyz
-  - DOMAIN-SUFFIX,wogg.link
-  - DOMAIN-SUFFIX,bingal.com
+  - DOMAIN-SUFFIX,bingal.com  
+  - DOMAIN-SUFFIX,sinw.net
+  - DOMAIN-SUFFIX,f6bh.com
+  - DOMAIN-SUFFIX,pew6.com
+  - DOMAIN-SUFFIX,yeitu.com
+  - DOMAIN-SUFFIX,jiutuvip.com
+  - DOMAIN-SUFFIX,xn--u2u927b.com
+  - DOMAIN-SUFFIX,yxzhi.com
+  - DOMAIN-SUFFIX,tyrantg.com
+  - DOMAIN-SUFFIX,codelife.cc
+  - DOMAIN-SUFFIX,nokia.press
+  - DOMAIN-SUFFIX,jianguoyun.com
+  - DOMAIN-SUFFIX,photopea.com
+  - DOMAIN-SUFFIX,imgse.com
+  - DOMAIN-SUFFIX,hikerfans.com
+  - DOMAIN-SUFFIX,haikuoshijie.com
+  - DOMAIN-SUFFIX,kuocaicdn.com
+  - DOMAIN-SUFFIX,hulichuang.mobi
+  - DOMAIN-SUFFIX,gaoding.com
+  - DOMAIN-SUFFIX,tools.fun
+  - DOMAIN-SUFFIX,koudailc.net
+  - DOMAIN-SUFFIX,jkv.app
+  - DOMAIN-SUFFIX,jktv.app
+  - DOMAIN-SUFFIX,wwentua.com
+  - DOMAIN-SUFFIX,ghproxy.net
+  - DOMAIN-SUFFIX,gh-proxy.com
+  - DOMAIN-SUFFIX,crxsoso.com
+  - DOMAIN-KEYWORD,btfox
+  - DOMAIN-KEYWORD,sobt
+  - DOMAIN-KEYWORD,zzb
+  - DOMAIN-SUFFIX,cilihttp.com
+  - DOMAIN-REGEX,ffzy-play(\d+)?\.com
+  - DOMAIN-REGEX,ffzy-online(\d+)?\.com
+  - DOMAIN-REGEX,lz-?cdn(\d+)?\.com
+  - DOMAIN-REGEX,cdnlz(\d+)?\.com
+  - DOMAIN-REGEX,hsck(\d+)?\.cc
+  - DOMAIN-REGEX,hsck(\d+)?\.net
+
 #误杀之嫌广告图
   - DOMAIN-SUFFIX,xylhwdu.com
 # 非凡
@@ -66,3 +97,4 @@ payload:
   - DOMAIN-REGEX,hsck(\d+)?\.net
 # bing翻译
   - DOMAIN,cn.bing.com
+  - DOMAIN-SUFFIX,niutrans.com  
