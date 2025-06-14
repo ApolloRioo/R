@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250110",
+    version: "20250614",
     empty: 'hiker://empty',
     url: "https://www.xvideos.com",
     d: [],
@@ -406,6 +406,12 @@ const Apollo = {
         } else {
             url = getMyVar("url", Apollo.url + currentCate.path)
         }
+        if (url.endsWith("/best/")) {
+            url = JSON.parse(fetch(url, {
+                onlyHeaders: true,
+                timeout: 5000
+            })).url
+        }
         url = url.replace(/\/\d+$|$/, (match) => {
             if (page > 0) {
                 if (match.startsWith("/")) {
@@ -553,7 +559,7 @@ const Apollo = {
                 col_type: "blank_block",
             });
             try {
-                var sort = pdfa(html, ".ordered-label-list||.stripe,-1&&a[href]:not(:matches(所有語言))")
+                var sort = pdfa(html, ".date-links||.ordered-label-list||.stripe,-1&&a[href]:not(:matches(所有語言))")
                 sort.forEach((item, index) => {
                     var title = pdfh(item, 'Text');
                     var urll = Apollo.url + pdfh(item, 'a&&href');
@@ -673,9 +679,9 @@ const Apollo = {
         } catch (e) {
             var pages = 1
         }
-        const list = pdfa(html, "body&&.frame-block")
+        const list = pdfa(html, "body&&.frame-block||.video-container")
         list.forEach(item => {
-            var title = pdfh(item, '.title&&Text');
+            var title = pdfh(item, '.title||.video-title&&Text');
             var urll = Apollo.url + pdfh(item, 'a&&href');
             urll = urll.replace(/.*(https?.*)/, "$1").replace(/THUMBNUM/, "23");
             Apollo.d.push({
