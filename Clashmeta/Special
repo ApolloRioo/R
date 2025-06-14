@@ -10,8 +10,7 @@ payload:
   - DOMAIN-SUFFIX,mgstage.com
   - DOMAIN-SUFFIX,avtoday.io
   - DOMAIN-SUFFIX,fangsung.com
-  - DOMAIN-SUFFIX,jdbstatic.com
-  - DOMAIN-KEYWORD,javdb
+
 
   - DOMAIN-KEYWORD,javmenu
   - DOMAIN-KEYWORD,d0000d
