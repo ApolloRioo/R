@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250419",
+    version: "20250615",
     empty: 'hiker://empty',
     url: "https://www5.javmost.com",
     d: [],
@@ -361,7 +361,7 @@ const Apollo = {
         list.forEach(item => {
             var img = item.cover.replace(/\d+x.*/, "preview.jpg");
             var url = item.url;
-            var title = item.name.replace("-UNCENSORED-LEAK", "🔥") + " " + item.full_name
+            var title = item.name.replace("-UNCENSORED-LEAK", "🔥").replace("-UNCENSORED-EDIT", "🔥") + " " + item.full_name
             Apollo.d.push({
                 title: title,
                 url: url + $('#noHistory#').rule((t) => {
