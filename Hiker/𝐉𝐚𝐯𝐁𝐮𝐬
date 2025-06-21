@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250530",
+    version: "20250621",
     empty: 'hiker://empty',
     url: "https://www.javbus.com",
     d: [],
@@ -663,7 +663,7 @@ const Apollo = {
         var actressesList = pdfa(html, "#avatar-waterfall&&a")
         if (actressesList.length > 0) {
             d.push({
-                title: '““””' + "演员:".fontcolor("#ffffff"),
+                title: '““””' + "演员:".fontcolor(""),
                 url: "hiker://empty",
                 col_type: "scroll_button",
                 extra: {
@@ -683,7 +683,28 @@ const Apollo = {
                 }),
                 col_type: 'scroll_button',
                 extra: {
-                    pageTitle: title
+                    pageTitle: title,
+                    longClick: [{
+                        title: '复制演员',
+                        js: $.toString((title) => {
+                            return "copy://" + title;
+                        }, title)
+                    }, {
+                        title: '谷歌搜索',
+                        js: $.toString((title) => {
+                            return "https://www.google.com/search?q=" + title + " 身高";
+                        }, title)
+                    }, {
+                        title: '百度搜索',
+                        js: $.toString((title) => {
+                            return "https://www.baidu.com/s?wd=" + title;
+                        }, title)
+                    }, {
+                        title: '磁力搜演员',
+                        js: $.toString((title) => {
+                            return "hiker://page/sou?rule=磁力君.简&p=fypage&searchTerms=" + title
+                        }, title)
+                    }]
                 }
             })
         })
@@ -815,9 +836,9 @@ const Apollo = {
                                 return "hiker://empty";
                             }, url)
                         }, {
-                            title: '飞驰',
+                            title: '无限云',
                             js: $.toString((url) => {
-                                openAppIntent('com.zy.feichixiazai', 'com.zy.feichixiazai.tabbar.MainActivity', {
+                                openAppIntent('wuxianyun.download.com', 'io.dcloud.PandoraEntry', {
                                     intentData: url
                                 })
                                 return "hiker://empty";
