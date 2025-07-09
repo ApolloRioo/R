@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20250425",
+    version: "20250709",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -618,6 +618,53 @@ const javguru = {
                 //log(uas)  
                 return jwplayer + ";{Referer@" + location + "}"
 
+            } else if (/javplaya/.test(location)) {
+                //EA线路
+                var html = fetch(location, {
+                    headers: {
+                        "Referer": "https://jav.guru/"
+                    }
+                });
+
+                function getEvalResult(evalStr) {
+                    var code = "";
+                    var evals = evalStr.replace(/^eval/, "").replace("return p", "return p + code");
+                    var func = new Function("code", "return " + evals);
+                    var result = func(code);
+                    return result;
+                }
+                try {
+                    var evalStr = html.match(/(eval[\s\S]+?)\s</)[1];
+                    var playUrl = getEvalResult(evalStr).match(/"hls2":"(.*?)"/)[1]
+                    var group_quality = fetch(playUrl);
+                    hghest_quality = group_quality.match(/^[^#\s]+$/gm).map(v => v.includes("http") ? v + "#isVideo=true#" : playUrl.replace(/[^\/]+$/, v))
+                    //log(hghest_quality)
+                    name_quality = group_quality.match(/RESOLUTION=.*?\,/gm).map(n => n.replace(/RESOLUTION=|\,/g, "")).slice(hghest_quality.length)
+                    //log(name_quality)
+                    // 按分辨率降序排序 分辨率 数组，并同时调整 hghest_quality
+                    function getResolution(name) {
+                        var match = name.match(/(\d+)/); // 提取降级分辨率
+                        return match ? parseInt(match[1], 10) : 0; // 如果没有匹配则返回0
+                    }
+                    var sortedData = name_quality.map((name, index) => ({
+                            name,
+                            url: hghest_quality[index]
+                        }))
+                        .sort((a, b) => getResolution(b.name) - getResolution(a.name));
+                    // 分开排序后的 names 和 urls 数组
+                    var sortedNames = sortedData.map(item => item.name);
+                    var sortedUrls = sortedData.map(item => item.url);
+                    let playlist = JSON.stringify({
+                        names: sortedNames,
+                        urls: sortedUrls,
+                        headers: new Array(hghest_quality.length).fill({
+                            Referer: ""
+                        })
+                    });
+                    return playlist;
+                } catch {
+                    return "toast://错误，请检查网络重试"
+                }
             } else if (/vidjav\.net/.test(location)) {
                 //VI线路
                 return "video://" + location
@@ -681,7 +728,7 @@ const javguru = {
             }
         }, url)
 
-        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM VI", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
+        var Playlined = ["STREAM TV", "STREAM ST", "STREAM DD", "STREAM SB", "STREAM VI", "STREAM EA", "STREAM LU", "STREAM JK", "Streamtape", "VTU"]
         var list = pdfa(html, ".ssmenu&&a[id]")
         try {
             var code = html.match(/iframe_url":"[^"]+/g)
