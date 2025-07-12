@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20241026",
+    version: "20250712",
     empty: 'hiker://empty',
     url: 'https://cn.xgroovy.com',
     d: [],
@@ -344,6 +344,9 @@ const Apollo = {
                 }
             }
         });
+        if (/com\/\d+$/.test(url)) {
+            url = "下一页不存在"
+        }
         Apollo.pageAdd(page)
         log(url)
         if (MY_PAGE == 1) {
