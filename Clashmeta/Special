@@ -1,8 +1,9 @@
 payload:
   - DOMAIN-SUFFIX,supjav.com  #过cf
   - DOMAIN-SUFFIX,supremejav.com
-  - DOMAIN-SUFFIX,catbox.moe
+  
 # 非日本地区
+  - DOMAIN-SUFFIX,catbox.moe
   - DOMAIN-SUFFIX,btdig.com
   - DOMAIN-SUFFIX,2nt.com
   - DOMAIN-SUFFIX,jav.guru
