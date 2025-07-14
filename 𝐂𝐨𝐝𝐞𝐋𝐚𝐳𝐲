@@ -14,12 +14,12 @@ js:
         识别码 = 识别码.toLowerCase()
         d.push({
             col_type: "line_blank",
-        })
+        });
         //missav
         d.push({
             title: '‘‘’’<b><middle><font color="#FF0000">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQlH7.png',
-            url: $('').lazyRule((识别码) => {
+            url: $('').lazyRule((识别码,title,img) => {
                 var search = "https://missav." + getPublicItem("missav", "live") + "/cn/search/" + 识别码;
                 var html = fetchCodeByWebView(search, {
                     headers: {
@@ -48,7 +48,7 @@ js:
                     }
                     var misstype = miss.map(i => i.title)
                     return $(misstype, 1)
-                        .select((miss) => {
+                        .select((miss, title, img) => {
                             if (input == '本平台尚未上传此番号视频') {
                                 return miss[0].url
                             } else {
@@ -91,7 +91,7 @@ js:
                                     });
                                     if (getVar("复制视频", "0") == "1") {
 
-                                        return "copy://" + 标题 + "," + sortedUrls[0] + "," + 图片
+                                        return "copy://" + (title ? title : 标题) + "," + sortedUrls[0] + "," + (img ? img : 图片)
                                     } else {
                                         return playlist;
                                     }
@@ -99,11 +99,11 @@ js:
                                     return "toast://网络错误，请重试😓"
                                 }
                             }
-                        }, miss)
+                        }, miss, title, img)
                 } else {
                     return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
                 }
-            }, 识别码),
+            }, 识别码,title,img),
             col_type: 'icon_5',
             extra: {
                 longClick: [{
