@@ -20,8 +20,8 @@ js:
             title: '‘‘’’<b><middle><font color="#FF0000">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQlH7.png',
             url: $('').lazyRule((识别码,title,img) => {
-                var search = "https://missav." + getPublicItem("missav", "live") + "/cn/search/" + 识别码;
-                var html = fetchCodeByWebView(search, {
+                var search = "https://missav" + getPublicItem("missav", ".live") + "/cn/search/" + 识别码;
+                var html = fetch(search, {
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                     },
@@ -54,7 +54,7 @@ js:
                             } else {
                                 try {
                                     let index = miss.findIndex(r => r.title == input);
-                                    var html = fetchCodeByWebView(miss[index].url, {
+                                    var html = fetch(miss[index].url, {
                                         headers: {
                                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                                         },
@@ -66,7 +66,7 @@ js:
                                     // 获取画质列表，并取最高画质
                                     let group_quality = fetch(source, {
                                         headers: {
-                                            "origin": "https://missav." + getPublicItem("missav", "live")
+                                            "origin": "https://missav." + getPublicItem("missav", ".live")
                                         }
                                     });
                                     //log(group_quality)
@@ -86,7 +86,7 @@ js:
                                         names: sortedNames,
                                         urls: sortedUrls,
                                         headers: new Array(hghest_quality.length).fill({
-                                            Referer: "https://missav." + getPublicItem("missav", "live") + "/"
+                                            Referer: "https://missav" + getPublicItem("missav", ".live") + "/"
                                         })
                                     });
                                     if (getVar("复制视频", "0") == "1") {
@@ -112,9 +112,9 @@ js:
                         return "https://missav." + getPublicItem("missav", "live") + "/cn/search/" + 识别码
                     }, 识别码)
                 }, {
-                    title: '线路' + getPublicItem("missav", "live"),
+                    title: '线路' + getPublicItem("missav", ".live"),
                     js: $.toString(() => {
-                        return $(["live", "ws", "ai"], 1).select(() => {
+                        return $(["123.com", ".live", ".ws", ".ai"], 1).select(() => {
                             setPublicItem("missav", input);
                             log("设置missav线路为:" + input)
                             refreshPage();
