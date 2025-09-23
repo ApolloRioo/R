@@ -109,7 +109,7 @@ js:
                 longClick: [{
                     title: '查看搜索',
                     js: $.toString((识别码) => {
-                        return "https://missav." + getPublicItem("missav", "live") + "/cn/search/" + 识别码
+                        return "https://missav" + getPublicItem("missav", ".live") + "/cn/search/" + 识别码
                     }, 识别码)
                 }, {
                     title: '线路' + getPublicItem("missav", ".live"),
