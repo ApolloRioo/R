@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250126",
+    version: "20250923",
     empty: "hiker://empty",
     url: "https://cn.pornhub.com",
     d: [],
@@ -896,7 +896,7 @@ const Apollo = {
             urls,
             names
         })
-        var img = parseDom(html, '#videoPlayerPlaceholder&&img&&src');
+        var img = parseDom(html, "link[as=image]&&href");
         Apollo.d.push({
             img: img,
             url: playlist,
