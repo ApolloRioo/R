@@ -16,10 +16,14 @@ js:
             col_type: "line_blank",
         });
         //missav
+        if (!title || !img) {
+            var title;
+            var img;
+        }
         d.push({
             title: '‘‘’’<b><middle><font color="#FF0000">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
             pic_url: 'https://img.vinua.cn/images/IQlH7.png',
-            url: $('').lazyRule((识别码,title,img) => {
+            url: $('').lazyRule((识别码, title, img) => {
                 var search = "https://missav" + getPublicItem("missav", ".live") + "/cn/search/" + 识别码;
                 var html = fetch(search, {
                     headers: {
@@ -103,7 +107,7 @@ js:
                 } else {
                     return "confirm://网络不通，请检查通顺!.js:'hiker://empty' "
                 }
-            }, 识别码,title,img),
+            }, 识别码, title, img),
             col_type: 'icon_5',
             extra: {
                 longClick: [{
