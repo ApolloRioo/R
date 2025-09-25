@@ -15,10 +15,10 @@ js:
         d.push({
             col_type: "line_blank",
         });
-        //missav
+        //missav        
         if (!title || !img) {
-            var title;
-            var img;
+            var title = getVar("javdbtitle");
+            var img = getVar("javdbimg");
         }
         d.push({
             title: '‘‘’’<b><middle><font color="#FF0000">𝐌𝐢𝐬𝐬𝐀𝐕</font></middle>',
