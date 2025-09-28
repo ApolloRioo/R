@@ -1,6 +1,6 @@
 const javguru = {
     empty: "hiker://empty",
-    version: "20250709",
+    version: "20250928",
     url: "https://jav.guru/",
     d: [],
     data: {
@@ -525,7 +525,7 @@ const javguru = {
                 onlyHeaders: true
             })).url
             log(location)
-            if (location.includes("emturbovid.com")) {
+            if (/turbovidhls|emturbovid/.test(location)) {
                 //TV线路
                 var html = fetch(location, {
                     headers: {
@@ -578,7 +578,7 @@ const javguru = {
                     }))
                     .url
                 return urlPlay + ";{Referer@" + location + "}"
-            } else if (/d0000d|dood|ds2play|all3do/.test(location)) {
+            } else if (/d0000d|dood|ds2play|all3do|dsvplay/.test(location)) {
                 //DD线路
                 var html = fetch(location, {
                     headers: {
