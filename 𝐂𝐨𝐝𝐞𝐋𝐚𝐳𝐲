@@ -1,14 +1,14 @@
 js:
-    /*所在行          ThissAV①18
-                      123av②140
-                      bestjav③210
-                      𝐗𝐒𝐙𝐀𝐕④358
-                      Tktube⑤430
-                      supjav⑥510
-                      javguru⑦595
-                      7mmtv⑧675
-                      more⑨750
-                      cilijun⑩930
+    /*所在行          missAV①24
+                      123av②158
+                      bestjav③245
+                      𝐗𝐒𝐙𝐀𝐕④392
+                      Tktube⑤443
+                      supjav⑥523
+                      javguru⑦609
+                      7mmtv⑧688
+                      more⑨762
+                      cilijun⑩943
        */
     function CodeLazy(识别码) {
         识别码 = 识别码.toLowerCase()
@@ -230,6 +230,11 @@ js:
                     title: '查看网址',
                     js: $.toString((识别码) => {
                         return "https://123av.com/zh/v/" + 识别码;
+                    }, 识别码)
+                },{
+                    title: '搜索',
+                    js: $.toString((识别码) => {
+                        return "https://123av.com/zh/search?keyword=" + 识别码;
                     }, 识别码)
                 }]
             }
@@ -535,7 +540,7 @@ js:
                             //"User-Agent": "",
                             //"Referer": "https://supjav.com/"
                         },
-                        timeout: 4923
+                        //timeout: 4923
                     });
                     if (html && !html.includes("Just a moment...")) {
                         var list = pdfa(html, '.posts&&.post');
