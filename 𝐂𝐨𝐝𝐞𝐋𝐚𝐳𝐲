@@ -29,7 +29,7 @@ js:
                     headers: {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                     },
-                    timeout: 4923
+                    //timeout: 4923
                 });
                 if (html) {
                     var list = pdfa(html, '.grid&&.relative:has(a[href])');
@@ -58,11 +58,14 @@ js:
                             } else {
                                 try {
                                     let index = miss.findIndex(r => r.title == input);
+                                    if (miss[index].url.includes("uncensored")) {
+                                        title = title.replace(/\s/, "🔥")
+                                    }
                                     var html = fetch(miss[index].url, {
                                         headers: {
                                             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0)'
                                         },
-                                        timeout: 4923
+                                        //timeout: 4923
                                     });
                                     const 标题 = pdfh(html, 'h1&&Text')
                                     const 图片 = pdfh(html, 'meta[property=og:image]&&content');
@@ -231,7 +234,7 @@ js:
                     js: $.toString((识别码) => {
                         return "https://123av.com/zh/v/" + 识别码;
                     }, 识别码)
-                },{
+                }, {
                     title: '搜索',
                     js: $.toString((识别码) => {
                         return "https://123av.com/zh/search?keyword=" + 识别码;
