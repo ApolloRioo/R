@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250509",
+    version: "20250929",
     empty: 'hiker://empty',
     url: "https://javfinder.ai",
     d: [],
@@ -444,19 +444,25 @@ const Apollo = {
                 }]
             }
         })
-        var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1]
+        var src = "https://javfinder.ai/stream/" + html.match(/iframe src.*?"(.*?)"/)[1].split("#")[1];
         Apollo.d.push({
             pic_url: MY_PARAMS.img, //pdfh(html, '.object-fit-contain&&poster') + '@Referer=' + Apollo.url,
             url: src + $("").lazyRule(() => {
                 try {
-                    var location = JSON.parse(fetch(input))
-                        .list[0].url
-                    var master = fetch(location);
+                    var location = JSON.parse(fetch(input)).list[0].url;
+                    var master = fetchCodeByWebView(location, {
+                        headers: {
+                            Referer: "https://javfinder.ai/"
+                        }
+                    });
                     var script = master.match(/eval([\s\S]+?)<\/script/)[1];
                     //log(script)
                     var uas = eval(script)
-                    var jwplayer = uas.match(/"(https?.*m3u8.*?)"/)[1]
-                    //log(jwplayer)  
+                    var link = uas.match(/var links[^\;]+/)[0];
+                    //log(link)
+                    eval(link)
+                    var jwplayer = "https://xenolyzb.com" + links.hls4//uas.match(/"(https?.*m3u8.*?)"/)[1]
+                    //log(jwplayer)
                     return jwplayer + ";{Referer@" + getHome(location) + "/}"
                 } catch {
                     return "toast://网络出错请重试"
