@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250409",
+    version: "20250929",
     empty: 'hiker://empty',
     url: "https://javtiful.com",
     d: [],
@@ -390,7 +390,7 @@ const Apollo = {
         })
 
         Apollo.d.push({
-            pic_url: pdfh(html, '.object-fit-contain&&poster') + '@Referer=' + Apollo.url,
+            pic_url: pdfh(html, '#player&&.player-wrapper&&style').replace(/.*(?:'|")(.*?)(?:'|").*/,"$1") + '@Referer=' + Apollo.url,
             url: $(url + '#noHistory#').lazyRule(() => {
                 var id = input.match(/video\/(\d+)\//)[1];
                 var token = pdfh(fetch(input), ".position-relative[id]&&data-csrf-token");
