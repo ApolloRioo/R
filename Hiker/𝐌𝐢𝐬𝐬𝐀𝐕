@@ -1,5 +1,5 @@
 const Apollo = {
-    version: "20250509",
+    version: "20251004",
     empty: 'hiker://empty',
     url: "https://missav.live/cn/",
     d: [],
@@ -69,12 +69,6 @@ const Apollo = {
             path: '',
             type: 'video',
             sub: [{
-                title: '最近更新',
-                path: 'new',
-            }, {
-                title: '新作上市',
-                path: 'release',
-            }, {
                 title: '今日热门',
                 path: 'today-hot',
             }, {
@@ -83,6 +77,12 @@ const Apollo = {
             }, {
                 title: '本月热门',
                 path: 'monthly-hot',
+            }, {
+                title: '最近更新',
+                path: 'new',
+            }, {
+                title: '新作上市',
+                path: 'release',
             }]
         }, {
             title: '中字',
