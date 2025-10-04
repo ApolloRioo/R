@@ -537,7 +537,7 @@ js:
                     return "hiker://empty"
                 } else {
                     var search = "https://supjav.com/zh/?s=" + 识别码.replace(/fc2.*?ppv.*?(\d+)/, "fc2ppv $1");
-                    var html = fetch(search, {
+                    var html = fetchCodeByWebView(search, {
                         headers: {
                             //"Cookie": "",
                             //"User-Agent": "",
